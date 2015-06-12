@@ -1,6 +1,6 @@
 package com.salesforce.dev.pages.Product;
 
-import com.salesforce.dev.pages.AccountPage.*;
+import com.salesforce.dev.pages.AccountPage.AccountDetail;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

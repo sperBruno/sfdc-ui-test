@@ -1,6 +1,6 @@
 package com.salesforce.dev.pages.Product;
 
-import com.salesforce.dev.pages.AccountPage.*;
+import com.salesforce.dev.pages.AccountPage.AccountPage;
 
 /**
  * Created by marcelo on 6/11/2015.
