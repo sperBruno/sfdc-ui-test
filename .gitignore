@@ -1,1 +1,12 @@
-.gradle/2.4/taskArtifacts/cache.properties
+.gradle/
+gradle/
+*.iml
+*.ipr
+*.iws
+gradlew
+gradlew.bat
+settings.gradle
+
+
+
+
