@@ -1,5 +1,5 @@
 package com.salesforce.dev.pages.Base;
-import com.salesforce.dev.pages.AccountPage.AccountsHome;
+import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Product.ProductsHome;
@@ -56,11 +56,6 @@ public class NavigationBar {
         return new AccountsHome(driver);
     }
 
- /*   public CampaignsPage clickCamTab(){
-        wait.until(ExpectedConditions.visibilityOf(campaingsTab));
-        campaingsTab.click();
-        return new CampaignsPage(driver);
-    }*/
     public boolean IsElementPresent(WebElement webElement){
         try {
             webElement.getTagName();

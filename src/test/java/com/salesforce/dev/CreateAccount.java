@@ -1,15 +1,14 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.Environment;
-import com.salesforce.dev.pages.AccountPage.AccountDetail;
-import com.salesforce.dev.pages.AccountPage.AccountForm;
-import com.salesforce.dev.pages.AccountPage.AccountsHome;
+import com.salesforce.dev.pages.Accounts.AccountDetail;
+import com.salesforce.dev.pages.Accounts.AccountForm;
+import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 
-import org.junit.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

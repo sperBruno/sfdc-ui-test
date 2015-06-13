@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by Luffy on 13/06/2015.
+ * Created by Walter on 13/06/2015.
  */
 public abstract class FormBase {
     protected WebDriver driver;
