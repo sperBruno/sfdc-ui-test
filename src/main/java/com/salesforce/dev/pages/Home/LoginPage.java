@@ -44,23 +44,6 @@ public class LoginPage {
         loginBtn.click();
     }
 
-    // Original implementation
-    /*public NavigationBar LoginAs(String UserName,String Pass){
-        NavigationBar navigationBar=new NavigationBar(driver);
-        try {
-
-            if (!navigationBar.IsUserLavelPresent()) {
-                setUserName(UserName);
-                setPassword(Pass);
-                clickLoginBtn();
-            }
-
-        } catch (WebDriverException e) {
-
-        }
-        return navigationBar;
-    }*/
-
     /**
      * Returns the Main Page which contains the TopHeader and Navigation Bar
      * And the Main Page is the one who initializes those objects

@@ -37,7 +37,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
    }
 
   /**
+   * Method that make sure to log with the correct user
    *
+   * @author: Jimmy Vargas
    * */
   public MainPage loginAs(String account, String password){
     MainPage mainPage;
@@ -57,8 +59,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
       LoginPage loginPage = this.clickLoginBtn();
       mainPage = loginPage.loginAs(account, password);
     }
-
-
     return mainPage;
   }
 
