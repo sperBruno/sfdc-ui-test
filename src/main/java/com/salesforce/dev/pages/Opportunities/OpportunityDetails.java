@@ -52,6 +52,16 @@ public class OpportunityDetails extends DetailsBase {
         return new OpportunitiesHome(driver);
     }
 
+    /**
+     * Deletes the opportunity from its own page
+     *
+     * @author: Jimmy Vargas
+     * @since: 06/13/2015
+     * */
+    public OpportunitiesHome deleteOpportunity(){
+        return (OpportunitiesHome)clickDeleteBtn(true);
+    }
+
 
 }
 
