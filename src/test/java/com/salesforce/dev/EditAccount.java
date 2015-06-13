@@ -8,6 +8,7 @@ import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import org.junit.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -23,8 +24,35 @@ public class EditAccount {
     private MainPage mainPage;
     private AccountDetail accountDetail;
     private NavigationBar navigationBar;
-    private String accountName ="AccountName1";
-    private String accountDesc ="Account Desc";
+    private AccountsHome accountsHome;
+    private AccountForm accountForm;
+    private String accountName ="AccountName";
+
+
+    private String accountNameUpdated ="AccountUpdated";
+    private String accountDesc ="Account Description";
+    private String rating ="Hot"; //--None--, Hot, Warm, Cold
+    private String ownership ="Private"; //--None--, Private, Public, Subsidiary, Other
+    private String phone ="+(591)72356852";
+    private String fax ="+(591)72356852";
+    private String number ="123456";
+    private String website ="http://test.jalasoft.com";
+    private String accountSite ="accountTest";
+    private String tickerSymbol ="Ticker Simbol";
+    private String type ="Prospect"; //--None--, Prospect, Customer - Direct, Customer - Channel, Channel Partner / Reseller, Installation Partner, Technology Partner, Other
+    private String industry = "Technology"; //Several items
+    private Integer employees = 1234;
+    private Integer annualRevenue = 4566;
+    private String sicCode = "ABCDE";
+    private String billingAddress = "Billing Address";
+    private String shippingAddress = "Shipping Address";
+    private String customerPriority= "High"; //Selected Item
+    private String sla= "Gold"; //Selected Item
+    private String upsellOpportunity= "Yes"; //Selected Item
+    private String active = "Yes";
+    private String slaExpirationDate = "12/31/2015";
+    private String slaSerialNumber= "123-456-78";
+    private Integer numberOfLocations = 789;
 
 
 
@@ -35,24 +63,81 @@ public class EditAccount {
         String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue,passwordValue);
 
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.clickAccountTab();
+        accountForm = accountsHome.clickNewBtn();
+        accountForm.setAccountNameFld(accountName);
+        accountDetail = accountForm.clickSaveBtn();
+
+        Assert.assertTrue(accountDetail.validateAccountNameFld(accountName));
+
+        mainPage = accountDetail.gotoMainPage();
+
     }
 
     @Test
     public void testEditAccount() {
-        NavigationBar navigationBar = mainPage.gotoNavBar();
-        AccountsHome accountsHome = navigationBar.clickAccountTab();
-        AccountDetail accountDetail = accountsHome.selectRecentItem(accountName);
-        AccountForm accountForm = accountDetail.clickEditBtn();
-        accountForm.setAccountNumberFld(accountName+"update");
-        accountForm.setAccountDescriptionFld(accountDesc+"update");
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.clickAccountTab();
+        accountDetail = accountsHome.selectRecentItem(accountName);
+        accountForm = accountDetail.clickEditBtn();
+        accountForm.setAccountNameFld(accountNameUpdated);
+        accountForm.setAccountRatingFld(rating);
+        accountForm.setAccountOwnershipFld(ownership);
+        accountForm.setAccountPhoneFld(phone);
+        accountForm.setAccountFaxFld(fax);
+        accountForm.setAccountNumberFld(number);
+        accountForm.setAccountWebsiteFld(website);
+        accountForm.setAccountSiteFld(accountSite);
+        accountForm.setAccountThickerFld(tickerSymbol);
+        accountForm.setAccountTypeFld(type);
+        accountForm.setAccountIndustryFld(industry);
+        accountForm.setAccountEmployeesFld(employees);
+        accountForm.setAccountAnnualRevenueFld(annualRevenue);
+        accountForm.setAccountSICCodeFld(sicCode);
+        accountForm.setAccountBillingStreetFld(billingAddress);
+        accountForm.setAccountShippingStreetFld(shippingAddress);
+        accountForm.setAccountCustomerPriorityFld(customerPriority);
+        accountForm.setAccountSLAFld(sla);
+        accountForm.setAccountUpsellOpportunityFld(upsellOpportunity);
+        accountForm.setAccountActiveFld(active);
+        accountForm.setAccountSLAExpirationDateFld(slaExpirationDate);
+        accountForm.setAccountSLASerialNumberFld(slaSerialNumber);
+        accountForm.setAccountNumberLocationsFld(numberOfLocations);
+        accountForm.setAccountDescriptionFld(accountDesc);
+
         accountDetail = accountForm.clickSaveBtn();
-       // Assert.assertTrue(accountDetail.VerifyProduct(productName), "product Was not Created");
+
+        Assert.assertTrue(accountDetail.validateAccountNameFld(accountNameUpdated));
+        Assert.assertTrue(accountDetail.validateAccountRatingFld(rating));
+        Assert.assertTrue(accountDetail.validateAccountOwnershipFld(ownership));
+        Assert.assertTrue(accountDetail.validateAccountPhoneFld(phone));
+        Assert.assertTrue(accountDetail.validateAccountFaxFld(fax));
+        Assert.assertTrue(accountDetail.validateAccountNumberFld(number));
+        Assert.assertTrue(accountDetail.validateAccountWebsiteFld(website));
+        Assert.assertTrue(accountDetail.validateAccountSiteFld(accountSite));
+        Assert.assertTrue(accountDetail.validateAccountTickerSymbolFld(tickerSymbol));
+        Assert.assertTrue(accountDetail.validateAccountTypeFld(type));
+        Assert.assertTrue(accountDetail.validateAccountIndustryFld(industry));
+        Assert.assertTrue(accountDetail.validateAccountEmployeesFld(employees));
+        Assert.assertTrue(accountDetail.validateAccountAnnualRevenueFld(annualRevenue));
+        Assert.assertTrue(accountDetail.validateAccountSICCodeFld(sicCode));
+        Assert.assertTrue(accountDetail.validateAccountBillingAddressFld(billingAddress));
+        Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(shippingAddress));
+        Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(customerPriority));
+        Assert.assertTrue(accountDetail.validateAccountSLAFld(sla));
+        Assert.assertTrue(accountDetail.validateAccountUpsellOportunityFld(upsellOpportunity));
+        Assert.assertTrue(accountDetail.validateAccountActiveFld(active));
+        Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(slaExpirationDate));
+        Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(slaSerialNumber));
+        Assert.assertTrue(accountDetail.validateAccountNumberOfLocationsFld(numberOfLocations));
+        Assert.assertTrue(accountDetail.validateAccountDescriptionFld(accountDesc));
 
     }
 
     @AfterMethod
     public void tearDown() {
-        //productDetails.DeleteProduct();
+        accountDetail.clickDeleteBtn(true);
 
     }
 }

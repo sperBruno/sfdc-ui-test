@@ -6,23 +6,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
-import java.util.Date;
 
 /**
  * Created by Walter on 10/06/2015.
  */
 public class AccountForm extends FormBase{
-
-    private String accountName, parentAccount, accountNumber, accountSite, accountType, accountIndustry;
-    private String accountRating, accountPhone, accountFax, accountWebsite, accountThicker, accountOwnership,accountSICCode;
-    private String accountBillingStreet,accountShippingStreet,accountBillingCity,accountShippingCity;
-    private String accountBillingState,accountShippingState,accountBillingZip,accountShippingZip,accountBillingCountry;
-    private String accountShippingCountry,accountCustomerPriority,accountSLA, accountSLASerialNumber;
-    private String accountUpsellOpportunity, accountDescription;
-    private Boolean accountActive;
-    private Integer accountEmployees, accountAnnualRevenue, accountNumberLocations;
-    private Date accountSLAExpirationDate;
 
     //Account Information
 
@@ -155,9 +145,21 @@ public class AccountForm extends FormBase{
         return new AccountDetail(driver);
     }
 
-    public AccountForm setAccountNumberFld(String accountNumber) {
+    public AccountForm selectItem(WebElement webElement, String value){
+        Select selectBox = new Select(webElement);
+        selectBox.selectByVisibleText(value);
+        return this;
+    }
+
+    public AccountForm setAccountNameFld(String accountName) {
         accountNameFld.clear();
-        accountNameFld.sendKeys(accountNumber);
+        accountNameFld.sendKeys(accountName);
+        return this;
+    }
+
+    public AccountForm setAccountNumberFld(String accountNumber) {
+        accountNumberFld.clear();
+        accountNumberFld.sendKeys(accountNumber);
         return this;
     }
 
@@ -168,27 +170,21 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountTypeFld(String accountType) {
-        accountTypeFld.clear();
-        accountTypeFld.sendKeys(accountType);
-        return this;
+        return selectItem(accountTypeFld, accountType);
     }
 
     public AccountForm setAccountIndustryFld(String accountIndustry) {
-        accountIndustryFld.clear();
-        accountIndustryFld.sendKeys(accountIndustry);
-        return this;
+        return selectItem(accountIndustryFld, accountIndustry);
     }
 
-    public AccountForm setAccountAnnualRevenueFld(String accountAnnualRevenue) {
+    public AccountForm setAccountAnnualRevenueFld(Integer accountAnnualRevenue) {
         accountAnnualRevenueFld.clear();
-        accountAnnualRevenueFld.sendKeys(accountAnnualRevenue);
+        accountAnnualRevenueFld.sendKeys(accountAnnualRevenue.toString());
         return this;
     }
 
     public AccountForm setAccountRatingFld(String accountRating) {
-        accountRatingFld.clear();
-        accountRatingFld.sendKeys(accountRating);
-        return this;
+        return selectItem(accountRatingFld, accountRating);
     }
 
     public AccountForm setAccountPhoneFld(String accountPhone) {
@@ -216,14 +212,12 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountOwnershipFld(String accountOwnership) {
-        accountOwnershipFld.clear();
-        accountOwnershipFld.sendKeys(accountOwnership);
-        return this;
+        return selectItem(accountOwnershipFld, accountOwnership);
     }
 
-    public AccountForm setAccountEmployeesFld(String accountEmployees) {
+    public AccountForm setAccountEmployeesFld(Integer accountEmployees) {
         accountEmployeesFld.clear();
-        accountEmployeesFld.sendKeys(accountEmployees);
+        accountEmployeesFld.sendKeys(accountEmployees.toString());
         return this;
     }
 
@@ -294,9 +288,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountCustomerPriorityFld(String accountCustomerPriority) {
-        accountCustomerPriorityFld.clear();
-        accountCustomerPriorityFld.sendKeys(accountCustomerPriority);
-        return this;
+        return selectItem(accountCustomerPriorityFld, accountCustomerPriority);
     }
 
     public AccountForm setAccountSLAExpirationDateFld(String accountSLAExpirationDate) {
@@ -305,22 +297,18 @@ public class AccountForm extends FormBase{
         return this;
     }
 
-    public AccountForm setAccountNumberLocationsFld(String accountNumberLocations) {
+    public AccountForm setAccountNumberLocationsFld(Integer accountNumberLocations) {
         accountNumberLocationsFld.clear();
-        accountNumberLocationsFld.sendKeys(accountNumberLocations);
+        accountNumberLocationsFld.sendKeys(accountNumberLocations.toString());
         return this;
     }
 
-    public AccountForm setAccountActiveFld() {
-        accountActiveFld.clear();
-        accountActiveFld.click();
-        return this;
+    public AccountForm setAccountActiveFld(String activeState) {
+        return selectItem(accountActiveFld, activeState);
     }
 
     public AccountForm setAccountSLAFld(String accountSLA) {
-        accountSLAFld.clear();
-        accountSLAFld.sendKeys(accountSLA);
-        return this;
+        return selectItem(accountSLAFld, accountSLA);
     }
 
     public AccountForm setAccountSLASerialNumberFld(String accountSLASerialNumber) {
@@ -330,9 +318,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountUpsellOpportunityFld(String accountUpsellOpportunity) {
-        accountUpsellOpportunityFld.clear();
-        accountUpsellOpportunityFld.sendKeys(accountUpsellOpportunity);
-        return this;
+        return selectItem(accountUpsellOpportunityFld, accountUpsellOpportunity);
     }
 
     public AccountForm setAccountDescriptionFld(String accountDescription) {
