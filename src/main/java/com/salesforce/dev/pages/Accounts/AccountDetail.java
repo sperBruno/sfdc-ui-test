@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.AccountPage;
+package com.salesforce.dev.pages.Accounts;
 
 import com.salesforce.dev.framework.DriverManager;
 import org.openqa.selenium.WebDriver;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by Walter Mercado on 10/06/2015.
+ * Created by Walter on 10/06/2015.
  */
 public class AccountDetail {
     private WebDriver driver;
@@ -16,7 +16,8 @@ public class AccountDetail {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
-        PageFactory.initElements(driver, this);
     }
+
+
 
 }
