@@ -49,6 +49,10 @@ public class Opportunities {
 
         System.out.println("Op Owner" + opportunityDetails.opOwner.getText());
 
+        //deleting the opportunity
+        opTab = opportunityDetails.deleteOpportunity();
+
+
         //verifying the oppotunity created
         //String opportunityDetails = opportunityPage.getOwner();
         //String opportunityDetails = opportunityPage.getName();

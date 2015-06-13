@@ -36,6 +36,5 @@ public abstract class TabPage {
     protected void clickNewButton() {
         this.wait.until(ExpectedConditions.visibilityOf(newBtn));
         newBtn.click();
-
     }
 }
