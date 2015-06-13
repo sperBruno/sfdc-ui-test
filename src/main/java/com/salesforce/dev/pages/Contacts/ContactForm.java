@@ -23,7 +23,7 @@ public class ContactForm {
 
     private String firstNameRole, firstName, lastName, accountName, title, department, reportsTo, phone, homePhone, mobile, otherPhone, fax, email, assistant, assistantPhone;
     private String mailingStreet, mailingCity, mailingState, mailingZip, mailingCountry, otherStreet, otherCity, otherState, otherZip, otherCountry;
-    private String	languages;
+    private String languages;
     private String description;
     private String birthDate;
     private String leadSource, level;
@@ -144,147 +144,185 @@ public class ContactForm {
         }
     }
 
-    public ContactForm(ContactBuilder builder) {
-
-        this.driver = DriverManager.getInstance().getDriver();
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-
-        this.firstNameRole = builder.getFirstNameRole();
-        this.firstName = builder.getFirstName();
-        this.lastName = builder.getLastName();
-        this.accountName = builder.getAccountName();
-        this.title = builder.getTitle();
-        this.department = builder.getDepartment();
-        this.birthDate = builder.getBirthDate();
-        this.reportsTo = builder.getReportsTo();
-        this.leadSource = builder.getLeadSource();
-        this.phone = builder.getPhone();
-        this.homePhone = builder.getHomePhone();
-        this.mobile = builder.getMobile();
-        this.otherPhone = builder.getOtherPhone();
-        this.fax = builder.getFax();
-        this.email = builder.getEmail();
-        this.assistant = builder.getAssistant();
-        this.assistantPhone = builder.getAssistantPhone();
-
-        this.mailingStreet = builder.getMailingStreet();
-        this.mailingCity = builder.getMailingCity();
-        this.mailingState = builder.getMailingState();
-        this.mailingZip = builder.getMailingZip();
-        this.mailingCountry = builder.getMailingCountry();
-        this.otherCity = builder.getOtherCity();
-        this.otherState = builder.getOtherState();
-        this.otherZip = builder.getOtherZip();
-        this.otherCountry = builder.getOtherCountry();
-
-        this.languages = builder.getLanguages();
-        this.level = builder.getLevel();
-
-        this.description = builder.getDescription();
+    public ContactForm setFirstNameRole(String text) {
+        firstNameRoleSelect.clear();
+        firstNameRoleSelect.sendKeys(text);
+        return this;
     }
 
-    public ContactDetail saveContact() {
-
-        if(firstName!= null) {
-            modifyWebElement(firstNameFld, firstName);
-        }
-        if(lastName != null) {
-            modifyWebElement(lastNameFld, lastName);
-        }
-        if(accountName != null) {
-            modifyWebElement(accountNameFld, accountName);
-        }
-        if(title != null ) {
-            modifyWebElement(titleFld, title);
-        }
-        if(department != null) {
-            modifyWebElement(departmentFld, department);
-        }
-        if(birthDate!= null) {
-            modifyWebElement(birthDayFld, birthDate);
-        }
-        if(reportsTo!= null) {
-            modifyWebElement(reportsToFld, reportsTo);
-        }
-        // TODO: this is an select
-        if(leadSource!= null) {
-            modifyWebElement(leadSourceSelect, leadSource);
-        }
-        if(phone!= null) {
-            modifyWebElement(phoneFld, phone);
-        }
-        if(homePhone!= null) {
-            modifyWebElement(homePhoneFld, homePhone);
-        }
-        if(mobile!= null) {
-            modifyWebElement(mobileFld, mobile);
-        }
-        if(otherPhone!= null) {
-            modifyWebElement(otherPhoneFld, otherPhone);
-        }
-        if(fax!= null) {
-            modifyWebElement(faxFld, fax);
-        }
-        if(email!= null) {
-            modifyWebElement(emailFld, email);
-        }
-        if(assistant!= null) {
-            modifyWebElement(assistantFld, assistant);
-        }
-        if(assistantPhone!= null) {
-            modifyWebElement(assistantPhoneFld, assistantPhone);
-        }
-        if(mailingStreet!= null) {
-            modifyWebElement(mailingStreetFld, mailingStreet);
-        }
-        if(mailingCity!= null) {
-            modifyWebElement(mailingCityFld, mailingCity);
-        }
-        if(mailingState!= null) {
-            modifyWebElement(mailingStateFld, mailingState);
-        }
-        if(mailingZip!= null) {
-            modifyWebElement(mailingZipFld, mailingZip);
-        }
-        if(mailingCountry!= null) {
-            modifyWebElement(mailingCountryFld, mailingCountry);
-        }
-        if(otherCity!= null) {
-            modifyWebElement(otherCityFld, otherCity);
-        }
-        if(otherState!= null) {
-            modifyWebElement(otherStateFld, otherState);
-        }
-        if(otherZip!= null) {
-            modifyWebElement(otherZipFld, otherZip);
-        }
-        if(otherCountry!= null) {
-            modifyWebElement(otherCountryFld, otherCountry);
-        }
-        if(languages!= null) {
-            modifyWebElement(languagesFld, languages);
-        }
-        if(level!= null) {
-            modifyWebElement(levelFld, level);
-        }
-        if(description!= null) {
-            modifyWebElement(descriptionFld, description);
-        }
-        return clickSaveBtn();
+    public ContactForm setFirstName(String text) {
+        firstNameRoleSelect.clear();
+        firstNameRoleSelect.sendKeys(text);
+        return this;
     }
 
-    private void modifyWebElement(WebElement webElement, String value) {
-        webElement.clear();
-        webElement.sendKeys(value);
+    public ContactForm setLastName(String text) {
+        lastNameFld.clear();
+        lastNameFld.sendKeys(text);
+        return this;
     }
+
+    public ContactForm setAccountName(String text) {
+        accountNameFld.clear();
+        accountNameFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setTitle(String text) {
+        titleFld.clear();
+        titleFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setDepartment(String text) {
+        departmentFld.clear();
+        departmentFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setBirthDate(String text) {
+        birthDayFld.clear();
+        birthDayFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setReportsTo(String text) {
+        reportsToFld.clear();
+        reportsToFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setLeadSource(String text) {
+        leadSourceSelect.clear();
+        leadSourceSelect.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setPhone(String text) {
+        phoneFld.clear();
+        phoneFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setHomePhone(String text) {
+        homePhoneFld.clear();
+        homePhoneFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setMobile(String text) {
+        mobileFld.clear();
+        mobileFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setOtherPhone(String text) {
+        otherPhoneFld.clear();
+        otherPhoneFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setFax(String text) {
+        faxFld.clear();
+        faxFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setEmail(String text) {
+        emailFld.clear();
+        emailFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setAssistant(String text) {
+        assistantFld.clear();
+        assistantFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setAssistantPhone(String text) {
+        assistantPhoneFld.clear();
+        assistantPhoneFld.sendKeys(text);
+        return this;
+    }
+
+
+    public ContactForm setMailingStreet(String text) {
+        mailingStreetFld.clear();
+        mailingStreetFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setMailingCity(String text) {
+        mailingCityFld.clear();
+        mailingCityFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setMailingState(String text) {
+        mailingStateFld.clear();
+        mailingStateFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setMailingZip(String text) {
+        mailingZipFld.clear();
+        mailingZipFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setMailingCountry(String text) {
+        mailingCountryFld.clear();
+        mailingCountryFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setOtherCity(String text) {
+        otherCityFld.clear();
+        otherCityFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setOtherState(String text) {
+        otherStateFld.clear();
+        otherStateFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setOtherZip(String text) {
+        otherZipFld.clear();
+        otherZipFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setOtherCountry(String text) {
+        otherCountryFld.clear();
+        otherCountryFld.sendKeys(text);
+        return this;
+    }
+
+
+    public ContactForm setLanguages(String text) {
+        languagesFld.clear();
+        languagesFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setLevel(String text) {
+        levelFld.clear();
+        levelFld.sendKeys(text);
+        return this;
+    }
+
+    public ContactForm setDescription(String text) {
+        descriptionFld.clear();
+        descriptionFld.sendKeys(text);
+        return this;
+    }
+
 
     public ContactDetail clickSaveBtn() {
         saveBtn.click();
         return new ContactDetail(driver);
-    }
-
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
     }
 }
