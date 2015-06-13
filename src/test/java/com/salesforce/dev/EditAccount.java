@@ -8,7 +8,6 @@ import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,7 +15,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Walter on 13/06/2015.
  */
-public class CreateAccount {
+public class EditAccount {
 
     private LoginPage loginPage;
 
@@ -39,12 +38,13 @@ public class CreateAccount {
     }
 
     @Test
-    public void testCreateAccount() {
+    public void testEditAccount() {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.clickAccountTab();
-        AccountForm accountForm = accountsHome.clickNewBtn();
-        accountForm.setAccountNumberFld(accountName);
-        accountForm.setAccountDescriptionFld(accountDesc);
+        AccountDetail accountDetail = accountsHome.selectRecentItem(accountName);
+        AccountForm accountForm = accountDetail.clickEditBtn();
+        accountForm.setAccountNumberFld(accountName+"update");
+        accountForm.setAccountDescriptionFld(accountDesc+"update");
         accountDetail = accountForm.clickSaveBtn();
        // Assert.assertTrue(accountDetail.VerifyProduct(productName), "product Was not Created");
 

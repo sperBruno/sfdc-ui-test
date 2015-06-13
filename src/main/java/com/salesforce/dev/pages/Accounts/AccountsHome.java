@@ -24,8 +24,15 @@ public class AccountsHome extends TabPage{
         PageFactory.initElements(driver, this);
     }
 
+    @Override
     public AccountForm clickNewBtn() {
         clickNewButton();
         return new AccountForm(driver);
+    }
+
+    @Override
+    public AccountDetail selectRecentItem(String value) {
+        clickRecentItem(value);
+        return new AccountDetail(driver);
     }
 }
