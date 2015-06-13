@@ -8,19 +8,15 @@ import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-
-import org.apache.xpath.operations.Bool;
 import org.junit.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Date;
-
 /**
  * Created by Walter on 13/06/2015.
  */
-public class CreateAccount {
+public class EditAccount {
 
     private LoginPage loginPage;
 
@@ -28,7 +24,12 @@ public class CreateAccount {
     private MainPage mainPage;
     private AccountDetail accountDetail;
     private NavigationBar navigationBar;
-    private String accountName ="Account Name";
+    private AccountsHome accountsHome;
+    private AccountForm accountForm;
+    private String accountName ="AccountName";
+
+
+    private String accountNameUpdated ="AccountUpdated";
     private String accountDesc ="Account Description";
     private String rating ="Hot"; //--None--, Hot, Warm, Cold
     private String ownership ="Private"; //--None--, Private, Public, Subsidiary, Other
@@ -53,6 +54,8 @@ public class CreateAccount {
     private String slaSerialNumber= "123-456-78";
     private Integer numberOfLocations = 789;
 
+
+
     @BeforeMethod
     public void setUp() {
         homePage = new HomePage();
@@ -60,14 +63,25 @@ public class CreateAccount {
         String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue,passwordValue);
 
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.clickAccountTab();
+        accountForm = accountsHome.clickNewBtn();
+        accountForm.setAccountNameFld(accountName);
+        accountDetail = accountForm.clickSaveBtn();
+
+        Assert.assertTrue(accountDetail.validateAccountNameFld(accountName));
+
+        mainPage = accountDetail.gotoMainPage();
+
     }
 
     @Test
-    public void testCreateAccount() {
-        NavigationBar navigationBar = mainPage.gotoNavBar();
-        AccountsHome accountsHome = navigationBar.clickAccountTab();
-        AccountForm accountForm = accountsHome.clickNewBtn();
-        accountForm.setAccountNameFld(accountName);
+    public void testEditAccount() {
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.clickAccountTab();
+        accountDetail = accountsHome.selectRecentItem(accountName);
+        accountForm = accountDetail.clickEditBtn();
+        accountForm.setAccountNameFld(accountNameUpdated);
         accountForm.setAccountRatingFld(rating);
         accountForm.setAccountOwnershipFld(ownership);
         accountForm.setAccountPhoneFld(phone);
@@ -94,7 +108,7 @@ public class CreateAccount {
 
         accountDetail = accountForm.clickSaveBtn();
 
-        Assert.assertTrue(accountDetail.validateAccountNameFld(accountName));
+        Assert.assertTrue(accountDetail.validateAccountNameFld(accountNameUpdated));
         Assert.assertTrue(accountDetail.validateAccountRatingFld(rating));
         Assert.assertTrue(accountDetail.validateAccountOwnershipFld(ownership));
         Assert.assertTrue(accountDetail.validateAccountPhoneFld(phone));

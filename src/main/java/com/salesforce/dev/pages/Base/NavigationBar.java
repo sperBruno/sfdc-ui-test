@@ -1,5 +1,7 @@
 package com.salesforce.dev.pages.Base;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
+import com.salesforce.dev.pages.Campaigns.CampaignsHome;
+import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Product.ProductsHome;
@@ -20,23 +22,23 @@ public class NavigationBar {
     WebDriver driver;
     WebDriverWait wait;
 
+    @FindBy(linkText ="Campaigns")
+    WebElement campaignsTab;
+
     @FindBy(linkText ="Leads")
     WebElement leadsTab;
 
-    @FindBy(id = "userNavLabel")
-    WebElement userLavel;
+    @FindBy(linkText = "Accounts")
+    WebElement accountsTab;
 
-    @FindBy(linkText = "Campaigns")
-    WebElement campaingsTab;
-
-    @FindBy(linkText = "Products")
-    WebElement productTab;
+    @FindBy(linkText = "Contacts")
+    WebElement contactsTab;
 
     @FindBy(linkText = "Opportunities")
     WebElement opportunitiesLink;
 
-    @FindBy(linkText = "Accounts")
-    WebElement accountsTab;
+    @FindBy(linkText = "Products")
+    WebElement productsTab;
 
     public NavigationBar(WebDriver driver){
         this.driver=driver;
@@ -44,36 +46,29 @@ public class NavigationBar {
         PageFactory.initElements(driver, this);
 
     }
+
+    public CampaignsHome goToCamapaignsHome(){
+        wait.until(ExpectedConditions.visibilityOf(campaignsTab));
+        campaignsTab.click();
+        return new CampaignsHome(driver);
+    }
+
     public LeadsHome clickleadTab(){
         wait.until(ExpectedConditions.visibilityOf(leadsTab));
         leadsTab.click();
         return new LeadsHome(driver);
     }
 
-    public AccountsHome clickAccountTab(){
+    public AccountsHome clickAccountTab(){ // TODO: goToAccountsHome?
         wait.until(ExpectedConditions.visibilityOf(accountsTab));
         accountsTab.click();
         return new AccountsHome(driver);
     }
 
-    public boolean IsElementPresent(WebElement webElement){
-        try {
-            webElement.getTagName();
-            return true;
-        } catch (WebDriverException e) {
-            return false;
-        }
-    }
-    public boolean IsUserLavelPresent(){
-        if(IsElementPresent(userLavel)){
-            return true;
-        }
-        return false;
-    }
-    public ProductsHome clickProductTab(){
-        wait.until(ExpectedConditions.visibilityOf(productTab));
-        productTab.click();
-        return new ProductsHome(driver);
+    public ContactsHome goToContactsHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(opportunitiesLink));
+        contactsTab.click();
+        return new ContactsHome(this.driver);
     }
 
     /**
@@ -83,11 +78,26 @@ public class NavigationBar {
      * @version: 1.0
      * @since: 6/10/2015
      * */
-    public OpportunitiesHome gotoOpportunitiesHome(){
+    public OpportunitiesHome gotoOpportunitiesHome(){ // TODO: goTo... uppercase
         wait.until(ExpectedConditions.elementToBeClickable(opportunitiesLink));
-        opportunitiesLink.click();
+        opportunitiesLink.click(); // TODO: tab or link??
 
         return new OpportunitiesHome(this.driver);
+    }
+
+    public ProductsHome clickProductTab(){ // TODO: use goToProductsHome
+        wait.until(ExpectedConditions.visibilityOf(productsTab));
+        productsTab.click();
+        return new ProductsHome(driver);
+    }
+
+    public boolean IsElementPresent(WebElement webElement){
+        try {
+            webElement.getTagName();
+            return true;
+        } catch (WebDriverException e) {
+            return false;
+        }
     }
 }
 
