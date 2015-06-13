@@ -16,7 +16,8 @@ public class AccountDetail {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
-        PageFactory.initElements(driver, this);
     }
+
+
 
 }

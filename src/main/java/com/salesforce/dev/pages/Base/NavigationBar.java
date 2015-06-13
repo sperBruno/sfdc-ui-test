@@ -1,4 +1,5 @@
 package com.salesforce.dev.pages.Base;
+import com.salesforce.dev.pages.AccountPage.AccountsHome;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Product.ProductsHome;
@@ -34,6 +35,9 @@ public class NavigationBar {
     @FindBy(linkText = "Opportunities")
     WebElement opportunitiesLink;
 
+    @FindBy(linkText = "Accounts")
+    WebElement accountsTab;
+
     public NavigationBar(WebDriver driver){
         this.driver=driver;
         this.wait= DriverManager.getInstance().getWait();
@@ -44,6 +48,12 @@ public class NavigationBar {
         wait.until(ExpectedConditions.visibilityOf(leadsTab));
         leadsTab.click();
         return new LeadsHome(driver);
+    }
+
+    public AccountsHome clickAccountTab(){
+        wait.until(ExpectedConditions.visibilityOf(accountsTab));
+        accountsTab.click();
+        return new AccountsHome(driver);
     }
 
  /*   public CampaignsPage clickCamTab(){
