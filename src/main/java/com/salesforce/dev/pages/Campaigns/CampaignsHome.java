@@ -10,12 +10,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Marcelo.Vargas on 13-06-15.
  */
-public class CamapaignsHome extends TabPage {
+public class CampaignsHome extends TabPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public CamapaignsHome(WebDriver driver) {
+    public CampaignsHome(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
@@ -24,7 +24,6 @@ public class CamapaignsHome extends TabPage {
     public Object clickNewBtn(){
         super.wait.until(ExpectedConditions.visibilityOf(newBtn));
         newBtn.click();
-
         return new CampaignForm(this.driver);
     }
     /*
@@ -53,10 +52,4 @@ public class CamapaignsHome extends TabPage {
         Alert alert = driver.switchTo().alert();
         alert.accept();
     }*/
-
-    public Object clickNewBtn() {
-        super.wait.until(ExpectedConditions.visibilityOf(newBtn));
-        newBtn.click();
-        return new CampaignForm(this.driver);
-    }
 }
