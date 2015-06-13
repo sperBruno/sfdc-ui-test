@@ -15,13 +15,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class OpportunitiesHome extends TabPage{
 
     public OpportunitiesHome(WebDriver driver){
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver,this);
+        super.driver = driver;
+        super.wait = DriverManager.getInstance().getWait();
+        PageFactory.initElements(super.driver,this);
     }
 
      public Object clickNewBtn(){
-        this.wait.until(ExpectedConditions.visibilityOf(newBtn));
+        super.wait.until(ExpectedConditions.visibilityOf(newBtn));
         newBtn.click();
 
         return new OpportunityForm(this.driver);
