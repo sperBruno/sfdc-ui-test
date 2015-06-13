@@ -26,6 +26,9 @@ public abstract class DetailsBase {
     @FindBy(name = "del")
     WebElement deleteBtn;
 
+    @FindBy(name = "delete")
+    WebElement deleteAccBtn;
+
     @FindBy(name = "clone")
     WebElement cloneBtn;
 
@@ -49,6 +52,33 @@ public abstract class DetailsBase {
     protected void clickDeletedButton(boolean confirmDeletion) {
         wait.until(ExpectedConditions.visibilityOf(deleteBtn));
         deleteBtn.click();
+        Alert alert;
+
+        try{
+            alert = driver.switchTo().alert();
+
+            if (confirmDeletion){
+                alert.accept();
+            }
+            alert.dismiss();
+        }
+        catch(WebDriverException e){
+            System.out.println("Delete Object: " + e.getMessage());
+        }
+        finally{
+            driver.switchTo().defaultContent();
+        }
+    }
+
+    /**
+     * Clicks delete button
+     *
+     * @author: Walter
+     *
+     */
+    protected void clickDeletedAccButton(boolean confirmDeletion) {
+        wait.until(ExpectedConditions.visibilityOf(deleteAccBtn));
+        deleteAccBtn.click();
         Alert alert;
 
         try{
