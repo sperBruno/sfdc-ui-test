@@ -47,7 +47,7 @@ public class OpportunityDetails extends DetailsBase {
      * @author: Jimmy Vargas
      * @since: 06/13/2015
      * */
-    public Object clickDeleteBtn(boolean confirmDeletion){
+    public OpportunitiesHome clickDeleteBtn(boolean confirmDeletion){
         super.clickDeletedButton(confirmDeletion);
         return new OpportunitiesHome(driver);
     }

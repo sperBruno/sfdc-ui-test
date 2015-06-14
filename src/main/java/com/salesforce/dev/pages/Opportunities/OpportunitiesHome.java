@@ -20,12 +20,18 @@ public class OpportunitiesHome extends TabPage{
         PageFactory.initElements(super.driver,this);
     }
 
-     public Object clickNewBtn(){
+     public OpportunityForm clickNewBtn(){
         super.wait.until(ExpectedConditions.visibilityOf(newBtn));
         newBtn.click();
 
         return new OpportunityForm(this.driver);
     }
+
+    public OpportunityDetails selectRecentItem(String opportunity){
+        super.clickRecentItem(opportunity);
+        return new OpportunityDetails(this.driver);
+    }
+
 
 
 
