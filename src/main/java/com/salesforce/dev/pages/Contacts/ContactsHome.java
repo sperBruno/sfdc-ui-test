@@ -30,4 +30,9 @@ public class ContactsHome extends TabPage {
         newBtn.click();
         return new ContactForm(this.driver);
     }
+
+    public ContactDetail selectRecentItem(String opportunity){
+        super.clickRecentItem(opportunity);
+        return new ContactDetail(this.driver);
+    }
 }

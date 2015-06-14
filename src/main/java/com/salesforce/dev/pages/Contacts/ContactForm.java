@@ -145,6 +145,15 @@ public class ContactForm {
         }
     }
 
+    /**
+     * Review : because in the builder class line 262 is calling a constructor
+     * and this was not implemented in this class
+     * Review and complete it
+     * */
+    public ContactForm (ContactBuilder builder){
+
+    }
+
     public ContactForm setFirstNameRole(String text) {
         firstNameRoleSelect.clear();
         firstNameRoleSelect.sendKeys(text);

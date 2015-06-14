@@ -36,11 +36,11 @@ public class Opportunities {
     @Test
     public void CreateOpportunity(){
 
-        OpportunitiesHome opTab = navBar.gotoOpportunitiesHome();
+        OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         //opTab.selectViewByVisibleText("New This Week");
 
         //small piece for all test case
-        OpportunityForm newOpPage = (OpportunityForm)opTab.clickNewBtn();
+        OpportunityForm newOpPage = opTab.clickNewBtn();
 
         newOpPage.setOpportunityName(opportunityName);
         newOpPage.setCloseDate();
