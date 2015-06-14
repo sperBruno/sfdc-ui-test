@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
+ *
+ * Todo: still need to complet the class with the remaining fields
  */
 public class OpportunityForm {
 
@@ -19,6 +21,9 @@ public class OpportunityForm {
 
     @FindBy(id = "opp3")
     WebElement opportunityNameField;
+
+    @FindBy(id = "opp7")
+    WebElement amountField;
 
     @FindBy(id = "opp9")
     WebElement closeDateField;
@@ -34,6 +39,24 @@ public class OpportunityForm {
 
     public OpportunityForm(WebDriver driver){
         this.driver = driver;
+        initializer();
+    }
+
+    public OpportunityForm(OpportunityBuilder builder){
+        initializer();
+
+        //setting the mandatoryFields for an Opportunity;
+        this.setOpportunityName(builder.opName);
+        this.setCloseDate(builder.closeDate);
+        this.setStageByVisibleText(builder.stage);
+        this.setAmount(builder.amount);
+
+    }
+
+    private void initializer(){
+        if (this.driver==null){
+            this.driver = DriverManager.getInstance().getDriver();
+        }
         wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver, this);
     }
@@ -45,13 +68,13 @@ public class OpportunityForm {
     }
 
     /**
+     * TODO:
      * By the moment it is only click in the link for the date
      * Selecting a specific date still needs to be done
      * */
-    public void setCloseDate(){
+    public void setCloseDate(String closeDate){
         wait.until(ExpectedConditions.elementToBeClickable(todayLink));
         todayLink.click();
-
     }
 
     /**
@@ -68,12 +91,17 @@ public class OpportunityForm {
         this.driver.switchTo().defaultContent();
 
     }
+    public void setAmount(String amount){
+        wait.until(ExpectedConditions.visibilityOf(amountField));
+        amountField.clear();
+        amountField.sendKeys(amount);
+    }
 
 
-    public OpportunityDetails clickSaveBtn(){
+    public OpportunityDetail clickSaveBtn(){
         wait.until(ExpectedConditions.visibilityOf(saveBtn));
         saveBtn.click();
 
-        return new OpportunityDetails(this.driver);
+        return new OpportunityDetail(this.driver);
     }
 }

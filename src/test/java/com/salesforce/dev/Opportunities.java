@@ -4,7 +4,8 @@ import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Opportunities.OpportunityDetails;
+import com.salesforce.dev.pages.Opportunities.OpportunityBuilder;
+import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
 import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -34,23 +35,31 @@ public class Opportunities {
 
     }
     @Test
-    public void CreateOpportunity(){
+    public void CreateOpportunity(){ /*TODO: this test cases it is not finished it is only using for creatung the clases and methods*/
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         //opTab.selectViewByVisibleText("New This Week");
-
-        //small piece for all test case
         OpportunityForm newOpPage = opTab.clickNewBtn();
+
+        /*
+        //small piece for all test case
+
 
         newOpPage.setOpportunityName(opportunityName);
         newOpPage.setCloseDate();
-        newOpPage.setStageByVisibleText(stage);
-        OpportunityDetails opportunityDetails = newOpPage.clickSaveBtn();
+        newOpPage.setStageByVisibleText(stage);*/
+        //Applying Builder
+        OpportunityForm opForm= new OpportunityBuilder(opportunityName,"today",stage)
+                .setOpDescription("Testing builder")
+                .setAmount("1000")
+                .build();
 
-        System.out.println("Op Owner" + opportunityDetails.opOwner.getText());
+        OpportunityDetail opportunityDetails = opForm.clickSaveBtn();
+
+        System.out.println("Op Owner" + opportunityDetails.getOpOwner());
 
         //deleting the opportunity
-        opTab = opportunityDetails.deleteOpportunity();
+        //opTab = opportunityDetails.deleteOpportunity();
 
 
         //verifying the oppotunity created
