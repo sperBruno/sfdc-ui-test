@@ -57,7 +57,7 @@ public class NavigationBar {
         return new CampaignsHome(driver);
     }
 
-    public LeadsHome clickLeadTab(){
+    public LeadsHome gotToLeadsHome(){
         wait.until(ExpectedConditions.visibilityOf(leadsTab));
         leadsTab.click();
         return new LeadsHome(driver);
