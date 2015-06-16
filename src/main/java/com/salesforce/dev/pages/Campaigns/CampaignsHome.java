@@ -21,7 +21,7 @@ public class CampaignsHome extends TabPage {
         PageFactory.initElements(driver, this);
     }
 
-    public Object clickNewBtn(){
+    public CampaignForm clickNewBtn(){
         super.wait.until(ExpectedConditions.visibilityOf(newBtn));
         newBtn.click();
         return new CampaignForm(this.driver);

@@ -9,6 +9,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -76,6 +77,7 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     WebElement descriptionFld;
 
+    Select typeDropdown, statusDropdown;
 
     public CampaignForm(WebDriver driver) {
         this.driver = driver;
@@ -91,14 +93,88 @@ public class CampaignForm extends FormBase {
         }
     }
 
-    public CampaignForm setDescription(String text) {
+    public CampaignForm setCampaignName(String text) {
         campaignNameFld.clear();
         campaignNameFld.sendKeys(text);
         return this;
     }
 
+    public CampaignForm checkActiveCheckbox(String text) {
+        if (!activeCheckbox.isEnabled()) {
+            activeCheckbox.click();
+        }
+        return this;
+    }
+
+    public CampaignForm setTypeSelect(String text) {
+
+        typeDropdown = new Select(typeSelect);
+        typeDropdown.selectByVisibleText(text);
+        return this;
+    }
+
+    public CampaignForm setStatusSelect(String text) {
+        statusDropdown = new Select(statusSelect);
+        statusDropdown.selectByVisibleText(text);
+        return this;
+    }
+
+    public CampaignForm setStartDate(String text) {
+        startDate.clear();
+        startDate.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setEndDate(String text) {
+        endDate.clear();
+        endDate.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setExpectedRevenue(String text) {
+        expectedRevenueFld.clear();
+        expectedRevenueFld.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setBudgetedCost(String text) {
+        budgetedCostFld.clear();
+        budgetedCostFld.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setActualCost(String text) {
+        actualCostFld.clear();
+        actualCostFld.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setExpectedResponse(String text) {
+        expectedResponseFld.clear();
+        expectedResponseFld.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setNumSent(String text) {
+        numSentFld.clear();
+        numSentFld.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setParent(String text) {
+        parentFld.clear();
+        parentFld.sendKeys(text);
+        return this;
+    }
+
+    public CampaignForm setDescription(String text) {
+        descriptionFld.clear();
+        descriptionFld.sendKeys(text);
+        return this;
+    }
+
     @Override
-    public Object clickSaveBtn() {
+    public CampaignDetail clickSaveBtn() {
         clickSaveButton();
         return new CampaignDetail(driver);
     }
