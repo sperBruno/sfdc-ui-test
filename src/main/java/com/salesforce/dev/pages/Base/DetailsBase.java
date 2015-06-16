@@ -49,7 +49,7 @@ public abstract class DetailsBase {
      * @author: Jimmy Vargas
      * @since: 6/13/2015
      */
-    protected void clickDeletedButton(boolean confirmDeletion) {
+    protected void clickDeleteButton(boolean confirmDeletion) {
         wait.until(ExpectedConditions.visibilityOf(deleteBtn));
         deleteBtn.click();
         Alert alert;

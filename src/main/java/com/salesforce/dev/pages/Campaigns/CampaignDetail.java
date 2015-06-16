@@ -31,7 +31,7 @@ public class CampaignDetail extends DetailsBase{
     }
 
     public Object clickDeleteBtn(boolean confirmDeletion){
-        super.clickDeletedButton(confirmDeletion);
+        super.clickDeleteButton(confirmDeletion);
         return new CampaignsHome(driver);
     }
 }

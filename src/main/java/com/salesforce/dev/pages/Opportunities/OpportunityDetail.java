@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
@@ -106,7 +105,7 @@ public class OpportunityDetail extends DetailsBase {
      * @since: 06/13/2015
      * */
     public OpportunitiesHome clickDeleteBtn(boolean confirmDeletion){
-        super.clickDeletedButton(confirmDeletion);
+        super.clickDeleteButton(confirmDeletion);
         return new OpportunitiesHome(driver);
     }
 
