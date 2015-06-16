@@ -1,4 +1,5 @@
 package com.salesforce.dev;
+import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Product.ProductBuilder;
@@ -16,15 +17,14 @@ import com.salesforce.dev.pages.*;
  */
 
 
-
 public class EditProduct {
 
-    private LoginPage loginPage;
     private ProductsHome productsHome;
     private ProductDetails productDetails;
     private ProductForm productForm;
     private HomePage homePage;
     private MainPage mainPage;
+    private NavigationBar navigationBar;
     private String productName="New product";
     private String prodCode="Codigo1";
     private String prodDesc="this is a new product";
@@ -36,11 +36,12 @@ public class EditProduct {
     @BeforeMethod
     public void setUp() {
         homePage = new HomePage();
-        String userNameValue=Environment.getInstance().getPrimaryUser();
-        String passwordValue= Environment.getInstance().getPrimaryPassword();
+        String userNameValue= Environment.getInstance().getPrimaryUser();
+        String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue, passwordValue);
-        //productsHome=mainPage.clickProductTab();
-        productForm=productsHome.clickNewProduct();
+        navigationBar = mainPage.gotoNavBar();
+        productsHome=navigationBar.clickProductTab();
+        productForm=productsHome.clickNewBtn();
         productDetails=productForm.SetProduct(productName,prodCode,prodDesc);
 
     }

@@ -1,5 +1,6 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
 import com.salesforce.dev.pages.Home.HomePage;
@@ -10,36 +11,39 @@ import org.testng.annotations.Test;
 
 /**
  * Created by Monica Pardo on 6/13/2015.
- * TODO: complete the creation of the comment for the post created
+ *
  */
 public class CreatePost {
-    String account = "moni.pz@gmail.com";
-    String password = "moni123P";
 
     String post = "Post test";
-
-
+    String comment = "new comment";
 
     HomePage homePage;
     MainPage mainPage;
-    NavigationBar navBar;
+    NavigationBar navigationBar;
     ChatterHome chatterHome;
 
     @BeforeMethod
     public void setUp(){
         homePage = new HomePage();
-        mainPage = homePage.loginAs(account,password);
-        navBar = mainPage.gotoNavBar();
+        String userNameValue= Environment.getInstance().getPrimaryUser();
+        String passwordValue=Environment.getInstance().getPrimaryPassword();
+        mainPage = homePage.loginAs(userNameValue, passwordValue);
+        navigationBar = mainPage.gotoNavBar();
 
     }
     @Test
-    public void CreateOpportunity(){
+    public void CreatePostAndComment(){
 
-        chatterHome = navBar.goToChatterHome();
+        chatterHome = navigationBar.goToChatterHome();
         chatterHome.clickPost();
         chatterHome.setPost(post);
         chatterHome.clickShareBtn();
         chatterHome.clickCommentForPost(post);
+        chatterHome.setComment(comment);
+        chatterHome.clickCommentBtn();
+
+
 
 
 
@@ -47,7 +51,7 @@ public class CreatePost {
 
     @AfterMethod
     public void tearDown(){
-
+        chatterHome.DeletePost();
     }
 
 }
