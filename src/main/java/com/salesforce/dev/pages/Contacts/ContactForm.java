@@ -9,6 +9,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Date;
@@ -22,13 +23,6 @@ public class ContactForm {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    private String firstNameRole, firstName, lastName, accountName, title, department, reportsTo, phone, homePhone, mobile, otherPhone, fax, email, assistant, assistantPhone;
-    private String mailingStreet, mailingCity, mailingState, mailingZip, mailingCountry, otherStreet, otherCity, otherState, otherZip, otherCountry;
-    private String languages;
-    private String description;
-    private String birthDate;
-    private String leadSource, level;
-
     //Contact Information
 
     @FindBy(name = "name_salutationcon2")
@@ -40,7 +34,7 @@ public class ContactForm {
     @FindBy(name = "name_lastcon2")
     private WebElement lastNameFld;
 
-    @FindBy(name = "con4") // lupita
+    @FindBy(name = "con4") // lookup
     private WebElement accountNameFld;
 
     @FindBy(id = "con5")
@@ -52,7 +46,7 @@ public class ContactForm {
     @FindBy(id = "con7") // calendar
     private WebElement birthDayFld;
 
-    @FindBy(id = "con8") //lupita
+    @FindBy(id = "con8") //lookup
     private WebElement reportsToFld;
 
     @FindBy(id = "con9")
@@ -119,8 +113,8 @@ public class ContactForm {
     @FindBy(id = "00N1a0000057MRs")
     private WebElement languagesFld;
 
-    @FindBy(id = "00N1a0000057MRt") // select
-    private WebElement levelFld;
+    @FindBy(id = "00N1a0000057MRt")
+    private WebElement levelSelect;
 
     // Description Information
 
@@ -130,6 +124,8 @@ public class ContactForm {
     @FindBy(name = "save")
     @CacheLookup
     private WebElement saveBtn;
+
+    Select firstNameRoleDropdown, leadSourceDropdown, levelDropdown;
 
     public ContactForm(WebDriver driver) {
         this.driver = driver;
@@ -146,8 +142,8 @@ public class ContactForm {
     }
 
     public ContactForm setFirstNameRole(String text) {
-        firstNameRoleSelect.clear();
-        firstNameRoleSelect.sendKeys(text);
+        firstNameRoleDropdown = new Select(firstNameRoleSelect);
+        firstNameRoleDropdown.selectByVisibleText(text);
         return this;
     }
 
@@ -194,8 +190,8 @@ public class ContactForm {
     }
 
     public ContactForm setLeadSource(String text) {
-        leadSourceSelect.clear();
-        leadSourceSelect.sendKeys(text);
+        leadSourceDropdown = new Select(leadSourceSelect);
+        leadSourceDropdown.selectByVisibleText(text);
         return this;
     }
 
@@ -310,8 +306,8 @@ public class ContactForm {
     }
 
     public ContactForm setLevel(String text) {
-        levelFld.clear();
-        levelFld.sendKeys(text);
+        levelDropdown = new Select(levelSelect);
+        levelDropdown.selectByVisibleText(text);
         return this;
     }
 

@@ -25,7 +25,7 @@ public class ContactsHome extends TabPage {
         PageFactory.initElements(driver, this);
     }
 
-    public Object clickNewBtn(){
+    public ContactForm clickNewBtn(){
         super.wait.until(ExpectedConditions.visibilityOf(newBtn));
         newBtn.click();
         return new ContactForm(this.driver);
