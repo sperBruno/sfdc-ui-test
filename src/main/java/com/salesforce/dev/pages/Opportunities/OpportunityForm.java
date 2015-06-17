@@ -36,7 +36,7 @@ public class OpportunityForm extends FormBase{
     WebElement saveBtn;
 
     public OpportunityForm(WebDriver driver){
-        this.driver = driver;
+        super.driver = driver;
         super.initializer();
     }
 

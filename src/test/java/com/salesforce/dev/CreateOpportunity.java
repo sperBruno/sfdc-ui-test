@@ -37,6 +37,7 @@ public class CreateOpportunity {
         mainPage = homePage.loginAs(account, password);
         navBar = mainPage.gotoNavBar();
 
+        System.out.println("SETUP create opportunity");
 
 
     }
