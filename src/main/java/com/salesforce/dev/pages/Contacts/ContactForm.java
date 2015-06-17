@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages.Contacts;
 
 import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,6 +33,10 @@ public class ContactForm {
     @FindBy(name = "name_lastcon2")
     private WebElement lastNameFld;
 
+    @FindBy(xpath = "//img[@alt='Account Name Lookup (New Window)']")
+    @CacheLookup
+    WebElement lookupAccountImg;
+
     @FindBy(name = "con4") // lookup
     private WebElement accountNameFld;
 
@@ -45,6 +48,10 @@ public class ContactForm {
 
     @FindBy(id = "con7") // calendar
     private WebElement birthDayFld;
+
+    @FindBy(xpath = "//img[@alt='Reports To Lookup (New Window)']")
+    @CacheLookup
+    WebElement lookupReportsToImg;
 
     @FindBy(id = "con8") //lookup
     private WebElement reportsToFld;
@@ -141,6 +148,11 @@ public class ContactForm {
         }
     }
 
+    public SearchLookupBase clickLookupAccount() {
+        lookupAccountImg.click();
+        return new SearchLookupBase(driver);
+    }
+
     public ContactForm setFirstNameRole(String text) {
         firstNameRoleDropdown = new Select(firstNameRoleSelect);
         firstNameRoleDropdown.selectByVisibleText(text);
@@ -156,12 +168,6 @@ public class ContactForm {
     public ContactForm setLastName(String text) {
         lastNameFld.clear();
         lastNameFld.sendKeys(text);
-        return this;
-    }
-
-    public ContactForm setAccountName(String text) {
-        accountNameFld.clear();
-        accountNameFld.sendKeys(text);
         return this;
     }
 

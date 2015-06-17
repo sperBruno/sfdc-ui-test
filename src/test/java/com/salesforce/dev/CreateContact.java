@@ -1,5 +1,6 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,7 +24,8 @@ public class CreateContact {
     private HomePage homePage;
     private MainPage mainPage;
     private NavigationBar navigationBar;
-    private String lastName="MyLastName";
+    private String lastName="MyLastName2";
+    private SearchLookupBase searchLookup;
 
     @BeforeMethod
     public void setUp() {
@@ -39,7 +41,11 @@ public class CreateContact {
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();
         contactForm = contactForm.setLastName(lastName);
+        searchLookup =  contactForm.clickLookupAccount();
+        contactForm = searchLookup.clickLookup("test");
+        contactForm.setTitle("MY TEST");
         contactDetail = contactForm.clickSaveBtn();
+
 
         //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
     }

@@ -10,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,8 +17,6 @@ import java.util.concurrent.TimeUnit;
  * Created by Marcelo.Vargas on 13-06-15.
  */
 public class CampaignForm extends FormBase {
-    private WebDriver driver;
-    private WebDriverWait wait;
 
     // Campaign Information
 
@@ -80,8 +77,8 @@ public class CampaignForm extends FormBase {
     Select typeDropdown, statusDropdown;
 
     public CampaignForm(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
+        super.driver = driver;
+        super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(10, TimeUnit.SECONDS)
