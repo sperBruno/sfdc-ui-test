@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Chatter;
 
 import com.salesforce.dev.framework.DriverManager;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Monica Pardo on 6/13/2015.
- *  * TODO: complete the creation of the comment for the post created 
+ *  * TODO: complete the creation of the comment for the post created
  */
 public class ChatterHome {
     WebDriver driver;
@@ -29,20 +30,13 @@ public class ChatterHome {
     @FindBy(xpath = "xpath=//div[@id='feedwrapper']/descendant::span[contains(.,'fgfg')]/following::a[contains(.,'Comment')]")
     WebElement commentLink;
 
-    //to do: I need to found the XPATH for this element
-    @FindBy(id = "ext-gen9")
+    @FindBy(xpath = "//textarea[@title='Write a comment...']")
     WebElement commentField;
-    //to do: I need to found the XPATH for this element
-    @FindBy(id = "ext-gen6")
+
+    @FindBy(xpath = "//input[@title='Comment']")
     WebElement commentBtn;
-    //to do: I need to found the XPATH for this element
-    @FindBy(id = "commentmenu0D71a000000L2WN")
-    WebElement commentMenu;
-    //to do: I need to found the XPATH for this element
-    @FindBy(id = "ext-gen14")
-    WebElement deleteCommentOption;
-    //to do: I need to found the XPATH for this element
-    @FindBy(id = "spillovermenu0D51a000002i4tP")
+
+    @FindBy(xpath ="//a[@title='More Actions']")
     WebElement postMenu;
 
     @FindBy(xpath = "//a[@title='Delete this post']")
@@ -83,14 +77,12 @@ public class ChatterHome {
         commentBtn.click();
         return this;
     }
-    public ChatterHome DeleteComment(){
-        commentMenu.click();
-        deleteCommentOption.click();
-        return this;
-    }
+
     public ChatterHome DeletePost(){
         postMenu.click();
         deletePostOption.click();
+        Alert alert2= driver.switchTo().alert();
+        alert2.accept();
         return this;
     }
 }

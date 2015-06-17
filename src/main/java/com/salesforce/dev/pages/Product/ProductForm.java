@@ -1,5 +1,7 @@
 package com.salesforce.dev.pages.Product;
 
+
+import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +13,7 @@ import com.salesforce.dev.framework.DriverManager;
 /**
  * Created by Monica Pardo on 6/10/2015.
  */
-public class ProductForm {
+public class ProductForm  extends FormBase {
     WebDriver driver;
     WebDriverWait wait;
 
@@ -48,6 +50,16 @@ public class ProductForm {
         this.activeProduct=builder.getProductActive();
 
     }
+
+    public Object clickSaveNewBtn() {
+        return null;
+    }
+
+
+    public Object clickCancelBtn() {
+        return null;
+    }
+
 
     public ProductDetails saveProduct() {
         if (prodName != null) {
