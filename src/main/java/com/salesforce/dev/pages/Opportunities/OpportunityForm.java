@@ -51,14 +51,6 @@ public class OpportunityForm extends FormBase{
 
     }
 
-    /*private void initializer(){
-        if (super.driver==null){
-            super.driver = DriverManager.getInstance().getDriver();
-        }
-        wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver, this);
-    }*/
-
     public void setOpportunityName(String opportunityName){
         wait.until(ExpectedConditions.visibilityOf(opportunityNameField));
         opportunityNameField.clear();
