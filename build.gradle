@@ -42,7 +42,8 @@ task runTestNGTestCases(type: Test) {
     }
 
     options {
-        if("$Suite" == "BVT"){
+
+        if("$Suite" == "BVT" || "$Suite"==null){
             suites(suiteBVT)
         }
         else

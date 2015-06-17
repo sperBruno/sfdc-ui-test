@@ -40,7 +40,7 @@ public class CreateOpportunity {
 
 
     }
-    @Test(groups = "BVT")
+    @Test(groups = {"BVT"})
     public void CreateOpportunity(){ /*TODO: this test cases it is not finished it is only using for creatung the clases and methods*/
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
