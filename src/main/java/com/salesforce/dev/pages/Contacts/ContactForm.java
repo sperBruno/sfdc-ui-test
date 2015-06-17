@@ -146,9 +146,9 @@ public class ContactForm {
      * and this was not implemented in this class
      * Review and complete it
      * */
-    public ContactForm (ContactBuilder builder){
+    /*public ContactForm (ContactBuilder builder){
 
-    }
+    }*/
 
     public ContactForm setFirstNameRole(String text) {
         firstNameRoleDropdown = new Select(firstNameRoleSelect);
