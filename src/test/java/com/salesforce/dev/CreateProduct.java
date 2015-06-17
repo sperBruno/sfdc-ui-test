@@ -39,7 +39,7 @@ public class CreateProduct {
         navigationBar = mainPage.gotoNavBar();
 
     }
-    @Test
+    @Test(groups = {"Regression"})
     public void CreatePostAndComment(){
 
         productsHome=navigationBar.clickProductTab();

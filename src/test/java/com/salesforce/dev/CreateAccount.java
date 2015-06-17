@@ -9,11 +9,10 @@ import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 
-import org.apache.xpath.operations.Bool;
-import org.junit.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import java.util.Date;
 
@@ -62,7 +61,7 @@ public class CreateAccount {
 
     }
 
-    @Test
+    @Test(groups = {"Rgression"})
     public void testCreateAccount() {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.clickAccountTab();

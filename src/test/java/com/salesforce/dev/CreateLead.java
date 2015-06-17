@@ -27,7 +27,7 @@ public class CreateLead {
     String company = "JVCompany";
     String leadStatus = "Working - Contacted";
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"BVT"})
     public void setUp(){
         account = Environment.getInstance().getPrimaryUser();
         password = Environment.getInstance().getPrimaryPassword();
@@ -49,7 +49,7 @@ public class CreateLead {
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups={"BVT"})
     public void tearDown(){
 
     }

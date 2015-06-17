@@ -42,9 +42,16 @@ task runTestNGTestCases(type: Test) {
     }
 
     options {
-        suites(suites)
+        if("$Suite" == "BVT"){
+            suites(suiteBVT)
+        }
+        else
+        {
+            suites(suiteFull)
+        }
+
     }
 
-    systemProperties.put('primaryUserName', primaryUserName)
+    systemProperties.put('primaryUserName', primaryUserName+"@gmail.com")
     systemProperties.put('primaryUserPassword', primaryUserPassword)
 }
