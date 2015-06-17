@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 /**
  * Created by Jimmy Vargas on 6/10/2015.
  */
-public class Opportunities {
+public class CreateOpportunity {
 
     String account = "gordines007@hotmail.com";
     String password = "control123!@#";
@@ -34,7 +34,7 @@ public class Opportunities {
         navBar = mainPage.gotoNavBar();
 
     }
-    @Test
+    @Test(groups = "Regression")
     public void CreateOpportunity(){ /*TODO: this test cases it is not finished it is only using for creatung the clases and methods*/
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();

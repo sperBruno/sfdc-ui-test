@@ -8,6 +8,11 @@ gradlew.bat
 settings.gradle
 out/
 *.class
+*.jar
+*.bin
+*.mf
+build/
+
 
 
 

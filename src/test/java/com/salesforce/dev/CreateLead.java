@@ -31,7 +31,7 @@ public class CreateLead {
         navBar = mainPage.gotoNavBar();
     }
 
-    @Test
+    @Test(groups = {"BVT"})
     public void createLead(){
         LeadsHome leadsHome = navBar.gotToLeadsHome();
         LeadForm leadForm = leadsHome.clickNewBtn();
