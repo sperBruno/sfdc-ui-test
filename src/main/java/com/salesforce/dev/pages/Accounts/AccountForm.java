@@ -2,10 +2,12 @@ package com.salesforce.dev.pages.Accounts;
 
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.FormBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 
@@ -95,25 +97,25 @@ public class AccountForm extends FormBase{
 
     // Additional Information
 
-    @FindBy(id = "00N1a0000058Wdm")
+    @FindBy(xpath = "//label[contains(.,'Customer Priority')]/following::select")
     private WebElement accountCustomerPriorityFld;
 
-    @FindBy(id = "00N1a0000058Wdp")
+    @FindBy(xpath = "//label[contains(.,'SLA Expiration Date')]/following::input")
     private WebElement accountSLAExpirationDateFld;
 
-    @FindBy(id = "00N1a0000058Wdn")
+    @FindBy(xpath = "//label[contains(.,'Number of Locations')]/following::input")
     private WebElement accountNumberLocationsFld;
 
-    @FindBy(id = "00N1a0000058Wdl")
+    @FindBy(xpath = "//label[contains(.,'Active')]/following::select")
     private WebElement accountActiveFld;
 
-    @FindBy(id = "00N1a0000058Wdo")
+    @FindBy(xpath = "//label[contains(.,'SLA')]/following::select")
     private WebElement accountSLAFld;
 
-    @FindBy(id = "00N1a0000058Wdq")
+    @FindBy(xpath = "//label[contains(.,'SLA Serial Number')]/following::input")
     private WebElement accountSLASerialNumberFld;
 
-    @FindBy(id = "00N1a0000058Wdr")
+    @FindBy(xpath = "//label[contains(.,'Upsell Opportunity')]/following::select")
     private WebElement accountUpsellOpportunityFld;
 
     //Description Information
@@ -121,12 +123,10 @@ public class AccountForm extends FormBase{
     @FindBy(name = "acc20")
     private WebElement accountDescriptionFld;
 
-
     public AccountForm(WebDriver driver) {
         super.driver = driver;
         super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(super.driver, this);
-
     }
 
     @Override
@@ -143,12 +143,6 @@ public class AccountForm extends FormBase{
     public AccountDetail clickSaveBtn() {
         clickSaveButton();
         return new AccountDetail(driver);
-    }
-
-    public AccountForm selectItem(WebElement webElement, String value){
-        Select selectBox = new Select(webElement);
-        selectBox.selectByVisibleText(value);
-        return this;
     }
 
     public AccountForm setAccountNameFld(String accountName) {
@@ -170,11 +164,13 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountTypeFld(String accountType) {
-        return selectItem(accountTypeFld, accountType);
+        selectItem(accountTypeFld, accountType);
+        return this;
     }
 
     public AccountForm setAccountIndustryFld(String accountIndustry) {
-        return selectItem(accountIndustryFld, accountIndustry);
+        selectItem(accountIndustryFld, accountIndustry);
+        return this;
     }
 
     public AccountForm setAccountAnnualRevenueFld(Integer accountAnnualRevenue) {
@@ -184,7 +180,8 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountRatingFld(String accountRating) {
-        return selectItem(accountRatingFld, accountRating);
+        selectItem(accountRatingFld, accountRating);
+        return this;
     }
 
     public AccountForm setAccountPhoneFld(String accountPhone) {
@@ -212,7 +209,8 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountOwnershipFld(String accountOwnership) {
-        return selectItem(accountOwnershipFld, accountOwnership);
+        selectItem(accountOwnershipFld, accountOwnership);
+        return this;
     }
 
     public AccountForm setAccountEmployeesFld(Integer accountEmployees) {
@@ -288,12 +286,19 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountCustomerPriorityFld(String accountCustomerPriority) {
-        return selectItem(accountCustomerPriorityFld, accountCustomerPriority);
+        selectItem(accountCustomerPriorityFld, accountCustomerPriority);
+        return this;
     }
 
     public AccountForm setAccountSLAExpirationDateFld(String accountSLAExpirationDate) {
         accountSLAExpirationDateFld.clear();
         accountSLAExpirationDateFld.sendKeys(accountSLAExpirationDate);
+        return this;
+    }
+
+    public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year){
+        accountSLAExpirationDateFld.click();
+        selectDate(month, day, year);
         return this;
     }
 
@@ -304,11 +309,13 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountActiveFld(String activeState) {
-        return selectItem(accountActiveFld, activeState);
+        selectItem(accountActiveFld, activeState);
+        return this;
     }
 
     public AccountForm setAccountSLAFld(String accountSLA) {
-        return selectItem(accountSLAFld, accountSLA);
+        selectItem(accountSLAFld, accountSLA);
+        return this;
     }
 
     public AccountForm setAccountSLASerialNumberFld(String accountSLASerialNumber) {
@@ -318,7 +325,8 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountUpsellOpportunityFld(String accountUpsellOpportunity) {
-        return selectItem(accountUpsellOpportunityFld, accountUpsellOpportunity);
+        selectItem(accountUpsellOpportunityFld, accountUpsellOpportunity);
+        return this;
     }
 
     public AccountForm setAccountDescriptionFld(String accountDescription) {
@@ -326,6 +334,5 @@ public class AccountForm extends FormBase{
         accountDescriptionFld.sendKeys(accountDescription);
         return this;
     }
-
 
 }

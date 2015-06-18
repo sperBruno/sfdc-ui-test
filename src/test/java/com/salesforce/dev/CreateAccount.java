@@ -48,7 +48,7 @@ public class CreateAccount {
     private String sla= "Gold"; //Selected Item
     private String upsellOpportunity= "Yes"; //Selected Item
     private String active = "Yes";
-    private String slaExpirationDate = "12/31/2015";
+    private String slaExpirationDate = "6/15/2016";
     private String slaSerialNumber= "123-456-78";
     private Integer numberOfLocations = 789;
 
@@ -86,7 +86,8 @@ public class CreateAccount {
         accountForm.setAccountSLAFld(sla);
         accountForm.setAccountUpsellOpportunityFld(upsellOpportunity);
         accountForm.setAccountActiveFld(active);
-        accountForm.setAccountSLAExpirationDateFld(slaExpirationDate);
+        //accountForm.setAccountSLAExpirationDateFld(slaExpirationDate);
+        accountForm.setAccountSLAExpirationDateFld(6,15,2016);
         accountForm.setAccountSLASerialNumberFld(slaSerialNumber);
         accountForm.setAccountNumberLocationsFld(numberOfLocations);
         accountForm.setAccountDescriptionFld(accountDesc);
