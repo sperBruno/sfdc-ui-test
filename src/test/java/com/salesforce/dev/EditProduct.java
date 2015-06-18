@@ -46,7 +46,7 @@ public class EditProduct {
 
     }
 
-    @Test
+    @Test(groups = {"Regression"})
     public void testEditProduct() {
         productDetails.EditProduct();
         ProductForm productForm= new ProductBuilder(productNewName)

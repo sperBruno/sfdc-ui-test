@@ -1,10 +1,14 @@
 package com.salesforce.dev.pages.Base;
 
+import com.salesforce.dev.framework.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.sql.Driver;
 
 /**
  * Created by Walter on 13/06/2015.
@@ -22,6 +26,19 @@ public abstract class FormBase {
     @FindBy(name = "cancel")
     protected WebElement cancelBtn;
 
+    /**
+     * This method initialize the driver and wait when creating the
+     * page with a builder specifically
+     *
+     * @author: Jimmy Vargas
+     * */
+    protected void initializer(){
+        if(this.driver == null){
+            this.driver = DriverManager.getInstance().getDriver();
+        }
+        this.wait = DriverManager.getInstance().getWait();
+        PageFactory.initElements(this.driver,this);
+    }
     /**
      * Method clicks the New button in the home page for each different category
      *

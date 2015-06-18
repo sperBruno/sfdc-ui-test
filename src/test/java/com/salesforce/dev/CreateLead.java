@@ -3,6 +3,8 @@ package com.salesforce.dev;
 import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Leads.LeadBuilder;
+import com.salesforce.dev.pages.Leads.LeadDetail;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
@@ -21,7 +23,11 @@ public class CreateLead {
     String account;
     String password;
 
-    @BeforeMethod
+    String lastName = "JVLastName";
+    String company = "JVCompany";
+    String leadStatus = "Working - Contacted";
+
+    @BeforeMethod(groups = {"BVT"})
     public void setUp(){
         account = Environment.getInstance().getPrimaryUser();
         password = Environment.getInstance().getPrimaryPassword();
@@ -31,17 +37,19 @@ public class CreateLead {
         navBar = mainPage.gotoNavBar();
     }
 
-    @Test
+    @Test(groups = {"BVT"})
     public void createLead(){
         LeadsHome leadsHome = navBar.gotToLeadsHome();
-        LeadForm leadForm = leadsHome.clickNewBtn();
+        leadsHome.clickNewBtn();
 
-        //leadForm = new LeadBuilder()
-        // .build();
+        LeadForm leadForm = new LeadBuilder(lastName,company,leadStatus)
+                .setTitle("Tester")
+                .build();
+        LeadDetail leadDetail = leadForm.clickSaveBtn();
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups={"BVT"})
     public void tearDown(){
 
     }

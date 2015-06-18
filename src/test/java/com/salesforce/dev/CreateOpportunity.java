@@ -1,5 +1,6 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
@@ -14,10 +15,10 @@ import org.testng.annotations.Test;
 /**
  * Created by Jimmy Vargas on 6/10/2015.
  */
-public class Opportunities {
+public class CreateOpportunity {
 
-    String account = "gordines007@hotmail.com";
-    String password = "control123!@#";
+    String account;
+    String password;
 
     String opportunityName = "opNameAUT";
     String stage = "Prospecting";
@@ -27,14 +28,20 @@ public class Opportunities {
     MainPage mainPage;
     NavigationBar navBar;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"BVT"})
     public void setUp(){
+        account= Environment.getInstance().getPrimaryUser();
+        password = Environment.getInstance().getPrimaryPassword();
+
         homePage = new HomePage();
-        mainPage = homePage.loginAs(account,password);
+        mainPage = homePage.loginAs(account, password);
         navBar = mainPage.gotoNavBar();
 
+        System.out.println("SETUP create opportunity");
+
+
     }
-    @Test
+    @Test(groups = {"BVT"})
     public void CreateOpportunity(){ /*TODO: this test cases it is not finished it is only using for creatung the clases and methods*/
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
@@ -69,7 +76,7 @@ public class Opportunities {
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"BVT"})
     public void tearDown(){
 
     }

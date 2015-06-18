@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Opportunities;
 
 import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,10 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  *
  * Todo: still need to complet the class with the remaining fields
  */
-public class OpportunityForm {
-
-    WebDriver driver;
-    WebDriverWait wait;
+public class OpportunityForm extends FormBase{
 
     @FindBy(id = "opp3")
     WebElement opportunityNameField;
@@ -38,12 +36,12 @@ public class OpportunityForm {
     WebElement saveBtn;
 
     public OpportunityForm(WebDriver driver){
-        this.driver = driver;
-        initializer();
+        super.driver = driver;
+        super.initializer();
     }
 
     public OpportunityForm(OpportunityBuilder builder){
-        initializer();
+        super.initializer();
 
         //setting the mandatoryFields for an Opportunity;
         this.setOpportunityName(builder.opName);
@@ -51,14 +49,6 @@ public class OpportunityForm {
         this.setStageByVisibleText(builder.stage);
         this.setAmount(builder.amount);
 
-    }
-
-    private void initializer(){
-        if (this.driver==null){
-            this.driver = DriverManager.getInstance().getDriver();
-        }
-        wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver, this);
     }
 
     public void setOpportunityName(String opportunityName){
@@ -99,9 +89,17 @@ public class OpportunityForm {
 
 
     public OpportunityDetail clickSaveBtn(){
-        wait.until(ExpectedConditions.visibilityOf(saveBtn));
-        saveBtn.click();
-
+        super.clickSaveButton();
         return new OpportunityDetail(this.driver);
+    }
+
+    public OpportunitiesHome clickCancelBtn(){
+        super.clickCancelButton();
+        return new OpportunitiesHome(super.driver);
+    }
+
+    public OpportunityForm clickSaveNewBtn(){
+        super.clickSaveNewButton();
+        return new OpportunityForm(super.driver);
     }
 }
