@@ -2,13 +2,10 @@ package com.salesforce.dev.pages.Accounts;
 
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.FormBase;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
 
 /**
@@ -164,12 +161,12 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountTypeFld(String accountType) {
-        selectItem(accountTypeFld, accountType);
+        selectItemComboBox(accountTypeFld, accountType);
         return this;
     }
 
     public AccountForm setAccountIndustryFld(String accountIndustry) {
-        selectItem(accountIndustryFld, accountIndustry);
+        selectItemComboBox(accountIndustryFld, accountIndustry);
         return this;
     }
 
@@ -180,7 +177,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountRatingFld(String accountRating) {
-        selectItem(accountRatingFld, accountRating);
+        selectItemComboBox(accountRatingFld, accountRating);
         return this;
     }
 
@@ -209,7 +206,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountOwnershipFld(String accountOwnership) {
-        selectItem(accountOwnershipFld, accountOwnership);
+        selectItemComboBox(accountOwnershipFld, accountOwnership);
         return this;
     }
 
@@ -286,7 +283,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountCustomerPriorityFld(String accountCustomerPriority) {
-        selectItem(accountCustomerPriorityFld, accountCustomerPriority);
+        selectItemComboBox(accountCustomerPriorityFld, accountCustomerPriority);
         return this;
     }
 
@@ -298,7 +295,7 @@ public class AccountForm extends FormBase{
 
     public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year){
         accountSLAExpirationDateFld.click();
-        selectDate(month, day, year);
+        selectDatePicker(month, day, year);
         return this;
     }
 
@@ -309,12 +306,12 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountActiveFld(String activeState) {
-        selectItem(accountActiveFld, activeState);
+        selectItemComboBox(accountActiveFld, activeState);
         return this;
     }
 
     public AccountForm setAccountSLAFld(String accountSLA) {
-        selectItem(accountSLAFld, accountSLA);
+        selectItemComboBox(accountSLAFld, accountSLA);
         return this;
     }
 
@@ -325,7 +322,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountUpsellOpportunityFld(String accountUpsellOpportunity) {
-        selectItem(accountUpsellOpportunityFld, accountUpsellOpportunity);
+        selectItemComboBox(accountUpsellOpportunityFld, accountUpsellOpportunity);
         return this;
     }
 
