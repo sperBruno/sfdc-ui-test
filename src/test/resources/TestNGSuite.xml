@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Suite_Full" verbose="1" >
+<suite name="SuiteFull" verbose="1" >
     <test name="Full">
         <classes>
             <class name="com.salesforce.dev.TestNGSuite"/>
@@ -7,8 +7,11 @@
             <class name="com.salesforce.dev.EditProduct"/>
             <class name="com.salesforce.dev.CreateOpportunity"/>
             <class name="com.salesforce.dev.CreateLead"/>
-            <!--<class name="com.selenium.course.testng.EditFullName"/>-->
-            <!--<class name="com.selenium.course.testng.QuickAddTask"/>-->
+            <class name="com.salesforce.dev.CreateAccount"/>
+            <class name="com.salesforce.dev.CreateCampaign"/>
+            <class name="com.salesforce.dev.CreateContact"/>
+            <class name="com.salesforce.dev.CreatePost"/>
+            <class name="com.salesforce.dev.EditAccount"/>
         </classes>
     </test>
 </suite>

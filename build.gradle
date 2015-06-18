@@ -6,16 +6,31 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at http://gradle.org/docs/2.4/userguide/tutorial_java_projects.html
  */
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'de.undercouch:gradle-download-task:1.2'
+    }
+}
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'idea'
+apply plugin: 'de.undercouch.download'
+
+
+
 
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'jcenter' for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
 }
 
 // In this section you declare the dependencies for your production and test code
@@ -24,6 +39,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.12'
 	compile 'org.seleniumhq.selenium:selenium-java:2.46.0'
     compile 'org.testng:testng:6.9.4'
+
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
@@ -42,17 +58,47 @@ task runTestNGTestCases(type: Test) {
     }
 
     options {
-
-        if("$Suite" == "BVT" || "$Suite"==null){
-            suites(suiteBVT)
-        }
-        else
-        {
-            suites(suiteFull)
-        }
-
+        suites(suites)
+        includeGroups(groups)
     }
 
-    systemProperties.put('primaryUserName', primaryUserName+"@gmail.com")
+    systemProperties.put('primaryUserName', primaryUserName)
     systemProperties.put('primaryUserPassword', primaryUserPassword)
+    systemProperties.put('browser', browser)
+
+    println browser
+
+    task downloadDrivers(type: Copy) {
+        File drivers = new File('./drivers')
+        drivers.mkdirs()
+
+        if(browser == "Chrome") {
+            download {
+                src 'http://chromedriver.storage.googleapis.com/2.15/chromedriver_win32.zip'
+                dest drivers
+                onlyIfNewer true
+            }
+        }
+        else if(browser == "IE") {
+
+            download {
+                src 'http://selenium.googlecode.com/files/IEDriverServer_x64_2.28.0.zip'
+                dest drivers
+                onlyIfNewer true
+            }
+        }
+
+        file(drivers).listFiles().each {
+            artifact ->
+                if (artifact.name.endsWith('.zip')) {
+                    from zipTree(artifact)
+                    into drivers
+                }
+        }
+    }
+
+    if(browser!="Firefox"){
+        downloadDrivers.execute()
+    }
+
 }

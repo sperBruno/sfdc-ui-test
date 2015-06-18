@@ -9,6 +9,7 @@ settings.gradle
 out/
 *.class
 *.jar
+drivers/
 *.bin
 *.mf
 build/
