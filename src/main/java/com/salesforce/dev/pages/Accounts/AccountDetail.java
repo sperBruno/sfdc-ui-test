@@ -35,16 +35,16 @@ public class AccountDetail extends DetailsBase {
     @FindBy(id = "acc17_ileinner")
     private WebElement accountBillingAddressFld;
 
-    @FindBy(id = "00N1a0000058Wdm_ileinner")
+    @FindBy(xpath = "//td[contains(.,'Customer Priority')]/following::div")
     private WebElement accountCustomPriorityFld;
 
-    @FindBy(id = "00N1a0000058Wdp_ileinner")
+    @FindBy(xpath = "//td[contains(.,'SLA Expiration Date')]/following::div")
     private WebElement accountSLAExpirationDateFld;
 
-    @FindBy(id = "00N1a0000058Wdn_ileinner")
+    @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::div")
     private WebElement accountNumberOfLocationsFld;
 
-    @FindBy(id = "00N1a0000058Wdl_ileinner")
+    @FindBy(xpath = "//td[contains(.,'Active')]/following::div")
     private WebElement accountActiveFld;
 
     @FindBy(id = "acc20_ileinner")
@@ -77,13 +77,13 @@ public class AccountDetail extends DetailsBase {
     @FindBy(id = "acc18_ileinner")
     private WebElement accountShippingAddressFld;
 
-    @FindBy(id = "00N1a0000058Wdo_ileinner")
+    @FindBy(xpath = "//td[contains(.,'SLA')]/following::div")
     private WebElement accountSLAFld;
 
-    @FindBy(id = "00N1a0000058Wdq_ileinner")
+    @FindBy(xpath = "//td[contains(.,'SLA Serial Number')]/following::div")
     private WebElement accountSerialNumberFld;
 
-    @FindBy(id = "00N1a0000058Wdr_ileinner")
+    @FindBy(xpath = "//td[contains(.,'Upsell Opportunity')]/following::div")
     private WebElement accountUpsellOportunityFld;
 
 
