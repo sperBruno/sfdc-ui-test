@@ -42,8 +42,8 @@ public abstract class FormBase {
      * @author: Jimmy Vargas
      * */
     protected void initializer(){
-        if(this.driver == null){
-            this.driver = DriverManager.getInstance().getDriver();
+        if(driver == null){
+            driver = DriverManager.getInstance().getDriver();
         }
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver,this);
@@ -69,13 +69,13 @@ public abstract class FormBase {
     }
 
     protected void clickSaveNewButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(saveNewBtn));
+        wait.until(ExpectedConditions.visibilityOf(saveNewBtn));
         saveNewBtn.click();
 
     }
 
     protected void clickCancelButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(cancelBtn));
+        wait.until(ExpectedConditions.visibilityOf(cancelBtn));
         cancelBtn.click();
 
     }
@@ -93,5 +93,10 @@ public abstract class FormBase {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         Select comboBox = new Select(webElement);
         comboBox.selectByVisibleText(value);
+    }
+
+    protected void fillTextBox(WebElement webElement, String value){
+        webElement.clear();
+        webElement.sendKeys(value);
     }
 }
