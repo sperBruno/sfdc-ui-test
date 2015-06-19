@@ -1,14 +1,14 @@
 package com.salesforce.dev.pages.Base;
 
 import com.salesforce.dev.framework.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.sql.Driver;
 
 /**
  * Created by Walter on 13/06/2015.
@@ -25,6 +25,15 @@ public abstract class FormBase {
 
     @FindBy(name = "cancel")
     protected WebElement cancelBtn;
+
+    //Calendar
+    @FindBy(id = "calMonthPicker")
+    protected WebElement monthPicker;
+
+    @FindBy(id = "calYearPicker")
+    protected WebElement yearPicker;
+
+    protected String[] months;
 
     /**
      * This method initialize the driver and wait when creating the
@@ -69,5 +78,20 @@ public abstract class FormBase {
         this.wait.until(ExpectedConditions.visibilityOf(cancelBtn));
         cancelBtn.click();
 
+    }
+
+    protected void selectDatePicker(Integer month, Integer day, Integer year){
+        months = new String []{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        this.selectItemComboBox(monthPicker, months[month - 1]);
+        this.selectItemComboBox(yearPicker, year.toString());
+        WebElement selectDate = driver.findElement(
+                By.xpath("//div[@class='calBody']/descendant::td[contains(.,'" + day + "')]"));
+        selectDate.click();
+    }
+
+    protected void selectItemComboBox(WebElement webElement, String value){
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        Select comboBox = new Select(webElement);
+        comboBox.selectByVisibleText(value);
     }
 }
