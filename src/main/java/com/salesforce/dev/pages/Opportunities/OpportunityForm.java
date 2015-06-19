@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Opportunities;
 
 import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,14 +12,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
+ *
+ * Todo: still need to complet the class with the remaining fields
  */
-public class OpportunityForm {
-
-    WebDriver driver;
-    WebDriverWait wait;
+public class OpportunityForm extends FormBase{
 
     @FindBy(id = "opp3")
     WebElement opportunityNameField;
+
+    @FindBy(id = "opp7")
+    WebElement amountField;
 
     @FindBy(id = "opp9")
     WebElement closeDateField;
@@ -33,9 +36,19 @@ public class OpportunityForm {
     WebElement saveBtn;
 
     public OpportunityForm(WebDriver driver){
-        this.driver = driver;
-        wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver, this);
+        super.driver = driver;
+        super.initializer();
+    }
+
+    public OpportunityForm(OpportunityBuilder builder){
+        super.initializer();
+
+        //setting the mandatoryFields for an Opportunity;
+        this.setOpportunityName(builder.opName);
+        this.setCloseDate(builder.closeDate);
+        this.setStageByVisibleText(builder.stage);
+        this.setAmount(builder.amount);
+
     }
 
     public void setOpportunityName(String opportunityName){
@@ -45,13 +58,13 @@ public class OpportunityForm {
     }
 
     /**
+     * TODO:
      * By the moment it is only click in the link for the date
      * Selecting a specific date still needs to be done
      * */
-    public void setCloseDate(){
+    public void setCloseDate(String closeDate){
         wait.until(ExpectedConditions.elementToBeClickable(todayLink));
         todayLink.click();
-
     }
 
     /**
@@ -68,12 +81,25 @@ public class OpportunityForm {
         this.driver.switchTo().defaultContent();
 
     }
+    public void setAmount(String amount){
+        wait.until(ExpectedConditions.visibilityOf(amountField));
+        amountField.clear();
+        amountField.sendKeys(amount);
+    }
 
 
-    public OpportunityDetails clickSaveBtn(){
-        wait.until(ExpectedConditions.visibilityOf(saveBtn));
-        saveBtn.click();
+    public OpportunityDetail clickSaveBtn(){
+        super.clickSaveButton();
+        return new OpportunityDetail(this.driver);
+    }
 
-        return new OpportunityDetails(this.driver);
+    public OpportunitiesHome clickCancelBtn(){
+        super.clickCancelButton();
+        return new OpportunitiesHome(super.driver);
+    }
+
+    public OpportunityForm clickSaveNewBtn(){
+        super.clickSaveNewButton();
+        return new OpportunityForm(super.driver);
     }
 }

@@ -21,4 +21,9 @@ public class ContactsHome extends TabPage {
         clickNewButton();
         return new ContactForm(driver);
     }
+
+    public ContactDetail selectRecentItem(String opportunity){
+        super.clickRecentItem(opportunity);
+        return new ContactDetail(this.driver);
+    }
 }

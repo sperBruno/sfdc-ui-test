@@ -1,17 +1,19 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="SuiteFull" verbose="1" >
-    <test name="Full">
+<suite name="Suite_BVT" verbose="1" >
+    <test name="BVT">
+        <groups>
+            <run>
+                <include name="BVT"/>
+            </run>
+        </groups>
         <classes>
             <class name="com.salesforce.dev.TestNGSuite"/>
             <class name="com.salesforce.dev.CreateProduct"/>
             <class name="com.salesforce.dev.EditProduct"/>
             <class name="com.salesforce.dev.CreateOpportunity"/>
             <class name="com.salesforce.dev.CreateLead"/>
-            <class name="com.salesforce.dev.CreateAccount"/>
-            <class name="com.salesforce.dev.CreateCampaign"/>
-            <class name="com.salesforce.dev.CreateContact"/>
-            <class name="com.salesforce.dev.CreatePost"/>
-            <class name="com.salesforce.dev.EditAccount"/>
+            <!--<class name="com.selenium.course.testng.EditFullName"/>-->
+            <!--<class name="com.selenium.course.testng.QuickAddTask"/>-->
         </classes>
     </test>
 </suite>

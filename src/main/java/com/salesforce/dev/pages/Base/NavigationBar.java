@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Base;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
+import com.salesforce.dev.pages.Chatter.ChatterHome;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
@@ -35,10 +36,13 @@ public class NavigationBar {
     WebElement contactsTab;
 
     @FindBy(linkText = "Opportunities")
-    WebElement opportunitiesLink;
+    WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
     WebElement productsTab;
+
+    @FindBy(linkText = "Chatter")
+    WebElement chatterTab;
 
     public NavigationBar(WebDriver driver){
         this.driver=driver;
@@ -53,7 +57,7 @@ public class NavigationBar {
         return new CampaignsHome(driver);
     }
 
-    public LeadsHome clickleadTab(){
+    public LeadsHome gotToLeadsHome(){
         wait.until(ExpectedConditions.visibilityOf(leadsTab));
         leadsTab.click();
         return new LeadsHome(driver);
@@ -66,7 +70,7 @@ public class NavigationBar {
     }
 
     public ContactsHome goToContactsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(opportunitiesLink));
+        wait.until(ExpectedConditions.elementToBeClickable(contactsTab));
         contactsTab.click();
         return new ContactsHome(this.driver);
     }
@@ -78,9 +82,9 @@ public class NavigationBar {
      * @version: 1.0
      * @since: 6/10/2015
      * */
-    public OpportunitiesHome gotoOpportunitiesHome(){ // TODO: goTo... uppercase
-        wait.until(ExpectedConditions.elementToBeClickable(opportunitiesLink));
-        opportunitiesLink.click(); // TODO: tab or link??
+    public OpportunitiesHome goToOpportunitiesHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(opportunitiesTab));
+        opportunitiesTab.click();
 
         return new OpportunitiesHome(this.driver);
     }
@@ -98,6 +102,12 @@ public class NavigationBar {
         } catch (WebDriverException e) {
             return false;
         }
+    }
+
+    public ChatterHome goToChatterHome(){
+        wait.until(ExpectedConditions.visibilityOf(chatterTab));
+        chatterTab.click();
+        return new ChatterHome(driver);
     }
 }
 

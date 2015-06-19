@@ -1,5 +1,7 @@
 package com.salesforce.dev.pages.Product;
 
+import com.salesforce.dev.pages.Accounts.AccountDetail;
+
 /**
  * Created by marcelo on 6/11/2015.
  */

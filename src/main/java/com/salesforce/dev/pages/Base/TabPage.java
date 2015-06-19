@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.Base;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -37,4 +38,15 @@ public abstract class TabPage {
         this.wait.until(ExpectedConditions.visibilityOf(newBtn));
         newBtn.click();
     }
+
+    abstract protected Object selectRecentItem(String value);
+
+    protected void clickRecentItem(String value){
+        WebElement recentItem = driver.findElement(
+                By.xpath("//div[@class='hotListElement']/descendant::a[contains(.,'"+value+"')]"));
+        recentItem.click();
+    }
+
+
+
 }

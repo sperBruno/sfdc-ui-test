@@ -14,12 +14,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
-import java.util.Date;
-
 /**
  * Created by Walter on 13/06/2015.
  */
-public class CreateAccount {
+public class EditAccount {
 
     private LoginPage loginPage;
 
@@ -27,7 +25,12 @@ public class CreateAccount {
     private MainPage mainPage;
     private AccountDetail accountDetail;
     private NavigationBar navigationBar;
-    private String accountName ="Account Name";
+    private AccountsHome accountsHome;
+    private AccountForm accountForm;
+    private String accountName ="AccountName";
+
+
+    private String accountNameUpdated ="AccountUpdated";
     private String accountDesc ="Account Description";
     private String rating ="Hot"; //--None--, Hot, Warm, Cold
     private String ownership ="Private"; //--None--, Private, Public, Subsidiary, Other
@@ -48,9 +51,11 @@ public class CreateAccount {
     private String sla= "Gold"; //Selected Item
     private String upsellOpportunity= "Yes"; //Selected Item
     private String active = "Yes";
-    private String slaExpirationDate = "6/15/2016";
+    private String slaExpirationDate = "12/31/2015";
     private String slaSerialNumber= "123-456-78";
     private Integer numberOfLocations = 789;
+
+
 
     @BeforeMethod
     public void setUp() {
@@ -59,14 +64,25 @@ public class CreateAccount {
         String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue,passwordValue);
 
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.clickAccountTab();
+        accountForm = accountsHome.clickNewBtn();
+        accountForm.setAccountNameFld(accountName);
+        accountDetail = accountForm.clickSaveBtn();
+
+        Assert.assertTrue(accountDetail.validateAccountNameFld(accountName));
+
+        mainPage = accountDetail.gotoMainPage();
+
     }
 
-    @Test(groups = {"Rgression"})
-    public void testCreateAccount() {
-        NavigationBar navigationBar = mainPage.gotoNavBar();
-        AccountsHome accountsHome = navigationBar.clickAccountTab();
-        AccountForm accountForm = accountsHome.clickNewBtn();
-        accountForm.setAccountNameFld(accountName);
+    @Test
+    public void testEditAccount() {
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.clickAccountTab();
+        accountDetail = accountsHome.selectRecentItem(accountName);
+        accountForm = accountDetail.clickEditBtn();
+        accountForm.setAccountNameFld(accountNameUpdated);
         accountForm.setAccountRatingFld(rating);
         accountForm.setAccountOwnershipFld(ownership);
         accountForm.setAccountPhoneFld(phone);
@@ -86,15 +102,14 @@ public class CreateAccount {
         accountForm.setAccountSLAFld(sla);
         accountForm.setAccountUpsellOpportunityFld(upsellOpportunity);
         accountForm.setAccountActiveFld(active);
-        //accountForm.setAccountSLAExpirationDateFld(slaExpirationDate);
-        accountForm.setAccountSLAExpirationDateFld(6,15,2016);
+        accountForm.setAccountSLAExpirationDateFld(slaExpirationDate);
         accountForm.setAccountSLASerialNumberFld(slaSerialNumber);
         accountForm.setAccountNumberLocationsFld(numberOfLocations);
         accountForm.setAccountDescriptionFld(accountDesc);
 
         accountDetail = accountForm.clickSaveBtn();
 
-        Assert.assertTrue(accountDetail.validateAccountNameFld(accountName));
+        Assert.assertTrue(accountDetail.validateAccountNameFld(accountNameUpdated));
         Assert.assertTrue(accountDetail.validateAccountRatingFld(rating));
         Assert.assertTrue(accountDetail.validateAccountOwnershipFld(ownership));
         Assert.assertTrue(accountDetail.validateAccountPhoneFld(phone));

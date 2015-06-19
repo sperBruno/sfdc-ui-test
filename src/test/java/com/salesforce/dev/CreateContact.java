@@ -27,7 +27,7 @@ public class CreateContact {
     private String lastName="MyLastName2";
     private SearchLookupBase searchLookup;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
         String userNameValue= Environment.getInstance().getPrimaryUser();
@@ -35,7 +35,7 @@ public class CreateContact {
         mainPage = homePage.loginAs(userNameValue,passwordValue);
     }
 
-    @Test
+    @Test(groups = {"Acceptance"})
     public void testCreateContact() {
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
@@ -50,7 +50,7 @@ public class CreateContact {
         //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         //contactDetail.DeleteContact();
 

@@ -2,25 +2,20 @@ package com.salesforce.dev.pages.Contacts;
 
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
+import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Marcelo.Vargas on 6/12/2015.
  */
-public class ContactForm {
-
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class ContactForm extends FormBase {
 
     //Contact Information
 
@@ -132,20 +127,26 @@ public class ContactForm {
     @CacheLookup
     private WebElement saveBtn;
 
-    Select firstNameRoleDropdown, leadSourceDropdown, levelDropdown;
-
     public ContactForm(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
+        super.driver = driver;
+        super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
-        try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
-                    .until(ExpectedConditions.visibilityOf(saveBtn));
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
-        }
+    }
+
+    @Override
+    public Object clickSaveNewBtn() {
+        return null;
+    }
+
+    @Override
+    public Object clickCancelBtn() {
+        return null;
+    }
+
+    @Override
+    public ContactDetail clickSaveBtn() {
+        clickSaveButton();
+        return new ContactDetail(driver);
     }
 
     public SearchLookupBase clickLookupAccount() {
@@ -154,177 +155,143 @@ public class ContactForm {
     }
 
     public ContactForm setFirstNameRole(String text) {
-        firstNameRoleDropdown = new Select(firstNameRoleSelect);
-        firstNameRoleDropdown.selectByVisibleText(text);
+        selectItemComboBox(firstNameRoleSelect, text);
         return this;
     }
 
     public ContactForm setFirstName(String text) {
-        firstNameRoleSelect.clear();
-        firstNameRoleSelect.sendKeys(text);
+        fillTextBox(firstNameRoleSelect, text);
         return this;
     }
 
     public ContactForm setLastName(String text) {
-        lastNameFld.clear();
-        lastNameFld.sendKeys(text);
+        fillTextBox(lastNameFld, text);
         return this;
     }
 
     public ContactForm setTitle(String text) {
-        titleFld.clear();
-        titleFld.sendKeys(text);
+        fillTextBox(titleFld, text);
         return this;
     }
 
     public ContactForm setDepartment(String text) {
-        departmentFld.clear();
-        departmentFld.sendKeys(text);
+        fillTextBox(departmentFld, text);
         return this;
     }
 
     public ContactForm setBirthDate(String text) {
-        birthDayFld.clear();
-        birthDayFld.sendKeys(text);
+        fillTextBox(birthDayFld, text);
         return this;
     }
 
     public ContactForm setReportsTo(String text) {
-        reportsToFld.clear();
-        reportsToFld.sendKeys(text);
+        fillTextBox(reportsToFld, text);
         return this;
     }
 
     public ContactForm setLeadSource(String text) {
-        leadSourceDropdown = new Select(leadSourceSelect);
-        leadSourceDropdown.selectByVisibleText(text);
+        selectItemComboBox(leadSourceSelect, text);
         return this;
     }
 
     public ContactForm setPhone(String text) {
-        phoneFld.clear();
-        phoneFld.sendKeys(text);
+        fillTextBox(phoneFld, text);
         return this;
     }
 
     public ContactForm setHomePhone(String text) {
-        homePhoneFld.clear();
-        homePhoneFld.sendKeys(text);
+        fillTextBox(homePhoneFld, text);
         return this;
     }
 
     public ContactForm setMobile(String text) {
-        mobileFld.clear();
-        mobileFld.sendKeys(text);
+        fillTextBox(mobileFld, text);
         return this;
     }
 
     public ContactForm setOtherPhone(String text) {
-        otherPhoneFld.clear();
-        otherPhoneFld.sendKeys(text);
+        fillTextBox(otherPhoneFld, text);
         return this;
     }
 
     public ContactForm setFax(String text) {
-        faxFld.clear();
-        faxFld.sendKeys(text);
+        fillTextBox(faxFld, text);
         return this;
     }
 
     public ContactForm setEmail(String text) {
-        emailFld.clear();
-        emailFld.sendKeys(text);
+        fillTextBox(emailFld, text);
         return this;
     }
 
     public ContactForm setAssistant(String text) {
-        assistantFld.clear();
-        assistantFld.sendKeys(text);
+        fillTextBox(assistantFld, text);
         return this;
     }
 
     public ContactForm setAssistantPhone(String text) {
-        assistantPhoneFld.clear();
-        assistantPhoneFld.sendKeys(text);
+        fillTextBox(assistantPhoneFld, text);
         return this;
     }
 
 
     public ContactForm setMailingStreet(String text) {
-        mailingStreetFld.clear();
-        mailingStreetFld.sendKeys(text);
+        fillTextBox(mailingStreetFld, text);
         return this;
     }
 
     public ContactForm setMailingCity(String text) {
-        mailingCityFld.clear();
-        mailingCityFld.sendKeys(text);
+        fillTextBox(mailingCityFld, text);
         return this;
     }
 
     public ContactForm setMailingState(String text) {
-        mailingStateFld.clear();
-        mailingStateFld.sendKeys(text);
+        fillTextBox(mailingStateFld, text);
         return this;
     }
 
     public ContactForm setMailingZip(String text) {
-        mailingZipFld.clear();
-        mailingZipFld.sendKeys(text);
+        fillTextBox(mailingZipFld, text);
         return this;
     }
 
     public ContactForm setMailingCountry(String text) {
-        mailingCountryFld.clear();
-        mailingCountryFld.sendKeys(text);
+        fillTextBox(mailingCountryFld, text);
         return this;
     }
 
     public ContactForm setOtherCity(String text) {
-        otherCityFld.clear();
-        otherCityFld.sendKeys(text);
+        fillTextBox(otherCityFld, text);
         return this;
     }
 
     public ContactForm setOtherState(String text) {
-        otherStateFld.clear();
-        otherStateFld.sendKeys(text);
+        fillTextBox(otherStateFld, text);
         return this;
     }
 
     public ContactForm setOtherZip(String text) {
-        otherZipFld.clear();
-        otherZipFld.sendKeys(text);
+        fillTextBox(otherZipFld, text);
         return this;
     }
 
     public ContactForm setOtherCountry(String text) {
-        otherCountryFld.clear();
-        otherCountryFld.sendKeys(text);
+        fillTextBox(otherCountryFld, text);
         return this;
     }
 
-
     public ContactForm setLanguages(String text) {
-        languagesFld.clear();
-        languagesFld.sendKeys(text);
+        fillTextBox(languagesFld, text);
         return this;
     }
 
     public ContactForm setLevel(String text) {
-        levelDropdown = new Select(levelSelect);
-        levelDropdown.selectByVisibleText(text);
+        selectItemComboBox(levelSelect, text);
         return this;
     }
 
     public ContactForm setDescription(String text) {
-        descriptionFld.clear();
-        descriptionFld.sendKeys(text);
+        fillTextBox(descriptionFld, text);
         return this;
-    }
-
-    public ContactDetail clickSaveBtn() {
-        saveBtn.click();
-        return new ContactDetail(driver);
     }
 }

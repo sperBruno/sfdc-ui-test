@@ -74,8 +74,6 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     WebElement descriptionFld;
 
-    Select typeDropdown, statusDropdown;
-
     public CampaignForm(WebDriver driver) {
         super.driver = driver;
         super.wait = DriverManager.getInstance().getWait();
@@ -89,10 +87,24 @@ public class CampaignForm extends FormBase {
             wait.withTimeout(15, TimeUnit.SECONDS);
         }
     }
+    @Override
+    public Object clickSaveNewBtn() {
+        return null;
+    }
+
+    @Override
+    public Object clickCancelBtn() {
+        return null;
+    }
+
+    @Override
+    public CampaignDetail clickSaveBtn() {
+        clickSaveButton();
+        return new CampaignDetail(driver);
+    }
 
     public CampaignForm setCampaignName(String text) {
-        campaignNameFld.clear();
-        campaignNameFld.sendKeys(text);
+        fillTextBox(campaignNameFld, text);
         return this;
     }
 
@@ -104,85 +116,57 @@ public class CampaignForm extends FormBase {
     }
 
     public CampaignForm setTypeSelect(String text) {
-
-        typeDropdown = new Select(typeSelect);
-        typeDropdown.selectByVisibleText(text);
+        selectItemComboBox(typeSelect, text);
         return this;
     }
 
     public CampaignForm setStatusSelect(String text) {
-        statusDropdown = new Select(statusSelect);
-        statusDropdown.selectByVisibleText(text);
+        selectItemComboBox(statusSelect, text);
         return this;
     }
 
     public CampaignForm setStartDate(String text) {
-        startDate.clear();
-        startDate.sendKeys(text);
+        fillTextBox(startDate, text);
         return this;
     }
 
     public CampaignForm setEndDate(String text) {
-        endDate.clear();
-        endDate.sendKeys(text);
+        fillTextBox(endDate, text);
         return this;
     }
 
     public CampaignForm setExpectedRevenue(String text) {
-        expectedRevenueFld.clear();
-        expectedRevenueFld.sendKeys(text);
+        fillTextBox(expectedRevenueFld, text);
         return this;
     }
 
     public CampaignForm setBudgetedCost(String text) {
-        budgetedCostFld.clear();
-        budgetedCostFld.sendKeys(text);
+        fillTextBox(budgetedCostFld, text);
         return this;
     }
 
     public CampaignForm setActualCost(String text) {
-        actualCostFld.clear();
-        actualCostFld.sendKeys(text);
+        fillTextBox(actualCostFld, text);
         return this;
     }
 
     public CampaignForm setExpectedResponse(String text) {
-        expectedResponseFld.clear();
-        expectedResponseFld.sendKeys(text);
+        fillTextBox(expectedResponseFld, text);
         return this;
     }
 
     public CampaignForm setNumSent(String text) {
-        numSentFld.clear();
-        numSentFld.sendKeys(text);
+        fillTextBox(numSentFld, text);
         return this;
     }
 
     public CampaignForm setParent(String text) {
-        parentFld.clear();
-        parentFld.sendKeys(text);
+        fillTextBox(parentFld, text);
         return this;
     }
 
     public CampaignForm setDescription(String text) {
-        descriptionFld.clear();
-        descriptionFld.sendKeys(text);
+        fillTextBox(descriptionFld, text);
         return this;
-    }
-
-    @Override
-    public CampaignDetail clickSaveBtn() {
-        clickSaveButton();
-        return new CampaignDetail(driver);
-    }
-
-    @Override
-    public Object clickSaveNewBtn() {
-        return null;
-    }
-
-    @Override
-    public Object clickCancelBtn() {
-        return null;
     }
 }

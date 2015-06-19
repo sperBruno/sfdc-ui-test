@@ -1,4 +1,5 @@
 .gradle/
+.idea/
 gradle/
 *.iml
 *.ipr
@@ -7,6 +8,14 @@ gradlew
 gradlew.bat
 settings.gradle
 out/
+*.class
+*.jar
+drivers/
+*.bin
+*.mf
+build/
+
+
 
 
 

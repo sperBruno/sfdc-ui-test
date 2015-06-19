@@ -4,20 +4,16 @@ import com.salesforce.dev.framework.DriverManager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import com.salesforce.dev.pages.Base.*;
 /**
  * Created by marcelo on 6/11/2015.
  */
-public class ProductsHome {
+public class ProductsHome extends TabPage  {
     WebDriver driver;
     WebDriverWait wait;
-
-    @FindBy(name = "new")
-    WebElement newBtn;
 
 
     public ProductsHome(WebDriver driver){
@@ -25,15 +21,20 @@ public class ProductsHome {
         this.wait= DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
-    public ProductForm clickNewProduct(){
-        newBtn.click();
-        return  new ProductForm(driver);
+
+     public ProductForm clickNewBtn() {
+      clickNewButton();
+      return new ProductForm(driver);
+    }
+
+    public ProductDetails selectRecentItem(String value) {
+        clickRecentItem(value);
+        return new ProductDetails(driver);
     }
 
     public void OpenProduct(String nameProduct){
         driver.findElement(By.xpath("//a[contains(.,'" + nameProduct + "')]")).click();
 
     }
-
 
 }

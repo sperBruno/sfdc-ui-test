@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.salesforce.dev.framework.DriverManager;
 /**
@@ -31,7 +30,7 @@ public class ContactDetail extends DetailsBase {
     }
 
     public Object clickDeleteBtn(boolean confirmDeletion){
-        super.clickDeletedButton(confirmDeletion);
+        super.clickDeleteButton(confirmDeletion);
         return new ContactsHome(driver);
     }
 

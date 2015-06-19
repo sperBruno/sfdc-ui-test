@@ -60,4 +60,6 @@ public class Environment {
         return getEnv("browser");
     }
 
+    public String getGroups() {return getEnv("groups");}
+
 }

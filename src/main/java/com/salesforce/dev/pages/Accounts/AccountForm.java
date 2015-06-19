@@ -7,22 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.Date;
 
 /**
  * Created by Walter on 10/06/2015.
  */
 public class AccountForm extends FormBase{
-
-    private String accountName, parentAccount, accountNumber, accountSite, accountType, accountIndustry;
-    private String accountRating, accountPhone, accountFax, accountWebsite, accountThicker, accountOwnership,accountSICCode;
-    private String accountBillingStreet,accountShippingStreet,accountBillingCity,accountShippingCity;
-    private String accountBillingState,accountShippingState,accountBillingZip,accountShippingZip,accountBillingCountry;
-    private String accountShippingCountry,accountCustomerPriority,accountSLA, accountSLASerialNumber;
-    private String accountUpsellOpportunity, accountDescription;
-    private Boolean accountActive;
-    private Integer accountEmployees, accountAnnualRevenue, accountNumberLocations;
-    private Date accountSLAExpirationDate;
 
     //Account Information
 
@@ -105,25 +94,25 @@ public class AccountForm extends FormBase{
 
     // Additional Information
 
-    @FindBy(id = "00N1a0000058Wdm")
+    @FindBy(xpath = "//label[contains(.,'Customer Priority')]/following::select")
     private WebElement accountCustomerPriorityFld;
 
-    @FindBy(id = "00N1a0000058Wdp")
+    @FindBy(xpath = "//label[contains(.,'SLA Expiration Date')]/following::input")
     private WebElement accountSLAExpirationDateFld;
 
-    @FindBy(id = "00N1a0000058Wdn")
+    @FindBy(xpath = "//label[contains(.,'Number of Locations')]/following::input")
     private WebElement accountNumberLocationsFld;
 
-    @FindBy(id = "00N1a0000058Wdl")
+    @FindBy(xpath = "//label[contains(.,'Active')]/following::select")
     private WebElement accountActiveFld;
 
-    @FindBy(id = "00N1a0000058Wdo")
+    @FindBy(xpath = "//label[contains(.,'SLA')]/following::select")
     private WebElement accountSLAFld;
 
-    @FindBy(id = "00N1a0000058Wdq")
+    @FindBy(xpath = "//label[contains(.,'SLA Serial Number')]/following::input")
     private WebElement accountSLASerialNumberFld;
 
-    @FindBy(id = "00N1a0000058Wdr")
+    @FindBy(xpath = "//label[contains(.,'Upsell Opportunity')]/following::select")
     private WebElement accountUpsellOpportunityFld;
 
     //Description Information
@@ -131,12 +120,10 @@ public class AccountForm extends FormBase{
     @FindBy(name = "acc20")
     private WebElement accountDescriptionFld;
 
-
     public AccountForm(WebDriver driver) {
         super.driver = driver;
         super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(super.driver, this);
-
     }
 
     @Override
@@ -155,191 +142,170 @@ public class AccountForm extends FormBase{
         return new AccountDetail(driver);
     }
 
+    public AccountForm setAccountNameFld(String accountName) {
+        fillTextBox(accountNameFld, accountName);
+        return this;
+    }
+
     public AccountForm setAccountNumberFld(String accountNumber) {
-        accountNameFld.clear();
-        accountNameFld.sendKeys(accountNumber);
+        fillTextBox(accountNumberFld, accountNumber);
         return this;
     }
 
     public AccountForm setAccountSiteFld(String accountSite) {
-        accountSiteFld.clear();
-        accountSiteFld.sendKeys(accountSite);
+        fillTextBox(accountSiteFld, accountSite);
         return this;
     }
 
     public AccountForm setAccountTypeFld(String accountType) {
-        accountTypeFld.clear();
-        accountTypeFld.sendKeys(accountType);
+        selectItemComboBox(accountTypeFld, accountType);
         return this;
     }
 
     public AccountForm setAccountIndustryFld(String accountIndustry) {
-        accountIndustryFld.clear();
-        accountIndustryFld.sendKeys(accountIndustry);
+        selectItemComboBox(accountIndustryFld, accountIndustry);
         return this;
     }
 
-    public AccountForm setAccountAnnualRevenueFld(String accountAnnualRevenue) {
-        accountAnnualRevenueFld.clear();
-        accountAnnualRevenueFld.sendKeys(accountAnnualRevenue);
+    public AccountForm setAccountAnnualRevenueFld(Integer accountAnnualRevenue) {
+        fillTextBox(accountAnnualRevenueFld, accountAnnualRevenue.toString());
         return this;
     }
 
     public AccountForm setAccountRatingFld(String accountRating) {
-        accountRatingFld.clear();
-        accountRatingFld.sendKeys(accountRating);
+        selectItemComboBox(accountRatingFld, accountRating);
         return this;
     }
 
     public AccountForm setAccountPhoneFld(String accountPhone) {
-        accountPhoneFld.clear();
-        accountPhoneFld.sendKeys(accountPhone);
+        fillTextBox(accountPhoneFld, accountPhone);
         return this;
     }
 
     public AccountForm setAccountFaxFld(String accountFax) {
-        accountFaxFld.clear();
-        accountFaxFld.sendKeys(accountFax);
+        fillTextBox(accountFaxFld, accountFax);
         return this;
     }
 
     public AccountForm setAccountWebsiteFld(String accountWebsite) {
-        accountWebsiteFld.clear();
-        accountWebsiteFld.sendKeys(accountWebsite);
+        fillTextBox(accountWebsiteFld, accountWebsite);
         return this;
     }
 
     public AccountForm setAccountThickerFld(String accountThicker) {
-        accountThickerFld.clear();
-        accountThickerFld.sendKeys(accountThicker);
+        fillTextBox(accountThickerFld, accountThicker);
         return this;
     }
 
     public AccountForm setAccountOwnershipFld(String accountOwnership) {
-        accountOwnershipFld.clear();
-        accountOwnershipFld.sendKeys(accountOwnership);
+        selectItemComboBox(accountOwnershipFld, accountOwnership);
         return this;
     }
 
-    public AccountForm setAccountEmployeesFld(String accountEmployees) {
-        accountEmployeesFld.clear();
-        accountEmployeesFld.sendKeys(accountEmployees);
+    public AccountForm setAccountEmployeesFld(Integer accountEmployees) {
+        fillTextBox(accountEmployeesFld, accountEmployees.toString());
         return this;
     }
 
     public AccountForm setAccountSICCodeFld(String accountSICCode) {
-        accountSICCodeFld.clear();
-        accountSICCodeFld.sendKeys(accountSICCode);
+        fillTextBox(accountSICCodeFld, accountSICCode);
         return this;
     }
 
     public AccountForm setAccountBillingStreetFld(String accountBillingStreet) {
-        accountBillingStreetFld.clear();
-        accountBillingStreetFld.sendKeys(accountBillingStreet);
+        fillTextBox(accountBillingStreetFld, accountBillingStreet);
         return this;
     }
 
     public AccountForm setAccountBillingCityFld(String accountBillingCity) {
-        accountBillingCityFld.clear();
-        accountBillingCityFld.sendKeys(accountBillingCity);
+        fillTextBox(accountBillingCityFld, accountBillingCity);
         return this;
     }
 
     public AccountForm setAccountBillingStateFld(String accountBillingState) {
-        accountBillingStateFld.clear();
-        accountBillingStateFld.sendKeys(accountBillingState);
+        fillTextBox(accountBillingStateFld, accountBillingState);
         return this;
     }
 
     public AccountForm setAccountBillingZipFld(String accountBillingZip) {
-        accountBillingZipFld.clear();
-        accountBillingZipFld.sendKeys(accountBillingZip);
+        fillTextBox(accountBillingZipFld, accountBillingZip);
         return this;
     }
 
     public AccountForm setAccountBillingCountryFld(String accountBillingCountry) {
-        accountBillingCountryFld.clear();
-        accountBillingCountryFld.sendKeys(accountBillingCountry);
+        fillTextBox(accountBillingCountryFld, accountBillingCountry);
         return this;
     }
 
     public AccountForm setAccountShippingStreetFld(String accountShippingStreet) {
-        accountShippingStreetFld.clear();
-        accountShippingStreetFld.sendKeys(accountShippingStreet);
+        fillTextBox(accountShippingStreetFld, accountShippingStreet);
         return this;
     }
 
     public AccountForm setAccountShippingCityFld(String accountShippingCity) {
-        accountShippingCityFld.clear();
-        accountShippingCityFld.sendKeys(accountShippingCity);
+        fillTextBox(accountShippingCityFld, accountShippingCity);
         return this;
     }
 
     public AccountForm setAccountShippingStateFld(String accountShippingState) {
-        accountShippingStateFld.clear();
-        accountShippingStateFld.sendKeys(accountShippingState);
+        fillTextBox(accountShippingStateFld, accountShippingState);
         return this;
     }
 
     public AccountForm setAccountShippingZipFld(String accountShippingZip) {
-        accountShippingZipFld.clear();
-        accountShippingZipFld.sendKeys(accountShippingZip);
+        fillTextBox(accountShippingZipFld, accountShippingZip);
         return this;
     }
 
     public AccountForm setAccountShippingCountryFld(String accountShippingCountry) {
-        accountShippingCountryFld.clear();
-        accountShippingCountryFld.sendKeys(accountShippingCountry);
+        fillTextBox(accountShippingCountryFld, accountShippingCountry);
         return this;
     }
 
     public AccountForm setAccountCustomerPriorityFld(String accountCustomerPriority) {
-        accountCustomerPriorityFld.clear();
-        accountCustomerPriorityFld.sendKeys(accountCustomerPriority);
+        selectItemComboBox(accountCustomerPriorityFld, accountCustomerPriority);
         return this;
     }
 
     public AccountForm setAccountSLAExpirationDateFld(String accountSLAExpirationDate) {
-        accountSLAExpirationDateFld.clear();
-        accountSLAExpirationDateFld.sendKeys(accountSLAExpirationDate);
+        fillTextBox(accountSLAExpirationDateFld, accountSLAExpirationDate);
         return this;
     }
 
-    public AccountForm setAccountNumberLocationsFld(String accountNumberLocations) {
-        accountNumberLocationsFld.clear();
-        accountNumberLocationsFld.sendKeys(accountNumberLocations);
+    public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year){
+        accountSLAExpirationDateFld.click();
+        selectDatePicker(month, day, year);
         return this;
     }
 
-    public AccountForm setAccountActiveFld() {
-        accountActiveFld.clear();
-        accountActiveFld.click();
+    public AccountForm setAccountNumberLocationsFld(Integer accountNumberLocations) {
+        fillTextBox(accountNumberLocationsFld, accountNumberLocations.toString());
+        return this;
+    }
+
+    public AccountForm setAccountActiveFld(String activeState) {
+        selectItemComboBox(accountActiveFld, activeState);
         return this;
     }
 
     public AccountForm setAccountSLAFld(String accountSLA) {
-        accountSLAFld.clear();
-        accountSLAFld.sendKeys(accountSLA);
+        selectItemComboBox(accountSLAFld, accountSLA);
         return this;
     }
 
     public AccountForm setAccountSLASerialNumberFld(String accountSLASerialNumber) {
-        accountSLASerialNumberFld.clear();
-        accountSLASerialNumberFld.sendKeys(accountSLASerialNumber);
+        fillTextBox(accountSLASerialNumberFld, accountSLASerialNumber);
         return this;
     }
 
     public AccountForm setAccountUpsellOpportunityFld(String accountUpsellOpportunity) {
-        accountUpsellOpportunityFld.clear();
-        accountUpsellOpportunityFld.sendKeys(accountUpsellOpportunity);
+        selectItemComboBox(accountUpsellOpportunityFld, accountUpsellOpportunity);
         return this;
     }
 
     public AccountForm setAccountDescriptionFld(String accountDescription) {
-        accountDescriptionFld.clear();
-        accountDescriptionFld.sendKeys(accountDescription);
+        fillTextBox(accountDescriptionFld, accountDescription);
         return this;
     }
-
 
 }
