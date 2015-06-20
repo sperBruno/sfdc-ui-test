@@ -1,10 +1,7 @@
 package com.salesforce.dev.pages.Chatter;
 
 import com.salesforce.dev.framework.DriverManager;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Monica Pardo on 6/13/2015.
- *  * TODO: complete the creation of the comment for the post created
+ *  *
  */
 public class ChatterHome {
     WebDriver driver;
@@ -27,8 +24,6 @@ public class ChatterHome {
     @FindBy(id = "publishersharebutton")
     WebElement shareBtn;
 
-    @FindBy(xpath = "xpath=//div[@id='feedwrapper']/descendant::span[contains(.,'fgfg')]/following::a[contains(.,'Comment')]")
-    WebElement commentLink;
 
     @FindBy(xpath = "//textarea[@title='Write a comment...']")
     WebElement commentField;
@@ -84,5 +79,28 @@ public class ChatterHome {
         Alert alert2= driver.switchTo().alert();
         alert2.accept();
         return this;
+    }
+    public boolean VerifyPostCreated(String post){
+        try{
+            WebElement postValuePage= driver.findElement(By.xpath("//div[@id='feedwrapper']/descendant::span[contains(.,'" + post + "')]"));
+                    wait.until(ExpectedConditions.visibilityOf(postValuePage));
+            return true;
+        }
+        catch (WebDriverException e){
+            return false;
+        }
+
+    }
+    public boolean VerifyCommentCreated(String comment){
+        try{
+
+            WebElement commentValuePage= driver.findElement(By.xpath("//div[@class='feeditemcommentbody']/descendant::span[contains(.,'" + comment + "')]"));
+            wait.until(ExpectedConditions.visibilityOf(commentValuePage));
+            return true;
+        }
+        catch (WebDriverException e){
+            return false;
+        }
+
     }
 }

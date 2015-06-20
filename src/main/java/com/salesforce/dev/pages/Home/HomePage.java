@@ -1,4 +1,5 @@
 package com.salesforce.dev.pages.Home;
+import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.TopHeader;
@@ -58,6 +59,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     catch(WebDriverException e){
       LoginPage loginPage = this.clickLoginBtn();
       mainPage = loginPage.loginAs(account, password);
+    }
+    return mainPage;
+  }
+
+  public MainPage loginAsPrimaryUser(){
+    String userNameValue= Environment.getInstance().getPrimaryUser();
+    String passwordValue=Environment.getInstance().getPrimaryPassword();
+    MainPage mainPage;
+
+    try{
+      mainPage = new MainPage(this.driver);
+      TopHeader topHeader =  mainPage.gotoTopHeader();
+      if(topHeader.isUserMenuPresent()){
+        if(!topHeader.isLoggedUser(userNameValue)){
+          LoginPage loginPage = topHeader.logout();
+          mainPage = loginPage.loginAs(userNameValue, passwordValue);
+        }
+      }
+
+    }
+    catch(WebDriverException e){
+      LoginPage loginPage = this.clickLoginBtn();
+      mainPage = loginPage.loginAs(userNameValue, passwordValue);
     }
     return mainPage;
   }
