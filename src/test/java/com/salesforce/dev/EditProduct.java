@@ -26,8 +26,6 @@ public class EditProduct {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private String productName="New product";
-    private String prodCode="Codigo1";
-    private String prodDesc="this is a new product";
     private String productNewName="New product update";
     private String prodNewCode="Codigo2";
     private String prodNewDesc="this is a new product update";
@@ -36,19 +34,19 @@ public class EditProduct {
     @BeforeMethod
     public void setUp() {
         homePage = new HomePage();
-        String userNameValue= Environment.getInstance().getPrimaryUser();
-        String passwordValue=Environment.getInstance().getPrimaryPassword();
-        mainPage = homePage.loginAs(userNameValue, passwordValue);
+        mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         productsHome=navigationBar.clickProductTab();
         productForm=productsHome.clickNewBtn();
-        productDetails=productForm.SetProduct(productName,prodCode,prodDesc);
+        ProductForm productForm= new ProductBuilder(productName)
+                .setProductName(productName).build();
+        productDetails=productForm.saveProduct();
 
     }
 
     @Test(groups = {"Regression"})
     public void testEditProduct() {
-        productDetails.EditProduct();
+        productDetails.clickEditBtn();
         ProductForm productForm= new ProductBuilder(productNewName)
                 .setProductName(productNewName)
                 .setProductCode(prodNewCode)
@@ -62,7 +60,7 @@ public class EditProduct {
 
     @AfterMethod
     public void tearDown() {
-        productDetails.DeleteProduct();
+        productDetails.clickDeleteBtn(true);
 
     }
 }

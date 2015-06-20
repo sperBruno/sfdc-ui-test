@@ -5,6 +5,7 @@ import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -26,9 +27,7 @@ public class CreatePost {
     @BeforeMethod
     public void setUp(){
         homePage = new HomePage();
-        String userNameValue= Environment.getInstance().getPrimaryUser();
-        String passwordValue=Environment.getInstance().getPrimaryPassword();
-        mainPage = homePage.loginAs(userNameValue, passwordValue);
+        mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
 
     }
@@ -39,10 +38,11 @@ public class CreatePost {
         chatterHome.clickPost();
         chatterHome.setPost(post);
         chatterHome.clickShareBtn();
+        Assert.assertTrue(chatterHome.VerifyPostCreated(post), "Post Was not Created");
         chatterHome.clickCommentForPost(post);
         chatterHome.setComment(comment);
         chatterHome.clickCommentBtn();
-
+        Assert.assertTrue(chatterHome.VerifyCommentCreated(comment), "Comment Was not Created");
 
 
 
