@@ -143,20 +143,17 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountNameFld(String accountName) {
-        accountNameFld.clear();
-        accountNameFld.sendKeys(accountName);
+        fillTextBox(accountNameFld, accountName);
         return this;
     }
 
     public AccountForm setAccountNumberFld(String accountNumber) {
-        accountNumberFld.clear();
-        accountNumberFld.sendKeys(accountNumber);
+        fillTextBox(accountNumberFld, accountNumber);
         return this;
     }
 
     public AccountForm setAccountSiteFld(String accountSite) {
-        accountSiteFld.clear();
-        accountSiteFld.sendKeys(accountSite);
+        fillTextBox(accountSiteFld, accountSite);
         return this;
     }
 
@@ -171,8 +168,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountAnnualRevenueFld(Integer accountAnnualRevenue) {
-        accountAnnualRevenueFld.clear();
-        accountAnnualRevenueFld.sendKeys(accountAnnualRevenue.toString());
+        fillTextBox(accountAnnualRevenueFld, accountAnnualRevenue.toString());
         return this;
     }
 
@@ -182,26 +178,22 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountPhoneFld(String accountPhone) {
-        accountPhoneFld.clear();
-        accountPhoneFld.sendKeys(accountPhone);
+        fillTextBox(accountPhoneFld, accountPhone);
         return this;
     }
 
     public AccountForm setAccountFaxFld(String accountFax) {
-        accountFaxFld.clear();
-        accountFaxFld.sendKeys(accountFax);
+        fillTextBox(accountFaxFld, accountFax);
         return this;
     }
 
     public AccountForm setAccountWebsiteFld(String accountWebsite) {
-        accountWebsiteFld.clear();
-        accountWebsiteFld.sendKeys(accountWebsite);
+        fillTextBox(accountWebsiteFld, accountWebsite);
         return this;
     }
 
     public AccountForm setAccountThickerFld(String accountThicker) {
-        accountThickerFld.clear();
-        accountThickerFld.sendKeys(accountThicker);
+        fillTextBox(accountThickerFld, accountThicker);
         return this;
     }
 
@@ -211,74 +203,62 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountEmployeesFld(Integer accountEmployees) {
-        accountEmployeesFld.clear();
-        accountEmployeesFld.sendKeys(accountEmployees.toString());
+        fillTextBox(accountEmployeesFld, accountEmployees.toString());
         return this;
     }
 
     public AccountForm setAccountSICCodeFld(String accountSICCode) {
-        accountSICCodeFld.clear();
-        accountSICCodeFld.sendKeys(accountSICCode);
+        fillTextBox(accountSICCodeFld, accountSICCode);
         return this;
     }
 
     public AccountForm setAccountBillingStreetFld(String accountBillingStreet) {
-        accountBillingStreetFld.clear();
-        accountBillingStreetFld.sendKeys(accountBillingStreet);
+        fillTextBox(accountBillingStreetFld, accountBillingStreet);
         return this;
     }
 
     public AccountForm setAccountBillingCityFld(String accountBillingCity) {
-        accountBillingCityFld.clear();
-        accountBillingCityFld.sendKeys(accountBillingCity);
+        fillTextBox(accountBillingCityFld, accountBillingCity);
         return this;
     }
 
     public AccountForm setAccountBillingStateFld(String accountBillingState) {
-        accountBillingStateFld.clear();
-        accountBillingStateFld.sendKeys(accountBillingState);
+        fillTextBox(accountBillingStateFld, accountBillingState);
         return this;
     }
 
     public AccountForm setAccountBillingZipFld(String accountBillingZip) {
-        accountBillingZipFld.clear();
-        accountBillingZipFld.sendKeys(accountBillingZip);
+        fillTextBox(accountBillingZipFld, accountBillingZip);
         return this;
     }
 
     public AccountForm setAccountBillingCountryFld(String accountBillingCountry) {
-        accountBillingCountryFld.clear();
-        accountBillingCountryFld.sendKeys(accountBillingCountry);
+        fillTextBox(accountBillingCountryFld, accountBillingCountry);
         return this;
     }
 
     public AccountForm setAccountShippingStreetFld(String accountShippingStreet) {
-        accountShippingStreetFld.clear();
-        accountShippingStreetFld.sendKeys(accountShippingStreet);
+        fillTextBox(accountShippingStreetFld, accountShippingStreet);
         return this;
     }
 
     public AccountForm setAccountShippingCityFld(String accountShippingCity) {
-        accountShippingCityFld.clear();
-        accountShippingCityFld.sendKeys(accountShippingCity);
+        fillTextBox(accountShippingCityFld, accountShippingCity);
         return this;
     }
 
     public AccountForm setAccountShippingStateFld(String accountShippingState) {
-        accountShippingStateFld.clear();
-        accountShippingStateFld.sendKeys(accountShippingState);
+        fillTextBox(accountShippingStateFld, accountShippingState);
         return this;
     }
 
     public AccountForm setAccountShippingZipFld(String accountShippingZip) {
-        accountShippingZipFld.clear();
-        accountShippingZipFld.sendKeys(accountShippingZip);
+        fillTextBox(accountShippingZipFld, accountShippingZip);
         return this;
     }
 
     public AccountForm setAccountShippingCountryFld(String accountShippingCountry) {
-        accountShippingCountryFld.clear();
-        accountShippingCountryFld.sendKeys(accountShippingCountry);
+        fillTextBox(accountShippingCountryFld, accountShippingCountry);
         return this;
     }
 
@@ -288,8 +268,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountSLAExpirationDateFld(String accountSLAExpirationDate) {
-        accountSLAExpirationDateFld.clear();
-        accountSLAExpirationDateFld.sendKeys(accountSLAExpirationDate);
+        fillTextBox(accountSLAExpirationDateFld, accountSLAExpirationDate);
         return this;
     }
 
@@ -300,8 +279,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountNumberLocationsFld(Integer accountNumberLocations) {
-        accountNumberLocationsFld.clear();
-        accountNumberLocationsFld.sendKeys(accountNumberLocations.toString());
+        fillTextBox(accountNumberLocationsFld, accountNumberLocations.toString());
         return this;
     }
 
@@ -316,8 +294,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountSLASerialNumberFld(String accountSLASerialNumber) {
-        accountSLASerialNumberFld.clear();
-        accountSLASerialNumberFld.sendKeys(accountSLASerialNumber);
+        fillTextBox(accountSLASerialNumberFld, accountSLASerialNumber);
         return this;
     }
 
@@ -327,8 +304,7 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountDescriptionFld(String accountDescription) {
-        accountDescriptionFld.clear();
-        accountDescriptionFld.sendKeys(accountDescription);
+        fillTextBox(accountDescriptionFld, accountDescription);
         return this;
     }
 
