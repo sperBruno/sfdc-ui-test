@@ -4,26 +4,20 @@ import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.TabPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
  */
 public class CampaignsHome extends TabPage {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-
     public CampaignsHome(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
+        super.driver = driver;
+        super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
 
     public CampaignForm clickNewBtn(){
-        super.wait.until(ExpectedConditions.visibilityOf(newBtn));
-        newBtn.click();
+        clickNewButton();
         return new CampaignForm(this.driver);
     }
 
