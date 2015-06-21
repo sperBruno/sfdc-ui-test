@@ -1,14 +1,9 @@
 package com.salesforce.dev.pages.Opportunities;
 
-import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
@@ -17,8 +12,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class OpportunityForm extends FormBase{
 
+    /*Opportunity Information*/
+    @FindBy(id = "opp2")
+    WebElement privateCheckBox;
+
     @FindBy(id = "opp3")
     WebElement opportunityNameField;
+
+    @FindBy(id = "opp4")
+    WebElement accountName;
+
+    @FindBy(xpath = "//img=[@alt='Account Name Lookup (New Window)']")
+    WebElement accountNameLookup;
+
+    @FindBy(id = "opp5")
+    WebElement type;
+
+    @FindBy(id = "opp6")
+    WebElement leadSource;
 
     @FindBy(id = "opp7")
     WebElement amountField;
@@ -26,11 +37,43 @@ public class OpportunityForm extends FormBase{
     @FindBy(id = "opp9")
     WebElement closeDateField;
 
+    @FindBy(xpath = "//input[@id='opp9']/following::a")
+    WebElement todayLink;
+
+    @FindBy(id = "opp10")
+    WebElement nextStep;
+
     @FindBy(id = "opp11")
     WebElement stageCombobox;
 
-    @FindBy(xpath = "//input[@id='opp9']/following::a")
-    WebElement todayLink;
+    @FindBy(id = "opp12")
+    WebElement probability;
+
+    @FindBy(id = "opp17")
+    WebElement primaryCampaignSource;
+
+    @FindBy(xpath = "//img[@alt='Primary Campaign Source Lookup (New Window)']")
+    WebElement primaryCampaignSourceLookUp;
+
+    /*Additional Information*/
+    @FindBy(xpath = "//input[contains(@id,'xtc')]")
+    WebElement orderNumber;
+
+    @FindBy(xpath = "//input[contains(@id,'xtz')]")
+    WebElement currentGenerator;
+
+    @FindBy(xpath = "//input[contains(@id,'xtd')]")
+    WebElement trackingNumber;
+
+    @FindBy(xpath = "//input[contains(@id,'xtb')]")
+    WebElement mainCompetitors;
+
+    @FindBy(xpath = "//select[contains(@id,'xta')]")
+    WebElement deliveryStatus;
+
+    /*description*/
+    @FindBy(id = "opp14")
+    WebElement description;
 
     @FindBy(name = "save")
     WebElement saveBtn;
@@ -46,25 +89,54 @@ public class OpportunityForm extends FormBase{
         //setting the mandatoryFields for an Opportunity;
         this.setOpportunityName(builder.opName);
         this.setCloseDate(builder.closeDate);
-        this.setStageByVisibleText(builder.stage);
+        this.selectStageByVisibleText(builder.stage);
+
+        //other fields
+        this.setPrivateCheckBox(builder.isPrivate);
+        //this.selectAccountNameLookup();
+        this.selectTypeByVisibleText(builder.type);
+        this.selectLeadSourceByVisibleText(builder.leadSource);
         this.setAmount(builder.amount);
+        this.setNextStep(builder.nextStep);
+        this.setProbability(builder.probability);
+        //this.selectPrimaryCampaignSourceLookUp(builder.primaryCampaignSource);
+
+        //additional parameters
+        this.setOrderNumber(builder.orderNumber);
+        this.setCurrentGenerator(builder.currentGenerator);
+        this.setTrackingNumber(builder.trackingNumber);
+        this.setMainCompetitors(builder.mainCompetidors);
+        this.selectDeliveryStatusByVisibleText(builder.deliveryInstallationStatus);
+
+        this.setDescription(builder.opDescription);
 
     }
 
-    public void setOpportunityName(String opportunityName){
-        wait.until(ExpectedConditions.visibilityOf(opportunityNameField));
-        opportunityNameField.clear();
-        opportunityNameField.sendKeys(opportunityName);
+    public void setOpportunityName(String opportunityName) {
+        if(opportunityName!=null) {
+            fillTextBox(opportunityNameField, opportunityName);
+        }
+
     }
 
     /**
-     * TODO:
-     * By the moment it is only click in the link for the date
-     * Selecting a specific date still needs to be done
+     * Sets the close date and the format e.g 12/25/2015
      * */
     public void setCloseDate(String closeDate){
-        wait.until(ExpectedConditions.elementToBeClickable(todayLink));
-        todayLink.click();
+
+        if(closeDate.equalsIgnoreCase("today")){
+            todayLink.click();
+        }
+        else {
+            String[] date = closeDate.split("/");
+
+            int month = Integer.parseInt(date[0]);
+            int day = Integer.parseInt(date[1]);
+            int year = Integer.parseInt(date[2]);
+
+            closeDateField.click();
+            selectDatePicker(month, day, year);
+        }
     }
 
     /**
@@ -73,18 +145,117 @@ public class OpportunityForm extends FormBase{
      * @author: Jimmy Vargas
      * @version: 1.0
      * */
-    public void setStageByVisibleText(String stage){
-        wait.until(ExpectedConditions.visibilityOf(stageCombobox));
-        Select select = new Select(stageCombobox);
-        select.selectByVisibleText(stage);
-
-        this.driver.switchTo().defaultContent();
+    public void selectStageByVisibleText(String stage){
+        if(stage!=null) {
+            selectItemComboBox(stageCombobox, stage);
+        }
 
     }
     public void setAmount(String amount){
-        wait.until(ExpectedConditions.visibilityOf(amountField));
-        amountField.clear();
-        amountField.sendKeys(amount);
+        if(amount!=null){
+            fillTextBox(amountField,amount);
+        }
+    }
+
+    public void setPrivateCheckBox(boolean privateOp){
+
+        if(privateOp){
+            if(!privateCheckBox.isSelected()){
+                privateCheckBox.click();
+            }
+        }
+        else {
+            if (privateCheckBox.isSelected()) {
+                privateCheckBox.click();
+            }
+        }
+    }
+
+
+    public void setAccountName(String accountName){
+        if(accountName!=null) {
+            fillTextBox(this.accountName, accountName);
+        }
+    }
+
+
+    public void selectAccountNameLookup(String accountName){
+        //TODO: accoutn
+    }
+
+
+    public void selectTypeByVisibleText(String type){
+        if(type!=null) {
+            selectItemComboBox(this.type, type);
+        }
+    }
+
+
+    public void selectLeadSourceByVisibleText(String leadSource){
+        if (leadSource!=null) {
+            selectItemComboBox(this.leadSource, leadSource);
+        }
+    }
+
+
+    public void setNextStep(String nextStep) {
+        if(nextStep!=null) {
+            fillTextBox(this.nextStep, nextStep);
+        }
+    }
+
+    public void setProbability(String probability) {
+        if(probability!=null) {
+            fillTextBox(this.probability, probability);
+        }
+    }
+
+    public void setPrimaryCampaignSource(String primaryCampaignSource) {
+        if(primaryCampaignSource!=null) {
+            fillTextBox(this.primaryCampaignSource, primaryCampaignSource);
+        }
+    }
+
+    public void selectPrimaryCampaignSourceLookUp(String primaryCampaignSource){
+        //TODO:still need to implement
+    }
+
+    /*Additional Information*/
+    public void setOrderNumber(String orderNumber){
+        if(orderNumber != null) {
+            fillTextBox(this.orderNumber, orderNumber);
+        }
+    }
+
+    public void setCurrentGenerator(String currentGenerator){
+        if(currentGenerator!=null ) {
+            fillTextBox(this.currentGenerator, currentGenerator);
+        }
+    }
+
+    public void setTrackingNumber(String trackingNumber){
+        if(currentGenerator!=null) {
+            fillTextBox(this.trackingNumber, trackingNumber);
+        }
+    }
+
+    public void setMainCompetitors(String mainCompetitors){
+        if(mainCompetitors!=null) {
+            fillTextBox(this.mainCompetitors, mainCompetitors);
+        }
+    }
+
+    public void selectDeliveryStatusByVisibleText(String deliveryStatus) {
+        if(deliveryStatus!=null) {
+            selectItemComboBox(this.deliveryStatus, deliveryStatus);
+        }
+    }
+
+    /*description*/
+    public void setDescription(String description){
+        if(description!=null) {
+            fillTextBox(this.description, description);
+        }
     }
 
 

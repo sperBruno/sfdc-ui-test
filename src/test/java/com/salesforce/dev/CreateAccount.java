@@ -52,7 +52,7 @@ public class CreateAccount {
     private String slaSerialNumber= "123-456-78";
     private Integer numberOfLocations = 789;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Regression"})
     public void setUp() {
         homePage = new HomePage();
         String userNameValue= Environment.getInstance().getPrimaryUser();
@@ -61,7 +61,7 @@ public class CreateAccount {
 
     }
 
-    @Test(groups = {"Rgression"})
+    @Test(groups = {"Regression"})
     public void testCreateAccount() {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.clickAccountTab();
@@ -121,7 +121,7 @@ public class CreateAccount {
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"Regression"})
     public void tearDown() {
         accountDetail.clickDeleteBtn(true);
 

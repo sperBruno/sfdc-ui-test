@@ -22,6 +22,10 @@ public class CreateOpportunity {
 
     String opportunityName = "opNameAUT";
     String stage = "Prospecting";
+    String description = "Auto desc";
+    String closeDate = "6/6/2015";
+    String amount = "10000";
+    String orderNumber = "123456";
 
 
     HomePage homePage;
@@ -45,28 +49,16 @@ public class CreateOpportunity {
     public void CreateOpportunity(){ /*TODO: this test cases it is not finished it is only using for creatung the clases and methods*/
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
-        //opTab.selectViewByVisibleText("New This Week");
-        OpportunityForm newOpPage = opTab.clickNewBtn();
+        opTab.clickNewBtn();
 
-        /*
-        //small piece for all test case
-
-
-        newOpPage.setOpportunityName(opportunityName);
-        newOpPage.setCloseDate();
-        newOpPage.setStageByVisibleText(stage);*/
-        //Applying Builder
-        OpportunityForm opForm= new OpportunityBuilder(opportunityName,"today",stage)
-                .setOpDescription("Testing builder")
-                .setAmount("1000")
+        OpportunityForm opForm= new OpportunityBuilder(opportunityName,closeDate,stage)
+                .setOpDescription(description)
+                .setAmount(amount)
+                .setOrderNumber(orderNumber)
                 .build();
-
         OpportunityDetail opportunityDetails = opForm.clickSaveBtn();
 
         System.out.println("Op Owner" + opportunityDetails.getOpOwner());
-
-        //deleting the opportunity
-        opportunityDetails.deleteOpportunity();
 
 
         //verifying the oppotunity created
@@ -78,6 +70,10 @@ public class CreateOpportunity {
 
     @AfterMethod(groups = {"BVT"})
     public void tearDown(){
+        OpportunitiesHome opHome = navBar.goToOpportunitiesHome();
+        OpportunityDetail opDetail = opHome.openOpportunity(opportunityName);
+        opDetail.deleteOpportunity();
+
 
     }
 

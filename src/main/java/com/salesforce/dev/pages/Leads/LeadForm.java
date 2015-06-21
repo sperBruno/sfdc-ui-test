@@ -45,24 +45,21 @@ public class LeadForm extends FormBase {
     }
 
     public void setLastName(String lastName){
-        this.lastName.clear();
-        this.lastName.sendKeys(lastName);
+        fillTextBox(this.lastName, lastName);
     }
 
     public void setCompany(String company){
-        this.company.clear();
-        this.company.sendKeys(company);
+        fillTextBox(this.company,company);
     }
 
     public void setTitle(String title){
-        this.title.clear();
-        this.title.sendKeys(title);
+        fillTextBox(this.title,title);
     }
 
     public void setLeadStatusByVisibleText(String leadStatus){
-        Select leadStatusComboBox = new Select(this.leadStatus);
+
         try {
-            leadStatusComboBox.selectByVisibleText(leadStatus);
+            selectItemComboBox(this.leadStatus,leadStatus);
         }
         catch(WebDriverException e){
             throw new WebDriverException("The leadStatus "+leadStatus+" couldn't be selected");
