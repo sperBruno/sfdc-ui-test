@@ -17,11 +17,12 @@ import org.testng.annotations.Test;
  */
 public class CreateOpportunity {
 
-    String account;
-    String password;
-
     String opportunityName = "opNameAUT";
     String stage = "Prospecting";
+    String description = "Auto desc";
+    String closeDate = "6/6/2015";
+    String amount = "10000";
+    String orderNumber = "123456";
 
 
     HomePage homePage;
@@ -30,54 +31,38 @@ public class CreateOpportunity {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp(){
-        account= Environment.getInstance().getPrimaryUser();
-        password = Environment.getInstance().getPrimaryPassword();
-
         homePage = new HomePage();
-        mainPage = homePage.loginAs(account, password);
+        mainPage = homePage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-
-        System.out.println("SETUP create opportunity");
-
-
     }
+
     @Test(groups = {"BVT"})
-    public void CreateOpportunity(){ /*TODO: this test cases it is not finished it is only using for creatung the clases and methods*/
+    public void CreateOpportunity(){
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
-        //opTab.selectViewByVisibleText("New This Week");
-        OpportunityForm newOpPage = opTab.clickNewBtn();
+        opTab.clickNewBtn();
 
-        /*
-        //small piece for all test case
-
-
-        newOpPage.setOpportunityName(opportunityName);
-        newOpPage.setCloseDate();
-        newOpPage.setStageByVisibleText(stage);*/
-        //Applying Builder
-        OpportunityForm opForm= new OpportunityBuilder(opportunityName,"today",stage)
-                .setOpDescription("Testing builder")
-                .setAmount("1000")
+        OpportunityForm opForm= new OpportunityBuilder(opportunityName,closeDate,stage)
+                .setOpDescription(description)
+                .setPrivate(true)
+                .setAmount(amount)
+                .setOrderNumber(orderNumber)
                 .build();
-
         OpportunityDetail opportunityDetails = opForm.clickSaveBtn();
 
-        System.out.println("Op Owner" + opportunityDetails.getOpOwner());
+        System.out.println("Private: "+opportunityDetails.isPrivate());
 
-        //deleting the opportunity
-        opportunityDetails.deleteOpportunity();
-
-
-        //verifying the oppotunity created
-        //String opportunityDetails = opportunityPage.getOwner();
-        //String opportunityDetails = opportunityPage.getName();
-
+        //Assertions
+        //TODO: still need to implement the assertions
 
     }
 
     @AfterMethod(groups = {"BVT"})
     public void tearDown(){
+        OpportunitiesHome opHome = navBar.goToOpportunitiesHome();
+        OpportunityDetail opDetail = opHome.openOpportunity(opportunityName);
+        opDetail.deleteOpportunity();
+
 
     }
 

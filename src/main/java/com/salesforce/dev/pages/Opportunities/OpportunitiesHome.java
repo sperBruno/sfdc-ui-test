@@ -2,7 +2,9 @@ package com.salesforce.dev.pages.Opportunities;
 
 import com.salesforce.dev.pages.Base.*;
 import com.salesforce.dev.framework.DriverManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -14,7 +16,7 @@ public class OpportunitiesHome extends TabPage{
     public OpportunitiesHome(WebDriver driver){
         super.driver = driver;
         super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(super.driver,this);
+        PageFactory.initElements(super.driver, this);
     }
 
      public OpportunityForm clickNewBtn(){
@@ -28,6 +30,15 @@ public class OpportunitiesHome extends TabPage{
         super.clickRecentItem(opportunity);
         return new OpportunityDetail(this.driver);
     }
+
+    public OpportunityDetail openOpportunity(String opportunity){
+        WebElement linkOpportunity = driver.findElement(By.linkText(opportunity));
+        wait.until(ExpectedConditions.elementToBeClickable(linkOpportunity));
+
+        linkOpportunity.click();
+        return new OpportunityDetail(this.driver);
+    }
+
 
 
 

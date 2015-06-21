@@ -14,17 +14,24 @@ public class LeadDetail extends DetailsBase {
     public LeadDetail(WebDriver driver){
         super.driver = driver;
         super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(super.driver,this);
+        PageFactory.initElements(super.driver, this);
 
     }
 
-    public Object clickEditBtn(){
+    public LeadForm clickEditBtn(){
         super.clickEditButton();
         return new LeadForm(this.driver);
     }
 
-    public Object clickDeleteBtn(boolean confirmDeletion){
-        super.clickDeleteButton(confirmDeletion);
+
+    public LeadsHome deleteLead(){
+        return clickDeleteBtn(true);
+
+    }
+
+    @Override
+    protected LeadsHome clickDeleteBtn(boolean confirmDeletion) {
+        super.clickDeleteButton(true);
         return new LeadsHome(this.driver);
     }
 }

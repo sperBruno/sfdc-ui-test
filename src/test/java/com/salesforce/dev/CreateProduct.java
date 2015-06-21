@@ -29,7 +29,7 @@ public class CreateProduct {
     private ProductForm productForm;
     private ProductDetails productDetails;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Regression"})
     public void setUp(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
@@ -53,7 +53,7 @@ public class CreateProduct {
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"Regression"})
     public void tearDown(){
         productDetails.clickDeleteBtn(true);
     }

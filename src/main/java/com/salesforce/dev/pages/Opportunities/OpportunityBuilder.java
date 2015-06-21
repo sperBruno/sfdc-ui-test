@@ -8,9 +8,12 @@ public class OpportunityBuilder {
     protected String opName,accountName,type;
     protected boolean isPrivate;
     protected String leadSource, orderNumber, currentGenerator, trackingNumber;
-    protected String opDescription,amount,expectedRevenue,closeDate;
+    protected String opDescription,amount,expectedRevenue;
+    //This should be the format for the close data month/day/year e.g 12/25/2015
+    protected String closeDate;
     protected String nextStep,stage,probability,primaryCampaignSource,mainCompetidors;
     protected String deliveryInstallationStatus;
+
 
     public OpportunityBuilder(String opportunityName, String closeDate,String stage){
         this.opName = opportunityName;

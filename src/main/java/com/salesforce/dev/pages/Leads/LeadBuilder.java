@@ -6,23 +6,23 @@ package com.salesforce.dev.pages.Leads;
 public class LeadBuilder {
 
     /*attributes for the lead information*/
-    protected String firstNameTitle, firstName, lastName, company, title;
+    protected String salutation, firstName, lastName, company, title;
     protected String leadSource, campaign, industry, annualRevenue;
     protected String phone, mobile, fax, email, website, leadStatus, rating;
-    protected int numEmployees;
+    protected String numEmployees;
 
     /*attributes for the address information*/
     protected String street, city, stateProvince, zipPostalCode,country;
 
     /*attributes for the additional information*/
-    protected String productInterest, sicCode, currentGenerators,primary;
-    protected int numberLocations;
+    protected String productInterest, SICcode, currentGenerators,primary;
+    protected String numberLocations;
 
     /*description information*/
     protected String description;
 
     /*optional*/
-    protected boolean usingAsignRule;
+    protected boolean asignRule;
 
     public LeadBuilder(String lastName, String company, String leadStatus){
         this.lastName = lastName;
@@ -31,8 +31,8 @@ public class LeadBuilder {
     }
 
     /*attributes for the lead information*/
-    public LeadBuilder setFirstNameTitle(String firstNameTitle){
-        this.firstNameTitle = firstNameTitle;
+    public LeadBuilder setSalutation(String salutation){
+        this.salutation = salutation;
         return this;
     }
     public LeadBuilder setFirstName(String firstName){
@@ -99,7 +99,7 @@ public class LeadBuilder {
         return this;
     }
 
-    public LeadBuilder setNumEmployees(int numEmployees){
+    public LeadBuilder setNumEmployees(String numEmployees){
         this.numEmployees = numEmployees;
         return this;
     }
@@ -132,8 +132,8 @@ public class LeadBuilder {
         return this;
     }
 
-    public LeadBuilder setSicCode(String sicCode){
-        this.sicCode = sicCode;
+    public LeadBuilder setSICcode(String SICcode){
+        this.SICcode = SICcode;
         return this;
     }
 
@@ -147,7 +147,7 @@ public class LeadBuilder {
         return this;
     }
 
-    public LeadBuilder setNumberLocations(int numberLocations){
+    public LeadBuilder setNumberLocations(String numberLocations){
         this.numberLocations = numberLocations;
         return this;
     }
@@ -157,8 +157,8 @@ public class LeadBuilder {
         return this;
     }
 
-    public LeadBuilder setUsingAsignRule(boolean usingAsignRule){
-        this.usingAsignRule = usingAsignRule;
+    public LeadBuilder setAsignRule(boolean asignRule){
+        this.asignRule = asignRule;
         return this;
     }
 

@@ -5,6 +5,7 @@ import com.salesforce.dev.pages.Base.TabPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by Jimmy Vargas on 6/5/2015.
@@ -28,6 +29,14 @@ public class LeadsHome extends TabPage {
         super.clickRecentItem(item);
         return new LeadsHome(super.driver);
 
+    }
+
+    public LeadDetail openLead(String lead){
+        WebElement linkLead = driver.findElement(By.linkText(lead));
+        wait.until(ExpectedConditions.elementToBeClickable(linkLead));
+
+        linkLead.click();
+        return new LeadDetail(this.driver);
     }
 
 }
