@@ -2,7 +2,6 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Chatter.ChatterHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Product.ProductDetails;
@@ -33,14 +32,12 @@ public class CreateProduct {
     @BeforeMethod(groups = {"Regression"})
     public void setUp(){
         homePage = new HomePage();
-        String userNameValue= Environment.getInstance().getPrimaryUser();
-        String passwordValue=Environment.getInstance().getPrimaryPassword();
-        mainPage = homePage.loginAs(userNameValue, passwordValue);
+        mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
 
     }
     @Test(groups = {"Regression"})
-    public void CreatePostAndComment(){
+    public void CreateProduct(){
 
         productsHome=navigationBar.clickProductTab();
         productForm=productsHome.clickNewBtn();
@@ -58,7 +55,7 @@ public class CreateProduct {
 
     @AfterMethod(groups = {"Regression"})
     public void tearDown(){
-        productDetails.DeleteProduct();
+        productDetails.clickDeleteBtn(true);
     }
 
 }
