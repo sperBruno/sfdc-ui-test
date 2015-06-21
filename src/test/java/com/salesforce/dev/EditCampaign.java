@@ -13,11 +13,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Marcelo.Vargas on 6/15/2015.
+ * Created by Marcelo.Vargas on 6/21/2015.
  */
-public class CreateCampaign {
+public class EditCampaign {
 
-    private String campaignName = "Campaign Name 03";
+    private String campaignNameUpdated ="Campaign Name 05 UPDATED";
+    private String campaignName = "Campaign Name 05";
     private String campaignType = "Webinar"; //Conference, Webinar, Trade Show, Public Relations, Partners, Referral Program, Advertisement, Banner Ads, Direct Mail, Email, Telemarketing, Other
     private String campaignStatus = "Completed"; //--None--, Planned, In Progress, Completed, Aborted
     private String startDate = "6/15/2016";
@@ -29,6 +30,10 @@ public class CreateCampaign {
     private String numSent = "10";
     private String parentCampaign = "CampaignParent";
 
+
+    private SearchLookupBase searchLookup;
+
+
     private CampaignsHome campaignsHome;
     private CampaignDetail campaignDetail;
     private CampaignForm campaignForm;
@@ -36,23 +41,34 @@ public class CreateCampaign {
     private MainPage mainPage;
     private NavigationBar navigationBar;
 
-    private SearchLookupBase searchLookup;
-
     @BeforeMethod
     public void setUp() {
         homePage = new HomePage();
         String userNameValue= Environment.getInstance().getPrimaryUser();
         String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue,passwordValue);
-    }
-
-    @Test
-    public void testCreateCampaign() {
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCamapaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
         campaignForm.setCampaignName(campaignName);
         campaignForm.checkActiveCheckbox();
+        campaignDetail = campaignForm.clickSaveBtn();
+
+        // Assert
+        mainPage = campaignDetail.gotoMainPage();
+    }
+
+    @Test
+    public void testEditCampaign() {
+
+        navigationBar = mainPage.gotoNavBar();
+        campaignsHome = navigationBar.goToCamapaignsHome();
+
+
+        campaignDetail = campaignsHome.selectRecentItem(campaignName);
+        campaignForm = campaignDetail.clickEditBtn();
+        campaignForm.setCampaignName(campaignNameUpdated);
+
         campaignForm.setTypeSelect(campaignType);
         campaignForm.setStatusSelect(campaignStatus);
         campaignForm.setStartDate(startDate);

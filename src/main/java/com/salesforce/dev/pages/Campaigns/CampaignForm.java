@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.Campaigns;
 
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -64,9 +65,10 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     WebElement numSentFld;
 
-    @FindBy(id = "Parent")
+
+    @FindBy(xpath = "//img[@alt='Parent Campaign Lookup (New Window)']")
     @CacheLookup
-    WebElement parentFld;
+    WebElement lookupCampaignImg;
 
     // Description Information
 
@@ -108,8 +110,8 @@ public class CampaignForm extends FormBase {
         return this;
     }
 
-    public CampaignForm checkActiveCheckbox(String text) {
-        if (!activeCheckbox.isEnabled()) {
+    public CampaignForm checkActiveCheckbox() {
+        if (!activeCheckbox.isSelected()) {
             activeCheckbox.click();
         }
         return this;
@@ -160,9 +162,9 @@ public class CampaignForm extends FormBase {
         return this;
     }
 
-    public CampaignForm setParent(String text) {
-        fillTextBox(parentFld, text);
-        return this;
+    public SearchLookupBase clickLookupParentCampaign() {
+        lookupCampaignImg.click();
+        return new SearchLookupBase(driver);
     }
 
     public CampaignForm setDescription(String text) {
