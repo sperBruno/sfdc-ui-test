@@ -15,7 +15,7 @@ public class OpportunityDetail extends DetailsBase {
     @FindBy(id = "opp1_ileinner")
     WebElement  opOwner;
 
-    @FindBy(id = "opp2_ileinner")
+    @FindBy(id = "opp2_chkbox")
     WebElement privateCheckBox;
 
     @FindBy(id = "opp3_ileinner")
@@ -30,13 +30,13 @@ public class OpportunityDetail extends DetailsBase {
     @FindBy(id = "opp6_ileinner")
     WebElement leadSource;
 
-    @FindBy(id = "00N1a0000056xtc_ileinner") //TODO: change to xpath?
+    @FindBy(xpath = "//td[contains(.,'Order Number')]/following::div")
     WebElement orderNumber;
 
-    @FindBy(id ="00N1a0000056xtZ_ileinner") //TODO: change to xpath?
+    @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::div")
     WebElement currentGenerator;
 
-    @FindBy(id = "00N1a0000056xtd_ileinner") //TODO: change to xpath?
+    @FindBy(xpath = "//td[contains(.,'Tracking Number')]/following::div") //TODO: change to xpath?
     WebElement trackingNumber;
 
     @FindBy(id = "CreatedBy_ileinner")
@@ -44,11 +44,6 @@ public class OpportunityDetail extends DetailsBase {
 
     @FindBy(id = "opp14_ileinner")
     WebElement opDescription;
-
-    /* Pending
-    @FindBy()
-    WebElement customLinks;
-    */
 
     @FindBy(id = "opp7_ileinner")
     WebElement amount;
@@ -71,10 +66,10 @@ public class OpportunityDetail extends DetailsBase {
     @FindBy(id = "opp17_ileinner")
     WebElement primaryCampaignSource;
 
-    @FindBy(id = "00N1a0000056xtb_ileinner")//TODO: change to xpath?
-    WebElement mainCompetidors;
+    @FindBy(xpath = "//td[contains(.,'Main Competitor')]/following::div")
+    WebElement mainCompetitors;
 
-    @FindBy(id = "00N1a0000056xta_ileinner")//TODO: change to xpath?
+    @FindBy(xpath = "//td[contains(.,'Delivery/Installation Status')]/following::div")
     WebElement deliveryInstallationStatus;
 
     @FindBy(id = "LastModifiedBy_ileinner")
@@ -93,7 +88,7 @@ public class OpportunityDetail extends DetailsBase {
      * @author: Jimmy Vargas
      * @since: 06/13/2015
      * */
-    public Object clickEditBtn(){
+    public OpportunityForm clickEditBtn(){
         super.clickEditButton();
         return new OpportunityForm(driver);
     }
@@ -104,7 +99,8 @@ public class OpportunityDetail extends DetailsBase {
      * @author: Jimmy Vargas
      * @since: 06/13/2015
      * */
-    public OpportunitiesHome clickDeleteBtn(boolean confirmDeletion){
+    @Override
+    protected OpportunitiesHome clickDeleteBtn(boolean confirmDeletion){
         super.clickDeleteButton(confirmDeletion);
         return new OpportunitiesHome(driver);
     }
@@ -116,17 +112,16 @@ public class OpportunityDetail extends DetailsBase {
      * @since: 06/13/2015
      * */
     public OpportunitiesHome deleteOpportunity(){
-        return (OpportunitiesHome)clickDeleteBtn(true);
+        return clickDeleteBtn(true);
     }
 
     public String getOpOwner(){
         return opOwner.getText();
     }
 
-    //todo: still need to implement this
+
     public boolean isPrivate() {
-     //   WebElement privateCheckBox;
-     return false;
+        return privateCheckBox.getAttribute("title").equalsIgnoreCase("Checked");
     }
 
     public String getOpName(){
@@ -199,7 +194,7 @@ public class OpportunityDetail extends DetailsBase {
     }
 
     public String getMainCompetidors() {
-        return mainCompetidors.getText();
+        return mainCompetitors.getText();
     }
 
     public String getDeliveryInstallationStatus() {

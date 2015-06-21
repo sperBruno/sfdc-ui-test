@@ -44,13 +44,19 @@ public class CreateLead {
 
         LeadForm leadForm = new LeadBuilder(lastName,company,leadStatus)
                 .setTitle("Tester")
+                .setDescription("Desciption Test")
                 .build();
         LeadDetail leadDetail = leadForm.clickSaveBtn();
+
+        //todo: Assertions
 
     }
 
     @AfterMethod(groups={"BVT"})
     public void tearDown(){
+        LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
+        LeadDetail leadDetail = leadsHome.openLead(lastName);
+        leadDetail.deleteLead();
 
     }
 }

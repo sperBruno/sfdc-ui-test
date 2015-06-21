@@ -37,10 +37,6 @@ public class OpportunitiesHome extends TabPage{
 
         linkOpportunity.click();
         return new OpportunityDetail(this.driver);
-
-
-
-
     }
 
 

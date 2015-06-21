@@ -56,19 +56,19 @@ public class OpportunityForm extends FormBase{
     WebElement primaryCampaignSourceLookUp;
 
     /*Additional Information*/
-    @FindBy(xpath = "//input[contains(@id,'xtc')]")
+    @FindBy(xpath = "//td[contains(.,'Order Number')]/following::input")
     WebElement orderNumber;
 
-    @FindBy(xpath = "//input[contains(@id,'xtz')]")
+    @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::input")
     WebElement currentGenerator;
 
-    @FindBy(xpath = "//input[contains(@id,'xtd')]")
+    @FindBy(xpath = "//td[contains(.,'Tracking Number')]/following::input")
     WebElement trackingNumber;
 
-    @FindBy(xpath = "//input[contains(@id,'xtb')]")
+    @FindBy(xpath = "//td[contains(.,'Main Competitors')]/following::input")
     WebElement mainCompetitors;
 
-    @FindBy(xpath = "//select[contains(@id,'xta')]")
+    @FindBy(xpath = "//td[contains(.,'Delivery')]/following::span/select")
     WebElement deliveryStatus;
 
     /*description*/
