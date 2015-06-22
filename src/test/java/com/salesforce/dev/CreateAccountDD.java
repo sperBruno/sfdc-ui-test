@@ -14,10 +14,7 @@ import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.utils.DataDrivenManager;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 /**
  * Created by Walter on 13/06/2015.
@@ -37,7 +34,7 @@ public class CreateAccountDD {
         return dataDrivenManager.getDataDrivenAccount();
     }
 
-    @BeforeMethod(groups = {"Regression"})
+    @BeforeClass
     public void setUp() {
         homePage = new HomePage();
         String userNameValue= Environment.getInstance().getPrimaryUser();
