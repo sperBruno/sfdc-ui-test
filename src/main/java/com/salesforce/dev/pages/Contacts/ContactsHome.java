@@ -3,13 +3,13 @@ package com.salesforce.dev.pages.Contacts;
 import com.salesforce.dev.framework.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import com.salesforce.dev.pages.Base.TabPage;
+import com.salesforce.dev.pages.Base.HomeBase;
 
 
 /**
  * Created by Marcelo Vargas on 11/06/2015.
  */
-public class ContactsHome extends TabPage {
+public class ContactsHome extends HomeBase {
 
     public ContactsHome(WebDriver driver) {
         super.driver = driver;

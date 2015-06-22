@@ -1,16 +1,15 @@
 package com.salesforce.dev.pages.Leads;
 
 import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.TabPage;
+import com.salesforce.dev.pages.Base.HomeBase;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by Jimmy Vargas on 6/5/2015.
  */
-public class LeadsHome extends TabPage {
+public class LeadsHome extends HomeBase {
 
     public LeadsHome(WebDriver driver){
         this.driver = driver;

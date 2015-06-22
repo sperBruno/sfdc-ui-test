@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Jimmy Vargas on 6/11/2015.
  */
-public abstract class TabPage {
+public abstract class HomeBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
 

@@ -1,14 +1,14 @@
 package com.salesforce.dev.pages.Campaigns;
 
 import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.TabPage;
+import com.salesforce.dev.pages.Base.HomeBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
  */
-public class CampaignsHome extends TabPage {
+public class CampaignsHome extends HomeBase {
 
     public CampaignsHome(WebDriver driver) {
         super.driver = driver;

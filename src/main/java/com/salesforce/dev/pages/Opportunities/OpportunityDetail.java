@@ -36,7 +36,7 @@ public class OpportunityDetail extends DetailsBase {
     @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::div")
     WebElement currentGenerator;
 
-    @FindBy(xpath = "//td[contains(.,'Tracking Number')]/following::div") //TODO: change to xpath?
+    @FindBy(xpath = "//td[contains(.,'Tracking Number')]/following::div")
     WebElement trackingNumber;
 
     @FindBy(id = "CreatedBy_ileinner")

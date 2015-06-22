@@ -6,7 +6,9 @@
             <class name="com.salesforce.dev.CreateProduct"/>
             <class name="com.salesforce.dev.EditProduct"/>
             <class name="com.salesforce.dev.CreateOpportunity"/>
+            <class name="com.salesforce.dev.EditOpportunity"/>
             <class name="com.salesforce.dev.CreateLead"/>
+            <class name="com.salesforce.dev.EditLead"/>
             <class name="com.salesforce.dev.CreateAccount"/>
             <class name="com.salesforce.dev.CreateCampaign"/>
             <class name="com.salesforce.dev.CreateContact"/>
