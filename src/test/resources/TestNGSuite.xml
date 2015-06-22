@@ -10,10 +10,13 @@
             <class name="com.salesforce.dev.CreateLead"/>
             <class name="com.salesforce.dev.EditLead"/>
             <class name="com.salesforce.dev.CreateAccount"/>
-            <class name="com.salesforce.dev.CreateCampaign"/>
-            <class name="com.salesforce.dev.CreateContact"/>
-            <class name="com.salesforce.dev.CreatePost"/>
             <class name="com.salesforce.dev.EditAccount"/>
+            <class name="com.salesforce.dev.CreateAccountDD"/>
+            <class name="com.salesforce.dev.CreateCampaign"/>
+            <class name="com.salesforce.dev.EditCampaign"/>
+            <class name="com.salesforce.dev.CreateContact"/>
+            <class name="com.salesforce.dev.EditContact"/>
+            <class name="com.salesforce.dev.CreatePost"/>
         </classes>
     </test>
 </suite>

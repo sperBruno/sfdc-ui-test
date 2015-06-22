@@ -16,41 +16,15 @@ public class CampaignsHome extends HomeBase {
         PageFactory.initElements(driver, this);
     }
 
+    @Override
     public CampaignForm clickNewBtn(){
         clickNewButton();
         return new CampaignForm(this.driver);
     }
 
+    @Override
     public CampaignDetail selectRecentItem(String campaign){
         super.clickRecentItem(campaign);
         return new CampaignDetail(this.driver);
     }
-
-
-    /*
-    public CampaignNewView clickCreateNewCampaignView() {
-        createNewCampaignViewLink.click();
-        return new CampaignNewView(driver);
-    }
-    public boolean verifyTextInList(String text) {
-        dropdown = new Select(viewList);
-        for (WebElement element : dropdown.getOptions()) {
-            if (element.getText().equals(text)) {
-                System.out.println("Element: " + element.getText() + " **EQUAL** " + text);
-                return true;
-            }
-            System.out.println("Element: " + element.getText() + " != " + text);
-        }
-        return false;
-    }
-
-    public void SelectCreatedView(String text) {
-        dropdown = new Select(viewList);
-        dropdown.selectByVisibleText(text);;
-    }
-    public void deleteView() {
-        deleteViewLink.click();
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-    }*/
 }

@@ -1,6 +1,5 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
@@ -39,7 +38,7 @@ public class CreateProduct {
     @Test(groups = {"Regression"})
     public void CreateProduct(){
 
-        productsHome=navigationBar.clickProductTab();
+        productsHome=navigationBar.goToProductsHome();
         productForm=productsHome.clickNewBtn();
         productForm= new ProductBuilder(productName)
                 .setProductName(productName)
@@ -48,8 +47,6 @@ public class CreateProduct {
                 .setProductActive(true).build();
         productDetails=productForm.saveProduct();
         Assert.assertTrue(productDetails.VerifyProduct(productName), "product Was not Created");
-
-
 
     }
 

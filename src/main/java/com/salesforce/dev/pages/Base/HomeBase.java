@@ -27,7 +27,7 @@ public abstract class HomeBase {
      *
      * @author: Jimmy
      */
-    abstract protected Object clickNewBtn();
+    protected abstract Object clickNewBtn();
 
     /**
      * Method that encapsulates the the operations waiting for the elemeent and the action
@@ -39,14 +39,11 @@ public abstract class HomeBase {
         newBtn.click();
     }
 
-    abstract protected Object selectRecentItem(String value);
+    protected abstract Object selectRecentItem(String value);
 
     protected void clickRecentItem(String value){
         WebElement recentItem = driver.findElement(
                 By.xpath("//div[@class='hotListElement']/descendant::a[contains(.,'"+value+"')]"));
         recentItem.click();
     }
-
-
-
 }

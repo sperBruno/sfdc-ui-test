@@ -36,7 +36,7 @@ public class EditProduct {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
-        productsHome=navigationBar.clickProductTab();
+        productsHome=navigationBar.goToProductsHome();
         productForm=productsHome.clickNewBtn();
         ProductForm productForm= new ProductBuilder(productName)
                 .setProductName(productName).build();
