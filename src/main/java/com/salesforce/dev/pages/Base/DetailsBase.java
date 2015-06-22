@@ -114,7 +114,7 @@ public abstract class DetailsBase {
      * @author: Jimmy Vargas
      * @since: 6/13/2015
      * */
-    abstract protected Object clickEditBtn();
+    protected abstract Object clickEditBtn();
 
     /**
      * Returns to the Details when the confirmation is false and return to home when the confirmation is true
@@ -122,7 +122,7 @@ public abstract class DetailsBase {
      * @author: Jimmy Vargas
      * @since: 6/13/2015
      * */
-    abstract protected Object clickDeleteBtn(boolean confirmDeletion);
+    protected abstract Object clickDeleteBtn(boolean confirmDeletion);
 
 
 }

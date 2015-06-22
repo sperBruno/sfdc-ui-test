@@ -63,7 +63,7 @@ public class NavigationBar {
         return new LeadsHome(driver);
     }
 
-    public AccountsHome clickAccountTab(){ // TODO: goToAccountsHome?
+    public AccountsHome goToAccountsHome(){
         wait.until(ExpectedConditions.visibilityOf(accountsTab));
         accountsTab.click();
         return new AccountsHome(driver);
@@ -89,7 +89,7 @@ public class NavigationBar {
         return new OpportunitiesHome(this.driver);
     }
 
-    public ProductsHome clickProductTab(){ // TODO: use goToProductsHome
+    public ProductsHome goToProductsHome(){
         wait.until(ExpectedConditions.visibilityOf(productsTab));
         productsTab.click();
         return new ProductsHome(driver);

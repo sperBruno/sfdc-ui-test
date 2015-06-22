@@ -23,11 +23,13 @@ public class CampaignDetail extends DetailsBase{
         PageFactory.initElements(driver, this);
     }
 
+    @Override
     public CampaignForm clickEditBtn(){
         clickEditButton();
         return new CampaignForm(driver);
     }
 
+    @Override
     public Object clickDeleteBtn(boolean confirmDeletion){
         clickDeleteButton(confirmDeletion);
         return new CampaignsHome(driver);

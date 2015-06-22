@@ -1,7 +1,10 @@
 package com.salesforce.dev.pages.SearchLookup;
 
+import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Contacts.ContactForm;
+import com.salesforce.dev.pages.Leads.LeadForm;
+import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -66,5 +69,14 @@ public class SearchLookupBase {
     }
     public CampaignForm goToCampaignForm() {
         return new CampaignForm(driver);
+    }
+    public LeadForm goToLeadForm() {
+        return new LeadForm(driver);
+    }
+    public AccountForm goToAccountForm() {
+        return new AccountForm(driver);
+    }
+    public OpportunityForm goToOpportunityForm() {
+        return new OpportunityForm(driver);
     }
 }

@@ -61,7 +61,7 @@ public class CreateAccount {
     @Test(groups = {"Regression"})
     public void testCreateAccount() {
         NavigationBar navigationBar = mainPage.gotoNavBar();
-        AccountsHome accountsHome = navigationBar.clickAccountTab();
+        AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
         accountForm.setAccountNameFld(accountName);
         accountForm.setAccountRatingFld(rating);

@@ -53,9 +53,9 @@ public abstract class FormBase {
      *
      * @author: Walter
      */
-    abstract protected Object clickSaveBtn();
-    abstract protected Object clickSaveNewBtn();
-    abstract protected Object clickCancelBtn();
+    protected abstract Object clickSaveBtn();
+    protected abstract Object clickSaveNewBtn();
+    protected abstract Object clickCancelBtn();
 
     /**
      * Methods that encapsulates the the operations waiting for the element and the action

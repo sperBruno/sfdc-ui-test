@@ -65,7 +65,7 @@ public class EditAccount {
         mainPage = homePage.loginAs(userNameValue,passwordValue);
 
         navigationBar = mainPage.gotoNavBar();
-        accountsHome = navigationBar.clickAccountTab();
+        accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
         accountForm.setAccountNameFld(accountName);
         accountDetail = accountForm.clickSaveBtn();
@@ -79,7 +79,7 @@ public class EditAccount {
     @Test
     public void testEditAccount() {
         navigationBar = mainPage.gotoNavBar();
-        accountsHome = navigationBar.clickAccountTab();
+        accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountForm = accountDetail.clickEditBtn();
         accountForm.setAccountNameFld(accountNameUpdated);

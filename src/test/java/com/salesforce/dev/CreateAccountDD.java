@@ -46,7 +46,7 @@ public class CreateAccountDD {
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateAccount(String accountName,String description) {
         NavigationBar navigationBar = mainPage.gotoNavBar();
-        AccountsHome accountsHome = navigationBar.clickAccountTab();
+        AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
         accountForm.setAccountNameFld(accountName);
         accountForm.setAccountDescriptionFld(description);
