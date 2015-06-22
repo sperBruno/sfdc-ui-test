@@ -1,13 +1,11 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.JSONReader;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Opportunities.OpportunityBuilder;
-import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
-import com.salesforce.dev.pages.Opportunities.OpportunityForm;
+import com.salesforce.dev.pages.Opportunities.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,23 +15,22 @@ import org.testng.annotations.Test;
  */
 public class CreateOpportunity {
 
-    String opportunityName = "opNameAUT";
-    String stage = "Prospecting";
-    String description = "Auto desc";
-    String closeDate = "6/6/2015";
-    String amount = "10000";
-    String orderNumber = "123456";
-
-
     HomePage homePage;
     MainPage mainPage;
     NavigationBar navBar;
+
+    OpportunityEnum oppEnum;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
+
+        System.out.println("reading from json");
+        //JSONReader jr = new JSONReader("D:\\GitHub\\CarlosSeleniumProjectFork\\SFDC-Team1\\src\\test\\resources\\CreateOpportunityBase.json");
+        oppEnum = new OpportunityEnum("src\\test\\resources\\CreateOpportunityBase.json");
+
     }
 
     @Test(groups = {"BVT"})
@@ -42,11 +39,11 @@ public class CreateOpportunity {
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         opTab.clickNewBtn();
 
-        OpportunityForm opForm= new OpportunityBuilder(opportunityName,closeDate,stage)
-                .setOpDescription(description)
-                .setPrivate(true)
-                .setAmount(amount)
-                .setOrderNumber(orderNumber)
+        OpportunityForm opForm= new OpportunityBuilder(oppEnum.opportunityName,oppEnum.closeDate,oppEnum.stage)
+                .setOpDescription(oppEnum.description)
+                .setPrivate(oppEnum.privateChk)
+                .setAmount(oppEnum.amount)
+                .setOrderNumber(oppEnum.orderNumber)
                 .build();
         OpportunityDetail opportunityDetails = opForm.clickSaveBtn();
 
@@ -60,7 +57,7 @@ public class CreateOpportunity {
     @AfterMethod(groups = {"BVT"})
     public void tearDown(){
         OpportunitiesHome opHome = navBar.goToOpportunitiesHome();
-        OpportunityDetail opDetail = opHome.openOpportunity(opportunityName);
+        OpportunityDetail opDetail = opHome.openOpportunity(oppEnum.opportunityName);
         opDetail.deleteOpportunity();
 
 
