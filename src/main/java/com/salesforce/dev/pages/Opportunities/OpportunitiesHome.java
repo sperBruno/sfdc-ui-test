@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 /**
  * Created by Jimmy Vargas on 6/10/2015.
  */
-public class OpportunitiesHome extends TabPage{
+public class OpportunitiesHome extends HomeBase {
 
     public OpportunitiesHome(WebDriver driver){
         super.driver = driver;

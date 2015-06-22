@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages.Accounts;
 
 import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.TabPage;
+import com.salesforce.dev.pages.Base.HomeBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by Walter on 10/06/2015.
  */
-public class AccountsHome extends TabPage{
+public class AccountsHome extends HomeBase {
 
 
     public AccountsHome(WebDriver driver) {

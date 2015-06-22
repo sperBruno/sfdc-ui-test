@@ -10,7 +10,7 @@ import com.salesforce.dev.pages.Base.*;
 /**
  * Created by monica on 6/11/2015.
  */
-public class ProductsHome extends TabPage  {
+public class ProductsHome extends HomeBase {
     WebDriver driver;
     WebDriverWait wait;
 
