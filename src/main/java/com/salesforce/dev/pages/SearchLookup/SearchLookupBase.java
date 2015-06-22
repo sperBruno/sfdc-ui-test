@@ -1,26 +1,70 @@
 package com.salesforce.dev.pages.SearchLookup;
 
-import com.salesforce.dev.pages.Base.LookupBase;
+import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Contacts.ContactForm;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.salesforce.dev.framework.DriverManager;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.LinkedList;
+import java.util.Set;
 
 /**
  * Created by Marcelo.Vargas on 17-06-15.
  */
-public class SearchLookupBase extends LookupBase {
+public class SearchLookupBase {
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+
+    @FindBy(id = "lksrch")
+    @CacheLookup
+    WebElement searchTxt;
+
+    @FindBy(name = "go")
+    @CacheLookup
+    WebElement goBtn;
 
    public SearchLookupBase(WebDriver driver) {
-        super.driver = driver;
-       super.wait = DriverManager.getInstance().getWait();
+        this.driver = driver;
+        this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
 
-    public ContactForm clickLookup(String text) {
-        searchText(text);
-        return new ContactForm(driver);
+    public void searchText(String text) {
+
+        Set<String> windows = driver.getWindowHandles();
+
+        LinkedList<String> windowsArray = new LinkedList(windows);
+        try {
+            System.out.println("before frame");
+            driver.switchTo().window(windowsArray.getLast());
+            driver.switchTo().frame(driver.findElement(By.name("searchFrame")));
+
+            searchTxt.sendKeys(text);
+
+            goBtn.click();
+            driver.switchTo().window(windowsArray.getLast());
+            driver.switchTo().frame(driver.findElement(By.name("resultsFrame")));
+
+            driver.findElement(By.linkText(text)).click();
+            driver.switchTo().window(windowsArray.getFirst());
+        }
+        catch (WebDriverException e){
+            throw new WebDriverException(e);
+        }
     }
 
+    public ContactForm goToContactForm() {
+        return new ContactForm(driver);
+    }
+    public CampaignForm goToCampaignForm() {
+        return new CampaignForm(driver);
+    }
 }

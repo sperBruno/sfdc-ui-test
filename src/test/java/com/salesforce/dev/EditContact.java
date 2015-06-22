@@ -15,17 +15,17 @@ import com.salesforce.dev.pages.Contacts.ContactForm;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
 
 /**
- * Created by Marcelo.Vargas on 6/12/2015.
+ * Created by Marcelo.Vargas on 6/21/2015.
  */
-public class CreateContact {
+public class EditContact {
 
+    private String lastNameUpdated = "Testing";
     private String contactRole = "Mr.";
     private String firstName = "Marcelo";
     private String lastName = "Vargas";
     private String accountName = "AccountTest";
     private String title = "Engineer";
     private String department = "Engineering";
-    private String birthday = "6/6/1996";
     private String reportsTo = "Avi Green";
     private String leadSource = "Web"; //--None--, Web, Phone Inquiry, Partner Referral, Purchased List, Other
     private String phone = "70777777";
@@ -68,17 +68,27 @@ public class CreateContact {
         homePage = new HomePage();
         String userNameValue= Environment.getInstance().getPrimaryUser();
         String passwordValue=Environment.getInstance().getPrimaryPassword();
-        mainPage = homePage.loginAs(userNameValue,passwordValue);
-    }
-
-    @Test(groups = {"Acceptance"})
-    public void testCreateContact() {
+        mainPage = homePage.loginAs(userNameValue, passwordValue);
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();
+        contactForm.setLastName(lastName);
+        contactDetail = contactForm.clickSaveBtn();
+
+        mainPage = contactDetail.gotoMainPage();
+    }
+
+    @Test(groups = {"Acceptance"})
+    public void testEditContact() {
+        navigationBar = mainPage.gotoNavBar();
+        contactsHome = navigationBar.goToContactsHome();
+
+        contactDetail = contactsHome.selectRecentItem(lastName);
+        contactForm = contactDetail.clickEditBtn();
+        contactForm.setLastName(lastNameUpdated);
+
         contactForm.setFirstNameRole(contactRole);
         contactForm.setFirstName(firstName);
-        contactForm.setLastName(lastName);
 
         searchLookup = contactForm.clickLookupAccount();
         searchLookup.searchText(accountName);

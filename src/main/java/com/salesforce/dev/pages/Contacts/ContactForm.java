@@ -112,10 +112,10 @@ public class ContactForm extends FormBase {
 
     // Additional Information
 
-    @FindBy(id = "00N1a0000057MRs")
+    @FindBy(xpath = "//label[contains(.,'Languages')]/following::input")
     private WebElement languagesFld;
 
-    @FindBy(id = "00N1a0000057MRt")
+    @FindBy(xpath = "//label[contains(.,'Level')]/following::select")
     private WebElement levelSelect;
 
     // Description Information
@@ -160,7 +160,7 @@ public class ContactForm extends FormBase {
     }
 
     public ContactForm setFirstName(String text) {
-        fillTextBox(firstNameRoleSelect, text);
+        fillTextBox(firstNameFld, text);
         return this;
     }
 
@@ -179,14 +179,15 @@ public class ContactForm extends FormBase {
         return this;
     }
 
-    public ContactForm setBirthDate(String text) {
-        fillTextBox(birthDayFld, text);
+    public ContactForm setBirthDate(Integer month, Integer day, Integer year) {
+        birthDayFld.click();
+        selectDatePicker(month, day, year);
         return this;
     }
 
-    public ContactForm setReportsTo(String text) {
-        fillTextBox(reportsToFld, text);
-        return this;
+    public SearchLookupBase clickLookupReportsTo() {
+        lookupReportsToImg.click();
+        return new SearchLookupBase(driver);
     }
 
     public ContactForm setLeadSource(String text) {
@@ -257,6 +258,11 @@ public class ContactForm extends FormBase {
 
     public ContactForm setMailingCountry(String text) {
         fillTextBox(mailingCountryFld, text);
+        return this;
+    }
+
+    public ContactForm setOtherStreet(String text) {
+        fillTextBox(otherStreetFld, text);
         return this;
     }
 

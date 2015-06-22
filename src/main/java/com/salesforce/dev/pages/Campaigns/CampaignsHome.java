@@ -21,8 +21,8 @@ public class CampaignsHome extends TabPage {
         return new CampaignForm(this.driver);
     }
 
-    public CampaignDetail selectRecentItem(String opportunity){
-        super.clickRecentItem(opportunity);
+    public CampaignDetail selectRecentItem(String campaign){
+        super.clickRecentItem(campaign);
         return new CampaignDetail(this.driver);
     }
 
