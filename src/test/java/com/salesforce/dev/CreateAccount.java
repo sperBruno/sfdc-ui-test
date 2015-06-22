@@ -14,8 +14,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 
-import java.util.Date;
-
 /**
  * Created by Walter on 13/06/2015.
  */
@@ -58,7 +56,6 @@ public class CreateAccount {
         String userNameValue= Environment.getInstance().getPrimaryUser();
         String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue,passwordValue);
-
     }
 
     @Test(groups = {"Regression"})
@@ -118,7 +115,6 @@ public class CreateAccount {
         Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(slaSerialNumber));
         Assert.assertTrue(accountDetail.validateAccountNumberOfLocationsFld(numberOfLocations));
         Assert.assertTrue(accountDetail.validateAccountDescriptionFld(accountDesc));
-
     }
 
     @AfterMethod(groups = {"Regression"})
