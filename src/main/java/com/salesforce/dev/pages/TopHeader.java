@@ -67,4 +67,15 @@ public class TopHeader {
 
         return new LoginPage(this.driver);
     }
+
+    public LoginPage clickLogoutOption(){
+        try{
+            wait.until(ExpectedConditions.visibilityOf(logoutMenuOption));
+            logoutMenuOption.click();
+        }
+        catch (WebDriverException e){
+            throw new WebDriverException(e);
+        }
+        return new LoginPage(driver);
+    }
 }
