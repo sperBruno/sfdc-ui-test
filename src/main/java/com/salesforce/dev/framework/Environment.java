@@ -62,4 +62,8 @@ public class Environment {
 
     public String getGroups() {return getEnv("groups");}
 
+    public String getDisplayName() {
+        return getEnv("displayName");
+    }
+
 }
