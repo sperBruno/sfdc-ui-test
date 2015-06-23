@@ -62,4 +62,15 @@ public class LoginPage {
         }*/
         return new MainPage(this.driver);
     }
+
+    public boolean isLoginButtonPresent() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(loginBtn));
+            return loginBtn.isDisplayed();
+        } catch (WebDriverException e) {
+            return false;
+        }
+    }
+
+
 }

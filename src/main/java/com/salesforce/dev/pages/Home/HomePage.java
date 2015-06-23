@@ -44,12 +44,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
    * */
   public MainPage loginAs(String account, String password){
     MainPage mainPage;
-
+    String displayName= Environment.getInstance().getDisplayName();
     try{
       mainPage = new MainPage(this.driver);
       TopHeader topHeader =  mainPage.gotoTopHeader();
       if(topHeader.isUserMenuPresent()){
-        if(!topHeader.isLoggedUser(account)){
+        if(!topHeader.isLoggedUser(displayName)){
           LoginPage loginPage = topHeader.logout();
           mainPage = loginPage.loginAs(account, password);
         }
@@ -65,6 +65,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
   public MainPage loginAsPrimaryUser(){
     String userNameValue= Environment.getInstance().getPrimaryUser();
+    String displayName= Environment.getInstance().getDisplayName();
     String passwordValue=Environment.getInstance().getPrimaryPassword();
     MainPage mainPage;
 
@@ -72,7 +73,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
       mainPage = new MainPage(this.driver);
       TopHeader topHeader =  mainPage.gotoTopHeader();
       if(topHeader.isUserMenuPresent()){
-        if(!topHeader.isLoggedUser(userNameValue)){
+        if(!topHeader.isLoggedUser(displayName)){
           LoginPage loginPage = topHeader.logout();
           mainPage = loginPage.loginAs(userNameValue, passwordValue);
         }

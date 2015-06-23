@@ -34,7 +34,7 @@ public class CreateAccountDD {
         return dataDrivenManager.getDataDrivenAccount();
     }
 
-    @BeforeClass
+    @BeforeMethod(groups = {"Regression"})
     public void setUp() {
         homePage = new HomePage();
         String userNameValue= Environment.getInstance().getPrimaryUser();

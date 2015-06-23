@@ -23,12 +23,12 @@ public class TopHeader {
     @FindBy(css = "a.menuButtonMenuLink.firstMenuItem")
     WebElement userMyProfileMenu;
 
-    @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
+    @FindBy(xpath = "//a[contains(.,'Logout')]")
     WebElement logoutMenuOption;
 
     public TopHeader(WebDriver driver){
         this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
+        wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver,this);
     }
 
@@ -40,34 +40,27 @@ public class TopHeader {
         catch(WebDriverException e){
             throw new WebDriverException(e);
         }
-        finally {
-            this.driver.switchTo().defaultContent();
-        }
+
     }
 
     public void clickUserNameMenu(){
         try{
             wait.until(ExpectedConditions.visibilityOf(userMenu));
-            this.userMenu.click();
+            userMenu.click();
         }
         catch (WebDriverException e){
             throw new WebDriverException(e);
         }
-        finally {
-            this.driver.switchTo().defaultContent();
-        }
+
     }
     public String getUserName(){
         String userLogged = "";
         try{
             wait.until(ExpectedConditions.visibilityOf(userMenu));
-            userLogged = this.userMenu.getText();
+            userLogged = userMenu.getText();
         }
         catch (WebDriverException e){
             throw new WebDriverException(e);
-        }
-        finally{
-            this.driver.switchTo().defaultContent();
         }
         return userLogged;
     }
@@ -82,8 +75,17 @@ public class TopHeader {
 
     public LoginPage logout(){
         this.clickUserNameMenu();
-        logoutMenuOption.click();
+        return this.clickLogoutOption();
+    }
 
-        return new LoginPage(this.driver);
+    public LoginPage clickLogoutOption(){
+        try{
+            wait.until(ExpectedConditions.visibilityOf(logoutMenuOption));
+            logoutMenuOption.click();
+        }
+        catch (WebDriverException e){
+            throw new WebDriverException(e);
+        }
+        return new LoginPage(driver);
     }
 }
