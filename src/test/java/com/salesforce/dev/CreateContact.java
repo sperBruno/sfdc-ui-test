@@ -2,9 +2,11 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
 import com.salesforce.dev.pages.MainPage;
+//import junit.framework.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 
 import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
@@ -120,6 +122,16 @@ public class CreateContact {
         contactDetail = contactForm.clickSaveBtn();
 
         //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
+    }
+
+//    @Test
+    public void screenshot() {
+        navigationBar = mainPage.gotoNavBar();
+        contactsHome = navigationBar.goToContactsHome();
+        contactForm = contactsHome.clickNewBtn();
+        contactForm.setFirstNameRole(contactRole);
+        contactForm.setFirstName(firstName);
+        Assert.assertTrue(false);
     }
 
     @AfterMethod(groups = {"Acceptance"})
