@@ -2,6 +2,7 @@ package com.salesforce.dev.framework;
 
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -70,7 +71,13 @@ public class DriverManager {
     }
 
     public void quit(){
-        /*driver.close();
-        driver.quit();*/
+        try{
+
+            driver.quit();
+
+        }
+        catch(WebDriverException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
