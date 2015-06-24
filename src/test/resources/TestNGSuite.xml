@@ -18,6 +18,7 @@
             <class name="com.salesforce.dev.CreateContact"/>
             <class name="com.salesforce.dev.CreatePost"/>
             <class name="com.salesforce.dev.EditAccount"/>
+            <class name="com.salesforce.dev.TestCookies"/>
         </classes>
     </test>
 </suite>
