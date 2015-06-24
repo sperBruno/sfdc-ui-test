@@ -20,6 +20,9 @@ public class TopHeader {
     @FindBy(id = "userNavLabel")
     WebElement userMenu;
 
+    @FindBy(id = "phHeaderLogoImage")
+    WebElement salesforceLogo;
+
     @FindBy(css = "a.menuButtonMenuLink.firstMenuItem")
     WebElement userMyProfileMenu;
 
@@ -30,6 +33,7 @@ public class TopHeader {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver,this);
+        this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
     }
 
     public void clickUserNameMenu(){
@@ -77,5 +81,14 @@ public class TopHeader {
             throw new WebDriverException(e);
         }
         return new LoginPage(driver);
+    }
+
+    public boolean checkIfCookieIsPresent() {
+        if(this.driver.manage().getCookieNamed("com.salesforce.LocaleInfo").getDomain().equals(".salesforce.com")) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
