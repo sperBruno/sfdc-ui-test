@@ -2,6 +2,8 @@ package com.salesforce.dev.pages;
 
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Leads.LeadEnum;
+import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.*;
 
@@ -11,7 +13,6 @@ import com.salesforce.dev.pages.Opportunities.*;
 public class Common {
 
     public static void createOpportunity(OpportunityEnum oppEnum){
-        System.out.println("creating an basic opportunity");
 
         HomePage homePage = new HomePage();
         MainPage mainPage = homePage.loginAsPrimaryUser();
@@ -27,4 +28,19 @@ public class Common {
         opForm.clickSaveBtn();
 
     }
+    public static void createLead(LeadEnum leadEnum){
+
+        HomePage homePage = new HomePage();
+        MainPage mainPage = homePage.loginAsPrimaryUser();
+        NavigationBar navBar = mainPage.gotoNavBar();
+
+        LeadsHome leadsHome = navBar.gotToLeadsHome();
+        leadsHome.clickNewBtn();
+
+        OpportunityForm opForm= new OpportunityBuilder(leadEnum.lastName,leadEnum.company,leadEnum.leadStatus)
+                .build();
+        opForm.clickSaveBtn();
+
+    }
+
 }

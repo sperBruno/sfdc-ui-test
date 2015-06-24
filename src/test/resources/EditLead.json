@@ -1,0 +1,36 @@
+{
+  "Salutation":null,
+  "First Name":null,
+  "Last Name":"Lead Last Name Edited",
+  "Company":"ACME",
+  "Title":"Manager",
+  "Lead Source":null,
+  "Campaign":null,
+  "Campaign Lookup":null,
+  "Industry":null,
+  "Annual Revenue":null,
+  "Phone":null,
+  "Mobile":null,
+  "Fax":null,
+  "Email":null,
+  "Website":null,
+  "Lead Status":"Closed - Not Converted",
+  "Rating":null,
+  "Num of Employees":1000,
+
+  "Street":null,
+  "City":null,
+  "StateProvince":null,
+  "Zip Code":null,
+  "Country":null,
+
+  "Product Interest":null,
+  "SIC Code":null,
+  "Number of Locations":null,
+  "Current Generator":null,
+  "Primary":null,
+
+  "Description":null,
+  "Assign Rule":null
+
+}

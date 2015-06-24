@@ -27,9 +27,7 @@ public class CreateOpportunity {
         mainPage = homePage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        System.out.println("reading from json");
-        //JSONReader jr = new JSONReader("D:\\GitHub\\CarlosSeleniumProjectFork\\SFDC-Team1\\src\\test\\resources\\CreateOpportunityBase.json");
-        oppEnum = new OpportunityEnum("src\\test\\resources\\CreateOpportunityBase.json");
+        oppEnum = new OpportunityEnum("src\\test\\resources\\CreateOpportunity.json");
 
     }
 
