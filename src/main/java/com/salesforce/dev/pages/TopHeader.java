@@ -23,41 +23,29 @@ public class TopHeader {
     @FindBy(css = "a.menuButtonMenuLink.firstMenuItem")
     WebElement userMyProfileMenu;
 
-    @FindBy(xpath = "//a[contains(.,'Logout')]")
+    @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
     WebElement logoutMenuOption;
 
     public TopHeader(WebDriver driver){
         this.driver = driver;
-        wait = DriverManager.getInstance().getWait();
+        this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver,this);
-    }
-
-    public void clickUserMyProfileMenuOption(){
-        try{
-            wait.until(ExpectedConditions.visibilityOf(userMyProfileMenu));
-            userMyProfileMenu.click();
-        }
-        catch(WebDriverException e){
-            throw new WebDriverException(e);
-        }
-
     }
 
     public void clickUserNameMenu(){
         try{
             wait.until(ExpectedConditions.visibilityOf(userMenu));
-            userMenu.click();
+            this.userMenu.click();
         }
         catch (WebDriverException e){
             throw new WebDriverException(e);
         }
-
     }
     public String getUserName(){
         String userLogged = "";
         try{
             wait.until(ExpectedConditions.visibilityOf(userMenu));
-            userLogged = userMenu.getText();
+            userLogged = this.userMenu.getText();
         }
         catch (WebDriverException e){
             throw new WebDriverException(e);
@@ -75,7 +63,9 @@ public class TopHeader {
 
     public LoginPage logout(){
         this.clickUserNameMenu();
-        return this.clickLogoutOption();
+        logoutMenuOption.click();
+
+        return new LoginPage(this.driver);
     }
 
     public LoginPage clickLogoutOption(){
