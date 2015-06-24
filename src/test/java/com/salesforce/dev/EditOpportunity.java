@@ -44,7 +44,7 @@ public class EditOpportunity {
 
     @Test(groups = {"BVT"})
     public void editOpportunity(){
-        oppEditEnum = new OpportunityEnum("src\\test\\resources\\CreateOpportunityEditBase.json");
+        oppEditEnum = new OpportunityEnum("src\\test\\resources\\EditOpportunity.json");
 
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
         OpportunityDetail opDetail= opHome.openOpportunity(oppEnum.opportunityName);

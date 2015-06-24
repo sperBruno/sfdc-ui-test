@@ -108,7 +108,7 @@ public class LeadDetail extends DetailsBase {
         return name.getText();
     }
 
-    public String getCmpany(){
+    public String getCompany(){
         return company.getText();
     }
 
