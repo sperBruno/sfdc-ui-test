@@ -1,6 +1,8 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
@@ -25,30 +27,8 @@ public class CreateAccount {
     private MainPage mainPage;
     private AccountDetail accountDetail;
     private NavigationBar navigationBar;
-    private String accountName ="Account Name";
-    private String accountDesc ="Account Description";
-    private String rating ="Hot"; //--None--, Hot, Warm, Cold
-    private String ownership ="Private"; //--None--, Private, Public, Subsidiary, Other
-    private String phone ="+(591)72356852";
-    private String fax ="+(591)72356852";
-    private String number ="123456";
-    private String website ="http://test.jalasoft.com";
-    private String accountSite ="accountTest";
-    private String tickerSymbol ="Ticker Simbol";
-    private String type ="Prospect"; //--None--, Prospect, Customer - Direct, Customer - Channel, Channel Partner / Reseller, Installation Partner, Technology Partner, Other
-    private String industry = "Technology"; //Several items
-    private Integer employees = 1234;
-    private Integer annualRevenue = 4566;
-    private String sicCode = "ABCDE";
-    private String billingAddress = "Billing Address";
-    private String shippingAddress = "Shipping Address";
-    private String customerPriority= "High"; //Selected Item
-    private String sla= "Gold"; //Selected Item
-    private String upsellOpportunity= "Yes"; //Selected Item
-    private String active = "Yes";
-    private String slaExpirationDate = "6/15/2016";
-    private String slaSerialNumber= "123-456-78";
-    private Integer numberOfLocations = 789;
+    private DataDrivenManager dataDrivenManager;
+
 
     @BeforeMethod(groups = {"Regression"})
     public void setUp() {
@@ -56,6 +36,8 @@ public class CreateAccount {
         String userNameValue= Environment.getInstance().getPrimaryUser();
         String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue,passwordValue);
+
+        dataDrivenManager = new DataDrivenManager();
     }
 
     @Test(groups = {"Regression"})
@@ -63,58 +45,59 @@ public class CreateAccount {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
-        accountForm.setAccountNameFld(accountName);
-        accountForm.setAccountRatingFld(rating);
-        accountForm.setAccountOwnershipFld(ownership);
-        accountForm.setAccountPhoneFld(phone);
-        accountForm.setAccountFaxFld(fax);
-        accountForm.setAccountNumberFld(number);
-        accountForm.setAccountWebsiteFld(website);
-        accountForm.setAccountSiteFld(accountSite);
-        accountForm.setAccountThickerFld(tickerSymbol);
-        accountForm.setAccountTypeFld(type);
-        accountForm.setAccountIndustryFld(industry);
-        accountForm.setAccountEmployeesFld(employees);
-        accountForm.setAccountAnnualRevenueFld(annualRevenue);
-        accountForm.setAccountSICCodeFld(sicCode);
-        accountForm.setAccountBillingStreetFld(billingAddress);
-        accountForm.setAccountShippingStreetFld(shippingAddress);
-        accountForm.setAccountCustomerPriorityFld(customerPriority);
-        accountForm.setAccountSLAFld(sla);
-        accountForm.setAccountUpsellOpportunityFld(upsellOpportunity);
-        accountForm.setAccountActiveFld(active);
-        //accountForm.setAccountSLAExpirationDateFld(slaExpirationDate);
-        accountForm.setAccountSLAExpirationDateFld(6,15,2016);
-        accountForm.setAccountSLASerialNumberFld(slaSerialNumber);
-        accountForm.setAccountNumberLocationsFld(numberOfLocations);
-        accountForm.setAccountDescriptionFld(accountDesc);
+        Account account = dataDrivenManager.getAccountBase();
+        accountForm.setAccountNameFld(account.getAccountName());
+        accountForm.setAccountRatingFld(account.getRating());
+        accountForm.setAccountOwnershipFld(account.getOwnership());
+        accountForm.setAccountPhoneFld(account.getPhone());
+        accountForm.setAccountFaxFld(account.getFax());
+        accountForm.setAccountNumberFld(account.getNumber());
+        accountForm.setAccountWebsiteFld(account.getWebsite());
+        accountForm.setAccountSiteFld(account.getAccountSite());
+        accountForm.setAccountThickerFld(account.getTickerSymbol());
+        accountForm.setAccountTypeFld(account.getType());
+        accountForm.setAccountIndustryFld(account.getIndustry());
+        accountForm.setAccountEmployeesFld(account.getEmployees());
+        accountForm.setAccountAnnualRevenueFld(account.getAnnualRevenue());
+        accountForm.setAccountSICCodeFld(account.getSicCode());
+        accountForm.setAccountBillingStreetFld(account.getBillingAddress());
+        accountForm.setAccountShippingStreetFld(account.getShippingAddress());
+        accountForm.setAccountCustomerPriorityFld(account.getCustomerPriority());
+        accountForm.setAccountSLAFld(account.getSla());
+        accountForm.setAccountUpsellOpportunityFld(account.getUpsellOpportunity());
+        accountForm.setAccountActiveFld(account.getActive());
+        accountForm.setAccountSLAExpirationDateFld(account.getSlaExpirationDate());
+        //accountForm.setAccountSLAExpirationDateFld(6,15,2016);
+        accountForm.setAccountSLASerialNumberFld(account.getSlaSerialNumber());
+        accountForm.setAccountNumberLocationsFld(account.getNumberOfLocations());
+        accountForm.setAccountDescriptionFld(account.getAccountDesc());
 
         accountDetail = accountForm.clickSaveBtn();
 
-        Assert.assertTrue(accountDetail.validateAccountNameFld(accountName));
-        Assert.assertTrue(accountDetail.validateAccountRatingFld(rating));
-        Assert.assertTrue(accountDetail.validateAccountOwnershipFld(ownership));
-        Assert.assertTrue(accountDetail.validateAccountPhoneFld(phone));
-        Assert.assertTrue(accountDetail.validateAccountFaxFld(fax));
-        Assert.assertTrue(accountDetail.validateAccountNumberFld(number));
-        Assert.assertTrue(accountDetail.validateAccountWebsiteFld(website));
-        Assert.assertTrue(accountDetail.validateAccountSiteFld(accountSite));
-        Assert.assertTrue(accountDetail.validateAccountTickerSymbolFld(tickerSymbol));
-        Assert.assertTrue(accountDetail.validateAccountTypeFld(type));
-        Assert.assertTrue(accountDetail.validateAccountIndustryFld(industry));
-        Assert.assertTrue(accountDetail.validateAccountEmployeesFld(employees));
-        Assert.assertTrue(accountDetail.validateAccountAnnualRevenueFld(annualRevenue));
-        Assert.assertTrue(accountDetail.validateAccountSICCodeFld(sicCode));
-        Assert.assertTrue(accountDetail.validateAccountBillingAddressFld(billingAddress));
-        Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(shippingAddress));
-        Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(customerPriority));
-        Assert.assertTrue(accountDetail.validateAccountSLAFld(sla));
-        Assert.assertTrue(accountDetail.validateAccountUpsellOportunityFld(upsellOpportunity));
-        Assert.assertTrue(accountDetail.validateAccountActiveFld(active));
-        Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(slaExpirationDate));
-        Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(slaSerialNumber));
-        Assert.assertTrue(accountDetail.validateAccountNumberOfLocationsFld(numberOfLocations));
-        Assert.assertTrue(accountDetail.validateAccountDescriptionFld(accountDesc));
+        Assert.assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));
+        Assert.assertTrue(accountDetail.validateAccountRatingFld(account.getRating()));
+        Assert.assertTrue(accountDetail.validateAccountOwnershipFld(account.getOwnership()));
+        Assert.assertTrue(accountDetail.validateAccountPhoneFld(account.getPhone()));
+        Assert.assertTrue(accountDetail.validateAccountFaxFld(account.getFax()));
+        Assert.assertTrue(accountDetail.validateAccountNumberFld(account.getNumber()));
+        Assert.assertTrue(accountDetail.validateAccountWebsiteFld(account.getWebsite()));
+        Assert.assertTrue(accountDetail.validateAccountSiteFld(account.getAccountSite()));
+        Assert.assertTrue(accountDetail.validateAccountTickerSymbolFld(account.getTickerSymbol()));
+        Assert.assertTrue(accountDetail.validateAccountTypeFld(account.getType()));
+        Assert.assertTrue(accountDetail.validateAccountIndustryFld(account.getIndustry()));
+        Assert.assertTrue(accountDetail.validateAccountEmployeesFld(account.getEmployees()));
+        Assert.assertTrue(accountDetail.validateAccountAnnualRevenueFld(account.getAnnualRevenue()));
+        Assert.assertTrue(accountDetail.validateAccountSICCodeFld(account.getSicCode()));
+        Assert.assertTrue(accountDetail.validateAccountBillingAddressFld(account.getBillingAddress()));
+        Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(account.getShippingAddress()));
+        Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(account.getCustomerPriority()));
+        Assert.assertTrue(accountDetail.validateAccountSLAFld(account.getSla()));
+        Assert.assertTrue(accountDetail.validateAccountUpsellOportunityFld(account.getUpsellOpportunity()));
+        Assert.assertTrue(accountDetail.validateAccountActiveFld(account.getActive()));
+        Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(account.getSlaExpirationDate()));
+        Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(account.getSlaSerialNumber()));
+        Assert.assertTrue(accountDetail.validateAccountNumberOfLocationsFld(account.getNumberOfLocations()));
+        Assert.assertTrue(accountDetail.validateAccountDescriptionFld(account.getAccountDesc()));
     }
 
     @AfterMethod(groups = {"Regression"})

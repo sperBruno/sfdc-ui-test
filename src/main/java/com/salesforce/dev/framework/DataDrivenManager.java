@@ -3,6 +3,7 @@ package com.salesforce.dev.framework;
 /**
  * Created by Walter Mercado on 6/22/2015.
  */
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,12 +20,23 @@ public class DataDrivenManager {
     public DataDrivenManager(){
     }
 
+    public Account getAccountBase(){
+        Account account = new Account();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            account = mapper.readValue(new File("src\\test\\resources\\CreateAccountBase.json"), Account.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
+
     public Iterator<Account[]> getAccountsDD(){
 
         Collection<Account[]> accountsArray =new ArrayList<Account[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src\\test\\resources\\accounts.json"));
+            Object jsonObject = parser.parse(new FileReader("src\\test\\resources\\AccountsBaseDD.json"));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
             ObjectMapper objectMapper = new ObjectMapper();
