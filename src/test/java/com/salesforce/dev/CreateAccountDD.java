@@ -5,6 +5,7 @@ package com.salesforce.dev;
  */
 
 import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
@@ -12,9 +13,11 @@ import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.utils.DataDrivenManager;
+import com.salesforce.dev.framework.DataDrivenManager;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
+import java.util.Iterator;
 
 /**
  * Created by Walter on 13/06/2015.
@@ -29,9 +32,9 @@ public class CreateAccountDD {
     private NavigationBar navigationBar;
 
     @DataProvider(name = "dataDriven")
-    public Object[][] getValues() {
+    public Iterator<Account[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataDrivenAccount();
+        return dataDrivenManager.getAccountsDD();
     }
 
     @BeforeMethod(groups = {"Regression"})
@@ -40,21 +43,21 @@ public class CreateAccountDD {
         String userNameValue= Environment.getInstance().getPrimaryUser();
         String passwordValue=Environment.getInstance().getPrimaryPassword();
         mainPage = homePage.loginAs(userNameValue,passwordValue);
-
     }
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
-    public void testCreateAccount(String accountName,String description) {
+    public void testCreateAccount(Account account) {
+
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
-        accountForm.setAccountNameFld(accountName);
-        accountForm.setAccountDescriptionFld(description);
+        accountForm.setAccountNameFld(account.getAccountName());
+        accountForm.setAccountDescriptionFld(account.getAccountDesc());
 
         accountDetail = accountForm.clickSaveBtn();
 
-        Assert.assertTrue(accountDetail.validateAccountNameFld(accountName));
-        Assert.assertTrue(accountDetail.validateAccountDescriptionFld(description));
+        Assert.assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));
+        Assert.assertTrue(accountDetail.validateAccountDescriptionFld(account.getAccountDesc()));
 
     }
 
