@@ -37,6 +37,9 @@ public class ChatterHome {
     @FindBy(xpath = "//a[@title='Delete this post']")
     WebElement deletePostOption;
 
+    @FindBy(className = "publisherattachtext ")
+    WebElement postSection;
+
     public ChatterHome(WebDriver driver){
         this.driver=driver;
         this.wait= DriverManager.getInstance().getWait();
@@ -102,5 +105,15 @@ public class ChatterHome {
             return false;
         }
 
+    }
+    public boolean IsUserInChatterTab(){
+        try{
+
+            wait.until(ExpectedConditions.visibilityOf(postSection));
+            return true;
+        }
+        catch (WebDriverException e){
+            return false;
+        }
     }
 }
