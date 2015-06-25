@@ -4,6 +4,8 @@ import com.salesforce.dev.framework.Objects.Opportunity;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.framework.Objects.Lead;
+import com.salesforce.dev.pages.Leads.LeadBuilder;
+import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.Opportunities.*;
 
@@ -37,9 +39,9 @@ public class Common {
         LeadsHome leadsHome = navBar.gotToLeadsHome();
         leadsHome.clickNewBtn();
 
-        OpportunityForm opForm= new OpportunityBuilder(lead.lastName, lead.company, lead.leadStatus)
+        LeadForm leadForm= new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
                 .build();
-        opForm.clickSaveBtn();
+        leadForm.clickSaveBtn();
 
     }
 

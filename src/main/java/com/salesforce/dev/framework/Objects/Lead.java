@@ -17,7 +17,7 @@ public class Lead {
     public String title;
     public String leadSource;
     public String campaign;
-    public String campaingLookup;
+    public String campaignLookup;
     public String industry;
     public String annualRevenue;
     public String phone;
@@ -32,14 +32,14 @@ public class Lead {
     /*Address Information*/
     public String street;
     public String city;
-    public String state;
+    public String stateProvince;
     public String zipCode;
     public String country;
 
     /*additional information*/
     public String productInterest;
-    public String SICcode;
-    public String numLocations;
+    public String SICCode;
+    public String numberLocations;
     public String currentGenerators;
     public String primary;
 
