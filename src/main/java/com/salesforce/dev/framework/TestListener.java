@@ -13,7 +13,7 @@ import org.testng.Reporter;
 import javax.xml.bind.SchemaOutputResolver;
 import java.io.File;
 import java.io.IOException;
-
+import java.util.Date;
 
 
 /**
@@ -44,13 +44,27 @@ public class TestListener implements ITestListener {
         driver = DriverManager.getInstance().getDriver();
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(scrFile, new File(filePath + "\\" + methodName + ".png"));
+            File myFile = new File(filePath + "\\" + methodName + ".png");
+            FileUtils.copyFile(scrFile, myFile);
             System.out.println("***Placed screen shot in "+filePath+" ***");
+            reportLogScreenshot(myFile);
         } catch (IOException e) {
             System.out.println("___ catch exception");
             e.printStackTrace();
         }
     }
+
+    protected void reportLogScreenshot(File file) {
+        System.setProperty("org.uncommons.reportng.escape-output", "false");
+
+        String absolute = file.getAbsolutePath();
+        int beginIndex = absolute.indexOf(".");
+        String relative = absolute.substring(beginIndex).replace(".\\","");
+
+        Reporter.log("<p align=\"left\">Error screenshot at " + new Date()+ "</p>");
+        Reporter.log("<p><img width=\"1024\" src=\"" + file.getAbsoluteFile()  + "\" alt=\"screenshot at " + new Date()+ "\"/></p><br />");
+    }
+
     @Override
     public void onTestSkipped(ITestResult result) {
 
