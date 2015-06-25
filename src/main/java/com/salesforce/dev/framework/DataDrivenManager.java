@@ -20,17 +20,6 @@ public class DataDrivenManager {
     public DataDrivenManager(){
     }
 
-    public Account getAccountBase(){
-        Account account = new Account();
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            account = mapper.readValue(new File("src\\test\\resources\\CreateAccountBase.json"), Account.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return account;
-    }
-
     public Iterator<Account[]> getAccountsDD(){
 
         Collection<Account[]> accountsArray =new ArrayList<Account[]>();

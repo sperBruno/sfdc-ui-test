@@ -1,5 +1,7 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.JSONMapper;
+import com.salesforce.dev.framework.Objects.Opportunity;
 import com.salesforce.dev.pages.Common;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
@@ -17,34 +19,27 @@ public class EditOpportunity {
     HomePage homePage;
     MainPage mainPage;
 
-    OpportunityEnum oppEnum,oppEditEnum;
+    Opportunity oppEnum,oppEditEnum;
 
     @BeforeMethod(groups = {"BVT"})
     public void setup(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
 
-        //sending the json with the values that I want to create the object
-        oppEnum = new OpportunityEnum("src\\test\\resources\\CreateOpportunityBase.json");
+
+        oppEnum = JSONMapper.getOpportunity("src\\test\\resources\\CreateOpportunityBase.json");
+        oppEditEnum = JSONMapper.getOpportunity("src\\test\\resources\\EditOpportunity.json");
+
+        // creating the opportunity base
         Common.createOpportunity(oppEnum);
 
 
-        /** Calling from a common method
-        //Creating an opportunity
-        OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
-        opHome.clickNewBtn();
-
-        OpportunityForm opForm = new OpportunityBuilder(opportunityName,closeDate,stage)
-                .build();
-        OpportunityDetail opDetail = opForm.clickSaveBtn();
-        **/
         //Todo: verify the opportunity has been created right
 
     }
 
     @Test(groups = {"BVT"})
     public void editOpportunity(){
-        oppEditEnum = new OpportunityEnum("src\\test\\resources\\EditOpportunity.json");
 
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
         OpportunityDetail opDetail= opHome.openOpportunity(oppEnum.opportunityName);

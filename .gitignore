@@ -9,11 +9,14 @@ gradlew.bat
 settings.gradle
 out/
 *.class
+results/
 *.jar
 drivers/
 *.bin
 *.mf
 build/
+*.png
+
 
 
 

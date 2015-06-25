@@ -2,6 +2,7 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
@@ -45,7 +46,7 @@ public class CreateAccount {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
-        Account account = dataDrivenManager.getAccountBase();
+        Account account = JSONMapper.getAccountBase();
         accountForm.setAccountNameFld(account.getAccountName());
         accountForm.setAccountRatingFld(account.getRating());
         accountForm.setAccountOwnershipFld(account.getOwnership());

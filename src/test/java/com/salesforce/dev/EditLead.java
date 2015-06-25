@@ -1,5 +1,7 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.JSONMapper;
+import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Common;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Leads.*;
@@ -16,34 +18,25 @@ public class EditLead {
     HomePage homePage;
     MainPage mainPage;
 
-    LeadEnum leadEnum,leadEditEnum;
+    Lead lead,leadEditEnum;
 
     @BeforeMethod(groups = {"BVT"})
     public void setup(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
 
-        leadEnum = new LeadEnum("src\\test\\resources\\CreateLeadBase.json");
-        leadEditEnum = new LeadEnum("src\\test\\resources\\EditLead.json");
+        lead = JSONMapper.getLead("src\\test\\resources\\CreateLeadBase.json");
+        leadEditEnum = JSONMapper.getLead("src\\test\\resources\\EditLead.json");
 
         //Creating a lead
-        Common.createLead(leadEnum);
-        /*
-        LeadsHome opHome = mainPage.gotoNavBar().gotToLeadsHome();
-        opHome.clickNewBtn();
+        Common.createLead(lead);
 
-        LeadForm leadForm = new LeadBuilder(lastName,company,leadStatus)
-                .build();
-        LeadDetail opDetail = leadForm.clickSaveBtn();
-
-        //Todo: verify the opportunity has been created right
-        */
     }
 
     @Test(groups = {"BVT"})
     public void editLead(){
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail= leadsHome.openLead(leadEnum.lastName);
+        LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();
 
         //todo:editing some fields
@@ -52,7 +45,7 @@ public class EditLead {
         leadForm.clickSaveBtn();
 
         //todo: assertions
-        Assert.assertTrue(leadDetail.getName().contains(leadEditEnum.lastName), "The actual name doesn't contain the lastname" + leadEnum.lastName);
+        Assert.assertTrue(leadDetail.getName().contains(leadEditEnum.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
         Assert.assertEquals(leadDetail.getCompany(), leadEditEnum.company, "The company are not equal");
         Assert.assertEquals(leadDetail.getLeadStatus(), leadEditEnum.leadStatus, "The lead is not correct");
 
