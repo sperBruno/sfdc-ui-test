@@ -1,7 +1,7 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.Environment;
-import com.salesforce.dev.framework.JSONReader;
+import com.salesforce.dev.framework.JSONMapper;
+import com.salesforce.dev.framework.Objects.Opportunity;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
@@ -19,7 +19,7 @@ public class CreateOpportunity {
     MainPage mainPage;
     NavigationBar navBar;
 
-    OpportunityEnum oppEnum;
+    Opportunity oppEnum;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp(){
@@ -27,7 +27,7 @@ public class CreateOpportunity {
         mainPage = homePage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = new OpportunityEnum("src\\test\\resources\\CreateOpportunity.json");
+        oppEnum = JSONMapper.getOpportunity("src\\test\\resources\\CreateOpportunity.json");
 
     }
 
