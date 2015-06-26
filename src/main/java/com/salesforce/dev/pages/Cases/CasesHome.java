@@ -15,21 +15,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CasesHome {
     private WebDriver driver;
     private WebDriverWait wait;
+
     @FindBy(xpath = "//h1[contains(.,'Cases:')]")
     WebElement casesSection;
+
+
     public CasesHome(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
+
     public boolean IsUserInCasesTab(){
         try{
 
             wait.until(ExpectedConditions.visibilityOf(casesSection));
             return true;
+
         }
         catch (WebDriverException e){
             return false;
         }
+
     }
 }
+
