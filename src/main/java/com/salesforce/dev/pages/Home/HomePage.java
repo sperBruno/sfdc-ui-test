@@ -42,26 +42,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
    *
    * @author: Jimmy Vargas
    * */
-  public MainPage loginAs(String account, String password){
-    MainPage mainPage;
-    String displayName= Environment.getInstance().getDisplayName();
-    try{
-      mainPage = new MainPage(this.driver);
-      TopHeader topHeader =  mainPage.gotoTopHeader();
-      if(topHeader.isUserMenuPresent()){
-        if(!topHeader.isLoggedUser(displayName)){
-          LoginPage loginPage = topHeader.logout();
-          mainPage = loginPage.loginAs(account, password);
-        }
-      }
-
-    }
-    catch(WebDriverException e){
-      LoginPage loginPage = this.clickLoginBtn();
-      mainPage = loginPage.loginAs(account, password);
-    }
-    return mainPage;
-  }
 
   public MainPage loginAsPrimaryUser(){
     String userNameValue= Environment.getInstance().getPrimaryUser();
