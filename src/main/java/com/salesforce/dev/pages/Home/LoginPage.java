@@ -40,8 +40,9 @@ public class LoginPage {
         wait.until(ExpectedConditions.visibilityOf(passwrodFld));
         passwrodFld.sendKeys(Password);
     }
-    public void clickLoginBtn(){
+    public MainPage clickLoginBtn(){
         loginBtn.click();
+        return new MainPage(this.driver);
     }
 
     /**
