@@ -41,6 +41,8 @@ dependencies {
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.4'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.4'
+	compile 'org.uncommons:reportng:1.1.4'
+    compile 'com.google.inject:guice:3.0'
 
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
@@ -62,6 +64,8 @@ task runTestNGTestCases(type: Test) {
     options {
         suites(suites)
         includeGroups(groups)
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
     }
 
     systemProperties.put('primaryUserName', primaryUserName)
