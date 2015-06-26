@@ -1,11 +1,18 @@
 package com.salesforce.dev.pages.Base;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
+import com.salesforce.dev.pages.Cases.CasesHome;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
+import com.salesforce.dev.pages.Contracts.ContractsHome;
+import com.salesforce.dev.pages.Dashboards.DashboardsHome;
+import com.salesforce.dev.pages.Forecasts.ForecastsHome;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.Orders.OrdersHome;
 import com.salesforce.dev.pages.Product.ProductsHome;
+import com.salesforce.dev.pages.Reports.ReportsHome;
+import com.salesforce.dev.pages.Solutions.SolutionsHome;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -43,6 +50,27 @@ public class NavigationBar {
 
     @FindBy(linkText = "Chatter")
     WebElement chatterTab;
+
+    @FindBy(linkText ="Forecasts")
+    WebElement forecastsTab;
+
+    @FindBy(linkText ="Contracts")
+    WebElement contractsTab;
+
+    @FindBy(linkText ="Orders")
+    WebElement ordersTab;
+
+    @FindBy(linkText ="Cases")
+    WebElement casesTab;
+
+    @FindBy(linkText ="Solutions")
+    WebElement solutionsTab;
+
+    @FindBy(linkText ="Reports")
+    WebElement reportsTab;
+
+    @FindBy(linkText ="Dashboards")
+    WebElement dashboardTab;
 
     public NavigationBar(WebDriver driver){
         this.driver=driver;
@@ -104,10 +132,55 @@ public class NavigationBar {
         }
     }
 
+    
     public ChatterHome goToChatterHome(){
         wait.until(ExpectedConditions.visibilityOf(chatterTab));
         chatterTab.click();
         return new ChatterHome(driver);
     }
+
+
+    public ForecastsHome goToForescastsHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(forecastsTab));
+        forecastsTab.click();
+        return new ForecastsHome(this.driver);
+    }
+
+    public ContractsHome goToContractsHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(contractsTab));
+        contractsTab.click();
+        return new ContractsHome(this.driver);
+    }
+
+    public OrdersHome goToOrdersHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(ordersTab));
+        ordersTab.click();
+        return new OrdersHome(this.driver);
+    }
+
+    public CasesHome goToCasesHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(casesTab));
+        casesTab.click();
+        return new CasesHome(this.driver);
+    }
+
+    public SolutionsHome goToSolutionsHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(solutionsTab));
+        solutionsTab.click();
+        return new SolutionsHome(this.driver);
+    }
+
+    public ReportsHome goToReportsHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(reportsTab));
+        reportsTab.click();
+        return new ReportsHome(this.driver);
+    }
+
+    public DashboardsHome goToDashboardsHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(dashboardTab));
+        dashboardTab.click();
+        return new DashboardsHome(this.driver);
+    }
+
 }
 
