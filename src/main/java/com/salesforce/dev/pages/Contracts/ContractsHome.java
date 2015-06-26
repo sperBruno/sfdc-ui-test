@@ -17,19 +17,23 @@ public class ContractsHome {
     private WebDriverWait wait;
     @FindBy(xpath = "//h1[contains(.,'Contracts:')]")
     WebElement contractsSection;
+
     public ContractsHome(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
+
     public boolean IsUserInContractsTab(){
         try{
-
             wait.until(ExpectedConditions.visibilityOf(contractsSection));
             return true;
         }
+
         catch (WebDriverException e){
             return false;
         }
     }
+
 }
+

@@ -17,6 +17,7 @@ public class OrdersHome {
     private WebDriverWait wait;
     @FindBy(xpath = "//h1[contains(.,'Orders:')]")
     WebElement ordersSection;
+
     public OrdersHome(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
@@ -24,12 +25,13 @@ public class OrdersHome {
     }
     public boolean IsUserInOrdersTab(){
         try{
-
             wait.until(ExpectedConditions.visibilityOf(ordersSection));
             return true;
         }
+
         catch (WebDriverException e){
             return false;
         }
     }
+    
 }

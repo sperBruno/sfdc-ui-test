@@ -24,15 +24,17 @@ public class ForecastsHome {
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
+
     public boolean IsUserInForecastsTab(){
         try{
-
             wait.until(ExpectedConditions.visibilityOf(forecastSection));
             return true;
+
         }
         catch (WebDriverException e){
             return false;
         }
+
     }
 
 }

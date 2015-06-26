@@ -16,22 +16,26 @@ public class SolutionsHome {
 
         private WebDriver driver;
         private WebDriverWait wait;
+
     @FindBy(xpath = "//h1[contains(.,'Solutions:')]")
     WebElement solutionSection;
 
-        public SolutionsHome(WebDriver driver) {
+    public SolutionsHome(WebDriver driver) {
             this.driver = driver;
             this.wait = DriverManager.getInstance().getWait();
             PageFactory.initElements(driver, this);
-        }
+    }
+
     public boolean IsUserInSolutionsTab(){
         try{
-
             wait.until(ExpectedConditions.visibilityOf(solutionSection));
             return true;
         }
+
         catch (WebDriverException e){
             return false;
         }
+
     }
+
 }

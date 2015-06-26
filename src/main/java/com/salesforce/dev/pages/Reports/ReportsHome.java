@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ReportsHome {
     private WebDriver driver;
     private WebDriverWait wait;
+
     @FindBy(id = "ext-gen3")
     WebElement reportSection;
 
@@ -23,14 +24,16 @@ public class ReportsHome {
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
+
     public boolean IsUserInReportsTab(){
         try{
-
             wait.until(ExpectedConditions.visibilityOf(reportSection));
             return true;
         }
+
         catch (WebDriverException e){
             return false;
         }
     }
+
 }

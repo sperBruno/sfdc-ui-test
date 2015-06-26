@@ -15,17 +15,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class DashboardsHome {
     private WebDriver driver;
     private WebDriverWait wait;
+
     @FindBy(id = "ext-gen3")
     WebElement dashboardSection;
+
 
     public DashboardsHome(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
+
     public boolean IsUserInDashboardsTab(){
         try{
-
             wait.until(ExpectedConditions.visibilityOf(dashboardSection));
             return true;
         }
@@ -33,4 +35,6 @@ public class DashboardsHome {
             return false;
         }
     }
+
 }
+
