@@ -268,11 +268,10 @@ public class AccountForm extends FormBase{
     }
 
     public AccountForm setAccountSLAExpirationDateFld(String accountSLAExpirationDate) {
-        fillTextBox(accountSLAExpirationDateFld, accountSLAExpirationDate);
-        return this;
-    }
-
-    public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year){
+        String[] parts = accountSLAExpirationDate.split("/");
+        Integer month = new Integer(parts[0]);
+        Integer day = new Integer(parts[1]);
+        Integer year = new Integer(parts[2]);
         accountSLAExpirationDateFld.click();
         selectDatePicker(month, day, year);
         return this;

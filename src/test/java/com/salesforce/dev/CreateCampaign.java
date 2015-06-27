@@ -1,13 +1,13 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -60,11 +60,15 @@ public class CreateCampaign {
         campaignForm.setActualCost(actualCost);
         campaignForm.setExpectedResponse(expectedResponse);
         campaignForm.setNumSent(numSent);
+        /*
         searchLookup = campaignForm.clickLookupParentCampaign();
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
-
+        */
         campaignDetail = campaignForm.clickSaveBtn();
+
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign was created");
 
         //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
     }
@@ -72,6 +76,8 @@ public class CreateCampaign {
     @AfterMethod
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign  was created");
 
     }
 }

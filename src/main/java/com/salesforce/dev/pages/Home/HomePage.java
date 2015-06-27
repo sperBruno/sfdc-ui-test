@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.Home;
 import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.TopHeader;
@@ -32,7 +33,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
    }
 
    public LoginPage clickLoginBtn(){
-     wait.until(ExpectedConditions.visibilityOf(loginBtn));
+     try {
+       wait.until(ExpectedConditions.visibilityOf(loginBtn));
+       LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+               "Login button was clicked");
+
+     }catch(WebDriverException e){
+       LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+               "The Login button couldn't be found",
+               e.fillInStackTrace());
+     }
+
      loginBtn.click();
      return new LoginPage(this.driver);
    }
@@ -55,7 +66,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
       if(topHeader.isUserMenuPresent()){
         if(!topHeader.isLoggedUser(displayName)){
           LoginPage loginPage = topHeader.logout();
+          LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                  "Logout action was performed");
           mainPage = loginPage.loginAs(userNameValue, passwordValue);
+          LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                  "Login action with the User: "+userNameValue+ " was performed");
         }
       }
 
@@ -63,6 +78,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
     catch(WebDriverException e){
       LoginPage loginPage = this.clickLoginBtn();
       mainPage = loginPage.loginAs(userNameValue, passwordValue);
+      LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+              "Login action with the User: "+userNameValue+ " was performed");
     }
     return mainPage;
   }

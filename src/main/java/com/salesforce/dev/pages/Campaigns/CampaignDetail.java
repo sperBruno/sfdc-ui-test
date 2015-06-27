@@ -30,7 +30,7 @@ public class CampaignDetail extends DetailsBase{
     }
 
     @Override
-    public Object clickDeleteBtn(boolean confirmDeletion){
+    public CampaignsHome clickDeleteBtn(boolean confirmDeletion){
         clickDeleteButton(confirmDeletion);
         return new CampaignsHome(driver);
     }

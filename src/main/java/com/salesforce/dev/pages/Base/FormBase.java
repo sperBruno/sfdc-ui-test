@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Base;
 
 import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.framework.LoggerManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -64,30 +65,65 @@ public abstract class FormBase {
      * @author: Walter
      */
     protected void clickSaveButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(saveBtn));
-        saveBtn.click();
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(saveBtn));
+            saveBtn.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Save button was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Save button couldn't be found",
+                    e.fillInStackTrace());
+        }
 
     }
 
     protected void clickSaveNewButton() {
-        wait.until(ExpectedConditions.visibilityOf(saveNewBtn));
-        saveNewBtn.click();
-
+        try {
+            wait.until(ExpectedConditions.visibilityOf(saveNewBtn));
+            saveNewBtn.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "SaveNew button was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The SaveNew button couldn't be found",
+                    e.fillInStackTrace());
+        }
     }
 
     protected void clickCancelButton() {
-        wait.until(ExpectedConditions.visibilityOf(cancelBtn));
-        cancelBtn.click();
+        try {
+            wait.until(ExpectedConditions.visibilityOf(cancelBtn));
+            cancelBtn.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Cancel button was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Cancel button couldn't be found",
+                    e.fillInStackTrace());
+        }
 
     }
 
     protected void selectDatePicker(Integer month, Integer day, Integer year){
-        months = new String []{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        this.selectItemComboBox(monthPicker, months[month - 1]);
-        this.selectItemComboBox(yearPicker, year.toString());
-        WebElement selectDate = driver.findElement(
-                By.xpath("//div[@class='calBody']/descendant::td[contains(.,'" + day + "')]"));
-        selectDate.click();
+        try {
+            months = new String []{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+            this.selectItemComboBox(monthPicker, months[month - 1]);
+            this.selectItemComboBox(yearPicker, year.toString());
+            WebElement selectDate = driver.findElement(
+                    By.xpath("//div[@class='calBody']/descendant::td[contains(.,'" + day + "')]"));
+            selectDate.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Date was selected from DataPicker");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "Date couldn't be selected from DataPicker",
+                    e.fillInStackTrace());
+        }
     }
 
     protected void selectItemComboBox(WebElement webElement, String value){
@@ -95,14 +131,29 @@ public abstract class FormBase {
             wait.until(ExpectedConditions.visibilityOf(webElement));
             Select comboBox = new Select(webElement);
             comboBox.selectByVisibleText(value);
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "The value " +value+ " could be selected from ComboBox");
         }
         catch(WebDriverException e){
-            throw new WebDriverException("The value " +value+ "couldn't be selected");
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The value " +value+ " couldn't be selected",
+                    e.fillInStackTrace());
         }
     }
 
     protected void fillTextBox(WebElement webElement, String value){
-        webElement.clear();
-        webElement.sendKeys(value);
+        try {
+            wait.until(ExpectedConditions.visibilityOf(webElement));
+            webElement.clear();
+            webElement.sendKeys(value);
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "The value " +value+ " could be filled in textInput");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The value " +value+ " couldn't be filled in textInput",
+                    e.fillInStackTrace());
+
+        }
     }
 }

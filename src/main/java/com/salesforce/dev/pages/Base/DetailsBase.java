@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.Base;
 
+import com.salesforce.dev.framework.LoggerManager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -39,8 +40,17 @@ public abstract class DetailsBase {
      * @since: 6/13/2015
      */
     protected void clickEditButton() {
-        wait.until(ExpectedConditions.visibilityOf(editBtn));
-        editBtn.click();
+        try {
+            wait.until(ExpectedConditions.visibilityOf(editBtn));
+            editBtn.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Edit button was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The SaveNew button couldn't be found",
+                    e.fillInStackTrace());
+        }
     }
 
     /**
@@ -61,12 +71,13 @@ public abstract class DetailsBase {
                 alert.accept();
             }
             alert.dismiss();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Delete Button was clicked");
         }
         catch(WebDriverException e){
-            System.out.println("Delete Object: " + e.getMessage());
-        }
-        finally{
-            driver.switchTo().defaultContent();
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Delete button couldn't be found",
+                    e.fillInStackTrace());
         }
     }
 
@@ -88,12 +99,13 @@ public abstract class DetailsBase {
                 alert.accept();
             }
             alert.dismiss();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Delete Button was clicked");
         }
         catch(WebDriverException e){
-            System.out.println("Delete Object: " + e.getMessage());
-        }
-        finally{
-            driver.switchTo().defaultContent();
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Delete button couldn't be found",
+                    e.fillInStackTrace());
         }
     }
 
@@ -104,8 +116,17 @@ public abstract class DetailsBase {
      * @since: 6/13/2015
      */
     protected void clickCloneButton() {
-        wait.until(ExpectedConditions.visibilityOf(cloneBtn));
-        cloneBtn.click();
+        try{
+            wait.until(ExpectedConditions.visibilityOf(cloneBtn));
+            cloneBtn.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Clone Button was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Clone button couldn't be found",
+                    e.fillInStackTrace());
+        }
     }
 
     /**

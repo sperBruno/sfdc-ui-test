@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.Base;
 
+import com.salesforce.dev.framework.LoggerManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -35,15 +36,33 @@ public abstract class HomeBase {
      * @author: Jimmy
      */
     protected void clickNewButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(newBtn));
-        newBtn.click();
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(newBtn));
+            newBtn.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "New button was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The New button couldn't be found",
+                    e.fillInStackTrace());
+        }
     }
 
     protected abstract Object selectRecentItem(String value);
 
     protected void clickRecentItem(String value){
-        WebElement recentItem = driver.findElement(
-                By.xpath("//div[@class='hotListElement']/descendant::a[contains(.,'"+value+"')]"));
-        recentItem.click();
+        try {
+            WebElement recentItem = driver.findElement(
+                    By.xpath("//div[@class='hotListElement']/descendant::a[contains(.,'"+value+"')]"));
+            recentItem.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Recent Item was selected");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Recent Item button couldn't be found",
+                    e.fillInStackTrace());
+        }
     }
 }
