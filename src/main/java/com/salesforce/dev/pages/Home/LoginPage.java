@@ -1,4 +1,5 @@
 package com.salesforce.dev.pages.Home;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebDriver;
@@ -32,16 +33,44 @@ public class LoginPage {
         PageFactory.initElements(driver,this);
     }
 
-    public void setUserName(String Name){
-        wait.until(ExpectedConditions.visibilityOf(userNameFld));
-        userNameFld.sendKeys(Name);
+    public void setUserName(String name){
+        try {
+            wait.until(ExpectedConditions.visibilityOf(userNameFld));
+            userNameFld.sendKeys(name);
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "The UserName value: " +name + " was filled in textInput");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The UserName value couldn't be filled in textInput",
+                    e.fillInStackTrace());
+        }
     }
-    public void setPassword(String Password){
-        wait.until(ExpectedConditions.visibilityOf(passwrodFld));
-        passwrodFld.sendKeys(Password);
+    public void setPassword(String password){
+        try {
+            wait.until(ExpectedConditions.visibilityOf(passwrodFld));
+            passwrodFld.sendKeys(password);
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "The Password value was filled in textInput");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Password value couldn't be filled in textInput",
+                e.fillInStackTrace());
+            }
     }
     public MainPage clickLoginBtn(){
-        loginBtn.click();
+        try {
+            wait.until(ExpectedConditions.visibilityOf(loginBtn));
+            loginBtn.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "The Login button was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                "The Login button couldn't be find",
+                e.fillInStackTrace());
+        }
         return new MainPage(this.driver);
     }
 
@@ -69,6 +98,9 @@ public class LoginPage {
             wait.until(ExpectedConditions.visibilityOf(loginBtn));
             return loginBtn.isDisplayed();
         } catch (WebDriverException e) {
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Login button couldn't be find",
+                    e.fillInStackTrace());
             return false;
         }
     }

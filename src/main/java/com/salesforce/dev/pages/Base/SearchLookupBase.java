@@ -1,5 +1,6 @@
-package com.salesforce.dev.pages.SearchLookup;
+package com.salesforce.dev.pages.Base;
 
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Contacts.ContactForm;
@@ -46,7 +47,6 @@ public class SearchLookupBase {
 
         LinkedList<String> windowsArray = new LinkedList(windows);
         try {
-            System.out.println("before frame");
             driver.switchTo().window(windowsArray.getLast());
             driver.switchTo().frame(driver.findElement(By.name("searchFrame")));
 
@@ -58,9 +58,14 @@ public class SearchLookupBase {
 
             driver.findElement(By.linkText(text)).click();
             driver.switchTo().window(windowsArray.getFirst());
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "Object was serach and selected in SearchLookup");
         }
         catch (WebDriverException e){
-            throw new WebDriverException(e);
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The Frames couldn't be found",
+                    e.fillInStackTrace());
+
         }
     }
 
