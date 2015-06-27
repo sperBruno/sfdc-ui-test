@@ -26,10 +26,6 @@ public class EditProduct {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private String productName="New product";
-    private String productNewName="New product update";
-    private String prodNewCode="Codigo2";
-    private String prodNewDesc="this is a new product update";
-
 
     @BeforeMethod
     public void setUp() {
@@ -44,8 +40,8 @@ public class EditProduct {
 
     }
 
-    @Test(groups = {"Regression"})
-    public void testEditProduct() {
+    @Test(groups = {"Acceptance"},dataProvider = "getProductValues")
+    public void testEditProduct(String productNewName,String prodNewCode,String prodNewDesc) {
         productDetails.clickEditBtn();
         ProductForm productForm= new ProductBuilder(productNewName)
                 .setProductName(productNewName)
@@ -58,10 +54,14 @@ public class EditProduct {
 
     }
 
+
     @AfterMethod
     public void tearDown() {
         productDetails.clickDeleteBtn(true);
 
+    }
+    public Object[][] getProductValues() {
+        return new Object[][]{{"New product update","Codigo2","this is an update product"}};
     }
 }
 

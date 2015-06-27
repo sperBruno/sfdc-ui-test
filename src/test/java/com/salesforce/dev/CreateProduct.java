@@ -17,10 +17,6 @@ import com.salesforce.dev.pages.Product.ProductBuilder;
  */
 public class CreateProduct {
 
-    String productName="New product";
-    String prodCode="Codigo1";
-    String prodDesc="this is a new product";
-
     HomePage homePage;
     MainPage mainPage;
     NavigationBar navigationBar;
@@ -35,8 +31,8 @@ public class CreateProduct {
         navigationBar = mainPage.gotoNavBar();
 
     }
-    @Test(groups = {"Regression"})
-    public void CreateProduct(){
+    @Test(groups = {"Acceptance"},dataProvider = "getProductValues")
+    public void CreateProduct(String productName,String prodCode,String prodDesc){
 
         productsHome=navigationBar.goToProductsHome();
         productForm=productsHome.clickNewBtn();
@@ -55,4 +51,7 @@ public class CreateProduct {
         productDetails.clickDeleteBtn(true);
     }
 
+    public Object[][] getProductValues() {
+        return new Object[][]{{"New product","Codigo1","this is a new product"}};
+    }
 }
