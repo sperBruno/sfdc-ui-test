@@ -66,4 +66,9 @@ public class Environment {
         return getEnv("displayName");
     }
 
+    public String getMode() {
+        return getEnv("mode");
+    }
+
+
 }
