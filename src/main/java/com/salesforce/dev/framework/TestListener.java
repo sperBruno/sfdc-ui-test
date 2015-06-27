@@ -21,7 +21,7 @@ import java.util.Date;
  */
 public class TestListener implements ITestListener {
     WebDriver driver;
-    String filePath = "src\\test\\results";
+    String filePath =  "build\\reports\\tests\\html\\screenshots";
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -57,11 +57,10 @@ public class TestListener implements ITestListener {
     protected void reportLogScreenshot(File file) {
         System.setProperty("org.uncommons.reportng.escape-output", "false");
 
-        String absolute = file.getAbsolutePath();
-        int beginIndex = absolute.indexOf(".");
-        String relative = absolute.substring(beginIndex).replace(".\\","");
-
         Reporter.log("<p align=\"left\">Error screenshot at " + new Date()+ "</p>");
+        Reporter.log("<p>&nbsp;</p>");
+        Reporter.log("<a href='logs/log4j-application.log'>Open Logs</a>");
+        Reporter.log("<p>&nbsp;</p>");
         Reporter.log("<p><img width=\"1024\" src=\"" + file.getAbsoluteFile()  + "\" alt=\"screenshot at " + new Date()+ "\"/></p><br />");
     }
 

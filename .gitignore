@@ -16,6 +16,7 @@ drivers/
 *.mf
 build/
 *.png
+logs/
 
 
 

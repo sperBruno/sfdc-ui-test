@@ -1,7 +1,6 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.Environment;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
@@ -27,6 +26,10 @@ public class TestCookies {
     @Test(groups = {"Acceptance"})
     public void testCookies() {
         topHeader = mainPage.gotoTopHeader();
+
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Verifying Cookies");
+
         Assert.assertTrue(topHeader.checkIfCookieIsPresent());
     }
 

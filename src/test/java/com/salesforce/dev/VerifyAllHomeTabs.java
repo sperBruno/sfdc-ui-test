@@ -41,7 +41,7 @@ public class VerifyAllHomeTabs {
         NavigationBar navigationBar=mainPage.gotoNavBar();
         ChatterHome chatterHome=navigationBar.goToChatterHome();
                 Assert.assertEquals(chatterHome.IsUserInChatterTab(),true);
-        CampaignsHome campaignsHome=navigationBar.goToCamapaignsHome();
+        CampaignsHome campaignsHome=navigationBar.goToCampaignsHome();
                 Assert.assertEquals(campaignsHome.IsUserInCampaignsTab(),true);
         LeadsHome leadsHome=navigationBar.gotToLeadsHome();
                 Assert.assertEquals(leadsHome.IsUserInLeadsTab(),true);

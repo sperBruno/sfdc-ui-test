@@ -1,13 +1,13 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -18,7 +18,7 @@ import org.testng.annotations.Test;
  */
 public class CreateCampaign {
 
-    private String campaignName = "Campaign Name 03";
+    private String campaignName = "Campaign Name";
     private String campaignType = "Webinar"; //Conference, Webinar, Trade Show, Public Relations, Partners, Referral Program, Advertisement, Banner Ads, Direct Mail, Email, Telemarketing, Other
     private String campaignStatus = "Completed"; //--None--, Planned, In Progress, Completed, Aborted
     private String startDate = "6/15/2016";
@@ -44,7 +44,7 @@ public class CreateCampaign {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCamapaignsHome();
+        campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
         campaignForm.setCampaignName(parentCampaign);
         campaignForm.checkActiveCheckbox();
@@ -52,10 +52,10 @@ public class CreateCampaign {
         mainPage = campaignDetail.gotoMainPage();
     }
 
-    @Test
+    @Test(groups = {"Acceptance"})
     public void testCreateCampaign() {
         navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCamapaignsHome();
+        campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
         campaignForm.setCampaignName(campaignName);
         campaignForm.checkActiveCheckbox();
@@ -74,6 +74,9 @@ public class CreateCampaign {
 
         campaignDetail = campaignForm.clickSaveBtn();
 
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign was created");
+
         Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaignName));
         Assert.assertTrue(campaignDetail.validateCampaignType(campaignType));
         Assert.assertTrue(campaignDetail.validateCampaignStatus(campaignStatus));
@@ -85,10 +88,14 @@ public class CreateCampaign {
     @AfterMethod
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCamapaignsHome();
+        campaignsHome = navigationBar.goToCampaignsHome();
         campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
         campaignDetail.clickDeleteBtn(true);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign Parent was deleted");
     }
-} 
+}

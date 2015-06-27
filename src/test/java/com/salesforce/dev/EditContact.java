@@ -1,12 +1,15 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.SearchLookup.SearchLookupBase;
+import com.salesforce.dev.framework.LoggerManager;
+import com.salesforce.dev.pages.Accounts.AccountDetail;
+import com.salesforce.dev.pages.Accounts.AccountForm;
+import com.salesforce.dev.pages.Accounts.AccountsHome;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 
@@ -58,8 +61,10 @@ public class EditContact {
     private ContactDetail contactDetail;
     private ContactForm contactForm;
     private HomePage homePage;
-    private MainPage mainPage;
+    private MainPage mainPage;private AccountDetail accountDetail;
     private NavigationBar navigationBar;
+    private AccountsHome accountsHome;
+    private AccountForm accountForm;
 
     private SearchLookupBase searchLookup;
 
@@ -67,6 +72,14 @@ public class EditContact {
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
+
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.goToAccountsHome();
+        accountForm = accountsHome.clickNewBtn();
+        accountForm.setAccountNameFld(accountName);
+        accountDetail = accountForm.clickSaveBtn();
+        mainPage = accountDetail.gotoMainPage();
+
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();
@@ -133,5 +146,14 @@ public class EditContact {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactDetail.clickDeleteBtn(true);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Contact was deleted");
+        mainPage = accountDetail.gotoMainPage();
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.goToAccountsHome();
+        accountDetail = accountsHome.selectRecentItem(accountName);
+        accountDetail.clickDeleteBtn(true);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign Parent was deleted");
     }
 }
