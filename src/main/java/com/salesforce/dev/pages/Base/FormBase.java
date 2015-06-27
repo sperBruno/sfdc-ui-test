@@ -132,11 +132,11 @@ public abstract class FormBase {
             Select comboBox = new Select(webElement);
             comboBox.selectByVisibleText(value);
             LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "The value " +value+ "could be selected from ComboBox");
+                    "The value " +value+ " could be selected from ComboBox");
         }
         catch(WebDriverException e){
             LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The value " +value+ "couldn't be selected",
+                    "The value " +value+ " couldn't be selected",
                     e.fillInStackTrace());
         }
     }
@@ -147,11 +147,11 @@ public abstract class FormBase {
             webElement.clear();
             webElement.sendKeys(value);
             LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "The value " +value+ "could be filled in textInput");
+                    "The value " +value+ " could be filled in textInput");
         }
         catch(WebDriverException e){
             LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The value " +value+ "couldn't be filled in textInput",
+                    "The value " +value+ " couldn't be filled in textInput",
                     e.fillInStackTrace());
 
         }
