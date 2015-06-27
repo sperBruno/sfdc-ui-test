@@ -24,13 +24,16 @@ public class LoginTest {
     @BeforeMethod(groups = {"Regression"})
     public void setUp(){
         homePage = new HomePage();
+        mainPage = homePage.loginAsPrimaryUser();
+        topHeader = mainPage.gotoTopHeader();
+        topHeader.clickUserNameMenu();
+        loginPage=topHeader.clickLogoutOption();
     }
-    @Test(groups = {"Regression"})
+    @Test(groups = {"BVT"})
     public void Login(){
         String account = Environment.getInstance().getPrimaryUser();
         String password = Environment.getInstance().getPrimaryPassword();
         String displayName=Environment.getInstance().getDisplayName();
-        loginPage=homePage.clickLoginBtn();
         loginPage.setUserName(account);
         loginPage.setPassword(password);
         mainPage=loginPage.clickLoginBtn();

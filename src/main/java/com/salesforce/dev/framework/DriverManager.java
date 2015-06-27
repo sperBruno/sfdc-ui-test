@@ -6,8 +6,12 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import java.sql.Driver;
 import java.util.concurrent.TimeUnit;
@@ -20,7 +24,10 @@ public class DriverManager {
     private WebDriverWait wait;
 
     private static DriverManager instance = null;
-    String browser = "Firefox";
+    private String browser = Environment.getInstance().getBrowser();
+    private String mode = Environment.getInstance().getMode();
+    private String username = "sfdcteamone";
+    private String key = "f932d7f3-6e43-4803-8da9-1a970a6075a2";
 
     private DriverManager(){
         browser = Environment.getInstance().getBrowser();
@@ -29,21 +36,34 @@ public class DriverManager {
     }
 
     private void initializer(){
-        if(browser.equalsIgnoreCase("Firefox")){
-            driver = new FirefoxDriver();
-        }
-        else if(browser.equalsIgnoreCase("Chrome")){
-            System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-            driver = new ChromeDriver();
-        }
-        else if(browser.equalsIgnoreCase("IE")){
-            System.setProperty("webdriver.ie.driver", "drivers/IEDriverServer.exe");
-            driver = new InternetExplorerDriver();
-        }
-        else if(browser.equalsIgnoreCase("Safari")){
-            driver = new SafariDriver();
-        }
+        if (mode.equalsIgnoreCase("Local")) {
+            if (browser.equalsIgnoreCase("Firefox")) {
+                driver = new FirefoxDriver();
+            } else if (browser.equalsIgnoreCase("Chrome")) {
+                System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+                driver = new ChromeDriver();
+            } else if (browser.equalsIgnoreCase("IE")) {
+                System.setProperty("webdriver.ie.driver", "drivers/IEDriverServer.exe");
+                driver = new InternetExplorerDriver();
+            } else if (browser.equalsIgnoreCase("Safari")) {
+                driver = new SafariDriver();
+            }
+        }else if (mode.equalsIgnoreCase("SauceLabs")){
+            // Choose the browser, version, and platform to test
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName("firefox");
+            capabilities.setCapability("version", "34");
+            capabilities.setCapability("platform", "OS X 10.10");
 
+            // Create the connection to Sauce Labs to run the tests
+            try {
+                this.driver = new RemoteWebDriver(
+                        new URL("http://" + username + ":" + key + "@ondemand.saucelabs.com:80/wd/hub"),
+                        capabilities);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
 
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver,15);

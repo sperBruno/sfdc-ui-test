@@ -66,9 +66,7 @@ public class EditContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
-        String userNameValue= Environment.getInstance().getPrimaryUser();
-        String passwordValue=Environment.getInstance().getPrimaryPassword();
-        mainPage = homePage.loginAs(userNameValue, passwordValue);
+        mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();

@@ -41,9 +41,7 @@ public class CreateCampaign {
     @BeforeMethod
     public void setUp() {
         homePage = new HomePage();
-        String userNameValue= Environment.getInstance().getPrimaryUser();
-        String passwordValue=Environment.getInstance().getPrimaryPassword();
-        mainPage = homePage.loginAs(userNameValue,passwordValue);
+        mainPage = homePage.loginAsPrimaryUser();
     }
 
     @Test
