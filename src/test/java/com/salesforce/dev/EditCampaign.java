@@ -1,5 +1,6 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
@@ -7,6 +8,7 @@ import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,8 +18,8 @@ import org.testng.annotations.Test;
  */
 public class EditCampaign {
 
-    private String campaignNameUpdated ="Campaign Name 05 UPDATED";
-    private String campaignName = "Campaign Name 05";
+    private String campaignNameUpdated ="Campaign UPDATED";
+    private String campaignName = "Campaign Name";
     private String campaignType = "Webinar"; //Conference, Webinar, Trade Show, Public Relations, Partners, Referral Program, Advertisement, Banner Ads, Direct Mail, Email, Telemarketing, Other
     private String campaignStatus = "Completed"; //--None--, Planned, In Progress, Completed, Aborted
     private String startDate = "6/15/2016";
@@ -29,9 +31,7 @@ public class EditCampaign {
     private String numSent = "10";
     private String parentCampaign = "CampaignParent";
 
-
     private SearchLookupBase searchLookup;
-
 
     private CampaignsHome campaignsHome;
     private CampaignDetail campaignDetail;
@@ -45,21 +45,27 @@ public class EditCampaign {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCamapaignsHome();
+        campaignsHome = navigationBar.goToCampaignsHome();
+        campaignForm = campaignsHome.clickNewBtn();
+        campaignForm.setCampaignName(parentCampaign);
+        campaignForm.checkActiveCheckbox();
+        campaignDetail = campaignForm.clickSaveBtn();
+        mainPage = campaignDetail.gotoMainPage();
+        navigationBar = mainPage.gotoNavBar();
+        campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
         campaignForm.setCampaignName(campaignName);
         campaignForm.checkActiveCheckbox();
         campaignDetail = campaignForm.clickSaveBtn();
 
-        // Assert
         mainPage = campaignDetail.gotoMainPage();
     }
 
-    @Test
+    @Test(groups = {"Acceptance"})
     public void testEditCampaign() {
 
         navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCamapaignsHome();
+        campaignsHome = navigationBar.goToCampaignsHome();
 
 
         campaignDetail = campaignsHome.selectRecentItem(campaignName);
@@ -81,12 +87,25 @@ public class EditCampaign {
 
         campaignDetail = campaignForm.clickSaveBtn();
 
-        //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
+        Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaignNameUpdated));
+        Assert.assertTrue(campaignDetail.validateCampaignType(campaignType));
+        Assert.assertTrue(campaignDetail.validateCampaignStatus(campaignStatus));
+        Assert.assertTrue(campaignDetail.validateCampaignStartDate(startDate));
+        Assert.assertTrue(campaignDetail.validateCampaignEndDate(endDate));
+        Assert.assertTrue(campaignDetail.validateCampaignParent(parentCampaign));
     }
 
     @AfterMethod
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
-
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign was deleted");
+        mainPage = campaignDetail.gotoMainPage();
+        navigationBar = mainPage.gotoNavBar();
+        campaignsHome = navigationBar.goToCampaignsHome();
+        campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
+        campaignDetail.clickDeleteBtn(true);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign Parent was deleted");
     }
 }

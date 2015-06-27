@@ -79,7 +79,7 @@ public class NavigationBar {
 
     }
 
-    public CampaignsHome goToCamapaignsHome(){
+    public CampaignsHome goToCampaignsHome(){
         wait.until(ExpectedConditions.visibilityOf(campaignsTab));
         campaignsTab.click();
         return new CampaignsHome(driver);
