@@ -36,12 +36,14 @@ public class SearchLookupBase {
     @CacheLookup
     WebElement goBtn;
 
+    @SuppressWarnings({"unchecked","unsafe"})
     public SearchLookupBase(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
 
+    @SuppressWarnings({"unchecked","unsafe"})
     public void searchText(String text) {
 
         Set<String> windows = driver.getWindowHandles();
