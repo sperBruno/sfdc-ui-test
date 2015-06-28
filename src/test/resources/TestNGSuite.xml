@@ -20,9 +20,9 @@
             <class name="com.salesforce.dev.EditLead"/>
             <class name="com.salesforce.dev.EditOpportunity"/>
             <class name="com.salesforce.dev.EditProduct"/>
-            <class name="com.salesforce.dev.LogoutTest"/>
             <class name="com.salesforce.dev.TestCookies"/>
             <class name="com.salesforce.dev.VerifyAllHomeTabs"/>
+            <class name="com.salesforce.dev.LogoutTest"/>
             <class name="com.salesforce.dev.LoginTest"/>
 
         </classes>

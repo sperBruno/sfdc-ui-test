@@ -61,7 +61,8 @@ public class EditContact {
     private ContactDetail contactDetail;
     private ContactForm contactForm;
     private HomePage homePage;
-    private MainPage mainPage;private AccountDetail accountDetail;
+    private MainPage mainPage;
+    private AccountDetail accountDetail;
     private NavigationBar navigationBar;
     private AccountsHome accountsHome;
     private AccountForm accountForm;
@@ -154,6 +155,6 @@ public class EditContact {
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign Parent was deleted");
+                "Account was deleted");
     }
 }
