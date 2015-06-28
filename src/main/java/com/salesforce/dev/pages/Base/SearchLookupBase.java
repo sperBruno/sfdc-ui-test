@@ -23,6 +23,7 @@ import java.util.Set;
 /**
  * Created by Marcelo.Vargas on 17-06-15.
  */
+@SuppressWarnings("unchecked")
 public class SearchLookupBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
