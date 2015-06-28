@@ -17,6 +17,7 @@ drivers/
 build/
 *.png
 logs/
+*.puml
 
 
 
