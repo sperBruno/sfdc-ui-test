@@ -1,5 +1,8 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.pages.Accounts.AccountDetail;
+import com.salesforce.dev.pages.Accounts.AccountForm;
+import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.MainPage;
 //import junit.framework.Assert;
@@ -60,7 +63,10 @@ public class CreateContact {
     private ContactForm contactForm;
     private HomePage homePage;
     private MainPage mainPage;
+    private AccountDetail accountDetail;
     private NavigationBar navigationBar;
+    private AccountsHome accountsHome;
+    private AccountForm accountForm;
 
     private SearchLookupBase searchLookup;
 
@@ -68,6 +74,14 @@ public class CreateContact {
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
+
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.goToAccountsHome();
+        accountForm = accountsHome.clickNewBtn();
+        accountForm.setAccountNameFld(accountName);
+        accountDetail = accountForm.clickSaveBtn();
+        mainPage = accountDetail.gotoMainPage();
+
     }
 
     @Test(groups = {"Acceptance"})
@@ -134,5 +148,10 @@ public class CreateContact {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactDetail.clickDeleteBtn(true);
+        mainPage = contactDetail.gotoMainPage();
+        navigationBar = mainPage.gotoNavBar();
+        accountsHome = navigationBar.goToAccountsHome();
+        accountDetail = accountsHome.selectRecentItem(accountName);
+        accountDetail.clickDeleteBtn(true);
     }
 }

@@ -8,6 +8,7 @@ import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,7 +18,7 @@ import org.testng.annotations.Test;
  */
 public class CreateCampaign {
 
-    private String campaignName = "Campaign Name 03";
+    private String campaignName = "Campaign Name";
     private String campaignType = "Webinar"; //Conference, Webinar, Trade Show, Public Relations, Partners, Referral Program, Advertisement, Banner Ads, Direct Mail, Email, Telemarketing, Other
     private String campaignStatus = "Completed"; //--None--, Planned, In Progress, Completed, Aborted
     private String startDate = "6/15/2016";
@@ -42,12 +43,19 @@ public class CreateCampaign {
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
+        campaignsHome = navigationBar.goToCampaignsHome();
+        campaignForm = campaignsHome.clickNewBtn();
+        campaignForm.setCampaignName(parentCampaign);
+        campaignForm.checkActiveCheckbox();
+        campaignDetail = campaignForm.clickSaveBtn();
+        mainPage = campaignDetail.gotoMainPage();
     }
 
-    @Test
+    @Test(groups = {"Acceptance"})
     public void testCreateCampaign() {
         navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCamapaignsHome();
+        campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
         campaignForm.setCampaignName(campaignName);
         campaignForm.checkActiveCheckbox();
@@ -60,24 +68,34 @@ public class CreateCampaign {
         campaignForm.setActualCost(actualCost);
         campaignForm.setExpectedResponse(expectedResponse);
         campaignForm.setNumSent(numSent);
-        /*
         searchLookup = campaignForm.clickLookupParentCampaign();
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
-        */
+
         campaignDetail = campaignForm.clickSaveBtn();
 
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Campaign was created");
 
-        //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
+        Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaignName));
+        Assert.assertTrue(campaignDetail.validateCampaignType(campaignType));
+        Assert.assertTrue(campaignDetail.validateCampaignStatus(campaignStatus));
+        Assert.assertTrue(campaignDetail.validateCampaignStartDate(startDate));
+        Assert.assertTrue(campaignDetail.validateCampaignEndDate(endDate));
+        Assert.assertTrue(campaignDetail.validateCampaignParent(parentCampaign));
     }
 
     @AfterMethod
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign  was created");
-
+                "Campaign was deleted");
+        mainPage = campaignDetail.gotoMainPage();
+        navigationBar = mainPage.gotoNavBar();
+        campaignsHome = navigationBar.goToCampaignsHome();
+        campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
+        campaignDetail.clickDeleteBtn(true);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign Parent was deleted");
     }
 }

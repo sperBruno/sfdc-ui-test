@@ -48,8 +48,6 @@ public class DriverManager {
             } else if (browser.equalsIgnoreCase("Safari")) {
                 driver = new SafariDriver();
             }
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Local Initialization - "+browser+" browser");
         }else if (mode.equalsIgnoreCase("SauceLabs")){
             // Choose the browser, version, and platform to test
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -62,13 +60,8 @@ public class DriverManager {
                 this.driver = new RemoteWebDriver(
                         new URL("http://" + username + ":" + key + "@ondemand.saucelabs.com:80/wd/hub"),
                         capabilities);
-
-                LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                        "Remote Initialization - "+capabilities.getBrowserName()+" browser");
             } catch (MalformedURLException e) {
-                LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                        "Remote Initialization - Fatal Error", e.fillInStackTrace());
-
+                e.printStackTrace();
             }
         }
 
@@ -101,12 +94,10 @@ public class DriverManager {
         try{
 
             driver.quit();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Finalization of Test Suit - ");
+
         }
         catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "Error during the Finalization of test Suit", e.fillInStackTrace());
+            System.out.println(e.getMessage());
         }
     }
 }

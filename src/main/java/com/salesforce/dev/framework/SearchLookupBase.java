@@ -35,7 +35,7 @@ public class SearchLookupBase {
     @CacheLookup
     WebElement goBtn;
 
-   public SearchLookupBase(WebDriver driver) {
+    public SearchLookupBase(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
