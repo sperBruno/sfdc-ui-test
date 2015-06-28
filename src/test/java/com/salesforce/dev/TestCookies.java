@@ -17,13 +17,13 @@ public class TestCookies {
     private MainPage mainPage;
     private TopHeader topHeader;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = {"BVT"})
     public void testCookies() {
         topHeader = mainPage.gotoTopHeader();
 
@@ -33,7 +33,7 @@ public class TestCookies {
         Assert.assertTrue(topHeader.checkIfCookieIsPresent());
     }
 
-    @AfterMethod(groups = {"Acceptance"})
+    @AfterMethod(groups = {"BVT"})
     public void tearDown() {
         //something
     }

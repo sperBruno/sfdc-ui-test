@@ -21,7 +21,7 @@ public class EditOpportunity {
 
     Opportunity oppEnum,oppEditEnum;
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
@@ -38,8 +38,8 @@ public class EditOpportunity {
 
     }
 
-    @Test(groups = {"BVT"})
-    public void editOpportunity(){
+    @Test(groups = {"Acceptance"})
+    public void testEditOpportunity(){
 
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
         OpportunityDetail opDetail= opHome.openOpportunity(oppEnum.opportunityName);
@@ -58,7 +58,7 @@ public class EditOpportunity {
         Assert.assertEquals(oppDetail.getStage(),oppEditEnum.stage,"The stage is not equal");
     }
 
-    @AfterMethod(groups = {"BVT"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown(){
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
         OpportunityDetail opDetail = opHome.openOpportunity(oppEditEnum.opportunityName);

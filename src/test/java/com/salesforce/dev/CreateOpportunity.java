@@ -21,7 +21,7 @@ public class CreateOpportunity {
 
     Opportunity oppEnum;
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
@@ -31,8 +31,8 @@ public class CreateOpportunity {
 
     }
 
-    @Test(groups = {"BVT"})
-    public void CreateOpportunity(){
+    @Test(groups = {"Acceptance"})
+    public void testCreateOpportunity(){
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         opTab.clickNewBtn();
@@ -52,7 +52,7 @@ public class CreateOpportunity {
 
     }
 
-    @AfterMethod(groups = {"BVT"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown(){
         OpportunitiesHome opHome = navBar.goToOpportunitiesHome();
         OpportunityDetail opDetail = opHome.openOpportunity(oppEnum.opportunityName);

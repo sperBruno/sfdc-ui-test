@@ -21,7 +21,7 @@ public class LoginTest {
     NavigationBar navigationBar;
 
 
-    @BeforeMethod(groups = {"Regression"})
+    @BeforeMethod(groups = {"BVT"})
     public void setUp(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();

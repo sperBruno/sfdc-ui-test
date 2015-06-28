@@ -30,7 +30,7 @@ public class VerifyAllHomeTabs {
     private MainPage mainPage;
 
 
-    @BeforeMethod(groups = {"Regression"})
+    @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();

@@ -1,7 +1,7 @@
 {
   "nameSalutation":null,
   "firstName":null,
-  "lastName":"Lead Last Name Edited",
+  "lastName":"Coyote",
   "company":"ACME",
   "title":"Manager",
   "leadSource":null,
@@ -9,14 +9,14 @@
   "campaignLookup":null,
   "industry":null,
   "annualRevenue":null,
-  "phone":null,
+  "phone":"555-5555",
   "mobile":null,
   "fax":null,
   "email":null,
-  "website":null,
+  "website":"www.coyote.com",
   "leadStatus":"Closed - Not Converted",
   "rating":null,
-  "numEmployees":1000,
+  "numEmployees":500,
 
   "street":null,
   "city":null,
@@ -24,13 +24,13 @@
   "zipCode":null,
   "country":null,
 
-  "productInterest":null,
+  "productInterest":"GC3000 series",
   "SICCode":null,
   "numberLocations":null,
   "currentGenerators":null,
-  "primary":null,
+  "primary":"Yes",
 
-  "description":null,
+  "description":"Lead edited",
   "assignRule":null
 
 }
