@@ -33,7 +33,6 @@ public class Opportunity {
     /*description*/
     public String description;
 
-
     public Opportunity(){
 
     }
