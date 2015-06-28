@@ -20,7 +20,7 @@ public class EditLead {
 
     Lead lead,leadEditEnum;
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
@@ -33,25 +33,38 @@ public class EditLead {
 
     }
 
-    @Test(groups = {"BVT"})
-    public void editLead(){
+    @Test(groups = {"Acceptance"})
+    public void testEditLead(){
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();
 
         //todo:editing some fields
         leadForm.setLastName(leadEditEnum.lastName);
+        leadForm.setPhone(leadEditEnum.phone);
+        leadForm.setWebsite(leadEditEnum.website);
         leadForm.selectLeadStatusByVisibleText(leadEditEnum.leadStatus);
-        leadForm.clickSaveBtn();
+        leadForm.setNumEmployees(leadEditEnum.numEmployees);
+        leadForm.selectProductInterestByVisibleText(leadEditEnum.productInterest);
+        leadForm.selectPrimaryByVisibleText(leadEditEnum.primary);
+        leadForm.setDescription(leadEditEnum.description);
+        leadDetail = leadForm.clickSaveBtn();
 
         //todo: assertions
         Assert.assertTrue(leadDetail.getName().contains(leadEditEnum.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
-        Assert.assertEquals(leadDetail.getCompany(), leadEditEnum.company, "The company are not equal");
-        Assert.assertEquals(leadDetail.getLeadStatus(), leadEditEnum.leadStatus, "The lead is not correct");
+        Assert.assertEquals(leadDetail.getCompany(), leadEditEnum.company, "The company is not equal");
+        Assert.assertEquals(leadDetail.getPhone(), leadEditEnum.phone, "The phone is not equal");
+        Assert.assertEquals(leadDetail.getWebsite(), "http://"+leadEditEnum.website, "The website is not equal");
+        Assert.assertEquals(leadDetail.getLeadStatus(), leadEditEnum.leadStatus, "The lead is not equal");
+        Assert.assertEquals(leadDetail.getNumEmployees(), leadEditEnum.numEmployees, "The number of employees is not equal");
+        Assert.assertEquals(leadDetail.getProductInterest(), leadEditEnum.productInterest, "The product interest is not equal");
+        Assert.assertEquals(leadDetail.getPrimary(), leadEditEnum.primary, "The primary is not equal");
+        Assert.assertEquals(leadDetail.getDescription(), leadEditEnum.description, "The description is not correct");
+
 
     }
 
-    @AfterMethod(groups = {"BVT"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown(){
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(leadEditEnum.lastName);
