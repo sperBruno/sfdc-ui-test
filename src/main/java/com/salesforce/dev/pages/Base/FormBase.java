@@ -102,7 +102,13 @@ public abstract class FormBase {
     }
 
     protected void fillTextBox(WebElement webElement, String value){
+        wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
+        try {
+            Thread.sleep(200);
+        }
+        catch (Exception e){}
+
         webElement.sendKeys(value);
     }
 }

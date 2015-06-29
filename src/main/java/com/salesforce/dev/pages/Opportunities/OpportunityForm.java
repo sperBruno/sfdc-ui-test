@@ -4,6 +4,7 @@ import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
@@ -81,10 +82,14 @@ public class OpportunityForm extends FormBase{
     public OpportunityForm(WebDriver driver){
         super.driver = driver;
         super.initializer();
+
+        wait.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
     }
 
     public OpportunityForm(OpportunityBuilder builder){
         super.initializer();
+
+        wait.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
 
         //setting the mandatoryFields for an Opportunity;
         this.setOpportunityName(builder.opName);
@@ -234,7 +239,7 @@ public class OpportunityForm extends FormBase{
     }
 
     public void setTrackingNumber(String trackingNumber){
-        if(currentGenerator!=null) {
+        if(trackingNumber!=null) {
             fillTextBox(this.trackingNumber, trackingNumber);
         }
     }
