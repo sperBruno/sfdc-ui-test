@@ -73,8 +73,8 @@ task runTestNGTestCases(type: Test) {
     systemProperties.put('primaryUserName', primaryUserName)
     systemProperties.put('primaryUserPassword', primaryUserPassword)
     systemProperties.put('browser', browser)
+    systemProperties.put('mode',mode)
 
-    println browser
 
     task downloadDrivers(type: Copy) {
         File drivers = new File('./drivers')
