@@ -39,7 +39,7 @@ public class CreateCampaign {
 
     private SearchLookupBase searchLookup;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
@@ -85,7 +85,7 @@ public class CreateCampaign {
         Assert.assertTrue(campaignDetail.validateCampaignParent(parentCampaign));
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
