@@ -13,12 +13,11 @@ import com.salesforce.dev.framework.DriverManager;
 public class ContactDetail extends DetailsBase {
 
     @FindBy(id = "con2_ileinner")
-    WebElement contactNameReg;
+    WebElement contactName;
 
     public ContactDetail(WebDriver driver) {
         super.driver = driver;
         super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
         PageFactory.initElements(driver, this);
     }
 
@@ -36,12 +35,7 @@ public class ContactDetail extends DetailsBase {
         return new MainPage(driver);
     }
 
-    public boolean VerifyContact(String nameValue) {
-        String NameContactForm = contactNameReg.getText();
-
-        if(NameContactForm.equals(nameValue)){
-            return true;
-        }
-        return false;
+    public Boolean validateContactName(String value) {
+        return contactName.getText().equals(value);
     }
 }

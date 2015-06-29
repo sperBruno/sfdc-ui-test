@@ -6,6 +6,7 @@ import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.MainPage;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,10 +23,10 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
  */
 public class EditContact {
 
-    private String lastNameUpdated = "Testing";
+    private String lastNameUpdated = "UPDATED";
     private String contactRole = "Mr.";
-    private String firstName = "Marcelo";
-    private String lastName = "Vargas";
+    private String firstName = "Contact";
+    private String lastName = "Test";
     private String accountName = "AccountTest";
     private String title = "Engineer";
     private String department = "Engineering";
@@ -128,10 +129,6 @@ public class EditContact {
         contactForm.setMailingState(mailingState);
         contactForm.setMailingZip(mailingZip);
         contactForm.setMailingCountry(mailingCountry);
-        contactForm.setMailingStreet(mailingStreet);
-        contactForm.setMailingCity(mailingCity);
-        contactForm.setMailingState(mailingState);
-        contactForm.setMailingZip(mailingZip);
         contactForm.setOtherStreet(otherStreet);
         contactForm.setOtherCity(otherCity);
         contactForm.setOtherState(otherState);
@@ -139,9 +136,10 @@ public class EditContact {
         contactForm.setOtherCountry(otherCountry);
         contactForm.setLanguages(languages);
         contactForm.setLevel(level);
+        contactForm.setDescription(description);
         contactDetail = contactForm.clickSaveBtn();
 
-        //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
+        Assert.assertTrue(contactDetail.validateContactName(contactRole + " " + firstName + " " +lastNameUpdated));
     }
 
     @AfterMethod(groups = {"Acceptance"})
