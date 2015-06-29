@@ -69,6 +69,12 @@ public class Environment {
     public String getMode() {
         return getEnv("mode");
     }
+    public String getUserName() {
+        return getEnv("userName");
+    }
+    public String getKey() {
+        return getEnv("key");
+    }
 
 
 }

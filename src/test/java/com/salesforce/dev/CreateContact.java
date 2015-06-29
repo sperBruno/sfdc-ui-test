@@ -24,8 +24,8 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 public class CreateContact {
 
     private String contactRole = "Mr.";
-    private String firstName = "Marcelo";
-    private String lastName = "Vargas";
+    private String firstName = "Contact";
+    private String lastName = "Testing";
     private String accountName = "AccountTest";
     private String title = "Engineer";
     private String department = "Engineering";
@@ -119,10 +119,6 @@ public class CreateContact {
         contactForm.setMailingState(mailingState);
         contactForm.setMailingZip(mailingZip);
         contactForm.setMailingCountry(mailingCountry);
-        contactForm.setMailingStreet(mailingStreet);
-        contactForm.setMailingCity(mailingCity);
-        contactForm.setMailingState(mailingState);
-        contactForm.setMailingZip(mailingZip);
         contactForm.setOtherStreet(otherStreet);
         contactForm.setOtherCity(otherCity);
         contactForm.setOtherState(otherState);
@@ -132,17 +128,7 @@ public class CreateContact {
         contactForm.setLevel(level);
         contactDetail = contactForm.clickSaveBtn();
 
-        //Assert.assertTrue(contactDetail.VerifyContact(lastName), "contact was not Created");
-    }
-
-//    @Test
-    public void screenshot() {
-        navigationBar = mainPage.gotoNavBar();
-        contactsHome = navigationBar.goToContactsHome();
-        contactForm = contactsHome.clickNewBtn();
-        contactForm.setFirstNameRole(contactRole);
-        contactForm.setFirstName(firstName);
-        Assert.assertTrue(false);
+        Assert.assertTrue(contactDetail.validateContactName(contactRole + " " + firstName + " " + lastName));
     }
 
     @AfterMethod(groups = {"Acceptance"})
