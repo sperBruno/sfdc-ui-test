@@ -24,14 +24,14 @@ public class CreatePost {
     NavigationBar navigationBar;
     ChatterHome chatterHome;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
 
     }
-    @Test
+    @Test(groups = {"Acceptance"})
     public void CreatePostAndComment(){
 
         chatterHome = navigationBar.goToChatterHome();
@@ -49,7 +49,7 @@ public class CreatePost {
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown(){
         chatterHome.DeletePost();
     }
