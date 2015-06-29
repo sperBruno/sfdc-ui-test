@@ -26,8 +26,8 @@ public class DriverManager {
     private static DriverManager instance = null;
     private String browser = Environment.getInstance().getBrowser();
     private String mode = Environment.getInstance().getMode();
-    private String username = "sfdcteamone";
-    private String key = "f932d7f3-6e43-4803-8da9-1a970a6075a2";
+    private String username =Environment.getInstance().getUserName();
+    private String key =Environment.getInstance().getKey();
 
     private DriverManager(){
         browser = Environment.getInstance().getBrowser();
@@ -48,12 +48,18 @@ public class DriverManager {
             } else if (browser.equalsIgnoreCase("Safari")) {
                 driver = new SafariDriver();
             }
-        }else if (mode.equalsIgnoreCase("SauceLabs")){
+        }else if (mode.equalsIgnoreCase("Remote")){
             // Choose the browser, version, and platform to test
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName("firefox");
             capabilities.setCapability("version", "34");
             capabilities.setCapability("platform", "OS X 10.10");
+
+            /*
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setBrowserName("safari");
+            capabilities.setCapability("platform", "OS X 10.10");
+            */
 
             // Create the connection to Sauce Labs to run the tests
             try {
