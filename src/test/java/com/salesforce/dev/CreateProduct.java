@@ -8,6 +8,7 @@ import com.salesforce.dev.pages.Product.ProductForm;
 import com.salesforce.dev.pages.Product.ProductsHome;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import com.salesforce.dev.pages.Product.ProductBuilder;
@@ -31,9 +32,8 @@ public class CreateProduct {
         navigationBar = mainPage.gotoNavBar();
 
     }
-    @Test(groups = {"Acceptance"},dataProvider = "getProductValues")
-    public void CreateProduct(String productName,String prodCode,String prodDesc){
-
+    @Test(groups ={"Acceptance"}, dataProvider = "getProductValues")
+    public void testCreateProduct(String productName,String prodCode,String prodDesc) {
         productsHome=navigationBar.goToProductsHome();
         productForm=productsHome.clickNewBtn();
         productForm= new ProductBuilder(productName)
@@ -51,7 +51,8 @@ public class CreateProduct {
         productDetails.clickDeleteBtn(true);
     }
 
+    @DataProvider
     public Object[][] getProductValues() {
-        return new Object[][]{{"New product","Codigo1","this is a new product"}};
+        return new Object[][]{{"New product","Code","this is an new product"}};
     }
 }
