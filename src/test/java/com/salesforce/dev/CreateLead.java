@@ -81,13 +81,6 @@ public class CreateLead {
         Assert.assertEquals(leadDetail.getLeadStatus(), lead.leadStatus,"The lead status is not correct");
         Assert.assertEquals(leadDetail.getRating(), lead.rating,"The rating is not correct");
         Assert.assertEquals(leadDetail.getNumEmployees(), lead.numEmployees,"The number of employees is not correct");
-        System.out.println("actual" + leadDetail.getAddress());
-        System.out.println("expected" + lead.street + "\n" +
-                lead.city + ", " +
-                lead.stateProvince + " " +
-                lead.zipCode + "\n" +
-                lead.country);
-
         Assert.assertEquals(leadDetail.getAddress(), lead.street + "\n" +
                 lead.city + ", " +
                 lead.stateProvince + " " +

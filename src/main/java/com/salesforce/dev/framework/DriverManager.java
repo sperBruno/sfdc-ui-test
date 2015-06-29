@@ -65,8 +65,8 @@ public class DriverManager {
             }
         }
 
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver,15);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver,30);
 
         driver.get("https://www.salesforce.com");
 
