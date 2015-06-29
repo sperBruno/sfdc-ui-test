@@ -31,14 +31,14 @@ public class CreateAccount {
     private DataDrivenManager dataDrivenManager;
 
 
-    @BeforeMethod(groups = {"Regression"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
         dataDrivenManager = new DataDrivenManager();
     }
 
-    @Test(groups = {"Regression"})
+    @Test(groups = {"Acceptance"})
     public void testCreateAccount() {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
@@ -98,7 +98,7 @@ public class CreateAccount {
         Assert.assertTrue(accountDetail.validateAccountDescriptionFld(account.getAccountDesc()));
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         accountDetail.clickDeleteBtn(true);
 

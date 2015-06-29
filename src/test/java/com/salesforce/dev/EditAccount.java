@@ -57,7 +57,7 @@ public class EditAccount {
 
 
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
@@ -74,7 +74,7 @@ public class EditAccount {
 
     }
 
-    @Test
+    @Test(groups = {"Acceptance"})
     public void testEditAccount() {
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
@@ -134,7 +134,7 @@ public class EditAccount {
 
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         accountDetail.clickDeleteBtn(true);
 

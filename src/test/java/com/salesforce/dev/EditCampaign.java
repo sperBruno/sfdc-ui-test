@@ -40,7 +40,7 @@ public class EditCampaign {
     private MainPage mainPage;
     private NavigationBar navigationBar;
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
@@ -95,7 +95,7 @@ public class EditCampaign {
         Assert.assertTrue(campaignDetail.validateCampaignParent(parentCampaign));
     }
 
-    @AfterMethod
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
