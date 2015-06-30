@@ -1,8 +1,10 @@
 package com.salesforce.dev.pages.Opportunities;
 
 import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -15,68 +17,89 @@ public class OpportunityForm extends FormBase{
 
     /*Opportunity Information*/
     @FindBy(id = "opp2")
+    @CacheLookup
     WebElement privateCheckBox;
 
     @FindBy(id = "opp3")
+    @CacheLookup
     WebElement opportunityNameField;
 
     @FindBy(id = "opp4")
+    @CacheLookup
     WebElement accountName;
 
     @FindBy(xpath = "//img=[@alt='Account Name Lookup (New Window)']")
+    @CacheLookup
     WebElement accountNameLookup;
 
     @FindBy(id = "opp5")
+    @CacheLookup
     WebElement type;
 
     @FindBy(id = "opp6")
+    @CacheLookup
     WebElement leadSource;
 
     @FindBy(id = "opp7")
+    @CacheLookup
     WebElement amountField;
 
     @FindBy(id = "opp9")
+    @CacheLookup
     WebElement closeDateField;
 
     @FindBy(xpath = "//input[@id='opp9']/following::a")
+    @CacheLookup
     WebElement todayLink;
 
     @FindBy(id = "opp10")
+    @CacheLookup
     WebElement nextStep;
 
     @FindBy(id = "opp11")
+    @CacheLookup
     WebElement stageCombobox;
 
     @FindBy(id = "opp12")
+    @CacheLookup
     WebElement probability;
 
     @FindBy(id = "opp17")
+    @CacheLookup
     WebElement primaryCampaignSource;
 
     @FindBy(xpath = "//img[@alt='Primary Campaign Source Lookup (New Window)']")
+    @CacheLookup
     WebElement primaryCampaignSourceLookUp;
 
     /*Additional Information*/
     @FindBy(xpath = "//td[contains(.,'Order Number')]/following::input")
+    @CacheLookup
     WebElement orderNumber;
 
     @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::input")
+    @CacheLookup
     WebElement currentGenerator;
 
     @FindBy(xpath = "//td[contains(.,'Tracking Number')]/following::input")
+    @CacheLookup
     WebElement trackingNumber;
 
-    @FindBy(xpath = "//td[contains(.,'Main Competitors')]/following::input")
+    @FindBy(xpath = "//td[contains(.,'Main Competitor(s)')]/following::input")
+    @CacheLookup
     WebElement mainCompetitors;
 
     @FindBy(xpath = "//td[contains(.,'Delivery')]/following::span/select")
+    @CacheLookup
     WebElement deliveryStatus;
 
     /*description*/
     @FindBy(id = "opp14")
+    @CacheLookup
     WebElement description;
 
     @FindBy(name = "save")
+    @CacheLookup
     WebElement saveBtn;
 
     public OpportunityForm(WebDriver driver){
@@ -98,13 +121,13 @@ public class OpportunityForm extends FormBase{
 
         //other fields
         this.setPrivateCheckBox(builder.isPrivate);
-        //this.selectAccountNameLookup();
+        this.selectAccountNameLookup(builder.accountName);
         this.selectTypeByVisibleText(builder.type);
         this.selectLeadSourceByVisibleText(builder.leadSource);
         this.setAmount(builder.amount);
         this.setNextStep(builder.nextStep);
         this.setProbability(builder.probability);
-        //this.selectPrimaryCampaignSourceLookUp(builder.primaryCampaignSource);
+        this.selectPrimaryCampaignSourceLookUp(builder.primaryCampaignSource);
 
         //additional parameters
         this.setOrderNumber(builder.orderNumber);
@@ -185,7 +208,11 @@ public class OpportunityForm extends FormBase{
 
 
     public void selectAccountNameLookup(String accountName){
-        //TODO: accoutn
+        if(accountName!=null) {
+            accountNameLookup.click();
+            SearchLookupBase searchLookup = new SearchLookupBase(driver);
+            searchLookup.searchText(accountName);
+        }
     }
 
 
@@ -222,7 +249,11 @@ public class OpportunityForm extends FormBase{
     }
 
     public void selectPrimaryCampaignSourceLookUp(String primaryCampaignSource){
-        //TODO:still need to implement
+        if(primaryCampaignSource!=null) {
+            this.primaryCampaignSourceLookUp.click();
+            SearchLookupBase searchLookup = new SearchLookupBase(driver);
+            searchLookup.searchText(primaryCampaignSource);
+        }
     }
 
     /*Additional Information*/

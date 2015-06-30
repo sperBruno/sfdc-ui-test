@@ -38,11 +38,11 @@ public class CreateLead {
         leadsHome.clickNewBtn();
 
         LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
+                .setCampaign(lead.campaignLookup)
                 .setSalutation(lead.nameSalutation)
                 .setFirstName(lead.firstName)
                 .setTitle(lead.title)
                 .setLeadSource(lead.leadSource)
-                //.setCampaign(lead.campaignLookup)
                 .setIndustry(lead.industry)
                 .setAnnualRevenue(lead.annualRevenue)
                 .setPhone(lead.phone)
@@ -67,7 +67,7 @@ public class CreateLead {
                 .build();
         LeadDetail leadDetail = leadForm.clickSaveBtn();
 
-        //todo: Assertions
+        //Assertions
         Assert.assertTrue(leadDetail.getName().contains(lead.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
         Assert.assertEquals(leadDetail.getCompany(), lead.company, "The company are not equal");
         Assert.assertEquals(leadDetail.getTitle(), lead.title, "The title is not correct");

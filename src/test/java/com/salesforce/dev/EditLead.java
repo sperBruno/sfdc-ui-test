@@ -39,18 +39,18 @@ public class EditLead {
         LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();
 
-        //todo:editing some fields
-        leadForm.setLastName(leadEditEnum.lastName);
-        leadForm.setPhone(leadEditEnum.phone);
-        leadForm.setWebsite(leadEditEnum.website);
-        leadForm.selectLeadStatusByVisibleText(leadEditEnum.leadStatus);
-        leadForm.setNumEmployees(leadEditEnum.numEmployees);
-        leadForm.selectProductInterestByVisibleText(leadEditEnum.productInterest);
-        leadForm.selectPrimaryByVisibleText(leadEditEnum.primary);
-        leadForm.setDescription(leadEditEnum.description);
+        //editing some fields
+            leadForm.setLastName(leadEditEnum.lastName);
+            leadForm.setPhone(leadEditEnum.phone);
+            leadForm.setWebsite(leadEditEnum.website);
+            leadForm.selectLeadStatusByVisibleText(leadEditEnum.leadStatus);
+            leadForm.setNumEmployees(leadEditEnum.numEmployees);
+            leadForm.selectProductInterestByVisibleText(leadEditEnum.productInterest);
+            leadForm.selectPrimaryByVisibleText(leadEditEnum.primary);
+            leadForm.setDescription(leadEditEnum.description);
         leadDetail = leadForm.clickSaveBtn();
 
-        //todo: assertions
+        //assertions
         Assert.assertTrue(leadDetail.getName().contains(leadEditEnum.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
         Assert.assertEquals(leadDetail.getCompany(), leadEditEnum.company, "The company is not equal");
         Assert.assertEquals(leadDetail.getPhone(), leadEditEnum.phone, "The phone is not equal");

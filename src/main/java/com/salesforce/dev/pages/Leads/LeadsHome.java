@@ -3,6 +3,7 @@ package com.salesforce.dev.pages.Leads;
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.HomeBase;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,7 +13,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class LeadsHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Leads:')]")
+    @CacheLookup
     WebElement leadSection;
+
     public LeadsHome(WebDriver driver){
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();

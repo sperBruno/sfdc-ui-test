@@ -1,9 +1,11 @@
 package com.salesforce.dev.pages.Leads;
 
 import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 
@@ -14,96 +16,126 @@ public class LeadForm extends FormBase {
 
     /*Lead Information*/
     @FindBy(id = "name_salutationlea2")
+    @CacheLookup
     WebElement nameSalutation;
 
     @FindBy(id = "name_firstlea2")
+    @CacheLookup
     WebElement firstName;
 
     @FindBy(id = "name_lastlea2")
+    @CacheLookup
     WebElement lastName;
 
     @FindBy(id = "lea3")
+    @CacheLookup
     WebElement company;
 
     @FindBy(id = "lea4")
+    @CacheLookup
     WebElement title;
 
     @FindBy(id = "lea5")
+    @CacheLookup
     WebElement leadSource;
 
     @FindBy(id = "lea20")
+    @CacheLookup
     WebElement campaign;
 
     @FindBy(xpath = "//img[@alt='Campaign Lookup (New Window)']")
+    @CacheLookup
     WebElement campaingLookup;
 
     @FindBy(id = "lea6")
+    @CacheLookup
     WebElement industry;
 
     @FindBy(id = "lea7")
+    @CacheLookup
     WebElement annualRevenue;
 
     @FindBy(id = "lea8")
+    @CacheLookup
     WebElement phone;
 
     @FindBy(id = "lea9")
+    @CacheLookup
     WebElement mobile;
 
     @FindBy(id = "lea10")
+    @CacheLookup
     WebElement fax;
 
     @FindBy(id = "lea11")
+    @CacheLookup
     WebElement email;
 
     @FindBy(id = "lea12")
+    @CacheLookup
     WebElement website;
 
     @FindBy(id = "lea13")
+    @CacheLookup
     WebElement leadStatus;
 
     @FindBy(id = "lea14")
+    @CacheLookup
     WebElement rating;
 
     @FindBy(id = "lea15")
+    @CacheLookup
     WebElement numEmployees;
 
     /*Address Information*/
     @FindBy(id ="lea16street")
+    @CacheLookup
     WebElement street;
 
     @FindBy(id = "lea16city")
+    @CacheLookup
     WebElement city;
 
     @FindBy(id = "lea16state")
+    @CacheLookup
     WebElement state;
 
     @FindBy(id = "lea16zip")
+    @CacheLookup
     WebElement zipCode;
 
     @FindBy(id = "lea16country")
+    @CacheLookup
     WebElement country;
 
     /*additional information*/
     @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::span/select")
+    @CacheLookup
     WebElement productInterest;
 
     @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::input")
+    @CacheLookup
     WebElement SICcode;
 
     @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::input")
+    @CacheLookup
     WebElement numLocations;
 
     @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::input")
+    @CacheLookup
     WebElement currentGenerators;
 
     @FindBy(xpath = "//td[contains(.,'Primary')]/following::span/select")
+    @CacheLookup
     WebElement primary;
 
     /*Others*/
     @FindBy(id = "lea17")
+    @CacheLookup
     WebElement description;
 
     @FindBy(id = "lea21")
+    @CacheLookup
     WebElement assignRule;
 
     public LeadForm(WebDriver driver){
@@ -126,7 +158,7 @@ public class LeadForm extends FormBase {
         this.setFirstName(builder.firstName);
         this.selectLeadSourceByVisibleText(builder.leadSource);
         this.setCampaign(builder.campaign);
-        //this.selectCampaingLookup(builder.campaign);
+        this.selectCampaignLookup(builder.campaign);
         this.selectIndustryByVisibleText(builder.industry);
         this.setAnnualRevenue(builder.annualRevenue);
         this.setPhone(builder.phone);
@@ -198,9 +230,12 @@ public class LeadForm extends FormBase {
         }
     }
 
-    //todo:still needs to be implemented
-    public void selectCampaingLookup(String campaignLookup){
-
+    public void selectCampaignLookup(String campaignLookup){
+        if(campaignLookup!=null) {
+            campaingLookup.click();
+            SearchLookupBase searchLookup = new SearchLookupBase(driver);
+            searchLookup.searchText(campaignLookup);
+        }
     }
 
     public void selectIndustryByVisibleText(String industry){
