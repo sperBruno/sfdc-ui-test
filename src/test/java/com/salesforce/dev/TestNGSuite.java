@@ -10,18 +10,18 @@ import org.testng.annotations.BeforeSuite;
  */
 public class TestNGSuite {
 
-    @BeforeSuite
+    @BeforeSuite(groups = {"BVT","Acceptance"})
     public void beforeSuite() {
         System.out.println("Starting suite");
     }
 
-    @AfterSuite
+    @AfterSuite(groups = {"BVT","Acceptance"})
     public void afterSuite() {
-        try{
+        try {
             DriverManager.getInstance().quit();
         }
-        catch(WebDriverException e){
-            System.out.println(e.getMessage());
-        }
+        catch(WebDriverException e){e.printStackTrace();}
+        catch(RuntimeException e){e.printStackTrace();}
+
     }
 }

@@ -106,4 +106,15 @@ public class DriverManager {
             System.out.println(e.getMessage());
         }
     }
+
+    public void close(){
+        try{
+
+            driver.close();
+
+        }
+        catch(WebDriverException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
