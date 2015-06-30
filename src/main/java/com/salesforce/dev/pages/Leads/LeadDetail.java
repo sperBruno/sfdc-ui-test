@@ -5,6 +5,7 @@ import com.salesforce.dev.pages.Base.DetailsBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -15,81 +16,106 @@ public class LeadDetail extends DetailsBase {
 
     /*Lead Information*/
     @FindBy(id = "lea1_ileinner")
+    @CacheLookup
     WebElement owner;
 
     @FindBy(id = "lea2_ileinner")
+    @CacheLookup
     WebElement name;
 
     @FindBy(id = "lea3_ileinner")
+    @CacheLookup
     WebElement company;
 
     @FindBy(id = "lea4_ileinner")
+    @CacheLookup
     WebElement title;
 
     @FindBy(id = "lea5_ileinner")
+    @CacheLookup
     WebElement leadSource;
 
     @FindBy(id = "lea6_ileinner")
+    @CacheLookup
     WebElement industry;
 
     @FindBy(id = "lea7_ileinner")
+    @CacheLookup
     WebElement annualRevenue;
 
     @FindBy(id = "lea8_ileinner")
+    @CacheLookup
     WebElement phone;
 
     @FindBy(id = "lea9_ileinner")
+    @CacheLookup
     WebElement mobile;
 
     @FindBy(id = "lea10_ileinner")
+    @CacheLookup
     WebElement fax;
 
     @FindBy(id = "lea11_ileinner")
+    @CacheLookup
     WebElement email;
 
     @FindBy(id = "lea12_ileinner")
+    @CacheLookup
     WebElement website;
 
     @FindBy(id = "lea13_ileinner")
+    @CacheLookup
     WebElement leadStatus;
 
     @FindBy(id = "lea14_ileinner")
+    @CacheLookup
     WebElement rating;
 
     @FindBy(id = "lea15_ileinner")
+    @CacheLookup
     WebElement numEmployees;
 
     /*Address Information*/
     @FindBy(id = "lea16_ileinner")
+    @CacheLookup
     WebElement address;
 
     /*additional information*/
     @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::div")
+    @CacheLookup
     WebElement productInterest;
 
     @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::div")
+    @CacheLookup
     WebElement SICcode;
 
     @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::div")
+    @CacheLookup
     WebElement numLocations;
 
     @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::div")
+    @CacheLookup
     WebElement currentGenerators;
 
     @FindBy(xpath = "//td[contains(.,'Primary')]/following::div")
+    @CacheLookup
     WebElement primary;
 
     /*Others*/
     @FindBy(id = "lea17_ileinner")
+    @CacheLookup
     WebElement description;
 
     @FindBy(id = "lea20")
+    @CacheLookup
     WebElement campaign;
 
     @FindBy(id = "CreatedBy_ileinner")
+    @CacheLookup
     WebElement createdBy;
 
     @FindBy(id = "LastModifiedBy_ileinner")
+    @CacheLookup
     WebElement lastModifiedBy;
 
     public LeadDetail(WebDriver driver){
