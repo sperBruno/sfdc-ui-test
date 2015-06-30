@@ -127,7 +127,7 @@ public class LeadForm extends FormBase {
         this.setFirstName(builder.firstName);
         this.selectLeadSourceByVisibleText(builder.leadSource);
         this.setCampaign(builder.campaign);
-        //this.selectCampaignLookup(builder.campaign);
+        this.selectCampaignLookup(builder.campaign);
         this.selectIndustryByVisibleText(builder.industry);
         this.setAnnualRevenue(builder.annualRevenue);
         this.setPhone(builder.phone);
@@ -200,9 +200,11 @@ public class LeadForm extends FormBase {
     }
 
     public void selectCampaignLookup(String campaignLookup){
-        campaingLookup.click();
-        SearchLookupBase searchLookup = new SearchLookupBase(driver);
-        searchLookup.searchText(campaignLookup);
+        if(campaignLookup!=null) {
+            campaingLookup.click();
+            SearchLookupBase searchLookup = new SearchLookupBase(driver);
+            searchLookup.searchText(campaignLookup);
+        }
     }
 
     public void selectIndustryByVisibleText(String industry){

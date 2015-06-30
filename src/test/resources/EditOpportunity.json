@@ -1,23 +1,23 @@
 {
   "privateChk":true,
-  "opportunityName":"Op using json edit",
+  "opportunityName":"Opportunity009",
   "accountName":null,
   "accountNameLookup":null,
-  "type":null,
-  "leadSource":null,
-  "amount":"10000",
-  "closeDate":"Today",
-  "nextStep":null,
-  "stage":"Needs Analysis",
-  "probability":null,
+  "type":"Existing Customer - Replacement",
+  "leadSource":"Purchased List",
+  "amount":"100",
+  "closeDate":"5/5/2018",
+  "nextStep":"Review the opportunity",
+  "stage":"Value Proposition",
+  "probability":50,
   "primaryCampaignSource":null,
   "primaryCampaignSourceLookUp":null,
 
-  "orderNumber":null,
+  "orderNumber":"123456",
   "currentGenerator":null,
-  "trackingNumber":null,
-  "mainCompetitors":null,
-  "deliveryStatus":null,
+  "trackingNumber":"10001",
+  "mainCompetitors":"acme",
+  "deliveryStatus":"Yet to begin",
 
-  "description":"Using json edit"
+  "description":"Opportunity Description edited"
 }

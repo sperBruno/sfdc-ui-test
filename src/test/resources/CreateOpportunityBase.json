@@ -1,11 +1,11 @@
 {
 "privateChk":true,
-"opportunityName":"Op using json",
+"opportunityName":"Opportunity01",
 "accountName":null,
 "accountNameLookup":null,
 "type":null,
 "leadSource":null,
-"amount":"10000",
+"amount":null,
 "closeDate":"5/5/2016",
 "nextStep":null,
 "stage":"Value Proposition",
@@ -19,5 +19,5 @@
 "mainCompetitors":null,
 "deliveryStatus":null,
 
-"description":"Using json"
+"description":null
 }

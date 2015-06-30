@@ -67,7 +67,7 @@ public class OpportunityForm extends FormBase{
     @FindBy(xpath = "//td[contains(.,'Tracking Number')]/following::input")
     WebElement trackingNumber;
 
-    @FindBy(xpath = "//td[contains(.,'Main Competitors')]/following::input")
+    @FindBy(xpath = "//td[contains(.,'Main Competitor(s)')]/following::input")
     WebElement mainCompetitors;
 
     @FindBy(xpath = "//td[contains(.,'Delivery')]/following::span/select")
@@ -99,7 +99,7 @@ public class OpportunityForm extends FormBase{
 
         //other fields
         this.setPrivateCheckBox(builder.isPrivate);
-        //this.selectAccountNameLookup();
+        this.selectAccountNameLookup(builder.accountName);
         this.selectTypeByVisibleText(builder.type);
         this.selectLeadSourceByVisibleText(builder.leadSource);
         this.setAmount(builder.amount);
@@ -186,9 +186,11 @@ public class OpportunityForm extends FormBase{
 
 
     public void selectAccountNameLookup(String accountName){
-        accountNameLookup.click();
-        SearchLookupBase searchLookup = new SearchLookupBase(driver);
-        searchLookup.searchText(accountName);
+        if(accountName!=null) {
+            accountNameLookup.click();
+            SearchLookupBase searchLookup = new SearchLookupBase(driver);
+            searchLookup.searchText(accountName);
+        }
     }
 
 
@@ -225,9 +227,11 @@ public class OpportunityForm extends FormBase{
     }
 
     public void selectPrimaryCampaignSourceLookUp(String primaryCampaignSource){
-        this.primaryCampaignSourceLookUp.click();
-        SearchLookupBase searchLookup = new SearchLookupBase(driver);
-        searchLookup.searchText(primaryCampaignSource);
+        if(primaryCampaignSource!=null) {
+            this.primaryCampaignSourceLookUp.click();
+            SearchLookupBase searchLookup = new SearchLookupBase(driver);
+            searchLookup.searchText(primaryCampaignSource);
+        }
     }
 
     /*Additional Information*/

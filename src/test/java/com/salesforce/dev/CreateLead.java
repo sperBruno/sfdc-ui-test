@@ -67,7 +67,7 @@ public class CreateLead {
                 .build();
         LeadDetail leadDetail = leadForm.clickSaveBtn();
 
-        //todo: Assertions
+        //Assertions
         Assert.assertTrue(leadDetail.getName().contains(lead.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
         Assert.assertEquals(leadDetail.getCompany(), lead.company, "The company are not equal");
         Assert.assertEquals(leadDetail.getTitle(), lead.title, "The title is not correct");
