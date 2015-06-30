@@ -6,7 +6,7 @@
   "title":"Corredor",
   "leadSource":"Web",
   "campaign":null,
-  "campaignLookup":null,
+  "campaignLookup":"CampaignParent",
   "industry":"Engineering",
   "annualRevenue":"10000",
   "phone":"555-5555",

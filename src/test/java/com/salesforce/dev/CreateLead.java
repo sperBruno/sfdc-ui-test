@@ -38,11 +38,11 @@ public class CreateLead {
         leadsHome.clickNewBtn();
 
         LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
+                .setCampaign(lead.campaignLookup)
                 .setSalutation(lead.nameSalutation)
                 .setFirstName(lead.firstName)
                 .setTitle(lead.title)
                 .setLeadSource(lead.leadSource)
-                //.setCampaign(lead.campaignLookup)
                 .setIndustry(lead.industry)
                 .setAnnualRevenue(lead.annualRevenue)
                 .setPhone(lead.phone)

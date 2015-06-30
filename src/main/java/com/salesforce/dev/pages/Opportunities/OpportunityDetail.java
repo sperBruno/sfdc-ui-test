@@ -160,11 +160,6 @@ public class OpportunityDetail extends DetailsBase {
         return opDescription.getText();
     }
 
-    /* Pending
-    @FindBy()
-    WebElement customLinks;
-    */
-
     public String getAmount() {
         return amount.getText();
     }

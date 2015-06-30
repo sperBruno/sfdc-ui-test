@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Opportunities;
 
 import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -104,7 +105,7 @@ public class OpportunityForm extends FormBase{
         this.setAmount(builder.amount);
         this.setNextStep(builder.nextStep);
         this.setProbability(builder.probability);
-        //this.selectPrimaryCampaignSourceLookUp(builder.primaryCampaignSource);
+        this.selectPrimaryCampaignSourceLookUp(builder.primaryCampaignSource);
 
         //additional parameters
         this.setOrderNumber(builder.orderNumber);
@@ -185,7 +186,9 @@ public class OpportunityForm extends FormBase{
 
 
     public void selectAccountNameLookup(String accountName){
-        //TODO: accoutn
+        accountNameLookup.click();
+        SearchLookupBase searchLookup = new SearchLookupBase(driver);
+        searchLookup.searchText(accountName);
     }
 
 
@@ -222,7 +225,9 @@ public class OpportunityForm extends FormBase{
     }
 
     public void selectPrimaryCampaignSourceLookUp(String primaryCampaignSource){
-        //TODO:still need to implement
+        this.primaryCampaignSourceLookUp.click();
+        SearchLookupBase searchLookup = new SearchLookupBase(driver);
+        searchLookup.searchText(primaryCampaignSource);
     }
 
     /*Additional Information*/

@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Leads;
 
 import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -126,7 +127,7 @@ public class LeadForm extends FormBase {
         this.setFirstName(builder.firstName);
         this.selectLeadSourceByVisibleText(builder.leadSource);
         this.setCampaign(builder.campaign);
-        //this.selectCampaingLookup(builder.campaign);
+        //this.selectCampaignLookup(builder.campaign);
         this.selectIndustryByVisibleText(builder.industry);
         this.setAnnualRevenue(builder.annualRevenue);
         this.setPhone(builder.phone);
@@ -198,9 +199,10 @@ public class LeadForm extends FormBase {
         }
     }
 
-    //todo:still needs to be implemented
-    public void selectCampaingLookup(String campaignLookup){
-
+    public void selectCampaignLookup(String campaignLookup){
+        campaingLookup.click();
+        SearchLookupBase searchLookup = new SearchLookupBase(driver);
+        searchLookup.searchText(campaignLookup);
     }
 
     public void selectIndustryByVisibleText(String industry){

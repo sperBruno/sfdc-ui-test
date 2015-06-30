@@ -191,7 +191,6 @@ public class LeadDetail extends DetailsBase {
         return description.getText();
     }
 
-    //todo:incomplete
     public String getCampaign(){
         return campaign.getText();
     }
