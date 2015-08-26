@@ -206,7 +206,7 @@ public class AccountDetail extends DetailsBase {
         return accountSerialNumberFld.getText().equals(value);
     }
 
-    public Boolean validateAccountUpsellOportunityFld(String value) {
+    public Boolean validateAccountUpSellOpportunityFld(String value) {
         return accountUpsellOportunityFld.getText().equals(value);
     }
 
