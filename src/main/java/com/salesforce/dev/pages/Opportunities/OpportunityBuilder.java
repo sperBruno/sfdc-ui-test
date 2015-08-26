@@ -46,8 +46,8 @@ public class OpportunityBuilder {
         return this;
     }
 
-    public OpportunityBuilder setCurrenGenerator(String currenGenerator) {
-        this.currentGenerator = currenGenerator;
+    public OpportunityBuilder setCurrentGenerator(String currentGenerator) {
+        this.currentGenerator = currentGenerator;
         return this;
     }
 
@@ -86,8 +86,8 @@ public class OpportunityBuilder {
         return this;
     }
 
-    public OpportunityBuilder setMainCompetidors(String mainCompetidors) {
-        this.mainCompetidors = mainCompetidors;
+    public OpportunityBuilder setMainCompetitors(String mainCompetitors) {
+        this.mainCompetidors = mainCompetitors;
         return this;
     }
 

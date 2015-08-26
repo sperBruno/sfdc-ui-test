@@ -71,7 +71,7 @@ public class EditOpportunity {
         Assert.assertEquals(oppDetail.getOrderNumber(),oppEditEnum.orderNumber,"The order number is not equal");
         Assert.assertEquals(oppDetail.getTrackingNumber(),oppEditEnum.trackingNumber,"The tracking number is not equal");
         Assert.assertEquals(oppDetail.getLeadSource(),oppEditEnum.leadSource,"The lead source is not equal");
-        Assert.assertEquals(oppDetail.getMainCompetidors(),oppEditEnum.mainCompetitors,"The main competitors is not equal");
+        Assert.assertEquals(oppDetail.getMainCompetitors(),oppEditEnum.mainCompetitors,"The main competitors is not equal");
         Assert.assertEquals(oppDetail.getDeliveryInstallationStatus(),oppEditEnum.deliveryStatus,"The delivery status is not equal");
         Assert.assertEquals(oppDetail.getOpDescription(),oppEditEnum.description,"The description is not equal");
     }

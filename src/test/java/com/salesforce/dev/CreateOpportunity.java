@@ -47,7 +47,7 @@ public class CreateOpportunity {
                 .setProbability(oppEnum.probability)
                 .setOrderNumber(oppEnum.orderNumber)
                 .setTrackingNumber(oppEnum.trackingNumber)
-                .setMainCompetidors(oppEnum.mainCompetitors)
+                .setMainCompetitors(oppEnum.mainCompetitors)
                 .setDeliveryInstallationStatus(oppEnum.deliveryStatus)
                 .setOpDescription(oppEnum.description)
 
@@ -67,7 +67,7 @@ public class CreateOpportunity {
         Assert.assertEquals(opportunityDetails.getOrderNumber(),oppEnum.orderNumber,"The order number is not equal");
         Assert.assertEquals(opportunityDetails.getTrackingNumber(),oppEnum.trackingNumber,"The tracking number is not equal");
         Assert.assertEquals(opportunityDetails.getLeadSource(),oppEnum.leadSource,"The lead source is not equal");
-        Assert.assertEquals(opportunityDetails.getMainCompetidors(),oppEnum.mainCompetitors,"The main competitors is not equal");
+        Assert.assertEquals(opportunityDetails.getMainCompetitors(),oppEnum.mainCompetitors,"The main competitors is not equal");
         Assert.assertEquals(opportunityDetails.getDeliveryInstallationStatus(),oppEnum.deliveryStatus,"The delivery status is not equal");
         Assert.assertEquals(opportunityDetails.getOpDescription(),oppEnum.description,"The description is not equal");
 

@@ -58,7 +58,7 @@ public class OpportunityForm extends FormBase{
 
     @FindBy(id = "opp11")
     @CacheLookup
-    WebElement stageCombobox;
+    WebElement stageComboBox;
 
     @FindBy(id = "opp12")
     @CacheLookup
@@ -175,7 +175,7 @@ public class OpportunityForm extends FormBase{
      * */
     public void selectStageByVisibleText(String stage){
         if(stage!=null) {
-            selectItemComboBox(stageCombobox, stage);
+            selectItemComboBox(stageComboBox, stage);
         }
 
     }
