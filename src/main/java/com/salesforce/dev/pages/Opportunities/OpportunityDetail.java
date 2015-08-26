@@ -166,7 +166,7 @@ public class OpportunityDetail extends DetailsBase {
         return orderNumber.getText();
     }
 
-    public String getCurrenGenerator() {
+    public String getCurrentGenerator() {
         return currentGenerator.getText();
     }
 
@@ -210,7 +210,7 @@ public class OpportunityDetail extends DetailsBase {
         return primaryCampaignSource.getText();
     }
 
-    public String getMainCompetidors() {
+    public String getMainCompetitors() {
         return mainCompetitors.getText();
     }
 
