@@ -76,6 +76,7 @@ public class TopHeader {
         try{
             wait.until(ExpectedConditions.visibilityOf(logoutMenuOption));
             logoutMenuOption.click();
+            System.out.print("LOGUT");
         }
         catch (WebDriverException e){
             throw new WebDriverException(e);

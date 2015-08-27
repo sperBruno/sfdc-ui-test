@@ -23,12 +23,33 @@ public abstract class HomeBase {
     @FindBy(name = "new")
     protected WebElement newBtn;
 
+    @FindBy(linkText = "Create New View")
+    protected WebElement newViewLnk;
+
+    @FindBy(linkText = "Edit")
+    protected WebElement editViewLnk;
+
+
     /**
      * Method clicks the New button in the home page for each different category
      *
      * @author: Jimmy
      */
     protected abstract Object clickNewBtn();
+
+    /**
+     * Method clicks the New Link in the home page for each different category
+     *
+     * @author: veronica
+     */
+    protected abstract Object clickNewViewLnk();
+
+    /**
+     * Method clicks the NEdit view in the home page for each different category
+     *
+     * @author: veronica
+     */
+    protected abstract Object clickEditViewLnk(String value);
 
     /**
      * Method that encapsulates the the operations waiting for the elemeent and the action
@@ -49,6 +70,25 @@ public abstract class HomeBase {
         }
     }
 
+    /**
+     * Method that encapsulates the the operations waiting for the elemeent and the action
+     *
+     * @author: veronica
+     */
+    protected void clickNewViewLink() {
+        try {
+            this.wait.until(ExpectedConditions.visibilityOf(newViewLnk));
+            newViewLnk.click();
+            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                    "New View Link was clicked");
+        }
+        catch(WebDriverException e){
+            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
+                    "The New View Link couldn't be found",
+                    e.fillInStackTrace());
+        }
+    }
+
     protected abstract Object selectRecentItem(String value);
 
     protected void clickRecentItem(String value){
@@ -64,5 +104,16 @@ public abstract class HomeBase {
                     "The Recent Item button couldn't be found",
                     e.fillInStackTrace());
         }
+    }
+
+    protected void selectRecentView(String value){
+        wait.until(ExpectedConditions.visibilityOf(viewCombobox));
+        viewCombobox.sendKeys(value);
+
+    }
+
+    protected void editViewLnk(String value){
+        selectRecentView(value);
+        editViewLnk.click();
     }
 }

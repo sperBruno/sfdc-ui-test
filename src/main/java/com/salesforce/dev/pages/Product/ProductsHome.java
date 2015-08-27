@@ -31,6 +31,16 @@ public class ProductsHome extends HomeBase {
       return new ProductForm(this.driver);
     }
 
+    @Override
+    protected Object clickNewViewLnk() {
+        return null;
+    }
+
+    @Override
+    protected Object clickEditViewLnk(String value) {
+        return null;
+    }
+
     public ProductDetails selectRecentItem(String value) {
         clickRecentItem(value);
         return new ProductDetails(this.driver);

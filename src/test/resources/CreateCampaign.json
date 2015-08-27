@@ -1,0 +1,14 @@
+[
+     {"campaignName" :"Campaign Name",
+      "campaignType" :"Webinar",
+       "campaignStatus":"Completed",
+       "startDate":"6/15/2016",
+       "endDate":"6/17/2016",
+       "expectedRevenue":"2500",
+       "budgetedCost":"2000",
+       "actualCost":"3500",
+       "expectedResponse":"78",
+       "numSent":"10",
+       "parentCampaign":"CampaignParent"
+     }
+]

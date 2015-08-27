@@ -28,6 +28,16 @@ public class ContactsHome extends HomeBase {
         return new ContactForm(driver);
     }
 
+    @Override
+    protected Object clickNewViewLnk() {
+        return null;
+    }
+
+    @Override
+    protected Object clickEditViewLnk(String value) {
+        return null;
+    }
+
     public ContactDetail selectRecentItem(String opportunity){
         super.clickRecentItem(opportunity);
         return new ContactDetail(this.driver);

@@ -32,6 +32,16 @@ public class OpportunitiesHome extends HomeBase {
         return new OpportunityForm(this.driver);
     }
 
+    @Override
+    protected Object clickNewViewLnk() {
+        return null;
+    }
+
+    @Override
+    protected Object clickEditViewLnk(String value) {
+        return null;
+    }
+
     public OpportunityDetail selectRecentItem(String opportunity){
         super.clickRecentItem(opportunity);
         return new OpportunityDetail(this.driver);

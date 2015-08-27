@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salesforce.dev.framework.Objects.Account;
+import com.salesforce.dev.framework.Objects.Campaign;
+import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -49,4 +51,92 @@ public class DataDrivenManager {
         return accountsArray.iterator();
     }
 
+    public Iterator<ViewSalesForce[]> getDataView(String fileJson){
+
+        Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
+        try {
+            parser = new JSONParser();
+            String pathFileJson = "src\\test\\resources\\" + fileJson;
+            Object jsonObject = parser.parse(new FileReader(pathFileJson));
+            JSONArray jsonArray = (JSONArray) jsonObject;
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            List<ViewSalesForce> navigation = objectMapper.readValue(jsonArray.toJSONString(),
+                    objectMapper.getTypeFactory().constructCollectionType(
+                            List.class, ViewSalesForce.class));
+
+            for (int i = 0 ; i< navigation.size(); i++){
+                ViewSalesForce viewSalesForce = (ViewSalesForce)navigation.get(i);
+                viewSalesForcesArray.add(new ViewSalesForce[]{viewSalesForce});
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return viewSalesForcesArray.iterator();
+    }
+
+    public Iterator<ViewSalesForce[]> getDataViewtoEdit(String fileJson){
+
+        Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
+        try {
+            parser = new JSONParser();
+            String pathFileJson = "src\\test\\resources\\" + fileJson;
+            Object jsonObject = parser.parse(new FileReader(pathFileJson));
+            JSONArray jsonArray = (JSONArray) jsonObject;
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            List<ViewSalesForce> navigation = objectMapper.readValue(jsonArray.toJSONString(),
+                    objectMapper.getTypeFactory().constructCollectionType(
+                            List.class, ViewSalesForce.class));
+
+            for (int i = 0 ; i< navigation.size(); i++){
+                ViewSalesForce viewSalesForce = (ViewSalesForce)navigation.get(i);
+                viewSalesForcesArray.add(new ViewSalesForce[]{viewSalesForce});
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return viewSalesForcesArray.iterator();
+    }
+
+    public Iterator<Campaign[]> getCampaign(String fileJson) {
+
+        Collection<Campaign[]> campaignsArray = new ArrayList<Campaign[]>();
+        try {
+            parser = new JSONParser();
+            Object jsonObject = parser.parse(new FileReader("src\\test\\resources\\" + fileJson));
+            JSONArray jsonArray = (JSONArray) jsonObject;
+
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            List<Campaign> navigation = objectMapper.readValue(jsonArray.toJSONString(),
+                    objectMapper.getTypeFactory().constructCollectionType(
+                            List.class, Campaign.class));
+
+            for (int i = 0; i < navigation.size(); i++) {
+                Campaign campaign = (Campaign) navigation.get(i);
+                campaignsArray.add(new Campaign[]{campaign});
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return campaignsArray.iterator();
+    }
 }
