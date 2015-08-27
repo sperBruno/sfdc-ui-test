@@ -29,6 +29,19 @@ public class CampaignsHome extends HomeBase {
     }
 
     @Override
+    public CampaignView clickNewViewLnk() {
+        clickNewViewLink();
+        return new CampaignView(this.driver);
+    }
+
+    @Override
+    public CampaignView clickEditViewLnk(String value) {
+        editViewLnk(value);
+        return new CampaignView(this.driver);
+    }
+
+
+    @Override
     public CampaignDetail selectRecentItem(String campaign){
         super.clickRecentItem(campaign);
         return new CampaignDetail(this.driver);
