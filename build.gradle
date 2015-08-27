@@ -37,15 +37,18 @@ dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.12'
 	compile 'org.seleniumhq.selenium:selenium-java:2.46.0'
-    compile 'org.testng:testng:6.9.4'
+    compile 'com.force.api:force-metadata-api:35.0.0'
+    compile 'com.force.api:force-partner-api:35.0.0'
+    compile 'com.force.api:force-wsc:35.0.0'
+    compile 'com.force.api:force-apex-api:35.0.0'
+    compile 'org.testng:testng:6.9.6'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.4'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.4'
+    compile 'com.github.detro:phantomjsdriver:1.2.0'
 	compile 'org.uncommons:reportng:1.1.4'
     compile 'com.google.inject:guice:3.0'
     compile 'log4j:log4j:1.2.17'
-
-
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the

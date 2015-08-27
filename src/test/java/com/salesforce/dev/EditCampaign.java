@@ -6,6 +6,7 @@ import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.testng.Assert;
@@ -20,8 +21,8 @@ public class EditCampaign {
 
     private String campaignNameUpdated ="Campaign UPDATED";
     private String campaignName = "Campaign Name";
-    private String campaignType = "Webinar"; //Conference, Webinar, Trade Show, Public Relations, Partners, Referral Program, Advertisement, Banner Ads, Direct Mail, Email, Telemarketing, Other
-    private String campaignStatus = "Completed"; //--None--, Planned, In Progress, Completed, Aborted
+    private String campaignType = "Webinar";
+    private String campaignStatus = "Completed";
     private String startDate = "6/15/2016";
     private String endDate = "6/17/2016";
     private String expectedRevenue = "2500";
@@ -42,8 +43,7 @@ public class EditCampaign {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -57,7 +57,6 @@ public class EditCampaign {
         campaignForm.setCampaignName(campaignName);
         campaignForm.checkActiveCheckbox();
         campaignDetail = campaignForm.clickSaveBtn();
-
         mainPage = campaignDetail.gotoMainPage();
     }
 
