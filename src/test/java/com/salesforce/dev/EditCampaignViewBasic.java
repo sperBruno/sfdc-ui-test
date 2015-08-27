@@ -65,15 +65,15 @@ public class EditCampaignViewBasic {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        /*campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
-        campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
+       // campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
         campaignDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign Parent was deleted");*/
+                "Campaign Parent was deleted");
     }
 }
