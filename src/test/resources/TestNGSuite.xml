@@ -10,7 +10,6 @@
             <class name="com.salesforce.dev.EditCampaign"/>
             <class name="com.salesforce.dev.CreateCampaignViewBasic"/>
             <class name="com.salesforce.dev.CreateCampaignViewFiltersFieldsAdded"/>
-            <class name="com.salesforce.dev.CreateCampaignViewFiltersFieldsAdded"/>
             <class name="com.salesforce.dev.CreateAccount"/>
             <class name="com.salesforce.dev.CreateAccountDD"/>
             <class name="com.salesforce.dev.CreateCampaign"/>
