@@ -31,6 +31,16 @@ public class AccountsHome extends HomeBase {
     }
 
     @Override
+    protected Object clickNewViewLnk() {
+        return null;
+    }
+
+    @Override
+    protected Object clickEditViewLnk(String value) {
+        return null;
+    }
+
+    @Override
     public AccountDetail selectRecentItem(String value) {
         clickRecentItem(value);
         return new AccountDetail(driver);

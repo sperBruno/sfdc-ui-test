@@ -29,6 +29,16 @@ public class LeadsHome extends HomeBase {
 
     }
 
+    @Override
+    protected Object clickNewViewLnk() {
+        return null;
+    }
+
+    @Override
+    protected Object clickEditViewLnk(String value) {
+        return null;
+    }
+
     public Object selectRecentItem(String item){
         super.clickRecentItem(item);
         return new LeadsHome(super.driver);

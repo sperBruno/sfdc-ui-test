@@ -76,5 +76,13 @@ public class Environment {
         return getEnv("key");
     }
 
+    public String getPrimaryUserPasswordToken(){
+        return getEnv("primaryUsePasswordToken");
+    }
+
+    public String getUrlApi(){
+        return getEnv("urlApi");
+    }
+
 
 }

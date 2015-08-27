@@ -1,6 +1,7 @@
 package com.salesforce.dev.framework;
 
 
+import com.salesforce.dev.pages.Login.Transporter;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -26,6 +27,8 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         System.out.println("On Execution Start");
+        System.out.println("Login Sales Force");
+
     }
 
     @Override
@@ -76,11 +79,12 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-
+        Transporter.login();
     }
 
     @Override
     public void onFinish(ITestContext context) {
+
 
     }
 }

@@ -49,26 +49,15 @@ public class DriverManager {
                 driver = new SafariDriver();
             }
         }else if (mode.equalsIgnoreCase("Remote")){
-            // Choose the browser, version, and platform to test
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setBrowserName("firefox");
-            capabilities.setCapability("version", "34");
-            capabilities.setCapability("platform", "OS X 10.10");
-
-            /*
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setBrowserName("safari");
-            capabilities.setCapability("platform", "OS X 10.10");
-            */
-
+            DesiredCapabilities caps = DesiredCapabilities.chrome();
+            caps.setCapability("platform", "Windows 8.1");
+            caps.setCapability("version", "39.0");
             // Create the connection to Sauce Labs to run the tests
             try {
                 this.driver = new RemoteWebDriver(
                         new URL("http://" + username + ":" + key + "@ondemand.saucelabs.com:80/wd/hub"),
-                        capabilities);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
+                        caps);
+            }catch(MalformedURLException e){}
         }
 
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
