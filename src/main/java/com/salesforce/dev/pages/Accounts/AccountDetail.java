@@ -84,7 +84,7 @@ public class AccountDetail extends DetailsBase {
     private WebElement accountSerialNumberFld;
 
     @FindBy(xpath = "//td[contains(.,'Upsell Opportunity')]/following::div")
-    private WebElement accountUpsellOportunityFld;
+    private WebElement accountUpSellOpportunityFld;
 
 
     public AccountDetail(WebDriver driver) {
@@ -207,7 +207,7 @@ public class AccountDetail extends DetailsBase {
     }
 
     public Boolean validateAccountUpSellOpportunityFld(String value) {
-        return accountUpsellOportunityFld.getText().equals(value);
+        return accountUpSellOpportunityFld.getText().equals(value);
     }
 
 }

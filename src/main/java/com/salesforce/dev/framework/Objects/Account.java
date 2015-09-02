@@ -183,11 +183,11 @@ public class Account {
         this.sla = sla;
     }
 
-    public String getUpsellOpportunity() {
+    public String getUpSellOpportunity() {
         return upsellOpportunity;
     }
 
-    public void setUpsellOpportunity(String upsellOpportunity) {
+    public void setUpSellOpportunity(String upSellOpportunity) {
         this.upsellOpportunity = upsellOpportunity;
     }
 

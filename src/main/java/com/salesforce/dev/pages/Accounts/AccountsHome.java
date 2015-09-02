@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.Accounts;
 
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.HomeBase;
+import com.salesforce.dev.pages.Campaigns.CampaignView;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -31,13 +32,15 @@ public class AccountsHome extends HomeBase {
     }
 
     @Override
-    protected Object clickNewViewLnk() {
-        return null;
+    public AccountView clickNewViewLnk() {
+        clickNewViewLink();
+        return new AccountView(this.driver);
     }
 
     @Override
-    protected Object clickEditViewLnk(String value) {
-        return null;
+    public AccountView clickEditViewLnk(String value) {
+        editViewLnk(value);
+        return new AccountView(this.driver);
     }
 
     @Override

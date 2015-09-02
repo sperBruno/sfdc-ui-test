@@ -62,10 +62,10 @@ public class CreateAccount {
         accountForm.setAccountShippingStreetFld(account.getShippingAddress());
         accountForm.setAccountCustomerPriorityFld(account.getCustomerPriority());
         accountForm.setAccountSLAFld(account.getSla());
-        accountForm.setAccountUpsellOpportunityFld(account.getUpsellOpportunity());
+        accountForm.setAccountUpsellOpportunityFld(account.getUpSellOpportunity());
         accountForm.setAccountActiveFld(account.getActive());
         accountForm.setAccountSLAExpirationDateFld(account.getSlaExpirationDate());
-        //accountForm.setAccountSLAExpirationDateFld(6,15,2016);
+        accountForm.setAccountSLAExpirationDateFld(12,15,2016);
         accountForm.setAccountSLASerialNumberFld(account.getSlaSerialNumber());
         accountForm.setAccountNumberLocationsFld(account.getNumberOfLocations());
         accountForm.setAccountDescriptionFld(account.getAccountDesc());
@@ -90,7 +90,7 @@ public class CreateAccount {
         Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(account.getShippingAddress()));
         Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(account.getCustomerPriority()));
         Assert.assertTrue(accountDetail.validateAccountSLAFld(account.getSla()));
-        Assert.assertTrue(accountDetail.validateAccountUpsellOportunityFld(account.getUpsellOpportunity()));
+        Assert.assertTrue(accountDetail.validateAccountUpSellOpportunityFld(account.getUpSellOpportunity()));
         Assert.assertTrue(accountDetail.validateAccountActiveFld(account.getActive()));
         Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(account.getSlaExpirationDate()));
         Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(account.getSlaSerialNumber()));

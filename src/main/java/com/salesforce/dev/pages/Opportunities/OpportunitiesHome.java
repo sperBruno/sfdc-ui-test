@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.Opportunities;
 
+import com.salesforce.dev.pages.Accounts.AccountView;
 import com.salesforce.dev.pages.Base.*;
 import com.salesforce.dev.framework.DriverManager;
 import org.openqa.selenium.By;
@@ -33,13 +34,15 @@ public class OpportunitiesHome extends HomeBase {
     }
 
     @Override
-    protected Object clickNewViewLnk() {
-        return null;
+    public OpportunityView clickNewViewLnk() {
+        clickNewViewLink();
+        return new OpportunityView(this.driver);
     }
 
     @Override
-    protected Object clickEditViewLnk(String value) {
-        return null;
+    public OpportunityView clickEditViewLnk(String value) {
+        editViewLnk(value);
+        return new OpportunityView(this.driver);
     }
 
     public OpportunityDetail selectRecentItem(String opportunity){
