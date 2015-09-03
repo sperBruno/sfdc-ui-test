@@ -60,7 +60,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
             campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
         campaignViewDetail = campaignView.clickSaveBtn();
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign was created");
+                "Campaign view was created");
         Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
         for(FieldToDisplayView fields:fieldToDisplayViews){

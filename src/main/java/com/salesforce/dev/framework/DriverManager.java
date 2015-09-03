@@ -28,7 +28,11 @@ public class DriverManager {
     private String mode = Environment.getInstance().getMode();
     private String username =Environment.getInstance().getUserName();
     private String key =Environment.getInstance().getKey();
-
+    private String browserRemote = Environment.getInstance().getBrowserRemote();
+    private String platformRemote = Environment.getInstance().getPlatformRemote();
+    private String versionRemote = Environment.getInstance().getVersionRemote();
+    private static final int TIMEOUT_NORMAL = 30;
+    private int timeoutNormal= TIMEOUT_NORMAL;
     private DriverManager(){
         browser = Environment.getInstance().getBrowser();
         this.initializer();
@@ -49,19 +53,24 @@ public class DriverManager {
                 driver = new SafariDriver();
             }
         }else if (mode.equalsIgnoreCase("Remote")){
-            DesiredCapabilities caps = DesiredCapabilities.chrome();
-            caps.setCapability("platform", "Windows 8.1");
-            caps.setCapability("version", "39.0");
-            // Create the connection to Sauce Labs to run the tests
+            DesiredCapabilities caps;
+            if(browserRemote.equals("Chrome"))
+                caps = DesiredCapabilities.chrome();
+            else
+                caps = DesiredCapabilities.chrome();
+            caps.setCapability("platform", platformRemote);
+            caps.setCapability("version", versionRemote);
             try {
                 this.driver = new RemoteWebDriver(
                         new URL("http://" + username + ":" + key + "@ondemand.saucelabs.com:80/wd/hub"),
                         caps);
-            }catch(MalformedURLException e){}
+            }catch(MalformedURLException e){
+                LoggerManager.getInstance().addErrorLog(this.getClass().getName(),"Error on Initializer on remote environment :", e);
+            }
         }
 
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver,30);
+        driver.manage().timeouts().implicitlyWait(TIMEOUT_NORMAL, TimeUnit.SECONDS);
+        wait = new WebDriverWait(driver,TIMEOUT_NORMAL);
 
         driver.get("https://www.salesforce.com");
 
@@ -79,6 +88,10 @@ public class DriverManager {
     public WebDriverWait getWait(){
         return this.wait;
 
+    }
+
+    public int getTimeoutNormal(){
+        return timeoutNormal;
     }
 
     public WebDriver getDriver(){

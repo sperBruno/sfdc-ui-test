@@ -46,6 +46,11 @@ public class ProductsHome extends HomeBase {
         return new ProductDetails(this.driver);
     }
 
+    @Override
+    protected Object selectRecentViewItem(String value) {
+        return null;
+    }
+
     public ProductDetails OpenProduct(String nameProduct){
         super.driver.findElement(By.xpath("//a[contains(.,'" + nameProduct + "')]")).click();
         return new ProductDetails(this.driver);

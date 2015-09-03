@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by veronica on 8/20/2015.
+ *
  */
 public class CampaignView extends ViewBase {
 
@@ -19,12 +20,12 @@ public class CampaignView extends ViewBase {
         super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
         try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
     @Override
@@ -45,20 +46,23 @@ public class CampaignView extends ViewBase {
     }
 
     @Override
-   public CampaignView checkFilterByOwnerAllAccounts() {
-        checkFilterOwnerAllAccounts();
+   public CampaignView checkFilterByOwnerAll() {
+        checkFilterOwnerAll();
         return this;
     }
 
     @Override
-    public CampaignView checkFilterByOwnerMyAccount() {
-        checkFilterOwnerMyAccount();
+    public CampaignView checkFilterByOwnerMy() {
+        checkFilterOwnerMy();
         return this;
     }
 
     @Override
     public CampaignView checkFilterByOwner(String filter) {
-        checkFilterOwner(filter);
+        if(filter.compareToIgnoreCase("All Campaigns") == 0)
+            checkFilterOwnerAll();
+        else
+            checkFilterOwnerMy();
         return this;
     }
 

@@ -47,6 +47,11 @@ public class OpportunitiesHome extends HomeBase {
         return new OpportunityDetail(this.driver);
     }
 
+    @Override
+    protected Object selectRecentViewItem(String value) {
+        return null;
+    }
+
     public OpportunityDetail openOpportunity(String opportunity){
         WebElement linkOpportunity = driver.findElement(By.linkText(opportunity));
         wait.until(ExpectedConditions.elementToBeClickable(linkOpportunity));

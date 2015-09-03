@@ -4,6 +4,7 @@ import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -26,8 +27,7 @@ public class CreatePost {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
 
     }

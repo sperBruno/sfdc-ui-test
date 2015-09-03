@@ -2,6 +2,7 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
 import org.testng.Assert;
@@ -19,8 +20,7 @@ public class TestCookies {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = Transporter.driverMainPage();
     }
 
     @Test(groups = {"BVT"})

@@ -45,6 +45,11 @@ public class LeadsHome extends HomeBase {
 
     }
 
+    @Override
+    protected Object selectRecentViewItem(String value) {
+        return null;
+    }
+
     public LeadDetail openLead(String lead){
         WebElement linkLead = driver.findElement(By.linkText(lead));
         wait.until(ExpectedConditions.elementToBeClickable(linkLead));

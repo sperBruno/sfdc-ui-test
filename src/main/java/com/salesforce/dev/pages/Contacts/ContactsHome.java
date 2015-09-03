@@ -42,6 +42,12 @@ public class ContactsHome extends HomeBase {
         super.clickRecentItem(opportunity);
         return new ContactDetail(this.driver);
     }
+
+    @Override
+    protected Object selectRecentViewItem(String value) {
+        return null;
+    }
+
     public boolean IsUserInContactsTab(){
         try{
 

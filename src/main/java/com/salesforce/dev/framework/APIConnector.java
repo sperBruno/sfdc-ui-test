@@ -18,6 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Veronica Prado on 8/25/2015.
+ * class to connect by API to sales force
  */
 public class APIConnector {
     private static APIConnector instance = null;
@@ -40,7 +41,7 @@ public class APIConnector {
         try {
             connection = Connector.newConnection(config);
         }catch (ConnectionException e){
-        System.out.println("error:"+e.toString());
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(),"Error on Connect to Api :", e);
     }
 
     }
