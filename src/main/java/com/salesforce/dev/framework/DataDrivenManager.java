@@ -80,35 +80,7 @@ public class DataDrivenManager {
         return viewSalesForcesArray.iterator();
     }
 
-   /* public Iterator<ViewSalesForce[]> getDataViewtoEdit(String fileJson){
-
-        Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
-        try {
-            parser = new JSONParser();
-            String pathFileJson = "src/test/resources/" + fileJson;
-            Object jsonObject = parser.parse(new FileReader(pathFileJson));
-            JSONArray jsonArray = (JSONArray) jsonObject;
-
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            List<ViewSalesForce> navigation = objectMapper.readValue(jsonArray.toJSONString(),
-                    objectMapper.getTypeFactory().constructCollectionType(
-                            List.class, ViewSalesForce.class));
-
-            for (ViewSalesForce view : navigation) {
-                viewSalesForcesArray.add(new ViewSalesForce[]{view});
-            }
-
-        } catch (FileNotFoundException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
-        } catch (IOException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
-        } catch (ParseException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
-        }
-        return viewSalesForcesArray.iterator();
-    }*/
-
+   
     public Iterator<Campaign[]> getCampaign(String fileJson) {
 
         Collection<Campaign[]> campaignsArray = new ArrayList<Campaign[]>();
