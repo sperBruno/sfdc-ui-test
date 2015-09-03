@@ -7,6 +7,7 @@ import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.Opportunities.*;
 
 /**
@@ -32,8 +33,9 @@ public class Common {
     }
     public static void createLead(Lead lead){
 
-        HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.loginAsPrimaryUser();
+
+        MainPage mainPage ;
+        mainPage = Transporter.driverMainPage();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         LeadsHome leadsHome = navBar.gotToLeadsHome();

@@ -27,7 +27,7 @@ public class DataDrivenManager {
         Collection<Account[]> accountsArray =new ArrayList<Account[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src\\test\\resources\\AccountsBaseDD.json"));
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/AccountsBaseDD.json"));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -80,7 +80,7 @@ public class DataDrivenManager {
         return viewSalesForcesArray.iterator();
     }
 
-    public Iterator<ViewSalesForce[]> getDataViewtoEdit(String fileJson){
+   /* public Iterator<ViewSalesForce[]> getDataViewtoEdit(String fileJson){
 
         Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
         try {
@@ -107,7 +107,7 @@ public class DataDrivenManager {
             LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
         }
         return viewSalesForcesArray.iterator();
-    }
+    }*/
 
     public Iterator<Campaign[]> getCampaign(String fileJson) {
 

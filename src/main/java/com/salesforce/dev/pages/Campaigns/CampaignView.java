@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by veronica on 8/20/2015.
- * map Campaign->view tab
+ *
  */
 public class CampaignView extends ViewBase {
 
@@ -46,20 +46,23 @@ public class CampaignView extends ViewBase {
     }
 
     @Override
-   public CampaignView checkFilterByOwnerAllAccounts() {
-        checkFilterOwnerAllAccounts();
+   public CampaignView checkFilterByOwnerAll() {
+        checkFilterOwnerAll();
         return this;
     }
 
     @Override
-    public CampaignView checkFilterByOwnerMyAccount() {
-        checkFilterOwnerMyAccount();
+    public CampaignView checkFilterByOwnerMy() {
+        checkFilterOwnerMy();
         return this;
     }
 
     @Override
     public CampaignView checkFilterByOwner(String filter) {
-        checkFilterOwner(filter);
+        if(filter.compareToIgnoreCase("All Campaigns") == 0)
+            checkFilterOwnerAll();
+        else
+            checkFilterOwnerMy();
         return this;
     }
 

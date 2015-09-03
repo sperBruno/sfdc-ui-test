@@ -2,6 +2,7 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Product.ProductDetails;
 import com.salesforce.dev.pages.Product.ProductForm;
@@ -27,8 +28,7 @@ public class CreateProduct {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
 
     }

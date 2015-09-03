@@ -23,10 +23,8 @@ public class EditLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
-        mainPage = Transporter.driverMainPage();
-
-        lead = JSONMapper.getLead("src\\test\\resources\\CreateLeadBase.json");
-        leadEditEnum = JSONMapper.getLead("src\\test\\resources\\EditLead.json");
+        lead = JSONMapper.getLead("src/test/resources/CreateLeadBase.json");
+        leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
 
         //Creating a lead
         Common.createLead(lead);
@@ -35,6 +33,7 @@ public class EditLead {
 
     @Test(groups = {"Acceptance"})
     public void testEditLead(){
+        mainPage = Transporter.driverMainPage();
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();
