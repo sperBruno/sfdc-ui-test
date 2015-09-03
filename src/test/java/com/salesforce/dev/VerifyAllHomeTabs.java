@@ -11,6 +11,7 @@ import com.salesforce.dev.pages.Dashboards.DashboardsHome;
 import com.salesforce.dev.pages.Forecasts.ForecastsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Orders.OrdersHome;
@@ -32,8 +33,7 @@ public class VerifyAllHomeTabs {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = Transporter.driverMainPage();
     }
 
     @Test(groups = {"BVT"})

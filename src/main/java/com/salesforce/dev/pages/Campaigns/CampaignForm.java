@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Campaigns;
 
 import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Base.FormBase;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.openqa.selenium.WebDriver;
@@ -101,6 +102,8 @@ public class CampaignForm extends FormBase {
     @Override
     public CampaignDetail clickSaveBtn() {
         clickSaveButton();
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign was created");
         return new CampaignDetail(driver);
     }
 

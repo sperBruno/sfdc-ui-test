@@ -84,5 +84,16 @@ public class Environment {
         return getEnv("urlApi");
     }
 
+    public String getBrowserRemote(){
+        return getEnv("browserRemote");
+    }
+
+    public String getPlatformRemote(){
+        return getEnv("platformRemote");
+    }
+
+    public String getVersionRemote(){
+        return getEnv("versionRemote");
+    }
 
 }

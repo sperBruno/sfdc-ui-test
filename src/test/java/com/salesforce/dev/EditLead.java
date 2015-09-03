@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Common;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Leads.*;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -22,8 +23,7 @@ public class EditLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = Transporter.driverMainPage();
 
         lead = JSONMapper.getLead("src\\test\\resources\\CreateLeadBase.json");
         leadEditEnum = JSONMapper.getLead("src\\test\\resources\\EditLead.json");

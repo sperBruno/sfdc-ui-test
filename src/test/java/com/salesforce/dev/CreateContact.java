@@ -4,6 +4,7 @@ import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 //import junit.framework.Assert;
 import org.testng.annotations.AfterMethod;
@@ -72,9 +73,7 @@ public class CreateContact {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
-
+        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();

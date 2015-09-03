@@ -56,7 +56,7 @@ public class DataDrivenManager {
         Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
         try {
             parser = new JSONParser();
-            String pathFileJson = "src\\test\\resources\\" + fileJson;
+            String pathFileJson = "src/test/resources/" + fileJson;
             Object jsonObject = parser.parse(new FileReader(pathFileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
@@ -66,17 +66,16 @@ public class DataDrivenManager {
                     objectMapper.getTypeFactory().constructCollectionType(
                             List.class, ViewSalesForce.class));
 
-            for (int i = 0 ; i< navigation.size(); i++){
-                ViewSalesForce viewSalesForce = (ViewSalesForce)navigation.get(i);
-                viewSalesForcesArray.add(new ViewSalesForce[]{viewSalesForce});
+                        for (ViewSalesForce view : navigation) {
+                viewSalesForcesArray.add(new ViewSalesForce[]{view});
             }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
         }
         return viewSalesForcesArray.iterator();
     }
@@ -86,7 +85,7 @@ public class DataDrivenManager {
         Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
         try {
             parser = new JSONParser();
-            String pathFileJson = "src\\test\\resources\\" + fileJson;
+            String pathFileJson = "src/test/resources/" + fileJson;
             Object jsonObject = parser.parse(new FileReader(pathFileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
@@ -96,17 +95,16 @@ public class DataDrivenManager {
                     objectMapper.getTypeFactory().constructCollectionType(
                             List.class, ViewSalesForce.class));
 
-            for (int i = 0 ; i< navigation.size(); i++){
-                ViewSalesForce viewSalesForce = (ViewSalesForce)navigation.get(i);
-                viewSalesForcesArray.add(new ViewSalesForce[]{viewSalesForce});
+            for (ViewSalesForce view : navigation) {
+                viewSalesForcesArray.add(new ViewSalesForce[]{view});
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
         } catch (IOException e) {
-            e.printStackTrace();
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
         }
         return viewSalesForcesArray.iterator();
     }
@@ -116,7 +114,7 @@ public class DataDrivenManager {
         Collection<Campaign[]> campaignsArray = new ArrayList<Campaign[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src\\test\\resources\\" + fileJson));
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/" + fileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -133,9 +131,9 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Campaign from Json file:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Campaign from Json file:", e);
         }
         return campaignsArray.iterator();
     }

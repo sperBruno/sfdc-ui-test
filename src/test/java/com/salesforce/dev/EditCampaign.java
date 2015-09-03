@@ -1,6 +1,8 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.LoggerManager;
+import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
@@ -9,18 +11,24 @@ import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Iterator;
 
 /**
  * Created by Marcelo.Vargas on 6/21/2015.
  */
 public class EditCampaign {
 
-    private String campaignNameUpdated ="Campaign UPDATED";
-    private String campaignName = "Campaign Name";
+    private String campaignNameToUpdated;
+    private String campaignNameUpdated;
+    private String campaignParentName;
+ /*   private String campaignName = "Campaign Name";
     private String campaignType = "Webinar";
     private String campaignStatus = "Completed";
     private String startDate = "6/15/2016";
@@ -30,7 +38,7 @@ public class EditCampaign {
     private String actualCost = "3500";
     private String expectedResponse = "78";
     private String numSent = "10";
-    private String parentCampaign = "CampaignParent";
+    private String parentCampaign = "CampaignParent";*/
 
     private SearchLookupBase searchLookup;
 
@@ -43,55 +51,60 @@ public class EditCampaign {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
+        ///create campaign
+        Campaign campaign= CampaignGenie.getCampaign();
+        //create parent Campaign
+        CampaignGenie.createParentCampaign(campaign.getParentCampaign());
+        campaignNameToUpdated = campaign.getCampaignName();
+        campaignParentName = campaign.getParentCampaign();
         mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
-        campaignForm.setCampaignName(parentCampaign);
-        campaignForm.checkActiveCheckbox();
-        campaignDetail = campaignForm.clickSaveBtn();
-        mainPage = campaignDetail.gotoMainPage();
-        navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCampaignsHome();
-        campaignForm = campaignsHome.clickNewBtn();
-        campaignForm.setCampaignName(campaignName);
+        campaignForm.setCampaignName(campaignNameToUpdated);
         campaignForm.checkActiveCheckbox();
         campaignDetail = campaignForm.clickSaveBtn();
         mainPage = campaignDetail.gotoMainPage();
     }
-
-    @Test(groups = {"Acceptance"})
-    public void testEditCampaign() {
-
+    @DataProvider(name = "dataDriven")
+    public Iterator<Campaign[]> getValues() {
+        DataDrivenManager dataDrivenManager = new DataDrivenManager();
+        return dataDrivenManager.getCampaign("EditCampaign.json");
+    }
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
+    public void testEditCampaign(Campaign campaign) {
+        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
 
-
-        campaignDetail = campaignsHome.selectRecentItem(campaignName);
+        campaignDetail = campaignsHome.selectRecentItem(campaignNameToUpdated);
         campaignForm = campaignDetail.clickEditBtn();
-        campaignForm.setCampaignName(campaignNameUpdated);
+        campaignForm.setCampaignName(campaign.getCampaignName());
 
-        campaignForm.setTypeSelect(campaignType);
-        campaignForm.setStatusSelect(campaignStatus);
-        campaignForm.setStartDate(startDate);
-        campaignForm.setEndDate(endDate);
-        campaignForm.setExpectedRevenue(expectedRevenue);
-        campaignForm.setBudgetedCost(budgetedCost);
-        campaignForm.setActualCost(actualCost);
-        campaignForm.setExpectedResponse(expectedResponse);
-        campaignForm.setNumSent(numSent);
+        campaignForm.setTypeSelect(campaign.getCampaignType());
+        campaignForm.setStatusSelect(campaign.getCampaignStatus());
+        campaignForm.setStartDate(campaign.getStartDate());
+        campaignForm.setEndDate(campaign.getEndDate());
+        campaignForm.setExpectedRevenue(campaign.getExpectedRevenue());
+        campaignForm.setBudgetedCost(campaign.getBudgetedCost());
+        campaignForm.setActualCost(campaign.getActualCost());
+        campaignForm.setExpectedResponse(campaign.getExpectedResponse());
+        campaignForm.setNumSent(campaign.getNumSent());
         searchLookup = campaignForm.clickLookupParentCampaign();
-        searchLookup.searchText(parentCampaign);
+        searchLookup.searchText(campaign.getParentCampaign());
         campaignForm = searchLookup.goToCampaignForm();
-
         campaignDetail = campaignForm.clickSaveBtn();
+        campaignNameUpdated = campaign.getCampaignName();
+        campaignParentName = campaign.getParentCampaign();
+        Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaign.getCampaignName()));
+        Assert.assertTrue(campaignDetail.validateCampaignType(campaign.getCampaignType()));
+        Assert.assertTrue(campaignDetail.validateCampaignStatus(campaign.getCampaignStatus()));
+        Assert.assertTrue(campaignDetail.validateCampaignStartDate(campaign.getStartDate()));
+        Assert.assertTrue(campaignDetail.validateCampaignEndDate(campaign.getEndDate()));
+        Assert.assertTrue(campaignDetail.validateCampaignParent(campaign.getParentCampaign()));
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign has been updated");
 
-        Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaignNameUpdated));
-        Assert.assertTrue(campaignDetail.validateCampaignType(campaignType));
-        Assert.assertTrue(campaignDetail.validateCampaignStatus(campaignStatus));
-        Assert.assertTrue(campaignDetail.validateCampaignStartDate(startDate));
-        Assert.assertTrue(campaignDetail.validateCampaignEndDate(endDate));
-        Assert.assertTrue(campaignDetail.validateCampaignParent(parentCampaign));
     }
 
     @AfterMethod(groups = {"Acceptance"})
@@ -102,7 +115,7 @@ public class EditCampaign {
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
-        campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
+        campaignDetail = campaignsHome.selectRecentItem(campaignParentName );
         campaignDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Campaign Parent was deleted");

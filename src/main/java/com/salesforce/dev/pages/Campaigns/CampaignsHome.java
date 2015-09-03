@@ -46,6 +46,13 @@ public class CampaignsHome extends HomeBase {
         super.clickRecentItem(campaign);
         return new CampaignDetail(this.driver);
     }
+
+    @Override
+    public  CampaignsHome selectRecentViewItem(String value) {
+        selectRecentView(value);
+        return this;
+    }
+
     public boolean IsUserInCampaignsTab(){
         try{
 

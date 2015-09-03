@@ -12,6 +12,7 @@ import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -43,18 +44,13 @@ public class CreateCampaign {
     }
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        mainPage = Transporter.driverMainPage();
-        navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCampaignsHome();
-        campaignForm = campaignsHome.clickNewBtn();
-        campaignForm.setCampaignName(parentCampaign);
-        campaignForm.checkActiveCheckbox();
-        campaignDetail = campaignForm.clickSaveBtn();
-        mainPage = campaignDetail.gotoMainPage();
+        parentCampaign = CampaignGenie.getCampaign().getParentCampaign();
+        CampaignGenie.createParentCampaign(parentCampaign);
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaign(Campaign campaign) {
+        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -72,18 +68,15 @@ public class CreateCampaign {
         searchLookup = campaignForm.clickLookupParentCampaign();
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
-
         campaignDetail = campaignForm.clickSaveBtn();
-
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign was created");
-
         Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaign.getCampaignName()));
         Assert.assertTrue(campaignDetail.validateCampaignType(campaign.getCampaignType()));
         Assert.assertTrue(campaignDetail.validateCampaignStatus(campaign.getCampaignStatus()));
         Assert.assertTrue(campaignDetail.validateCampaignStartDate(campaign.getStartDate()));
         Assert.assertTrue(campaignDetail.validateCampaignEndDate(campaign.getEndDate()));
         Assert.assertTrue(campaignDetail.validateCampaignParent(parentCampaign));
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign has been created");
     }
 
     @AfterMethod(groups = {"Acceptance"})

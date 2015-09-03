@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Created by veronica on 8/20/2015.
+ * map Campaign->view tab
  */
 public class CampaignView extends ViewBase {
 
@@ -19,12 +20,12 @@ public class CampaignView extends ViewBase {
         super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
         try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
     @Override
