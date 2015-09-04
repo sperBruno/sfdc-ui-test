@@ -33,13 +33,15 @@ public class OpportunitiesHome extends HomeBase {
     }
 
     @Override
-    protected Object clickNewViewLnk() {
-        return null;
+    public OpportunityView clickNewViewLnk() {
+        clickNewViewLink();
+        return new OpportunityView(this.driver);
     }
 
     @Override
-    protected Object clickEditViewLnk(String value) {
-        return null;
+    public OpportunityView clickEditViewLnk(String value) {
+        editViewLnk(value);
+        return new OpportunityView(this.driver);
     }
 
     public OpportunityDetail selectRecentItem(String opportunity){
@@ -48,8 +50,9 @@ public class OpportunitiesHome extends HomeBase {
     }
 
     @Override
-    protected Object selectRecentViewItem(String value) {
-        return null;
+    protected OpportunitiesHome selectRecentViewItem(String value) {
+        selectRecentView(value);
+        return this;
     }
 
     public OpportunityDetail openOpportunity(String opportunity){
