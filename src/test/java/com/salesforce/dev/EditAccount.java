@@ -124,7 +124,7 @@ public class EditAccount {
         Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(shippingAddress));
         Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(customerPriority));
         Assert.assertTrue(accountDetail.validateAccountSLAFld(sla));
-        Assert.assertTrue(accountDetail.validateAccountUpsellOportunityFld(upsellOpportunity));
+        Assert.assertTrue(accountDetail.validateAccountUpSellOpportunityFld(upsellOpportunity));
         Assert.assertTrue(accountDetail.validateAccountActiveFld(active));
         Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(slaExpirationDate));
         Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(slaSerialNumber));
