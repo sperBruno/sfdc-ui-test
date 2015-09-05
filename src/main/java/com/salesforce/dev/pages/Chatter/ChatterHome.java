@@ -37,8 +37,17 @@ public class ChatterHome {
     @FindBy(xpath = "//a[@title='Delete this post']")
     WebElement deletePostOption;
 
+    @FindBy(xpath = "//a[@title='Edit this post']")
+    WebElement editPostOption;
+
     @FindBy(className = "publisherattachtext ")
     WebElement postSection;
+
+    @FindBy(id = "quickActionFeedBodyInput")
+    WebElement editPostTextArea;
+
+    @FindBy(name = "quickActionSubmitButton")
+    WebElement saveEditBtn;
 
     public ChatterHome(WebDriver driver){
         this.driver=driver;
@@ -56,6 +65,17 @@ public class ChatterHome {
         postDescField.sendKeys(PostDesc);
         return  this;
     }
+
+    public ChatterHome editPost(String updatadePost){
+        //postMenu.click();
+        //feeditembodyandfooter
+        driver.findElement(By.xpath("//div[@class='feeditembodyandfooter']/descendant::span[contains(.,'" + updatadePost +"')]/following::a[contains(.,'More Action')]")).click();
+        editPostOption.click();
+        editPostTextArea.sendKeys(updatadePost);
+        saveEditBtn.click();
+        return  this;
+    }
+
     public ChatterHome clickShareBtn(){
         shareBtn.click();
         return this;
