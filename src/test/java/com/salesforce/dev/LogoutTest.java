@@ -5,6 +5,7 @@ package com.salesforce.dev;
  */
 
 import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 
@@ -43,7 +44,8 @@ public class LogoutTest {
         LoginPage loginPage = topHeader.clickLogoutOption();
 
         Assert.assertEquals(loginPage.isLoginButtonPresent(),true);
-
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Logout from Sales Force");
     }
 
 }

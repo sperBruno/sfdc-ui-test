@@ -56,8 +56,8 @@ public class DriverManager {
             DesiredCapabilities caps;
             if(browserRemote.equals("Chrome"))
                 caps = DesiredCapabilities.chrome();
-            else
-                caps = DesiredCapabilities.chrome();
+            else //firefox
+                caps = DesiredCapabilities.firefox();
             caps.setCapability("platform", platformRemote);
             caps.setCapability("version", versionRemote);
             try {

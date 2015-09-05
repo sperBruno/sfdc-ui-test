@@ -1,6 +1,7 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.Environment;
+import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
@@ -39,6 +40,8 @@ public class LoginTest {
         mainPage=loginPage.clickLoginBtn();
         topHeader=mainPage.gotoTopHeader();
         Assert.assertEquals(topHeader.getUserName(),displayName);
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Login on Sales Force");
 
     }
 
