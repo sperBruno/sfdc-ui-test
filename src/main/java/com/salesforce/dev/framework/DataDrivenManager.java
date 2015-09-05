@@ -80,7 +80,7 @@ public class DataDrivenManager {
         return viewSalesForcesArray.iterator();
     }
 
-   
+
     public Iterator<Campaign[]> getCampaign(String fileJson) {
 
         Collection<Campaign[]> campaignsArray = new ArrayList<Campaign[]>();

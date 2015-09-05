@@ -12,6 +12,7 @@ import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.DataDrivenManager;
 import org.testng.Assert;
@@ -37,15 +38,9 @@ public class CreateAccountDD {
         return dataDrivenManager.getAccountsDD();
     }
 
-    @BeforeMethod(groups = {"Regression"})
-    public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
-    }
-
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateAccount(Account account) {
-
+        mainPage = Transporter.driverMainPage();
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
