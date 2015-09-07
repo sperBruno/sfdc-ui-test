@@ -1,11 +1,12 @@
 package com.salesforce.dev;
 
+import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.LoggerManager;
+import com.salesforce.dev.framework.Objects.Contact;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -22,42 +23,10 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 /**
  * Created by Marcelo.Vargas on 6/21/2015.
  */
+
 public class EditContact {
 
-    private String lastNameUpdated = "UPDATED";
-    private String contactRole = "Mr.";
-    private String firstName = "Contact";
-    private String lastName = "Test";
-    private String accountName = "AccountTest";
-    private String title = "Engineer";
-    private String department = "Engineering";
-    private String reportsTo = "Avi Green";
-    private String leadSource = "Web"; //--None--, Web, Phone Inquiry, Partner Referral, Purchased List, Other
-    private String phone = "70777777";
-    private String homePhone = "444444";
-    private String mobile = "70777777";
-    private String otherPhone = "60777777";
-    private String fax = "80777777";
-    private String email = "test@test.test";
-    private String assistant = "123";
-    private String assistantPhone = "90777777";
-
-    private String mailingStreet = "Mailing Street";
-    private String mailingCity = "Mailing City";
-    private String mailingState = "Mailing State";
-    private String mailingZip = "Mailing Zip";
-    private String mailingCountry = "Mailing Country";
-
-    private String otherStreet = "Other Street";
-    private String otherCity = "Other City";
-    private String otherState = "Other State";
-    private String otherZip = "Other Zip";
-    private String otherCountry = "Other Country";
-
-    private String languages = "Spanish";
-    private String level = "Secondary"; //--None--, Secondary, Tertiary, Primary
-
-    private String description = "Description";
+    Contact contact = JSONMapper.getContactToUpdate();
 
     private ContactsHome contactsHome;
     private ContactDetail contactDetail;
@@ -73,19 +42,20 @@ public class EditContact {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        mainPage = Transporter.driverMainPage();
+        homePage = new HomePage();
+        mainPage = homePage.loginAsPrimaryUser();
 
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
-        accountForm.setAccountNameFld(accountName);
+        accountForm.setAccountNameFld(contact.getAccountName());
         accountDetail = accountForm.clickSaveBtn();
         mainPage = accountDetail.gotoMainPage();
 
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();
-        contactForm.setLastName(lastName);
+        contactForm.setLastName(contact.getLastNameastName());
         contactDetail = contactForm.clickSaveBtn();
 
         mainPage = contactDetail.gotoMainPage();
@@ -96,50 +66,50 @@ public class EditContact {
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
 
-        contactDetail = contactsHome.selectRecentItem(lastName);
+        contactDetail = contactsHome.selectRecentItem(contact.getLastNameastName());
         contactForm = contactDetail.clickEditBtn();
-        contactForm.setLastName(lastNameUpdated);
+        contactForm.setLastName(contact.getLastNameastName());
 
-        contactForm.setFirstNameRole(contactRole);
-        contactForm.setFirstName(firstName);
+        contactForm.setFirstNameRole(contact.getcontactRole());
+        contactForm.setFirstName(contact.getFirstName());
 
         searchLookup = contactForm.clickLookupAccount();
-        searchLookup.searchText(accountName);
+        searchLookup.searchText(contact.getAccountName());
         contactForm = searchLookup.goToContactForm();
 
-        contactForm.setTitle(title);
-        contactForm.setDepartment(department);
+        contactForm.setTitle(contact.getTitle());
+        contactForm.setDepartment(contact.getDepartment());
         contactForm.setBirthDate(6,6,2015);
 
         searchLookup = contactForm.clickLookupReportsTo();
-        searchLookup.searchText(reportsTo);
+        searchLookup.searchText(contact.getReportsTo());
         contactForm = searchLookup.goToContactForm();
 
-        contactForm.setLeadSource(leadSource);
-        contactForm.setPhone(phone);
-        contactForm.setHomePhone(homePhone);
-        contactForm.setMobile(mobile);
-        contactForm.setOtherPhone(otherPhone);
-        contactForm.setFax(fax);
-        contactForm.setEmail(email);
-        contactForm.setAssistant(assistant);
-        contactForm.setAssistantPhone(assistantPhone);
-        contactForm.setMailingStreet(mailingStreet);
-        contactForm.setMailingCity(mailingCity);
-        contactForm.setMailingState(mailingState);
-        contactForm.setMailingZip(mailingZip);
-        contactForm.setMailingCountry(mailingCountry);
-        contactForm.setOtherStreet(otherStreet);
-        contactForm.setOtherCity(otherCity);
-        contactForm.setOtherState(otherState);
-        contactForm.setOtherZip(otherZip);
-        contactForm.setOtherCountry(otherCountry);
-        contactForm.setLanguages(languages);
-        contactForm.setLevel(level);
-        contactForm.setDescription(description);
+        contactForm.setLeadSource(contact.getLeadSource());
+        contactForm.setPhone(contact.getPhone());
+        contactForm.setHomePhone(contact.getHomePhone());
+        contactForm.setMobile(contact.getMobile());
+        contactForm.setOtherPhone(contact.getOtherPhone());
+        contactForm.setFax(contact.getFax());
+        contactForm.setEmail(contact.getEmail());
+        contactForm.setAssistant(contact.getassistant());
+        contactForm.setAssistantPhone(contact.getAssistantPhone());
+        contactForm.setMailingStreet(contact.getMailingStreet());
+        contactForm.setMailingCity(contact.getMailingCity());
+        contactForm.setMailingState(contact.getMailingState());
+        contactForm.setMailingZip(contact.getMailingZip());
+        contactForm.setMailingCountry(contact.getMailingCountry());
+        contactForm.setOtherStreet(contact.getOtherStreet());
+        contactForm.setOtherCity(contact.getOtherCity());
+        contactForm.setOtherState(contact.getOtherState());
+        contactForm.setOtherZip(contact.getOtherZip());
+        contactForm.setOtherCountry(contact.getOtherCountry());
+        contactForm.setLanguages(contact.getLanguages());
+        contactForm.setLevel(contact.getLevel());
+        contactForm.setDescription(contact.getDescription());
         contactDetail = contactForm.clickSaveBtn();
 
-        Assert.assertTrue(contactDetail.validateContactName(contactRole + " " + firstName + " " +lastNameUpdated));
+        Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
@@ -150,7 +120,7 @@ public class EditContact {
         mainPage = accountDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
-        accountDetail = accountsHome.selectRecentItem(accountName);
+        accountDetail = accountsHome.selectRecentItem(contact.getAccountName());
         accountDetail.clickDeleteBtn(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Account was deleted");

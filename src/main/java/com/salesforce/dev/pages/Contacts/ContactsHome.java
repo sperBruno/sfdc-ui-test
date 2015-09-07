@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Contacts;
 
 import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.pages.Campaigns.CampaignView;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -29,25 +30,22 @@ public class ContactsHome extends HomeBase {
     }
 
     @Override
-    protected Object clickNewViewLnk() {
-        return null;
+    public ContactView clickNewViewLnk() {
+        clickNewViewLink();
+        return new ContactView(this.driver);
+
     }
 
     @Override
-    protected Object clickEditViewLnk(String value) {
-        return null;
+    public ContactView clickEditViewLnk(String value) {
+        editViewLnk(value);
+        return new ContactView(this.driver);
     }
 
     public ContactDetail selectRecentItem(String opportunity){
         super.clickRecentItem(opportunity);
         return new ContactDetail(this.driver);
     }
-
-    @Override
-    protected Object selectRecentViewItem(String value) {
-        return null;
-    }
-
     public boolean IsUserInContactsTab(){
         try{
 
@@ -57,5 +55,10 @@ public class ContactsHome extends HomeBase {
         catch (WebDriverException e){
             return false;
         }
+    }
+
+    @Override
+    protected Object selectRecentViewItem(String value) {
+        return null;
     }
 }

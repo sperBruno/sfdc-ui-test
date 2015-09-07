@@ -3,6 +3,7 @@ package com.salesforce.dev.framework;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salesforce.dev.framework.Objects.Account;
+import com.salesforce.dev.framework.Objects.Contact;
 import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.framework.Objects.Opportunity;
 
@@ -45,6 +46,26 @@ public class JSONMapper {
             e.printStackTrace();
         }
         return account;
+    }
+    public static Contact getContact(){
+        Contact contact = new Contact();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            contact = mapper.readValue(new File("src\\test\\resources\\CreateContact.json"), Contact.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contact;
+    }
+    public static Contact getContactToUpdate(){
+        Contact contact = new Contact();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            contact = mapper.readValue(new File("src\\test\\resources\\EditContact.json"), Contact.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contact;
     }
 
 
