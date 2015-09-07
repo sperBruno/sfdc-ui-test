@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.Leads;
 
 import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.HomeBase;
+import com.salesforce.dev.pages.Campaigns.CampaignView;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -30,13 +31,15 @@ public class LeadsHome extends HomeBase {
     }
 
     @Override
-    protected Object clickNewViewLnk() {
-        return null;
+    public LeadView clickNewViewLnk() {
+        clickNewViewLink();
+        return new LeadView(this.driver);
     }
 
     @Override
-    protected Object clickEditViewLnk(String value) {
-        return null;
+    public LeadView clickEditViewLnk(String value) {
+        editViewLnk(value);
+        return new LeadView(this.driver);
     }
 
     public Object selectRecentItem(String item){
@@ -46,7 +49,7 @@ public class LeadsHome extends HomeBase {
     }
 
     @Override
-    protected Object selectRecentViewItem(String value) {
+    public Object selectRecentViewItem(String value) {
         return null;
     }
 
