@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import com.salesforce.dev.framework.RandomGenerator;
 import com.salesforce.dev.pages.Accounts.AccountView;
 import com.salesforce.dev.pages.Accounts.AccountViewDetail;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
@@ -45,7 +46,7 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         navigationBar = mainPage.gotoNavBar();
         opportunitiesHome = navigationBar.goToOpportunitiesHome();
         opportunityView = opportunitiesHome.clickNewViewLnk()
-                .setViewName(viewSalesForce.getViewName())
+                .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
