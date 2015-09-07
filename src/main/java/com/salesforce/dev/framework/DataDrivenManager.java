@@ -19,6 +19,7 @@ import org.json.simple.parser.ParseException;
 
 public class DataDrivenManager {
     private JSONParser parser;
+    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(DataDrivenManager.class.getName());
 
     public DataDrivenManager(){
     }
@@ -74,9 +75,9 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
+            LOGGER.addErrorLog("Error on data view from Json file:", e);
         } catch (ParseException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
+            LOGGER.addErrorLog("Error on data view from Json file:", e);
         }
         return viewSalesForcesArray.iterator();
     }
@@ -104,9 +105,9 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Campaign from Json file:", e);
+            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
         } catch (ParseException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Campaign from Json file:", e);
+            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
         }
         return campaignsArray.iterator();
     }
@@ -131,11 +132,11 @@ public class DataDrivenManager {
                 chattersArray.add(new Chatter[]{chatter});
 
         } catch (FileNotFoundException e) {
-                LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "File not found for chatter - Json file:", e);;
+            LOGGER.addErrorLog("File not found for chatter - Json file:", e);;
         } catch (IOException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Chatter from Json file:", e);
+            LOGGER.addErrorLog("Error on data for Chatter from Json file:", e);
         } catch (ParseException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Chatter:", e);
+            LOGGER.addErrorLog( "Error on data for Chatter:", e);
         }
         return chattersArray.iterator();
     }

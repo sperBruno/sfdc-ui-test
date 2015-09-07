@@ -84,7 +84,6 @@ public class CampaignGenie {
         objectSales.setType("Campaign");
         objectSales.setField("Name", nameCampaign);
         objectSales.setField("IsActive",true);
-        System.out.println("soy:"+nameCampaign);
         try {
             connection.create(new SObject[]{objectSales});
         }catch(ConnectionException e){
