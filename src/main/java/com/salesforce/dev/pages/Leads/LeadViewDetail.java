@@ -18,12 +18,12 @@ public class LeadViewDetail extends ViewDetailBase {
         super.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
         try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
     @Override
