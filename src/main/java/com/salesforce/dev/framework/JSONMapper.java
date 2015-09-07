@@ -41,7 +41,7 @@ public class JSONMapper {
         Account account = new Account();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            account = mapper.readValue(new File("src\\test\\resources\\CreateAccountBase.json"), Account.class);
+            account = mapper.readValue(new File("src/test/resources/CreateAccountBase.json"), Account.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class JSONMapper {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File("src\\test\\resources\\CreateContact.json"), Contact.class);
+            contact = mapper.readValue(new File("src/test/resources/CreateContact.json"), Contact.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class JSONMapper {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File("src\\test\\resources\\EditContact.json"), Contact.class);
+            contact = mapper.readValue(new File("src/test/resources/EditContact.json"), Contact.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -14,11 +14,13 @@
              <class name="com.salesforce.dev.CreateOpportunityViewBasic"/>
              <class name="com.salesforce.dev.CreateOpportunityViewFiltersFieldsAdded"/>
              <class name="com.salesforce.dev.EditCampaignViewBasic"/>
+             <class name="com.salesforce.dev.EditContactView"/>
              <class name="com.salesforce.dev.EditCampaign"/>
              <class name="com.salesforce.dev.EditAccount"/>
              <class name="com.salesforce.dev.CreateAccount"/>
              <class name="com.salesforce.dev.CreateAccountDD"/>
              <class name="com.salesforce.dev.CreateContact"/>
+             <class name="com.salesforce.dev.CreateContactView"/>
              <class name="com.salesforce.dev.CreateLead"/>
              <class name="com.salesforce.dev.CreateOpportunity"/>
              <class name="com.salesforce.dev.CreatePost"/>
@@ -31,7 +33,7 @@
              <class name="com.salesforce.dev.LoginTest"/>
              <class name="com.salesforce.dev.TestCookies"/>
              <class name="com.salesforce.dev.VerifyAllHomeTabs"/>
-            <class name="com.salesforce.dev.LogoutTest"/>
+             <class name="com.salesforce.dev.LogoutTest"/>
         </classes>
     </test>
 </suite>
