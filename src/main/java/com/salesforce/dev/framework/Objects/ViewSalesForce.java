@@ -9,6 +9,7 @@ public class ViewSalesForce {
     private String viewName;
     private String uniqueViewName;
     private String filterByOwner;
+    private String filterByCampaign;
     private List<FilterView> additionalFields;
     private List<FieldToDisplayView> fieldsDisplay;
     private String restrictVisibility;
@@ -47,6 +48,8 @@ public class ViewSalesForce {
     public String getFilterByOwner() {
         return filterByOwner;
     }
+
+    public String getFilterByCampaign(){return filterByCampaign;}
 
     public String getViewName() {
         return viewName;
