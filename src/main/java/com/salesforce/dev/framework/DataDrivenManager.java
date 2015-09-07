@@ -11,6 +11,7 @@ import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.framework.Objects.Campaign;
+import com.salesforce.dev.framework.Objects.Chatter;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -18,6 +19,7 @@ import org.json.simple.parser.ParseException;
 
 public class DataDrivenManager {
     private JSONParser parser;
+    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(DataDrivenManager.class.getName());
 
     public DataDrivenManager(){
     }
@@ -73,9 +75,9 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
+            LOGGER.addErrorLog("Error on data view from Json file:", e);
         } catch (ParseException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data view from Json file:", e);
+            LOGGER.addErrorLog("Error on data view from Json file:", e);
         }
         return viewSalesForcesArray.iterator();
     }
@@ -103,10 +105,39 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Campaign from Json file:", e);
+            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
         } catch (ParseException e) {
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(), "Error on data for Campaign from Json file:", e);
+            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
         }
         return campaignsArray.iterator();
+    }
+
+    /*Returns chatter properties
+    * @param fileJson
+    * @return Iterator<Chatter[]>
+    * */
+    public Iterator<Chatter[]> getChatter(String fileJson) {
+
+        Collection<Chatter[]> chattersArray = new ArrayList<Chatter[]>();
+        try {
+            parser = new JSONParser();
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/" + fileJson));
+            JSONArray jsonArray = (JSONArray) jsonObject;
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Chatter> navigation = objectMapper.readValue(jsonArray.toJSONString(),
+                    objectMapper.getTypeFactory().constructCollectionType(
+                            List.class, Chatter.class));
+
+            for (Chatter chatter : navigation)
+                chattersArray.add(new Chatter[]{chatter});
+
+        } catch (FileNotFoundException e) {
+            LOGGER.addErrorLog("File not found for chatter - Json file:", e);;
+        } catch (IOException e) {
+            LOGGER.addErrorLog("Error on data for Chatter from Json file:", e);
+        } catch (ParseException e) {
+            LOGGER.addErrorLog( "Error on data for Chatter:", e);
+        }
+        return chattersArray.iterator();
     }
 }

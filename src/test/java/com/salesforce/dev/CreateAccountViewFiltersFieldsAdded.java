@@ -34,6 +34,7 @@ public class CreateAccountViewFiltersFieldsAdded {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private AccountViewDetail accountViewDetail;
+    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(CreateAccountViewFiltersFieldsAdded.class.getName());
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -63,8 +64,7 @@ public class CreateAccountViewFiltersFieldsAdded {
         for(FieldToDisplayView fields:fieldToDisplayViews)
             accountView = accountView.addNewFieldToDisplay(fields.getFieldToDisplay());
         accountViewDetail = accountView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Account view was created");
+        LOGGER.addInfoLog("Account view was created");
         Assert.assertTrue(accountViewDetail.validateNameView(viewSalesForce.getViewName()));
         for(FieldToDisplayView fields:fieldToDisplayViews){
             Assert.assertTrue(accountViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
@@ -74,7 +74,6 @@ public class CreateAccountViewFiltersFieldsAdded {
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
         accountViewDetail.clickDeleteLnk(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Account View was deleted");
+        LOGGER.addInfoLog("Account View was deleted");
     }
 }

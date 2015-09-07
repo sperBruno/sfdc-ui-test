@@ -1,7 +1,10 @@
 package com.salesforce.dev.framework;
 
 
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.TopHeader;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -88,7 +91,13 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-
-
+        MainPage mainPage = Transporter.driverMainPage();
+        TopHeader topHeader = mainPage.gotoTopHeader();
+        topHeader.clickUserNameMenu();
+        LoginPage loginPage = topHeader.clickLogoutOption();
+        DriverManager.getInstance().close();
+        DriverManager.getInstance().quit();
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "On Finish");
     }
 }
