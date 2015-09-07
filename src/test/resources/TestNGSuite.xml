@@ -20,6 +20,8 @@
              <class name="com.salesforce.dev.CreateAccountDD"/>
              <class name="com.salesforce.dev.CreateContact"/>
              <class name="com.salesforce.dev.CreateLead"/>
+             <class name="com.salesforce.dev.CreateLeadsViewBasic"/>
+             <class name="com.salesforce.dev.EditLeadsViewBasic"/>
              <class name="com.salesforce.dev.CreateOpportunity"/>
              <class name="com.salesforce.dev.CreatePost"/>
              <class name="com.salesforce.dev.CreateProduct"/>
@@ -31,7 +33,7 @@
              <class name="com.salesforce.dev.LoginTest"/>
              <class name="com.salesforce.dev.TestCookies"/>
              <class name="com.salesforce.dev.VerifyAllHomeTabs"/>
-            <class name="com.salesforce.dev.LogoutTest"/>
+             <class name="com.salesforce.dev.LogoutTest"/>
         </classes>
     </test>
 </suite>
