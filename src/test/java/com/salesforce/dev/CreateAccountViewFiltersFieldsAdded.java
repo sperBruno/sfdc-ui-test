@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import com.salesforce.dev.framework.RandomGenerator;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountView;
 import com.salesforce.dev.pages.Accounts.AccountViewDetail;
@@ -49,7 +50,7 @@ public class CreateAccountViewFiltersFieldsAdded {
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountView = accountsHome.clickNewViewLnk()
-                .setViewName(viewSalesForce.getViewName())
+                .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
