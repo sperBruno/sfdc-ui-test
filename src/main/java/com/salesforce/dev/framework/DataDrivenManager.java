@@ -11,6 +11,7 @@ import java.util.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.framework.Objects.Campaign;
+import com.salesforce.dev.framework.Objects.Chatter;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -18,6 +19,7 @@ import org.json.simple.parser.ParseException;
 
 public class DataDrivenManager {
     private JSONParser parser;
+    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(DataDrivenManager.class.getName());
 
     public DataDrivenManager(){
     }
@@ -27,7 +29,7 @@ public class DataDrivenManager {
         Collection<Account[]> accountsArray =new ArrayList<Account[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src\\test\\resources\\AccountsBaseDD.json"));
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/AccountsBaseDD.json"));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -56,7 +58,7 @@ public class DataDrivenManager {
         Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
         try {
             parser = new JSONParser();
-            String pathFileJson = "src\\test\\resources\\" + fileJson;
+            String pathFileJson = "src/test/resources/" + fileJson;
             Object jsonObject = parser.parse(new FileReader(pathFileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
@@ -66,57 +68,27 @@ public class DataDrivenManager {
                     objectMapper.getTypeFactory().constructCollectionType(
                             List.class, ViewSalesForce.class));
 
-            for (int i = 0 ; i< navigation.size(); i++){
-                ViewSalesForce viewSalesForce = (ViewSalesForce)navigation.get(i);
-                viewSalesForcesArray.add(new ViewSalesForce[]{viewSalesForce});
+                        for (ViewSalesForce view : navigation) {
+                viewSalesForcesArray.add(new ViewSalesForce[]{view});
             }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.addErrorLog("Error on data view from Json file:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LOGGER.addErrorLog("Error on data view from Json file:", e);
         }
         return viewSalesForcesArray.iterator();
     }
 
-    public Iterator<ViewSalesForce[]> getDataViewtoEdit(String fileJson){
-
-        Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
-        try {
-            parser = new JSONParser();
-            String pathFileJson = "src\\test\\resources\\" + fileJson;
-            Object jsonObject = parser.parse(new FileReader(pathFileJson));
-            JSONArray jsonArray = (JSONArray) jsonObject;
-
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            List<ViewSalesForce> navigation = objectMapper.readValue(jsonArray.toJSONString(),
-                    objectMapper.getTypeFactory().constructCollectionType(
-                            List.class, ViewSalesForce.class));
-
-            for (int i = 0 ; i< navigation.size(); i++){
-                ViewSalesForce viewSalesForce = (ViewSalesForce)navigation.get(i);
-                viewSalesForcesArray.add(new ViewSalesForce[]{viewSalesForce});
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return viewSalesForcesArray.iterator();
-    }
 
     public Iterator<Campaign[]> getCampaign(String fileJson) {
 
         Collection<Campaign[]> campaignsArray = new ArrayList<Campaign[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src\\test\\resources\\" + fileJson));
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/" + fileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -133,10 +105,39 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
         } catch (ParseException e) {
-            e.printStackTrace();
+            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
         }
         return campaignsArray.iterator();
+    }
+
+    /*Returns chatter properties
+    * @param fileJson
+    * @return Iterator<Chatter[]>
+    * */
+    public Iterator<Chatter[]> getChatter(String fileJson) {
+
+        Collection<Chatter[]> chattersArray = new ArrayList<Chatter[]>();
+        try {
+            parser = new JSONParser();
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/" + fileJson));
+            JSONArray jsonArray = (JSONArray) jsonObject;
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Chatter> navigation = objectMapper.readValue(jsonArray.toJSONString(),
+                    objectMapper.getTypeFactory().constructCollectionType(
+                            List.class, Chatter.class));
+
+            for (Chatter chatter : navigation)
+                chattersArray.add(new Chatter[]{chatter});
+
+        } catch (FileNotFoundException e) {
+            LOGGER.addErrorLog("File not found for chatter - Json file:", e);;
+        } catch (IOException e) {
+            LOGGER.addErrorLog("Error on data for Chatter from Json file:", e);
+        } catch (ParseException e) {
+            LOGGER.addErrorLog( "Error on data for Chatter:", e);
+        }
+        return chattersArray.iterator();
     }
 }

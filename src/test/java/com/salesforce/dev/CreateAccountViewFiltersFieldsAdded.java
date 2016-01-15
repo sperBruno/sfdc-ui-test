@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import com.salesforce.dev.framework.RandomGenerator;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountView;
 import com.salesforce.dev.pages.Accounts.AccountViewDetail;
@@ -26,21 +27,20 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Carlos Orellana on 9/2/2015..
+ * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateAccountViewFiltersFieldsAdded {
     private AccountsHome accountsHome;
-    private AccountDetail accountDetail;
     private AccountView accountView;
-    private HomePage homePage;
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private AccountViewDetail accountViewDetail;
+    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(CreateAccountViewFiltersFieldsAdded.class.getName());
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateAccountViewFiltersFieldAdded.json");
+        return dataDrivenManager.getDataView("CreateAccountsViewFiltersFieldAdded.json");
     }
 
 
@@ -50,7 +50,7 @@ public class CreateAccountViewFiltersFieldsAdded {
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountView = accountsHome.clickNewViewLnk()
-                .setViewName(viewSalesForce.getViewName())
+                .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
@@ -65,10 +65,8 @@ public class CreateAccountViewFiltersFieldsAdded {
         for(FieldToDisplayView fields:fieldToDisplayViews)
             accountView = accountView.addNewFieldToDisplay(fields.getFieldToDisplay());
         accountViewDetail = accountView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Account was created");
+        LOGGER.addInfoLog("Account view was created");
         Assert.assertTrue(accountViewDetail.validateNameView(viewSalesForce.getViewName()));
-
         for(FieldToDisplayView fields:fieldToDisplayViews){
             Assert.assertTrue(accountViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
         }
@@ -77,7 +75,6 @@ public class CreateAccountViewFiltersFieldsAdded {
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
         accountViewDetail.clickDeleteLnk(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Account View was deleted");
+        LOGGER.addInfoLog("Account View was deleted");
     }
 }

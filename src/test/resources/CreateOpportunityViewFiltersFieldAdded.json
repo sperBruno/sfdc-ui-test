@@ -1,21 +1,21 @@
 [{
-"viewName":"view Opportunity01",
-"uniqueViewName":"Opportunity01",
+"viewName":"view Opportunity1",
+"viewUniqueName":"viewOpport1",
 "filterByOwner":"All Opportunities",
 "additionalFields":[
-                  {"fieldFilter":"Private",
-                    "operatorFilter":"equals",
-                    "valueFilter":"yes"
-                  },
                   {"fieldFilter":"Account Name",
+                    "operatorFilter":"contains",
+                    "valueFilter":"ac"
+                  },
+                  {"fieldFilter":"Opportunity Name",
                     "operatorFilter":"equals",
-                    "valueFilter":"viewAccount01"
+                    "valueFilter":"Opport1"
                   }
                    ],
 "fieldsDisplay":[
                 {"fieldToDisplay":"Private"},
-                {"fieldToDisplay":"Won"},
-                {"fieldToDisplay":"Type"}
+                {"fieldToDisplay":"Type"},
+                {"fieldToDisplay":"Last Activity"}
                 ],
-"restrictVisibility":"Visible only to me"
+"restrictVisibility":"Visible to all users"
 }]

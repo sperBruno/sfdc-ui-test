@@ -48,7 +48,13 @@ public class AccountsHome extends HomeBase {
         clickRecentItem(value);
         return new AccountDetail(driver);
     }
-    
+
+    @Override
+    public  AccountsHome selectRecentViewItem(String value) {
+        selectRecentView(value);
+        return this;
+    }
+
     public boolean IsUserInAccountsTab(){
         try{
 

@@ -46,20 +46,23 @@ public class AccountView extends ViewBase {
     }
 
     @Override
-    public AccountView checkFilterByOwnerAllAccounts() {
-        checkFilterOwnerAllAccounts();
+    protected AccountView checkFilterByOwnerAll() {
+        checkFilterOwnerAll();
         return this;
     }
 
     @Override
-    public AccountView checkFilterByOwnerMyAccount() {
-        checkFilterOwnerMyAccount();
+    protected AccountView checkFilterByOwnerMy() {
+        checkFilterOwnerMy();
         return this;
     }
 
     @Override
     public AccountView checkFilterByOwner(String filter) {
-        checkFilterOwner(filter);
+        if(filter.compareToIgnoreCase("All Accounts") == 0)
+            checkFilterOwnerAll();
+        else
+            checkFilterOwnerMy();
         return this;
     }
 

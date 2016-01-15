@@ -1,6 +1,6 @@
 [{
-  "viewName":"view campaignUpdate",
-  "uniqueViewName":"viewcampaignUpdate",
+  "viewName":"view campaign Update",
+  "uniqueViewName":"viewCampaignUdate",
   "filterByOwner":"All Campaigns",
   "additionalFields":[
     {"fieldFilter":"Campaign Name",

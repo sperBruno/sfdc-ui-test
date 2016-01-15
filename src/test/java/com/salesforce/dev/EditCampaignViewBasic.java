@@ -27,16 +27,11 @@ import java.util.List;
  */
 public class EditCampaignViewBasic {
     private CampaignsHome campaignsHome;
-    private CampaignDetail campaignDetail;
-
-    private CampaignForm campaignForm;
-    private HomePage homePage;
     private MainPage mainPage;
     private NavigationBar navigationBar;
-    private DataDrivenManager dataDriveManager = new DataDrivenManager();
     private CampaignView campaignView;
-    private Iterator<ViewSalesForce[]> dataViewCampaign;
     private String nameView;
+    private CampaignViewDetail campaignViewDetail;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -45,35 +40,36 @@ public class EditCampaignViewBasic {
     }
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        System.out.println("start datt pre-requirements");
-        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView();
+        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateCampaignViewBasic.json");
         nameView = viewSalesForce.getViewName();
-        System.out.println("Data where added");
-    }
-
-
-    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
-    public void testEditCampaign(ViewSalesForce viewSalesForceUpdate) {
         mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
-        String fieldToUpdate ="View Name";
-        String newValue = "Update view Campaing";
+        campaignView = campaignsHome.clickNewViewLnk()
+                        .setViewName(nameView)
+                        .setUniqueViewName(viewSalesForce.getUniqueViewName());
+        campaignViewDetail = campaignView.clickSaveBtn();
+    }
+
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
+    public void testEditCampaign(ViewSalesForce viewSalesForceUpdate) {
+        navigationBar = mainPage.gotoNavBar();
+        campaignsHome = navigationBar.goToCampaignsHome();
         campaignView = campaignsHome.clickEditViewLnk(nameView)
-                .setViewName(newValue);
+                .setViewName(viewSalesForceUpdate.getViewName())
+                .setUniqueViewName(viewSalesForceUpdate.getUniqueViewName())
+                .checkFilterByOwner(viewSalesForceUpdate.getFilterByOwner())
+                .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
+        campaignViewDetail = campaignView.clickSaveBtn();
+        Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "Campaign View has been updated");
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        campaignDetail.clickDeleteBtn(true);
+        campaignViewDetail.clickDeleteLnk(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign was deleted");
-        mainPage = campaignDetail.gotoMainPage();
-        navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCampaignsHome();
-       // campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
-        campaignDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign Parent was deleted");
+                "Campaign View was deleted");
     }
 }

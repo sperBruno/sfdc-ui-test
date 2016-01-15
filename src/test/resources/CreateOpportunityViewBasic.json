@@ -1,6 +1,6 @@
 [{
-"viewName":"view Opportunity Basic",
-"viewUniqueName":"viewOpportunityBasic",
-"filterByOwner":"All Accounts",
+"viewName":"view Opportunity01",
+"viewUniqueName":"viewOpport01",
+"filterByOwner":"All Opportunities",
 "restrictVisibility":"Visible only to me"
 }]

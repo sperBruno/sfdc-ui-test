@@ -1,7 +1,10 @@
 package com.salesforce.dev.framework;
 
 
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.TopHeader;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -26,19 +29,21 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        System.out.println("On Execution Start");
-        System.out.println("Login Sales Force");
-
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "On Execution Test Star");
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        System.out.println("On Test Success");
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "On Test success");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         System.out.println("***** Error " + result.getName() + " test has failed *****");
+        LoggerManager.getInstance().addErrorLog(this.getClass().getName(),
+                "On Execution Test failure", null);
         String methodName = result.getName().toString().trim();
         takeScreenShot(methodName);
     }
@@ -47,7 +52,7 @@ public class TestListener implements ITestListener {
         driver = DriverManager.getInstance().getDriver();
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         try {
-            File myFile = new File(filePath + "\\" + methodName + ".png");
+            File myFile = new File(filePath + "/" + methodName + ".png");
             FileUtils.copyFile(scrFile, myFile);
             System.out.println("***Placed screen shot in "+filePath+" ***");
             reportLogScreenshot(myFile);
@@ -79,12 +84,20 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
+        LoggerManager.getInstance().addErrorLog(this.getClass().getName(),
+                "Test suite Start", null);
         Transporter.login();
     }
 
     @Override
     public void onFinish(ITestContext context) {
-
-
+        MainPage mainPage = Transporter.driverMainPage();
+        TopHeader topHeader = mainPage.gotoTopHeader();
+        topHeader.clickUserNameMenu();
+        LoginPage loginPage = topHeader.clickLogoutOption();
+        DriverManager.getInstance().close();
+        DriverManager.getInstance().quit();
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
+                "On Finish");
     }
 }

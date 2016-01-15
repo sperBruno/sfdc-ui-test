@@ -30,7 +30,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private CampaignViewDetail campaignViewDetail;
-
+    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(CreateCampaignViewFiltersFieldsAdded.class.getName());
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
@@ -59,8 +59,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
         for(FieldToDisplayView fields:fieldToDisplayViews)
             campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
         campaignViewDetail = campaignView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign was created");
+        LOGGER.addInfoLog("Campaign view was created");
         Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
         for(FieldToDisplayView fields:fieldToDisplayViews){
@@ -71,7 +70,6 @@ public class CreateCampaignViewFiltersFieldsAdded {
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
         campaignViewDetail.clickDeleteLnk(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign View was deleted");
+        LOGGER.addInfoLog("Campaign View was deleted");
     }
 }

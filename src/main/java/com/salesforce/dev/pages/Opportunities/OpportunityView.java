@@ -46,20 +46,23 @@ public class OpportunityView extends ViewBase {
     }
 
     @Override
-    public OpportunityView checkFilterByOwnerAllAccounts() {
-        checkFilterOwnerAllAccounts();
+    public OpportunityView checkFilterByOwnerAll() {
+        checkFilterOwnerAll();
         return this;
     }
 
     @Override
-    public OpportunityView checkFilterByOwnerMyAccount() {
-        checkFilterOwnerMyAccount();
+    public OpportunityView checkFilterByOwnerMy() {
+        checkFilterOwnerMy();
         return this;
     }
 
     @Override
     public OpportunityView checkFilterByOwner(String filter) {
-        checkFilterOwner(filter);
+        if(filter.compareToIgnoreCase("All Opportunities") == 0)
+            checkFilterOwnerAll();
+        else
+            checkFilterOwnerMy();
         return this;
     }
 

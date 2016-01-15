@@ -23,6 +23,9 @@ public abstract class HomeBase {
     @FindBy(name = "new")
     protected WebElement newBtn;
 
+    @FindBy(name = "go")
+    protected WebElement goBtn;
+
     @FindBy(linkText = "Create New View")
     protected WebElement newViewLnk;
 
@@ -105,11 +108,11 @@ public abstract class HomeBase {
                     e.fillInStackTrace());
         }
     }
+    protected abstract Object selectRecentViewItem(String value);
 
     protected void selectRecentView(String value){
         wait.until(ExpectedConditions.visibilityOf(viewCombobox));
         viewCombobox.sendKeys(value);
-
     }
 
     protected void editViewLnk(String value){

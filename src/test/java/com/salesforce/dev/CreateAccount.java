@@ -10,6 +10,7 @@ import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 
 import org.testng.annotations.AfterMethod;
@@ -31,15 +32,9 @@ public class CreateAccount {
     private DataDrivenManager dataDrivenManager;
 
 
-    @BeforeMethod(groups = {"Acceptance"})
-    public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
-        dataDrivenManager = new DataDrivenManager();
-    }
-
     @Test(groups = {"Acceptance"})
     public void testCreateAccount() {
+        mainPage = Transporter.driverMainPage();
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
@@ -90,7 +85,7 @@ public class CreateAccount {
         Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(account.getShippingAddress()));
         Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(account.getCustomerPriority()));
         Assert.assertTrue(accountDetail.validateAccountSLAFld(account.getSla()));
-        Assert.assertTrue(accountDetail.validateAccountUpSellOpportunityFld(account.getUpSellOpportunity()));
+        Assert.assertTrue(accountDetail.validateAccountUpSellOpportunityFld(account.getUpsellOpportunity()));
         Assert.assertTrue(accountDetail.validateAccountActiveFld(account.getActive()));
         Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(account.getSlaExpirationDate()));
         Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(account.getSlaSerialNumber()));

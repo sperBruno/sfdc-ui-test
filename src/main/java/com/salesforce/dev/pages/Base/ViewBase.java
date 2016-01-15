@@ -31,10 +31,10 @@ public abstract class ViewBase {
     protected WebElement uniqueViewNameFld;
 
     @FindBy(id = "fscope0")
-    protected WebElement filterOwnerAllAccounts;
+    protected WebElement filterOwnerAll;
 
     @FindBy(id = "fscope1")
-    protected WebElement filterOwnerMyAccount;
+    protected WebElement filterOwnerMy;
     ///id for Filter By Additional Fields (Optional):
     protected String idFieldField ="fcol";
     protected String idFieldOperator = "fop";
@@ -65,9 +65,9 @@ public abstract class ViewBase {
     protected abstract Object setViewName(String viewName);
     protected abstract Object setUniqueViewName(String uniqueViewName);
 
-    protected abstract Object checkFilterByOwnerAllAccounts();
+    protected abstract Object checkFilterByOwnerAll();
 
-    protected abstract Object checkFilterByOwnerMyAccount();
+    protected abstract Object checkFilterByOwnerMy();
     protected abstract Object checkFilterByOwner(String filter);
     protected abstract Object addAdditionalFiltersByField(int numberField,String field, String operator, String value);
     protected abstract Object addNewFieldToDisplay(String newField);
@@ -103,22 +103,16 @@ public abstract class ViewBase {
         uniqueViewNameFld.sendKeys(uniqueViewName);
     }
 
-    protected void checkFilterOwnerAllAccounts(){
-        wait.until(ExpectedConditions.visibilityOf(filterOwnerAllAccounts));
-        filterOwnerAllAccounts.click();
+    protected void checkFilterOwnerAll(){
+        wait.until(ExpectedConditions.visibilityOf(filterOwnerAll));
+        filterOwnerAll.click();
     }
 
-    protected void checkFilterOwnerMyAccount() {
-        wait.until(ExpectedConditions.visibilityOf(filterOwnerMyAccount));
-        filterOwnerMyAccount.click();
+    protected void checkFilterOwnerMy() {
+        wait.until(ExpectedConditions.visibilityOf(filterOwnerMy));
+        filterOwnerMy.click();
     }
 
-    public void checkFilterOwner(String filter){
-        if(filter.compareToIgnoreCase("All campaigns") == 0)
-            checkFilterOwnerAllAccounts();
-        else
-            checkFilterOwnerMyAccount();
-    }
 
     public void addAdditionalFilterByField(int numberField,String field, String operator, String value){
         By filterField = By.id(idFieldField + "" + numberField);

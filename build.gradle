@@ -59,7 +59,7 @@ dependencies {
 }
 
 task runTestNGTestCases(type: Test) {
-
+    ignoreFailures = true
     useTestNG()
 
     testLogging {
@@ -69,6 +69,7 @@ task runTestNGTestCases(type: Test) {
     options {
         suites(suites)
         includeGroups(groups)
+        excludeGroups(excludeGroup)
         listeners << 'org.uncommons.reportng.HTMLReporter'
         listeners << 'org.uncommons.reportng.JUnitXMLReporter'
     }
@@ -77,6 +78,9 @@ task runTestNGTestCases(type: Test) {
     systemProperties.put('primaryUserPassword', primaryUserPassword)
     systemProperties.put('browser', browser)
     systemProperties.put('mode',mode)
+    systemProperties.put('groups',groups)
+    systemProperties.put('primaryUsePasswordToken',primaryUsePasswordToken)
+    systemProperties.put('excludeGroup',excludeGroup)
 
 
     task downloadDrivers(type: Copy) {

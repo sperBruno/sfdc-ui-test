@@ -3,6 +3,7 @@ package com.salesforce.dev;
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import com.salesforce.dev.framework.RandomGenerator;
 import com.salesforce.dev.pages.Accounts.AccountView;
 import com.salesforce.dev.pages.Accounts.AccountViewDetail;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
@@ -21,12 +22,11 @@ import org.testng.annotations.Test;
 import java.util.Iterator;
 
 /**
- * Created by Carlos Orellana on 9/2/2015.
+ * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewBasic {
     private OpportunitiesHome opportunitiesHome;
     private OpportunityView opportunityView;
-    private HomePage homePage;
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private OpportunityViewDetail opportunityViewDetail;
@@ -44,7 +44,7 @@ public class CreateOpportunityViewBasic {
         navigationBar = mainPage.gotoNavBar();
         opportunitiesHome = navigationBar.goToOpportunitiesHome();
         opportunityView = opportunitiesHome.clickNewViewLnk()
-                .setViewName(viewSalesForce.getViewName())
+                .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());

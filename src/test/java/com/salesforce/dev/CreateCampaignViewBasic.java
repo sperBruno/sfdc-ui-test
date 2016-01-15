@@ -32,6 +32,7 @@ public class CreateCampaignViewBasic {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private CampaignViewDetail campaignViewDetail;
+    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(CreateCampaignViewBasic.class.getName());
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -51,15 +52,13 @@ public class CreateCampaignViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         campaignViewDetail = campaignView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign was created");
+        LOGGER.addInfoLog("Campaign was created");
         Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
             campaignViewDetail.clickDeleteLnk(true);
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Campaign View was deleted");
+        LOGGER.addInfoLog("Campaign View was deleted");
     }
 }
