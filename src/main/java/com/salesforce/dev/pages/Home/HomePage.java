@@ -1,4 +1,5 @@
 package com.salesforce.dev.pages.Home;
+import com.salesforce.dev.framework.CommonOperation;
 import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.DriverManager;
@@ -20,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
    private WebDriver driver;
    private WebDriverWait wait;
+   private CommonOperation operation = new CommonOperation();
 
    @FindBy(id = "button-login")
    @CacheLookup
@@ -32,39 +34,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
    }
 
    public LoginPage clickLoginBtn(){
-     wait.until(ExpectedConditions.visibilityOf(loginBtn));
-     loginBtn.click();
+     operation.clickWebElement(loginBtn);
      return new LoginPage(this.driver);
    }
-
-  /**
-   * Method that make sure to log with the correct user
-   *
-   * @author: Jimmy Vargas
-   * */
-
-  public MainPage loginAsPrimaryUser(){
-    String userNameValue= Environment.getInstance().getPrimaryUser();
-    String displayName= Environment.getInstance().getDisplayName();
-    String passwordValue=Environment.getInstance().getPrimaryPassword();
-    MainPage mainPage;
-
-    try{
-      mainPage = new MainPage(this.driver);
-      TopHeader topHeader =  mainPage.gotoTopHeader();
-      if(topHeader.isUserMenuPresent()){
-        if(!topHeader.isLoggedUser(displayName)){
-          LoginPage loginPage = topHeader.logout();
-          mainPage = loginPage.loginAs(userNameValue, passwordValue);
-        }
-      }
-
-    }
-    catch(WebDriverException e){
-      LoginPage loginPage = this.clickLoginBtn();
-      mainPage = loginPage.loginAs(userNameValue, passwordValue);
-    }
-    return mainPage;
-  }
 
 }

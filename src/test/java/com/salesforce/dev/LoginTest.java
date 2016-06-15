@@ -19,27 +19,18 @@ public class LoginTest {
     MainPage mainPage;
     LoginPage loginPage;
     TopHeader topHeader;
-    NavigationBar navigationBar;
-
 
     @BeforeMethod(groups = {"BVT"})
-    public void setUp(){
+    public void setUp() {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
-        topHeader = mainPage.gotoTopHeader();
-        topHeader.clickUserNameMenu();
-        loginPage=topHeader.clickLogoutOption();
+        loginPage = homePage.clickLoginBtn();
     }
+
     @Test(groups = {"BVT"})
-    public void Login(){
-        String account = Environment.getInstance().getPrimaryUser();
-        String password = Environment.getInstance().getPrimaryPassword();
-        String displayName=Environment.getInstance().getDisplayName();
-        loginPage.setUserName(account);
-        loginPage.setPassword(password);
-        mainPage=loginPage.clickLoginBtn();
-        topHeader=mainPage.gotoTopHeader();
-        Assert.assertEquals(topHeader.getUserName(),displayName);
+    public void testLogin() {
+        mainPage = loginPage.loginAs(Environment.getInstance().getPrimaryUser(), Environment.getInstance().getPrimaryPassword());
+        topHeader = mainPage.gotoTopHeader();
+        Assert.assertEquals(topHeader.getUserName(), Environment.getInstance().getDisplayName());
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Login on Sales Force");
 

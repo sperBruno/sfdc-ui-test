@@ -1,6 +1,9 @@
 package com.salesforce.dev.pages.Home;
+import com.salesforce.dev.framework.CommonOperation;
+import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.TopHeader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -9,6 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.salesforce.dev.framework.DriverManager;
+
+import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.CommonOperation.setWebElement;
 
 /**
  * Created by Monica Pardo on 6/4/2015.
@@ -32,16 +38,8 @@ public class LoginPage {
         PageFactory.initElements(driver,this);
     }
 
-    public void setUserName(String Name){
-        wait.until(ExpectedConditions.visibilityOf(userNameFld));
-        userNameFld.sendKeys(Name);
-    }
-    public void setPassword(String Password){
-        wait.until(ExpectedConditions.visibilityOf(passwrodFld));
-        passwrodFld.sendKeys(Password);
-    }
     public MainPage clickLoginBtn(){
-        loginBtn.click();
+        clickWebElement(loginBtn);
         return new MainPage(this.driver);
     }
 
@@ -54,14 +52,13 @@ public class LoginPage {
     public MainPage loginAs(String userName,String password){
         this.setUserName(userName);
         this.setPassword(password);
-        this.clickLoginBtn();
+        return this.clickLoginBtn();
+    }
 
-        // this is the crazy page
-        //ICNotNeededPage icNotNeededPage = new ICNotNeededPage(this.driver);
-        /*if(icNotNeededPage.isICNotNeededPagePresent()){
-            icNotNeededPage.continueButton.click();
-        }*/
-        return new MainPage(this.driver);
+    public MainPage loginAsPrimaryUser(){
+        this.setUserName(Environment.getInstance().getPrimaryUser());
+        this.setPassword(Environment.getInstance().getPrimaryPassword());
+        return this.clickLoginBtn();
     }
 
     public boolean isLoginButtonPresent() {
@@ -71,6 +68,13 @@ public class LoginPage {
         } catch (WebDriverException e) {
             return false;
         }
+    }
+
+    public void setUserName(String Name){
+        setWebElement(userNameFld, Name);
+    }
+    public void setPassword(String Password){
+        setWebElement(passwrodFld, Password);
     }
 
 

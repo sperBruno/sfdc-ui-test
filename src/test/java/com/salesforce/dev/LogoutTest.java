@@ -30,22 +30,20 @@ public class LogoutTest {
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        loginPage = homePage.clickLoginBtn();
+        mainPage = loginPage.loginAsPrimaryUser();
     }
 
     @Test(groups = {"BVT"})
-    public void testCreateAccount() {
-        TopHeader topHeader = mainPage.gotoTopHeader();
-        String displayName= Environment.getInstance().getDisplayName();
+    public void testLogout() {
 
-        Assert.assertEquals(topHeader.isUserMenuPresent(),true);
-        Assert.assertEquals(topHeader.getUserName(),displayName);
+        TopHeader topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();
         LoginPage loginPage = topHeader.clickLogoutOption();
 
-        Assert.assertEquals(loginPage.isLoginButtonPresent(),true);
+        Assert.assertEquals(loginPage.isLoginButtonPresent(), true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Logout from Sales Force");
+                "Logout from SalesForce");
     }
 
 }
