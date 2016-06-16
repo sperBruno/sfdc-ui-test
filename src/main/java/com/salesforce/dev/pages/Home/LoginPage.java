@@ -55,12 +55,6 @@ public class LoginPage {
         return this.clickLoginBtn();
     }
 
-    public MainPage loginAsPrimaryUser(){
-        this.setUserName(Environment.getInstance().getPrimaryUser());
-        this.setPassword(Environment.getInstance().getPrimaryPassword());
-        return this.clickLoginBtn();
-    }
-
     public boolean isLoginButtonPresent() {
         try {
             wait.until(ExpectedConditions.visibilityOf(loginBtn));
