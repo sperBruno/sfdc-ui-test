@@ -25,21 +25,21 @@ public class LogoutTest {
     private LoginPage loginPage;
     private HomePage homePage;
     private MainPage mainPage;
+    private TopHeader topHeader;
 
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         homePage = new HomePage();
-        loginPage = homePage.clickLoginBtn();
-        mainPage = loginPage.loginAsPrimaryUser();
+        mainPage = homePage.getLogin();
     }
 
     @Test(groups = {"BVT"})
     public void testLogout() {
 
-        TopHeader topHeader = mainPage.gotoTopHeader();
+        topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();
-        LoginPage loginPage = topHeader.clickLogoutOption();
+        loginPage = topHeader.clickLogoutOption();
 
         Assert.assertEquals(loginPage.isLoginButtonPresent(), true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),

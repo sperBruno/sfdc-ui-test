@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class CommonOperation {
 
+    private CommonOperation(){
+
+    }
     public static boolean isElementPresent(WebElement webElement) {
         try {
             webElement.getTagName();
