@@ -4,31 +4,28 @@ package com.salesforce.dev;
  * Created by Walter Mercado on 6/22/2015.
  */
 
-import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.DataDrivenManager;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import java.util.Iterator;
+import java.util.*;
+
 
 /**
  * Created by Walter on 13/06/2015.
  */
 public class CreateAccountDD {
 
-    private LoginPage loginPage;
-
-    private HomePage homePage;
     private MainPage mainPage;
+    private HomePage homePage;
     private AccountDetail accountDetail;
     private NavigationBar navigationBar;
 
@@ -38,14 +35,21 @@ public class CreateAccountDD {
         return dataDrivenManager.getAccountsDD();
     }
 
+    @BeforeMethod(groups = {"BVT"})
+    public void setUp() {
+        homePage = new HomePage();
+        mainPage = homePage.getLogin();
+    }
+
+
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateAccount(Account account) {
         mainPage = Transporter.driverMainPage();
-        NavigationBar navigationBar = mainPage.gotoNavBar();
+        navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
-        AccountForm accountForm = accountsHome.clickNewBtn();
-        accountForm.setAccountNameFld(account.getAccountName());
-        accountForm.setAccountDescriptionFld(account.getAccountDesc());
+        AccountForm accountForm = accountsHome.clickNewBtn()
+            .setAccountNameFld(account.getAccountName())
+            .setAccountDescriptionFld(account.getAccountDesc());
 
         accountDetail = accountForm.clickSaveBtn();
 

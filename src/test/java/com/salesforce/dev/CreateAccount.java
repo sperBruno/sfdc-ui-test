@@ -23,47 +23,47 @@ import org.testng.Assert;
  */
 public class CreateAccount {
 
-    private LoginPage loginPage;
-
-    private HomePage homePage;
     private MainPage mainPage;
     private AccountDetail accountDetail;
-    private NavigationBar navigationBar;
-    private DataDrivenManager dataDrivenManager;
+    private HomePage homePage;
+    private Account account = JSONMapper.getAccountBase();
 
+    @BeforeMethod(groups = {"BVT"})
+    public void setUp() {
+        homePage = new HomePage();
+        mainPage = homePage.getLogin();
+    }
 
     @Test(groups = {"Acceptance"})
     public void testCreateAccount() {
-        mainPage = Transporter.driverMainPage();
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
-        AccountForm accountForm = accountsHome.clickNewBtn();
-        Account account = JSONMapper.getAccountBase();
-        accountForm.setAccountNameFld(account.getAccountName());
-        accountForm.setAccountRatingFld(account.getRating());
-        accountForm.setAccountOwnershipFld(account.getOwnership());
-        accountForm.setAccountPhoneFld(account.getPhone());
-        accountForm.setAccountFaxFld(account.getFax());
-        accountForm.setAccountNumberFld(account.getNumber());
-        accountForm.setAccountWebsiteFld(account.getWebsite());
-        accountForm.setAccountSiteFld(account.getAccountSite());
-        accountForm.setAccountThickerFld(account.getTickerSymbol());
-        accountForm.setAccountTypeFld(account.getType());
-        accountForm.setAccountIndustryFld(account.getIndustry());
-        accountForm.setAccountEmployeesFld(account.getEmployees());
-        accountForm.setAccountAnnualRevenueFld(account.getAnnualRevenue());
-        accountForm.setAccountSICCodeFld(account.getSicCode());
-        accountForm.setAccountBillingStreetFld(account.getBillingAddress());
-        accountForm.setAccountShippingStreetFld(account.getShippingAddress());
-        accountForm.setAccountCustomerPriorityFld(account.getCustomerPriority());
-        accountForm.setAccountSLAFld(account.getSla());
-        accountForm.setAccountUpsellOpportunityFld(account.getUpSellOpportunity());
-        accountForm.setAccountActiveFld(account.getActive());
-        accountForm.setAccountSLAExpirationDateFld(account.getSlaExpirationDate());
-        accountForm.setAccountSLAExpirationDateFld(12,15,2016);
-        accountForm.setAccountSLASerialNumberFld(account.getSlaSerialNumber());
-        accountForm.setAccountNumberLocationsFld(account.getNumberOfLocations());
-        accountForm.setAccountDescriptionFld(account.getAccountDesc());
+        AccountForm accountForm = accountsHome.clickNewBtn()
+            .setAccountNameFld(account.getAccountName())
+            .setAccountRatingFld(account.getRating())
+            .setAccountOwnershipFld(account.getOwnership())
+            .setAccountPhoneFld(account.getPhone())
+            .setAccountFaxFld(account.getFax())
+            .setAccountNumberFld(account.getNumber())
+            .setAccountWebsiteFld(account.getWebsite())
+            .setAccountSiteFld(account.getAccountSite())
+            .setAccountThickerFld(account.getTickerSymbol())
+            .setAccountTypeFld(account.getType())
+            .setAccountIndustryFld(account.getIndustry())
+            .setAccountEmployeesFld(account.getEmployees())
+            .setAccountAnnualRevenueFld(account.getAnnualRevenue())
+            .setAccountSICCodeFld(account.getSicCode())
+            .setAccountBillingStreetFld(account.getBillingAddress())
+            .setAccountShippingStreetFld(account.getShippingAddress())
+            .setAccountCustomerPriorityFld(account.getCustomerPriority())
+            .setAccountSLAFld(account.getSla())
+            .setAccountUpsellOpportunityFld(account.getUpSellOpportunity())
+            .setAccountActiveFld(account.getActive())
+            .setAccountSLAExpirationDateFld(account.getSlaExpirationDate())
+            .setAccountSLAExpirationDateFld(12,15,2016)
+            .setAccountSLASerialNumberFld(account.getSlaSerialNumber())
+            .setAccountNumberLocationsFld(account.getNumberOfLocations())
+            .setAccountDescriptionFld(account.getAccountDesc());
 
         accountDetail = accountForm.clickSaveBtn();
 
@@ -85,7 +85,6 @@ public class CreateAccount {
         Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(account.getShippingAddress()));
         Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(account.getCustomerPriority()));
         Assert.assertTrue(accountDetail.validateAccountSLAFld(account.getSla()));
-        Assert.assertTrue(accountDetail.validateAccountUpSellOpportunityFld(account.getUpsellOpportunity()));
         Assert.assertTrue(accountDetail.validateAccountActiveFld(account.getActive()));
         Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(account.getSlaExpirationDate()));
         Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(account.getSlaSerialNumber()));
