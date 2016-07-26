@@ -80,20 +80,35 @@ public class CreateContact {
 
         contactForm.setTitle(contact.getTitle())
                     .setDepartment(contact.getDepartment());
+//                .setBirthDate(6, 6, 2015);
 
         searchLookup = contactForm.clickLookupReportsTo();
         searchLookup.searchText(contact.getReportsTo());
         contactForm = searchLookup.goToContactForm();
 
-        contactForm.setPhone(contact.getPhone())
+        contactForm.setLeadSource(contact.getLeadSource())
+                .setPhone(contact.getPhone())
+                .setHomePhone(contact.getHomePhone())
                 .setMobile(contact.getMobile())
+                .setOtherPhone(contact.getOtherPhone())
                 .setFax(contact.getFax())
                 .setEmail(contact.getEmail())
+                .setAssistant(contact.getassistant())
+                .setAssistantPhone(contact.getAssistantPhone())
                 .setMailingStreet(contact.getMailingStreet())
                 .setMailingCity(contact.getMailingCity())
                 .setMailingState(contact.getMailingState())
                 .setMailingZip(contact.getMailingZip())
-                .setMailingCountry(contact.getMailingCountry());
+                .setMailingCountry(contact.getMailingCountry())
+                .setOtherStreet(contact.getOtherStreet())
+                .setOtherCity(contact.getOtherCity())
+                .setOtherState(contact.getOtherState())
+                .setOtherZip(contact.getOtherZip())
+                .setOtherCountry(contact.getOtherCountry())
+                .setLanguages(contact.getLanguages())
+                .setLevel(contact.getLevel())
+                .setDescription(contact.getDescription());
+
         contactDetail = contactForm.clickSaveBtn();
 
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(), "Contact was created");
