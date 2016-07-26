@@ -1,11 +1,16 @@
 package com.salesforce.dev.pages.Base;
 
+import java.util.LinkedList;
+import java.util.Set;
+
+import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Contacts.ContactForm;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Opportunities.OpportunityForm;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -13,12 +18,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import com.salesforce.dev.framework.DriverManager;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.LinkedList;
-import java.util.Set;
 
 /**
  * Created by Marcelo.Vargas on 17-06-15.
@@ -62,7 +62,7 @@ public class SearchLookupBase {
             driver.findElement(By.linkText(text)).click();
             driver.switchTo().window(windowsArray.getFirst());
             LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Object was serach and selected in SearchLookup");
+                    "Object was search and selected in SearchLookup");
         }
         catch (WebDriverException e){
             LoggerManager.getInstance().addFatalLog(this.getClass().getName(),

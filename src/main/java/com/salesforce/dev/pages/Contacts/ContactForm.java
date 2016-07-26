@@ -26,7 +26,7 @@ public class ContactForm extends FormBase {
     @FindBy(name = "name_lastcon2")
     private WebElement lastNameFld;
 
-    @FindBy(xpath = "//img[@alt='Account Name Lookup (New Window)']")
+    @FindBy(id = "con4_lkwgt")
     @CacheLookup
     WebElement lookupAccountImg;
 
@@ -42,7 +42,7 @@ public class ContactForm extends FormBase {
     @FindBy(id = "con7") // calendar
     private WebElement birthDayFld;
 
-    @FindBy(xpath = "//img[@alt='Reports To Lookup (New Window)']")
+    @FindBy(id = "con8_lkwgt")
     @CacheLookup
     WebElement lookupReportsToImg;
 
@@ -189,7 +189,7 @@ public class ContactForm extends FormBase {
     }
 
     public ContactForm setLeadSource(String text) {
-        selectItemComboBox(leadSourceSelect, text);
+//        selectItemComboBox(leadSourceSelect, text);
         return this;
     }
 
