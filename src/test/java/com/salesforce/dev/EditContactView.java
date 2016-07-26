@@ -40,9 +40,11 @@ public class EditContactView {
     public void setUp() {
         ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateContactView.json");
         nameView = viewSalesForce.getViewName();
+
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
+
         contactsHome = navigationBar.goToContactsHome();
         contactView = contactsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
@@ -54,7 +56,7 @@ public class EditContactView {
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testEditContact(ViewSalesForce viewSalesForceUpdate) {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.getLogin ();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         String fieldToUpdate ="View Name";
@@ -74,11 +76,14 @@ public class EditContactView {
         contactViewDetail.clickDeleteLnk(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Contact was deleted");
+        System.out.println ("Contact was deleted");
         mainPage = contactViewDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
+        //Añadir paso
         contactViewDetail.clickDeleteLnk(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Contact Parent was deleted");
+        System.out.println ("Contact Parent was deleted");
     }
 }

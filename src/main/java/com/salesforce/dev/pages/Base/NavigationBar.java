@@ -30,7 +30,7 @@ public class NavigationBar {
     WebDriver driver;
     WebDriverWait wait;
 
-    @FindBy(linkText ="Campaigns")
+    @FindBy(id ="Campaign_Tab")
     WebElement campaignsTab;
 
     @FindBy(linkText ="Leads")
