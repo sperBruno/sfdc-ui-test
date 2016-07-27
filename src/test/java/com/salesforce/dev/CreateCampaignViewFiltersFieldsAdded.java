@@ -1,28 +1,32 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Campaigns.*;
+import com.salesforce.dev.pages.Campaigns.CampaignDetail;
+import com.salesforce.dev.pages.Campaigns.CampaignView;
+import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
+import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
-import org.testng.Assert;
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-import java.util.List;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by veronica on 8/21/2015.
  */
 public class CreateCampaignViewFiltersFieldsAdded {
+    private static final Logger LOGGER = Logger.getLogger(CreateCampaignViewFiltersFieldsAdded.class.getName());
     private CampaignsHome campaignsHome;
     private CampaignDetail campaignDetail;
     private CampaignView campaignView;
@@ -30,7 +34,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private CampaignViewDetail campaignViewDetail;
-    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(CreateCampaignViewFiltersFieldsAdded.class.getName());
+
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
@@ -48,28 +52,28 @@ public class CreateCampaignViewFiltersFieldsAdded {
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
-        List <FilterView> additionalField = viewSalesForce.getAdditionalFields();
+        List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
         int count = 1;
-        for(FilterView addFilter: additionalField){
-            campaignView = campaignView.addAdditionalFiltersByField(count,addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(),addFilter.getValueFilter());
+        for (FilterView addFilter : additionalField) {
+            campaignView = campaignView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
+                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
             count++;
         }
-        List <FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for(FieldToDisplayView fields:fieldToDisplayViews)
+        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
+        for (FieldToDisplayView fields : fieldToDisplayViews)
             campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
         campaignViewDetail = campaignView.clickSaveBtn();
-        LOGGER.addInfoLog("Campaign view was created");
-        Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
+        LOGGER.info("Campaign view was created");
+        assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
-        for(FieldToDisplayView fields:fieldToDisplayViews){
-            Assert.assertTrue(campaignViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
+        for (FieldToDisplayView fields : fieldToDisplayViews) {
+            assertTrue(campaignViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
         }
     }
 
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
         campaignViewDetail.clickDeleteLnk(true);
-        LOGGER.addInfoLog("Campaign View was deleted");
+        LOGGER.info("Campaign View was deleted");
     }
 }

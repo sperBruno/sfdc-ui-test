@@ -1,16 +1,18 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Opportunity;
-import com.salesforce.dev.pages.Common;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Opportunities.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.salesforce.dev.framework.JSONMapper;
+import com.salesforce.dev.framework.Objects.Opportunity;
+import com.salesforce.dev.pages.Common;
+import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
+import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 /**
  * Created by jimmy vargas on 6/20/2015.
  */
@@ -24,7 +26,7 @@ public class EditOpportunity {
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
 
 
         oppEnum = JSONMapper.getOpportunity("src\\test\\resources\\CreateOpportunityBase.json");

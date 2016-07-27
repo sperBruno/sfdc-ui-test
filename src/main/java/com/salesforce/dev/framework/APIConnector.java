@@ -1,26 +1,16 @@
 package com.salesforce.dev.framework;
-import com.sforce.soap.partner.*;
-import com.sforce.soap.partner.sobject.*;
-import com.sforce.ws.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
+import com.sforce.soap.partner.Connector;
+import com.sforce.soap.partner.PartnerConnection;
+import com.sforce.ws.ConnectionException;
+import com.sforce.ws.ConnectorConfig;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Veronica Prado on 8/25/2015.
  * class to connect by API to sales force
  */
 public class APIConnector {
+    private static final Logger LOGGER = Logger.getLogger(APIConnector.class.getName());
     private static APIConnector instance = null;
     private ConnectorConfig config;
     private PartnerConnection connection;
@@ -41,7 +31,7 @@ public class APIConnector {
         try {
             connection = Connector.newConnection(config);
         }catch (ConnectionException e){
-            LoggerManager.getInstance().addErrorLog(this.getClass().getName(),"Error on Connect to Api :", e);
+            LOGGER.error("Error on Connect to Api :", e);
     }
 
     }

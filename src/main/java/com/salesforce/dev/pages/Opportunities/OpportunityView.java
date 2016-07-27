@@ -1,14 +1,11 @@
 package com.salesforce.dev.pages.Opportunities;
 
-import com.salesforce.dev.framework.DriverManager;
+import java.util.concurrent.TimeUnit;
+
 import com.salesforce.dev.pages.Base.ViewBase;
-import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Carlos Orellana on 9/2/2015.
@@ -16,9 +13,6 @@ import java.util.concurrent.TimeUnit;
 public class OpportunityView extends ViewBase {
 
     public OpportunityView(WebDriver driver) {
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
         try {
             wait.withTimeout(10, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
@@ -28,6 +22,7 @@ public class OpportunityView extends ViewBase {
             wait.withTimeout(15, TimeUnit.SECONDS);
         }
     }
+
     @Override
     public Object clickCancelBtn() {
         return null;
@@ -59,7 +54,7 @@ public class OpportunityView extends ViewBase {
 
     @Override
     public OpportunityView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All Opportunities") == 0)
+        if (filter.compareToIgnoreCase("All Opportunities") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

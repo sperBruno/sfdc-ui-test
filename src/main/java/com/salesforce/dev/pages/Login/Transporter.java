@@ -10,19 +10,24 @@ import com.salesforce.dev.pages.TopHeader;
  * Created by Veronica Prado on 8/25/2015.
  */
 public class Transporter {
+
     private static HomePage homePage;
+
     private static MainPage mainPage;
-    public static void login(){
+
+    public static void login() {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
 
     }
-    public static MainPage driverMainPage(){
+
+    public static MainPage driverMainPage() {
         return mainPage;
     }
-    public static void logout(){
+
+    public static void logout() {
         TopHeader topHeader = mainPage.gotoTopHeader();
-        String displayName= Environment.getInstance().getDisplayName();
+        String displayName = Environment.getInstance().getDisplayName();
         topHeader.clickUserNameMenu();
         topHeader.clickLogoutOption();
 
