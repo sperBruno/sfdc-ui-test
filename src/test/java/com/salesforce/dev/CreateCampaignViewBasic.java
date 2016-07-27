@@ -1,5 +1,7 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
@@ -14,8 +16,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
 
 /**
  * Created by Veronica Prado on 8/22/2015.

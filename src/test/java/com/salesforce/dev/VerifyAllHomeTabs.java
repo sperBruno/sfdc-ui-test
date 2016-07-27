@@ -19,7 +19,6 @@ import com.salesforce.dev.pages.Solutions.SolutionsHome;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -36,33 +35,33 @@ public class VerifyAllHomeTabs {
 
     @Test(groups = {"BVT"})
     public void testVerifyAllHomeTabs() {
-        NavigationBar navigationBar=mainPage.gotoNavBar();
-        ChatterHome chatterHome=navigationBar.goToChatterHome();
-                assertTrue(chatterHome.IsUserInChatterTab());
-        CampaignsHome campaignsHome=navigationBar.goToCampaignsHome();
-                assertEquals(campaignsHome.IsUserInCampaignsTab(),true);
-        LeadsHome leadsHome=navigationBar.gotToLeadsHome();
-                assertEquals(leadsHome.IsUserInLeadsTab(),true);
-        AccountsHome accountsHome=navigationBar.goToAccountsHome();
-                assertEquals(accountsHome.IsUserInAccountsTab(),true);
-        ContactsHome contactsHome=navigationBar.goToContactsHome();
-                assertEquals(contactsHome.IsUserInContactsTab(),true);
-        OpportunitiesHome opportunitiesHome=navigationBar.goToOpportunitiesHome();
-                 assertEquals(opportunitiesHome.IsUserInOpportunitiesTab(),true);
-        ForecastsHome forecastsHome=navigationBar.goToForescastsHome();
-                assertEquals(forecastsHome.IsUserInForecastsTab(),true);
-        ContractsHome contractsHome=navigationBar.goToContractsHome();
-                assertEquals(contractsHome.IsUserInContractsTab(),true);
-        OrdersHome ordersHome=navigationBar.goToOrdersHome();
-                assertEquals(ordersHome.IsUserInOrdersTab(),true);
-        CasesHome casesHome=navigationBar.goToCasesHome();
-                assertEquals(casesHome.IsUserInCasesTab(),true);
-       SolutionsHome solutionsHome=navigationBar.goToSolutionsHome();
-                assertEquals(solutionsHome.IsUserInSolutionsTab(),true);
-        ReportsHome reportsHome=navigationBar.goToReportsHome();
-                assertEquals(reportsHome.IsUserInReportsTab(),true);
-       DashboardsHome dashboardsHome=navigationBar.goToDashboardsHome();
-                assertEquals(dashboardsHome.IsUserInDashboardsTab(),true);
+        NavigationBar navigationBar = mainPage.gotoNavBar();
+        ChatterHome chatterHome = navigationBar.goToChatterHome();
+        assertTrue(chatterHome.IsUserInChatterTab());
+        CampaignsHome campaignsHome = navigationBar.goToCampaignsHome();
+        assertTrue(campaignsHome.IsUserInCampaignsTab());
+        LeadsHome leadsHome = navigationBar.gotToLeadsHome();
+        assertTrue(leadsHome.IsUserInLeadsTab());
+        AccountsHome accountsHome = navigationBar.goToAccountsHome();
+        assertTrue(accountsHome.IsUserInAccountsTab());
+        ContactsHome contactsHome = navigationBar.goToContactsHome();
+        assertTrue(contactsHome.IsUserInContactsTab());
+        OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
+        assertTrue(opportunitiesHome.IsUserInOpportunitiesTab());
+        ForecastsHome forecastsHome = navigationBar.goToForescastsHome();
+        assertTrue(forecastsHome.IsUserInForecastsTab());
+        ContractsHome contractsHome = navigationBar.goToContractsHome();
+        assertTrue(contractsHome.IsUserInContractsTab());
+        OrdersHome ordersHome = navigationBar.goToOrdersHome();
+        assertTrue(ordersHome.IsUserInOrdersTab());
+        CasesHome casesHome = navigationBar.goToCasesHome();
+        assertTrue(casesHome.IsUserInCasesTab());
+        SolutionsHome solutionsHome = navigationBar.goToSolutionsHome();
+        assertTrue(solutionsHome.IsUserInSolutionsTab());
+        ReportsHome reportsHome = navigationBar.goToReportsHome();
+        assertTrue(reportsHome.IsUserInReportsTab());
+        DashboardsHome dashboardsHome = navigationBar.goToDashboardsHome();
+        assertTrue(dashboardsHome.IsUserInDashboardsTab());
 
 
     }

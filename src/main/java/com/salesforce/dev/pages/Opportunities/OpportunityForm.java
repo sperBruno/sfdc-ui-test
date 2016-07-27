@@ -9,40 +9,33 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
- *
+ * <p>
  * Todo: still need to complet the class with the remaining fields
  */
-public class OpportunityForm extends FormBase{
-
-    /*Opportunity Information*/
-    @FindBy(id = "opp2")
-    @CacheLookup
-    private WebElement privateCheckBox;
-
-    @FindBy(id = "opp3")
-    @CacheLookup
-    private WebElement opportunityNameField;
-
-    @FindBy(id = "opp4")
-    @CacheLookup
-    private WebElement accountName;
-
-    @FindBy(xpath = "//img=[@alt='Account Name Lookup (New Window)']")
-    @CacheLookup
-    private  WebElement accountNameLookup;
-
-    @FindBy(id = "opp5")
-    @CacheLookup
-    private WebElement type;
-
-    @FindBy(id = "opp6")
-    @CacheLookup
-    private WebElement leadSource;
+public class OpportunityForm extends FormBase {
 
     @FindBy(id = "opp7")
     @CacheLookup
     WebElement amountField;
-
+    /*Opportunity Information*/
+    @FindBy(id = "opp2")
+    @CacheLookup
+    private WebElement privateCheckBox;
+    @FindBy(id = "opp3")
+    @CacheLookup
+    private WebElement opportunityNameField;
+    @FindBy(id = "opp4")
+    @CacheLookup
+    private WebElement accountName;
+    @FindBy(xpath = "//img=[@alt='Account Name Lookup (New Window)']")
+    @CacheLookup
+    private WebElement accountNameLookup;
+    @FindBy(id = "opp5")
+    @CacheLookup
+    private WebElement type;
+    @FindBy(id = "opp6")
+    @CacheLookup
+    private WebElement leadSource;
     @FindBy(id = "opp9")
     @CacheLookup
     private WebElement closeDateField;
@@ -101,12 +94,12 @@ public class OpportunityForm extends FormBase{
     @CacheLookup
     private WebElement saveBtn;
 
-    public OpportunityForm(){
+    public OpportunityForm() {
 
         WAIT.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
     }
 
-    public OpportunityForm(OpportunityBuilder builder){
+    public OpportunityForm(OpportunityBuilder builder) {
 
         WAIT.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
 
@@ -137,7 +130,7 @@ public class OpportunityForm extends FormBase{
     }
 
     public void setOpportunityName(String opportunityName) {
-        if(opportunityName!=null) {
+        if (opportunityName != null) {
             fillTextBox(opportunityNameField, opportunityName);
         }
 
@@ -145,13 +138,12 @@ public class OpportunityForm extends FormBase{
 
     /**
      * Sets the close date and the format e.g 12/25/2015
-     * */
-    public void setCloseDate(String closeDate){
+     */
+    public void setCloseDate(String closeDate) {
 
-        if(closeDate.equalsIgnoreCase("today")){
+        if (closeDate.equalsIgnoreCase("today")) {
             todayLink.click();
-        }
-        else {
+        } else {
             String[] date = closeDate.split("/");
 
             int month = Integer.parseInt(date[0]);
@@ -168,27 +160,27 @@ public class OpportunityForm extends FormBase{
      *
      * @author: Jimmy Vargas
      * @version: 1.0
-     * */
-    public void selectStageByVisibleText(String stage){
-        if(stage!=null) {
+     */
+    public void selectStageByVisibleText(String stage) {
+        if (stage != null) {
             selectItemComboBox(stageComboBox, stage);
         }
 
     }
-    public void setAmount(String amount){
-        if(amount!=null){
-            fillTextBox(amountField,amount);
+
+    public void setAmount(String amount) {
+        if (amount != null) {
+            fillTextBox(amountField, amount);
         }
     }
 
-    public void setPrivateCheckBox(boolean privateOp){
+    public void setPrivateCheckBox(boolean privateOp) {
 
-        if(privateOp){
-            if(!privateCheckBox.isSelected()){
+        if (privateOp) {
+            if (!privateCheckBox.isSelected()) {
                 privateCheckBox.click();
             }
-        }
-        else {
+        } else {
             if (privateCheckBox.isSelected()) {
                 privateCheckBox.click();
             }
@@ -196,15 +188,15 @@ public class OpportunityForm extends FormBase{
     }
 
 
-    public void setAccountName(String accountName){
-        if(accountName!=null) {
+    public void setAccountName(String accountName) {
+        if (accountName != null) {
             fillTextBox(this.accountName, accountName);
         }
     }
 
 
-    public void selectAccountNameLookup(String accountName){
-        if(accountName!=null) {
+    public void selectAccountNameLookup(String accountName) {
+        if (accountName != null) {
             accountNameLookup.click();
             SearchLookupBase searchLookup = new SearchLookupBase();
             searchLookup.searchText(accountName);
@@ -212,40 +204,40 @@ public class OpportunityForm extends FormBase{
     }
 
 
-    public void selectTypeByVisibleText(String type){
-        if(type!=null) {
+    public void selectTypeByVisibleText(String type) {
+        if (type != null) {
             selectItemComboBox(this.type, type);
         }
     }
 
 
-    public void selectLeadSourceByVisibleText(String leadSource){
-        if (leadSource!=null) {
+    public void selectLeadSourceByVisibleText(String leadSource) {
+        if (leadSource != null) {
             selectItemComboBox(this.leadSource, leadSource);
         }
     }
 
 
     public void setNextStep(String nextStep) {
-        if(nextStep!=null) {
+        if (nextStep != null) {
             fillTextBox(this.nextStep, nextStep);
         }
     }
 
     public void setProbability(String probability) {
-        if(probability!=null) {
+        if (probability != null) {
             fillTextBox(this.probability, probability);
         }
     }
 
     public void setPrimaryCampaignSource(String primaryCampaignSource) {
-        if(primaryCampaignSource!=null) {
+        if (primaryCampaignSource != null) {
             fillTextBox(this.primaryCampaignSource, primaryCampaignSource);
         }
     }
 
-    public void selectPrimaryCampaignSourceLookUp(String primaryCampaignSource){
-        if(primaryCampaignSource!=null) {
+    public void selectPrimaryCampaignSourceLookUp(String primaryCampaignSource) {
+        if (primaryCampaignSource != null) {
             this.primaryCampaignSourceLookUp.click();
             SearchLookupBase searchLookup = new SearchLookupBase();
             searchLookup.searchText(primaryCampaignSource);
@@ -253,55 +245,55 @@ public class OpportunityForm extends FormBase{
     }
 
     /*Additional Information*/
-    public void setOrderNumber(String orderNumber){
-        if(orderNumber != null) {
+    public void setOrderNumber(String orderNumber) {
+        if (orderNumber != null) {
             fillTextBox(this.orderNumber, orderNumber);
         }
     }
 
-    public void setCurrentGenerator(String currentGenerator){
-        if(currentGenerator!=null ) {
+    public void setCurrentGenerator(String currentGenerator) {
+        if (currentGenerator != null) {
             fillTextBox(this.currentGenerator, currentGenerator);
         }
     }
 
-    public void setTrackingNumber(String trackingNumber){
-        if(trackingNumber!=null) {
+    public void setTrackingNumber(String trackingNumber) {
+        if (trackingNumber != null) {
             fillTextBox(this.trackingNumber, trackingNumber);
         }
     }
 
-    public void setMainCompetitors(String mainCompetitors){
-        if(mainCompetitors!=null) {
+    public void setMainCompetitors(String mainCompetitors) {
+        if (mainCompetitors != null) {
             fillTextBox(this.mainCompetitors, mainCompetitors);
         }
     }
 
     public void selectDeliveryStatusByVisibleText(String deliveryStatus) {
-        if(deliveryStatus!=null) {
+        if (deliveryStatus != null) {
             selectItemComboBox(this.deliveryStatus, deliveryStatus);
         }
     }
 
     /*description*/
-    public void setDescription(String description){
-        if(description!=null) {
+    public void setDescription(String description) {
+        if (description != null) {
             fillTextBox(this.description, description);
         }
     }
 
 
-    public OpportunityDetail clickSaveBtn(){
+    public OpportunityDetail clickSaveBtn() {
         super.clickSaveButton();
         return new OpportunityDetail();
     }
 
-    public OpportunitiesHome clickCancelBtn(){
+    public OpportunitiesHome clickCancelBtn() {
         super.clickCancelButton();
         return new OpportunitiesHome();
     }
 
-    public OpportunityForm clickSaveNewBtn(){
+    public OpportunityForm clickSaveNewBtn() {
         super.clickSaveNewButton();
         return new OpportunityForm();
     }

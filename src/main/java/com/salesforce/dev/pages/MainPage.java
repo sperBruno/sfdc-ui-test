@@ -8,16 +8,16 @@ import com.salesforce.dev.pages.Base.NavigationBar;
  */
 public class MainPage extends AbstractBasePage {
 
-    private  NavigationBar navBar;
+    private NavigationBar navBar;
 
     private TopHeader topHeader;
 
-    public MainPage(){
+    public MainPage() {
         topHeader = new TopHeader();
         navBar = new NavigationBar();
     }
 
-    public TopHeader gotoTopHeader(){
+    public TopHeader gotoTopHeader() {
         return this.topHeader;
     }
 
@@ -25,8 +25,8 @@ public class MainPage extends AbstractBasePage {
      * Returns the navigation bar where all the HOMEs are located
      *
      * @author: Jimmy Vargas
-     * */
-    public NavigationBar gotoNavBar(){
+     */
+    public NavigationBar gotoNavBar() {
         return this.navBar;
     }
 }

@@ -19,7 +19,7 @@ public class TestCookies {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-      //  mainPage = Transporter.driverMainPage();
+        //  mainPage = Transporter.driverMainPage();
         mainPage = LoginPage.getLogin();
     }
 

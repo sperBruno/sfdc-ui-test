@@ -1,5 +1,8 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
@@ -17,14 +20,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-import java.util.List;
-
 /**
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
-    private static final Logger LOGGER =Logger.getLogger(CreateOpportunityViewFiltersFieldsAdded.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CreateOpportunityViewFiltersFieldsAdded.class.getName());
     private OpportunitiesHome opportunitiesHome;
     private OpportunityView opportunityView;
     private MainPage mainPage;
@@ -48,20 +48,20 @@ public class CreateOpportunityViewFiltersFieldsAdded {
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
-        List <FilterView> additionalField = viewSalesForce.getAdditionalFields();
+        List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
         int count = 1;
-        for(FilterView addFilter: additionalField){
-            opportunityView = opportunityView.addAdditionalFiltersByField(count,addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(),addFilter.getValueFilter());
+        for (FilterView addFilter : additionalField) {
+            opportunityView = opportunityView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
+                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
             count++;
         }
-        List <FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for(FieldToDisplayView fields:fieldToDisplayViews)
+        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
+        for (FieldToDisplayView fields : fieldToDisplayViews)
             opportunityView = opportunityView.addNewFieldToDisplay(fields.getFieldToDisplay());
         opportunityViewDetail = opportunityView.clickSaveBtn();
         LOGGER.info("Opportunity view was created");
         Assert.assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
-        for(FieldToDisplayView fields:fieldToDisplayViews){
+        for (FieldToDisplayView fields : fieldToDisplayViews) {
             Assert.assertTrue(opportunityViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
         }
     }

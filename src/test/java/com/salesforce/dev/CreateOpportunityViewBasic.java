@@ -1,5 +1,7 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.framework.RandomGenerator;
@@ -15,13 +17,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-
 /**
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewBasic {
-    private static final Logger LOGGER =Logger.getLogger(CreateOpportunityViewBasic.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CreateOpportunityViewBasic.class.getName());
     private OpportunitiesHome opportunitiesHome;
     private OpportunityView opportunityView;
     private MainPage mainPage;
@@ -53,6 +53,6 @@ public class CreateOpportunityViewBasic {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         opportunityViewDetail.clickDeleteLnk(true);
-            LOGGER.info("Opportunity View was deleted");
+        LOGGER.info("Opportunity View was deleted");
     }
 }

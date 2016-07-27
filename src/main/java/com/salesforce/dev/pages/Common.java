@@ -15,7 +15,7 @@ import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 /**
  * Created by jimmy vargas on 6/23/2015.
  */
-public class Common extends AbstractBasePage{
+public class Common extends AbstractBasePage {
 
     public static void createOpportunity(Opportunity oppEnum) {
 
@@ -33,8 +33,6 @@ public class Common extends AbstractBasePage{
         opForm.clickSaveBtn();
 
     }
-    public static void createLead(Lead lead){
-
 
     public static void createLead(Lead lead) {
         MainPage mainPage;

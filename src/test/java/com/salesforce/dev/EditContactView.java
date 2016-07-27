@@ -1,10 +1,6 @@
 package com.salesforce.dev;
-import org.apache.log4j.Logger;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+
+import java.util.Iterator;
 
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
@@ -16,13 +12,12 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
 
 /**
  * Created by alex on 06/09/2015.
@@ -44,6 +39,7 @@ public class EditContactView {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("EditContactView.json");
     }
+
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateContactView.json");
@@ -65,7 +61,7 @@ public class EditContactView {
         mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
-        String fieldToUpdate ="View Name";
+        String fieldToUpdate = "View Name";
         String newValue = "viewUpdatedContact" + RamdonGenerator.getInstance().getRamdonString();
         contactView = contactsHome.clickEditViewLnk(nameView)
                 .setViewName(viewSalesForceUpdate.getViewName())
@@ -73,7 +69,7 @@ public class EditContactView {
                 .checkFilterByOwnerAll()
                 .checkFilterByOwnerMy()
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
-        contactViewDetail  = contactView.clickSaveBtn();
+        contactViewDetail = contactView.clickSaveBtn();
         Assert.assertFalse(contactViewDetail.validateNameView("anyname"));
     }
 

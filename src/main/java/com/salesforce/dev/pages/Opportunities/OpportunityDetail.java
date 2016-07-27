@@ -12,7 +12,7 @@ public class OpportunityDetail extends DetailsBase {
 
     @FindBy(id = "opp1_ileinner")
     @CacheLookup
-    private WebElement  opOwner;
+    private WebElement opOwner;
 
     @FindBy(id = "opp2_chkbox")
     @CacheLookup
@@ -99,8 +99,8 @@ public class OpportunityDetail extends DetailsBase {
      *
      * @author: Jimmy Vargas
      * @since: 06/13/2015
-     * */
-    public OpportunityForm clickEditBtn(){
+     */
+    public OpportunityForm clickEditBtn() {
         super.clickEditButton();
         return new OpportunityForm();
     }
@@ -110,9 +110,9 @@ public class OpportunityDetail extends DetailsBase {
      *
      * @author: Jimmy Vargas
      * @since: 06/13/2015
-     * */
+     */
     @Override
-    protected OpportunitiesHome clickDeleteBtn(boolean confirmDeletion){
+    protected OpportunitiesHome clickDeleteBtn(boolean confirmDeletion) {
         super.clickDeleteButton(confirmDeletion);
         return new OpportunitiesHome();
     }
@@ -122,12 +122,12 @@ public class OpportunityDetail extends DetailsBase {
      *
      * @author: Jimmy Vargas
      * @since: 06/13/2015
-     * */
-    public OpportunitiesHome deleteOpportunity(){
+     */
+    public OpportunitiesHome deleteOpportunity() {
         return clickDeleteBtn(true);
     }
 
-    public String getOpOwner(){
+    public String getOpOwner() {
         return opOwner.getText();
     }
 
@@ -136,15 +136,15 @@ public class OpportunityDetail extends DetailsBase {
         return privateCheckBox.getAttribute("title").equalsIgnoreCase("Checked");
     }
 
-    public String getOpName(){
+    public String getOpName() {
         return opName.getText();
     }
 
-    public String getAccountName(){
+    public String getAccountName() {
         return accountName.getText();
     }
 
-    public String getType(){
+    public String getType() {
         return type.getText();
     }
 
@@ -208,7 +208,7 @@ public class OpportunityDetail extends DetailsBase {
         return deliveryInstallationStatus.getText();
     }
 
-    public String getLastModifiedBy(){
+    public String getLastModifiedBy() {
         return lastModifiedBy.getText();
     }
 

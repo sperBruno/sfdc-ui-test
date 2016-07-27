@@ -161,7 +161,6 @@ public class LeadForm extends FormBase {
     }
 
 
-
     //Lead information
     public void setLastName(String lastName) {
         if (lastName != null) {

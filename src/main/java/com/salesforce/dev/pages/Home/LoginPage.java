@@ -45,12 +45,9 @@ public class LoginPage extends AbstractBasePage {
      * @author: Jimmy Vargas
      */
     public MainPage loginAs(String userName, String password) {
-        if(mainPage==null){
         this.setUserName(userName);
         this.setPassword(password);
         return this.clickLoginBtn();
-        }
-        return mainPage;
     }
 
     public MainPage loginAsPrimaryUser() {

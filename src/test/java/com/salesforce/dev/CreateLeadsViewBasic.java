@@ -1,5 +1,7 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
@@ -15,13 +17,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-
 /**
  * Created by Ariel Mattos on 06/09/2015.
  */
 public class CreateLeadsViewBasic {
-    private static final Logger LOGGER =Logger.getLogger(CreateLeadsViewBasic.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CreateLeadsViewBasic.class.getName());
     HomePage homePage;
     MainPage mainPage;
     NavigationBar navBar;
@@ -36,7 +36,7 @@ public class CreateLeadsViewBasic {
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
-    public void testCreateLeadView(ViewSalesForce viewSalesForce){
+    public void testCreateLeadView(ViewSalesForce viewSalesForce) {
         mainPage = Transporter.driverMainPage();
         navBar = mainPage.gotoNavBar();
         leadsHome = navBar.gotToLeadsHome();
@@ -51,8 +51,8 @@ public class CreateLeadsViewBasic {
                 "View name does not match " + viewSalesForce.getViewName());
     }
 
-    @AfterMethod(groups={"Acceptance"})
-    public void tearDown(){
+    @AfterMethod(groups = {"Acceptance"})
+    public void tearDown() {
         leadViewDetail.clickDeleteLnk(true);
         LOGGER.info("Lead View was deleted");
     }

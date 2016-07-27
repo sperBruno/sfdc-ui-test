@@ -53,7 +53,7 @@ public class LeadView extends ViewBase {
 
     @Override
     public LeadView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All Unconverted Leads") == 0)
+        if (filter.compareToIgnoreCase("All Unconverted Leads") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

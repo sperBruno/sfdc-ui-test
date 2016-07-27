@@ -22,6 +22,7 @@ public class LeadViewDetail extends ViewDetailBase {
             WAIT.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
+
     @Override
     protected LeadView clickEditLnk() {
         clickEditLink();

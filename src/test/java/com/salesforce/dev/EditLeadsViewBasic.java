@@ -1,5 +1,7 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
@@ -15,8 +17,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
 
 /**
  * Created by Ariel Mattos on 07/09/2015.
@@ -35,6 +35,7 @@ public class EditLeadsViewBasic {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("EditLeadsViewBasic.json");
     }
+
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         ViewSalesForce viewSalesForce = LeadGenie.getLeadsView("CreateLeadsViewBasic.json");

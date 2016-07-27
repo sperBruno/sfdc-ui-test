@@ -22,6 +22,7 @@ public class OpportunityView extends ViewBase {
             WAIT.withTimeout(15, TimeUnit.SECONDS);
         }
     }
+
     @Override
     public Object clickCancelBtn() {
         return null;
@@ -53,7 +54,7 @@ public class OpportunityView extends ViewBase {
 
     @Override
     public OpportunityView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All Opportunities") == 0)
+        if (filter.compareToIgnoreCase("All Opportunities") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

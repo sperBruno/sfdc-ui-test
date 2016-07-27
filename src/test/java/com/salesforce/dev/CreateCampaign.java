@@ -1,15 +1,17 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -18,13 +20,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-
 /**
  * Created by Marcelo.Vargas on 6/15/2015.
  */
 public class CreateCampaign {
-    private static final Logger LOGGER =Logger.getLogger(CreateCampaign.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CreateCampaign.class.getName());
     private String parentCampaign = "CampaignParent";
 
     private CampaignsHome campaignsHome;
@@ -36,11 +36,13 @@ public class CreateCampaign {
 
 
     private SearchLookupBase searchLookup;
+
     @DataProvider(name = "dataDriven")
     public Iterator<Campaign[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getCampaign("CreateCampaign.json");
     }
+
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         parentCampaign = CampaignGenie.getCampaign().getParentCampaign();

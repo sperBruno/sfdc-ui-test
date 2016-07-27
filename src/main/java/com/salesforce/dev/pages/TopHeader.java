@@ -1,12 +1,11 @@
 package com.salesforce.dev.pages;
 
+import com.salesforce.dev.pages.Home.LoginPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import com.salesforce.dev.pages.Home.LoginPage;
 
 import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.utils.Constants.WEB_ELEMENT_COULD_NOT_BE_FOUNT;

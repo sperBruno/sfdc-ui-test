@@ -31,6 +31,6 @@ public class LoginTest {
         MainPage mainPage = loginPage.loginAsPrimaryUser();
         TopHeader topHeader = mainPage.gotoTopHeader();
         assertEquals(topHeader.getUserName(), ENVIRONMENT.getDisplayName());
-        LOGGER.info( "Login on Sales Force");
+        LOGGER.info("Login on Sales Force");
     }
 }

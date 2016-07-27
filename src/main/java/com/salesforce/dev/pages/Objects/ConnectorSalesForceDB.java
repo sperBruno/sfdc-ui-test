@@ -14,11 +14,12 @@ import org.apache.log4j.Logger;
 public class ConnectorSalesForceDB {
     private static final Logger LOGGER = Logger.getLogger(ConnectorSalesForceDB.class.getName());
     private PartnerConnection connection = APIConnector.getInstance().getConnection();
+
     /*execute a query on sales force
     * @param soqlQuery
     * @return SObject[]
     * */
-    public SObject[] executeQuery(String soqlQuery)  {
+    public SObject[] executeQuery(String soqlQuery) {
         QueryResult qResult = null;
         SObject[] records = null;
         try {
@@ -28,9 +29,9 @@ public class ConnectorSalesForceDB {
                 records = qResult.getRecords();
             }
             LOGGER.info("Executing query on sales force");
-            }catch(ConnectionException e){
-          LOGGER.error("Error on Create campaign by Api :", e);
-            }
+        } catch (ConnectionException e) {
+            LOGGER.error("Error on Create campaign by Api :", e);
+        }
         return records;
     }
 }

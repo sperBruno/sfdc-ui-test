@@ -10,47 +10,37 @@ import org.openqa.selenium.support.FindBy;
  */
 public class LeadDetail extends DetailsBase {
 
+    @FindBy(id = "lea8_ileinner")
+    @CacheLookup
+    WebElement phone;
+    @FindBy(id = "lea10_ileinner")
+    @CacheLookup
+    WebElement fax;
     /*Lead Information*/
     @FindBy(id = "lea1_ileinner")
     @CacheLookup
     private WebElement owner;
-
     @FindBy(id = "lea2_ileinner")
     @CacheLookup
     private WebElement name;
-
     @FindBy(id = "lea3_ileinner")
     @CacheLookup
     private WebElement company;
-
     @FindBy(id = "lea4_ileinner")
     @CacheLookup
     private WebElement title;
-
     @FindBy(id = "lea5_ileinner")
     @CacheLookup
     private WebElement leadSource;
-
     @FindBy(id = "lea6_ileinner")
     @CacheLookup
     private WebElement industry;
-
     @FindBy(id = "lea7_ileinner")
     @CacheLookup
     private WebElement annualRevenue;
-
-    @FindBy(id = "lea8_ileinner")
-    @CacheLookup
-    WebElement phone;
-
     @FindBy(id = "lea9_ileinner")
     @CacheLookup
     private WebElement mobile;
-
-    @FindBy(id = "lea10_ileinner")
-    @CacheLookup
-    WebElement fax;
-
     @FindBy(id = "lea11_ileinner")
     @CacheLookup
     private WebElement email;
@@ -116,116 +106,116 @@ public class LeadDetail extends DetailsBase {
 
 
     /*Lead Information*/
-    public String getOwner(){
+    public String getOwner() {
         return owner.getText();
     }
 
-    public String getName(){
+    public String getName() {
         return name.getText();
     }
 
-    public String getCompany(){
+    public String getCompany() {
         return company.getText();
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title.getText();
     }
 
-    public String getLeadSource(){
-        return  leadSource.getText();
+    public String getLeadSource() {
+        return leadSource.getText();
     }
 
-    public String getIndustry(){
+    public String getIndustry() {
         return industry.getText();
     }
 
-    public String getAnnualRevenue(){
+    public String getAnnualRevenue() {
         return annualRevenue.getText();
     }
 
-    public String getPhone(){
+    public String getPhone() {
         return phone.getText();
     }
 
-    public String getMobile(){
+    public String getMobile() {
         return mobile.getText();
     }
 
-    public String getFax(){
+    public String getFax() {
         return fax.getText();
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email.getText();
     }
 
-    public String getWebsite(){
+    public String getWebsite() {
         return website.getText();
     }
 
-    public String getLeadStatus(){
+    public String getLeadStatus() {
         return leadStatus.getText();
     }
 
-    public String getRating(){
+    public String getRating() {
         return rating.getText();
     }
 
-    public String getNumEmployees(){
+    public String getNumEmployees() {
         return numEmployees.getText();
     }
 
     /*Address Information*/
-    public String getAddress(){
+    public String getAddress() {
         return address.getText();
     }
 
     /*additional information*/
-    public String getProductInterest(){
+    public String getProductInterest() {
         return productInterest.getText();
     }
 
-    public String getSICcode(){
+    public String getSICcode() {
         return SICcode.getText();
     }
 
-    public String getNumLocations(){
+    public String getNumLocations() {
         return numLocations.getText();
     }
 
-    public String getCurrentGenerators(){
+    public String getCurrentGenerators() {
         return currentGenerators.getText();
     }
 
-    public String getPrimary(){
+    public String getPrimary() {
         return primary.getText();
     }
 
     /*Others*/
-    public String getDescription(){
+    public String getDescription() {
         return description.getText();
     }
 
-    public String getCampaign(){
+    public String getCampaign() {
         return campaign.getText();
     }
 
-    public String getCreatedBy(){
+    public String getCreatedBy() {
         return createdBy.getText();
     }
 
-    public String getLastModifiedBy(){
+    public String getLastModifiedBy() {
         return lastModifiedBy.getText();
     }
 
-    public LeadForm clickEditBtn(){
+    public LeadForm clickEditBtn() {
         super.clickEditButton();
         return new LeadForm();
     }
 
 
-    public LeadsHome deleteLead(){
+    public LeadsHome deleteLead() {
         return clickDeleteBtn(true);
 
     }
