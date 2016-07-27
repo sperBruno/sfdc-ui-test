@@ -42,9 +42,7 @@ public class EditCampaignViewBasic {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateCampaignViewBasic.json");
-        // Add for daniel
         Transporter.login ();
-        //
         nameView = viewSalesForce.getViewName();
         mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();

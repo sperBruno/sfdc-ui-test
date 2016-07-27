@@ -2,10 +2,13 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.Objects.Opportunity;
+import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Common;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Opportunities.*;
+import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
+import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,31 +19,30 @@ import org.testng.annotations.Test;
  */
 public class EditOpportunity {
 
-    HomePage homePage;
-    MainPage mainPage;
+    private HomePage homePage;
+    private MainPage mainPage;
+    private NavigationBar navBar;
 
-    Opportunity oppEnum,oppEditEnum;
+
+    private Opportunity oppEnum,oppEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
+        navBar = mainPage.gotoNavBar ();
 
-
-        oppEnum = JSONMapper.getOpportunity("src\\test\\resources\\CreateOpportunityBase.json");
-        oppEditEnum = JSONMapper.getOpportunity("src\\test\\resources\\EditOpportunity.json");
+        oppEnum = JSONMapper.getOpportunity("CreateOpportunityBase.json");
+        oppEditEnum = JSONMapper.getOpportunity("EditOpportunity.json");
 
         // creating the opportunity base
         Common.createOpportunity(oppEnum);
-
     }
 
     @Test(groups = {"Acceptance"})
     public void testEditOpportunity(){
-
-        OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
-        OpportunityDetail opDetail= opHome.openOpportunity(oppEnum.opportunityName);
-
+        OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
+        OpportunityDetail opDetail= opTab.openOpportunity(oppEnum.opportunityName);
         OpportunityForm opForm = opDetail.clickEditBtn();
             opForm.setOpportunityName(oppEditEnum.opportunityName);
             opForm.setCloseDate(oppEditEnum.closeDate);
