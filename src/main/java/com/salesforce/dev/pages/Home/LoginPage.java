@@ -25,14 +25,6 @@ public class LoginPage extends AbstractBasePage {
     @FindBy(id = "Login")
     private WebElement loginBtn;
 
-    public static MainPage getLogin() {
-        if (Transporter.driverMainPage() == null) {
-            HomePage homePage = new HomePage();
-            return homePage.clickLoginBtn().loginAsPrimaryUser();
-        }
-        return Transporter.driverMainPage();
-    }
-
     public MainPage clickLoginBtn() {
         clickWebElement(loginBtn);
         return new MainPage();
@@ -57,6 +49,14 @@ public class LoginPage extends AbstractBasePage {
     public boolean isLoginButtonPresent() {
         WAIT.until(ExpectedConditions.visibilityOf(loginBtn));
         return loginBtn.isDisplayed();
+    }
+
+    public static MainPage getLogin() {
+        if (Transporter.driverMainPage() == null) {
+            HomePage homePage = new HomePage();
+            return homePage.clickLoginBtn().loginAsPrimaryUser();
+        }
+        return Transporter.driverMainPage();
     }
 
     public void setUserName(String Name) {
