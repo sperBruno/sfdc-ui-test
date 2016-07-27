@@ -1,47 +1,44 @@
 package com.salesforce.dev.pages;
 
-import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Home.LoginPage;
-import org.openqa.selenium.WebDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.utils.Constants.WEB_ELEMENT_COULD_NOT_BE_FOUNT;
 
 /**
  * Created by Jimmy Vargas on 6/5/2015.
  */
-public class TopHeader {
-    WebDriver driver;
-    WebDriverWait wait;
+public class TopHeader extends AbstractBasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(TopHeader.class.getName());
 
     @FindBy(id = "userNavLabel")
-    WebElement userMenu;
+    private WebElement userMenu;
 
     @FindBy(id = "phHeaderLogoImage")
-    WebElement salesforceLogo;
+    private WebElement salesforceLogo;
 
     @FindBy(css = "a.menuButtonMenuLink.firstMenuItem")
-    WebElement userMyProfileMenu;
+    private WebElement userMyProfileMenu;
 
     @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
-    WebElement logoutMenuOption;
+    private WebElement logoutMenuOption;
 
-    public TopHeader(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver, this);
+    public TopHeader() {
         this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
     }
 
     public void clickUserNameMenu() {
         try {
-            wait.until(ExpectedConditions.visibilityOf(userMenu));
-            this.userMenu.click();
+            clickWebElement(userMenu);
         } catch (WebDriverException e) {
-            throw new WebDriverException(e);
+            e = new WebDriverException(e);
+            LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
         }
     }
 
@@ -51,41 +48,23 @@ public class TopHeader {
             wait.until(ExpectedConditions.visibilityOf(userMenu));
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {
-            throw new WebDriverException(e);
+            e = new WebDriverException(e);
+            LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
         }
         return userLogged;
     }
 
-    public boolean isUserMenuPresent() {
-        return !getUserName().equals("");
-    }
-
-    public boolean isLoggedUser(String account) {
-        return getUserName().equals(account);
-    }
-
-    public LoginPage logout() {
-        this.clickUserNameMenu();
-        logoutMenuOption.click();
-
-        return new LoginPage();
-    }
-
     public LoginPage clickLogoutOption() {
         try {
-            wait.until(ExpectedConditions.visibilityOf(logoutMenuOption));
-            logoutMenuOption.click();
+            clickWebElement(logoutMenuOption);
         } catch (WebDriverException e) {
-            throw new WebDriverException(e);
+            e = new WebDriverException(e);
+            LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
         }
         return new LoginPage();
     }
 
     public boolean checkIfCookieIsPresent() {
-        if (this.driver.manage().getCookieNamed("com.salesforce.LocaleInfo").getDomain().equals(".salesforce.com")) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.driver.manage().getCookieNamed("com.salesforce.LocaleInfo").getDomain().equals(".salesforce.com");
     }
 }

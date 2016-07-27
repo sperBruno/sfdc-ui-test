@@ -1,16 +1,13 @@
 package com.salesforce.dev.pages.Opportunities;
 
-import com.salesforce.dev.pages.Accounts.AccountView;
-import com.salesforce.dev.pages.Base.*;
-import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.pages.Base.HomeBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.CommonOperation.isElementPresent;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
@@ -18,19 +15,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class OpportunitiesHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Opportunities:')]")
     @CacheLookup
-    WebElement opportunitiesSection;
+    private WebElement opportunitiesSection;
 
-    public OpportunitiesHome(WebDriver driver){
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(super.driver, this);
-    }
-
-     public OpportunityForm clickNewBtn(){
-        super.wait.until(ExpectedConditions.visibilityOf(newBtn));
-        newBtn.click();
-
-        return new OpportunityForm(this.driver);
+    public OpportunityForm clickNewBtn() {
+        clickWebElement(newBtn);
+        return new OpportunityForm();
     }
 
     @Override
@@ -45,9 +34,9 @@ public class OpportunitiesHome extends HomeBase {
         return new OpportunityView(this.driver);
     }
 
-    public OpportunityDetail selectRecentItem(String opportunity){
+    public OpportunityDetail selectRecentItem(String opportunity) {
         super.clickRecentItem(opportunity);
-        return new OpportunityDetail(this.driver);
+        return new OpportunityDetail();
     }
 
     @Override
@@ -56,29 +45,16 @@ public class OpportunitiesHome extends HomeBase {
         return this;
     }
 
-    public OpportunityDetail openOpportunity(String opportunity){
+    public OpportunityDetail openOpportunity(String opportunity) {
         WebElement linkOpportunity = driver.findElement(By.linkText(opportunity));
-        wait.until(ExpectedConditions.elementToBeClickable(linkOpportunity));
-
-        linkOpportunity.click();
-        return new OpportunityDetail(this.driver);
+        clickWebElement(linkOpportunity);
+        return new OpportunityDetail();
     }
 
 
-    public boolean IsUserInOpportunitiesTab(){
-        try{
+    public boolean IsUserInOpportunitiesTab() {
 
-            wait.until(ExpectedConditions.visibilityOf(opportunitiesSection));
-            return true;
-        }
-        catch (WebDriverException e){
-            return false;
-        }
+        return isElementPresent(opportunitiesSection);
+
     }
-
-
-
-
-
 }
-

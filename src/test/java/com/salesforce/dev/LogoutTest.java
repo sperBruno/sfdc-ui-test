@@ -4,23 +4,24 @@ package com.salesforce.dev;
  * Created by Luffy on 22/06/2015.
  */
 
-import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
+import org.apache.log4j.Logger;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Walter on 13/06/2015.
  */
 public class LogoutTest {
-    private static final Logger LOGGER = Logger.getLogger(LogoutTest.class.getName());
-    private MainPage mainPage;
 
+    private static final Logger LOGGER = Logger.getLogger(LogoutTest.class.getName());
+
+    private MainPage mainPage;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
@@ -30,13 +31,10 @@ public class LogoutTest {
 
     @Test(groups = {"BVT"})
     public void testLogout() {
-
         TopHeader topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();
         LoginPage loginPage = topHeader.clickLogoutOption();
-
-        Assert.assertEquals(loginPage.isLoginButtonPresent(), true);
+        assertTrue(loginPage.isLoginButtonPresent());
         LOGGER.info("Logout from SalesForce");
     }
-
 }

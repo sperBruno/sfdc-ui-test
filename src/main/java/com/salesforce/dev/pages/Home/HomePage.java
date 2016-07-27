@@ -17,7 +17,7 @@ public class HomePage extends AbstractBasePage {
 
     @FindBy(id = "button-login")
     @CacheLookup
-    WebElement loginBtn;
+    private WebElement loginBtn;
 
     public LoginPage clickLoginBtn() {
         clickWebElement(loginBtn);
