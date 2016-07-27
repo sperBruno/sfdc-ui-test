@@ -29,65 +29,62 @@ public class TopHeader {
     @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
     WebElement logoutMenuOption;
 
-    public TopHeader(WebDriver driver){
+    public TopHeader(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver,this);
+        PageFactory.initElements(this.driver, this);
         this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
     }
 
-    public void clickUserNameMenu(){
-        try{
+    public void clickUserNameMenu() {
+        try {
             wait.until(ExpectedConditions.visibilityOf(userMenu));
             this.userMenu.click();
-        }
-        catch (WebDriverException e){
+        } catch (WebDriverException e) {
             throw new WebDriverException(e);
         }
     }
-    public String getUserName(){
+
+    public String getUserName() {
         String userLogged = "";
-        try{
+        try {
             wait.until(ExpectedConditions.visibilityOf(userMenu));
             userLogged = this.userMenu.getText();
-        }
-        catch (WebDriverException e){
+        } catch (WebDriverException e) {
             throw new WebDriverException(e);
         }
         return userLogged;
     }
 
-    public boolean isUserMenuPresent(){
+    public boolean isUserMenuPresent() {
         return !getUserName().equals("");
     }
 
-    public boolean isLoggedUser(String account){
+    public boolean isLoggedUser(String account) {
         return getUserName().equals(account);
     }
 
-    public LoginPage logout(){
+    public LoginPage logout() {
         this.clickUserNameMenu();
         logoutMenuOption.click();
 
-        return new LoginPage(this.driver);
+        return new LoginPage();
     }
 
-    public LoginPage clickLogoutOption(){
-        try{
+    public LoginPage clickLogoutOption() {
+        try {
             wait.until(ExpectedConditions.visibilityOf(logoutMenuOption));
             logoutMenuOption.click();
-        }
-        catch (WebDriverException e){
+        } catch (WebDriverException e) {
             throw new WebDriverException(e);
         }
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 
     public boolean checkIfCookieIsPresent() {
-        if(this.driver.manage().getCookieNamed("com.salesforce.LocaleInfo").getDomain().equals(".salesforce.com")) {
+        if (this.driver.manage().getCookieNamed("com.salesforce.LocaleInfo").getDomain().equals(".salesforce.com")) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

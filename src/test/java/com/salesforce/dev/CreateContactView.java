@@ -1,4 +1,5 @@
 package com.salesforce.dev;
+
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
 import com.salesforce.dev.framework.RamdonGenerator;
@@ -51,7 +52,7 @@ public class CreateContactView {
     public void setUp() {
         campaignName = "Camp" + RamdonGenerator.getInstance().getRamdonString();
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -62,9 +63,9 @@ public class CreateContactView {
 
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
-    public void testCreateContactView(ViewSalesForce viewSalesForce){
+    public void testCreateContactView(ViewSalesForce viewSalesForce) {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         contactHome = navigationBar.goToContactsHome();
         contactView = contactHome.clickNewViewLnk()
@@ -75,19 +76,19 @@ public class CreateContactView {
                 .setFilterByCampaign(campaignName)
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
 
-        List <FilterView> additionalField = viewSalesForce.getAdditionalFields();
+        List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
         int count = 1;
-        for(FilterView addFilter: additionalField){
-            contactView = contactView.addAdditionalFiltersByField(count,addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(),addFilter.getValueFilter());
+        for (FilterView addFilter : additionalField) {
+            contactView = contactView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
+                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
             count++;
         }
-        List <FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for(FieldToDisplayView fields:fieldToDisplayViews)
+        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
+        for (FieldToDisplayView fields : fieldToDisplayViews)
             contactView = contactView.addNewFieldToDisplay(fields.getFieldToDisplay());
 
         contactViewDetail = contactView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),"Contact was created");
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(), "Contact was created");
         Assert.assertFalse(contactViewDetail.validateNameView("AnyName"));
 
     }

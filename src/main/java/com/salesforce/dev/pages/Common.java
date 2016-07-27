@@ -4,6 +4,7 @@ import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.framework.Objects.Opportunity;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
@@ -16,22 +17,23 @@ import com.salesforce.dev.pages.Opportunities.OpportunityForm;
  */
 public class Common {
 
-    public static void createOpportunity(Opportunity oppEnum){
+    public static void createOpportunity(Opportunity oppEnum) {
 
         HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.loginAsPrimaryUser();
+        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         opTab.clickNewBtn();
 
-        OpportunityForm opForm= new OpportunityBuilder(oppEnum.opportunityName,oppEnum.closeDate,oppEnum.stage)
+        OpportunityForm opForm = new OpportunityBuilder(oppEnum.opportunityName, oppEnum.closeDate, oppEnum.stage)
                 .setOpDescription(oppEnum.description)
                 .setOrderNumber(oppEnum.orderNumber)
                 .build();
         opForm.clickSaveBtn();
 
     }
+
     public static void createLead(Lead lead){
 
         HomePage homePage = new HomePage();
@@ -41,7 +43,7 @@ public class Common {
         LeadsHome leadsHome = navBar.gotToLeadsHome();
         leadsHome.clickNewBtn();
 
-        LeadForm leadForm= new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
+        LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
                 .build();
         leadForm.clickSaveBtn();
 

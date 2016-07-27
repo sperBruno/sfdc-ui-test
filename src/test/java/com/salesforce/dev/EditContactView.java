@@ -1,19 +1,21 @@
 package com.salesforce.dev;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.framework.RamdonGenerator;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Contacts.*;
+import com.salesforce.dev.pages.Contacts.ContactView;
+import com.salesforce.dev.pages.Contacts.ContactViewDetail;
+import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
 
 import java.util.Iterator;
 
@@ -76,7 +78,6 @@ public class EditContactView {
         contactViewDetail.clickDeleteLnk(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Contact was deleted");
-        System.out.println ("Contact was deleted");
         mainPage = contactViewDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
@@ -84,6 +85,5 @@ public class EditContactView {
         contactViewDetail.clickDeleteLnk(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Contact Parent was deleted");
-        System.out.println ("Contact Parent was deleted");
     }
 }
