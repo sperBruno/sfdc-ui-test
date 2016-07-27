@@ -12,12 +12,14 @@ import com.salesforce.dev.pages.TopHeader;
 public class Transporter {
     private static HomePage homePage;
     private static MainPage mainPage;
+
     public static void login(){
         homePage = new HomePage();
         mainPage = homePage.loginAsPrimaryUser();
 
     }
     public static MainPage driverMainPage(){
+        login();
         return mainPage;
     }
     public static void logout(){

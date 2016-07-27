@@ -80,15 +80,17 @@ public abstract class ViewDetailBase {
     public boolean validateNameView(String nameView){
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
         Select select = new Select(viewSelected);
-
         String nameV = select.getFirstSelectedOption().getText();
         return nameV.equals(nameView);
 
     }
 
     public boolean validateFieldDisplayed(String field){
-        By fieldDisplayed = By.xpath("//div[@title='" + field+"']");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
+        By fieldDisplayed = By.xpath("//div[@title='"+field+"']");
+        WebElement taskElement = driver.findElement(By.cssSelector(".x-grid3-header"));
+        wait.until(ExpectedConditions.visibilityOf(taskElement));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(fieldDisplayed)));
+        taskElement.findElement(fieldDisplayed);
         return driver.findElement(fieldDisplayed).isDisplayed();
 
     }

@@ -16,6 +16,7 @@ import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -39,13 +40,16 @@ public class CreateAccountViewBasic {
     }
 
 
+
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
         mainPage = Transporter.driverMainPage();
+        String viewName = viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString();
+        viewSalesForce.setViewName(viewName);
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountView = accountsHome.clickNewViewLnk()
-                .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
+                .setViewName(viewName)
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());

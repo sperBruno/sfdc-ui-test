@@ -38,13 +38,13 @@ public class CreateAccountDD {
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         homePage = new HomePage();
-        mainPage = homePage.getLogin();
+       //mainPage = homePage.getLogin();
+        mainPage = Transporter.driverMainPage();
     }
 
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateAccount(Account account) {
-        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn()

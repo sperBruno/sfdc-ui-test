@@ -53,10 +53,9 @@ public class CreateAccount {
             .setAccountShippingStreetFld(account.getShippingAddress())
             .setAccountCustomerPriorityFld(account.getCustomerPriority())
             .setAccountSLAFld(account.getSla())
-            .setAccountUpsellOpportunityFld(account.getUpsellOpportunity())
+            //.setAccountUpsellOpportunityFld(account.getUpSellOpportunity()) //JsonMapper error
             .setAccountActiveFld(account.getActive())
             .setAccountSLAExpirationDateFld(account.getSlaExpirationDate())
-            .setAccountSLAExpirationDateFld(12,15,2016)
             .setAccountSLASerialNumberFld(account.getSlaSerialNumber())
             .setAccountNumberLocationsFld(account.getNumberOfLocations())
             .setAccountDescriptionFld(account.getAccountDesc());

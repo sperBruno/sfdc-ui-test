@@ -24,12 +24,12 @@ public class Account {
     private String shippingAddress;
     private String customerPriority;
     private String sla;
-    private String upsellOpportunity;
+    private String upSellOpportunity;
     private String active;
     private String slaExpirationDate;
     private String slaSerialNumber;
     private Integer numberOfLocations;
-    
+
     public Account(){}
 
     public String getAccountName() {
@@ -184,12 +184,12 @@ public class Account {
         this.sla = sla;
     }
 
-    public String getUpsellOpportunity() {
-        return upsellOpportunity;
+    public String getUpSellOpportunity() {
+        return upSellOpportunity;
     }
 
-    public void setUpsellOpportunity(String opportunity) {
-        this.upsellOpportunity = this.upsellOpportunity;
+    public void setUpSellOpportunity(String opportunity) {
+        this.upSellOpportunity = this.upSellOpportunity;
     }
 
     public String getActive() {

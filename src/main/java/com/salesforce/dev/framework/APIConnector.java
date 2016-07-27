@@ -13,6 +13,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
+import java.net.Proxy;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
@@ -21,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * class to connect by API to sales force
  */
 public class APIConnector {
-    private static APIConnector instance = null;
+    private static APIConnector instance;
     private ConnectorConfig config;
     private PartnerConnection connection;
     private String primaryUserName = Environment.getInstance().getPrimaryUser();
@@ -29,7 +30,6 @@ public class APIConnector {
     private String urlApi = Environment.getInstance().getUrlApi();
     private APIConnector(){
         this.initializer();
-
     }
 
     private void initializer(){
@@ -38,8 +38,9 @@ public class APIConnector {
         config.setPassword(primaryUserPasswordToken);
         config.setAuthEndpoint(urlApi);
         config.setServiceEndpoint(urlApi);
+        config.setProxy("172.20.240.5",8080);
         try {
-            connection = Connector.newConnection(config);
+            connection = com.sforce.soap.partner.Connector.newConnection(config);
         }catch (ConnectionException e){
             LoggerManager.getInstance().addErrorLog(this.getClass().getName(),"Error on Connect to Api :", e);
     }
@@ -47,7 +48,7 @@ public class APIConnector {
     }
 
     public static APIConnector getInstance(){
-        if(instance==null){
+        if(instance == null){
             instance = new APIConnector();
         }
         return instance;

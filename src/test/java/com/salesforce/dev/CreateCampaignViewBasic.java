@@ -40,7 +40,6 @@ public class CreateCampaignViewBasic {
         return dataDrivenManager.getDataView("CreateCampaignViewBasic.json");
     }
 
-
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
         mainPage = Transporter.driverMainPage();
