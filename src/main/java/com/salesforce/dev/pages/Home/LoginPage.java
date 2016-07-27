@@ -1,13 +1,11 @@
 package com.salesforce.dev.pages.Home;
 
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.pages.AbstractBasePage;
+import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import com.salesforce.dev.pages.Login.Transporter;
-import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.MainPage;
 
 import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.CommonOperation.setWebElement;
@@ -19,17 +17,17 @@ import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
 public class LoginPage extends AbstractBasePage {
 
     @FindBy(id = "username")
-    WebElement userNameFld;
+    private WebElement userNameFld;
 
     @FindBy(id = "password")
-    WebElement passwordFld;
+    private WebElement passwordFld;
 
     @FindBy(id = "Login")
-    WebElement loginBtn;
+    private WebElement loginBtn;
 
     public MainPage clickLoginBtn() {
         clickWebElement(loginBtn);
-        return new MainPage(this.driver);
+        return new MainPage();
     }
 
     /**
@@ -49,12 +47,8 @@ public class LoginPage extends AbstractBasePage {
     }
 
     public boolean isLoginButtonPresent() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(loginBtn));
-            return loginBtn.isDisplayed();
-        } catch (WebDriverException e) {
-            return false;
-        }
+        wait.until(ExpectedConditions.visibilityOf(loginBtn));
+        return loginBtn.isDisplayed();
     }
 
     public static MainPage getLogin() {
@@ -72,4 +66,6 @@ public class LoginPage extends AbstractBasePage {
     public void setPassword(String Password) {
         setWebElement(passwordFld, Password);
     }
+
+
 }

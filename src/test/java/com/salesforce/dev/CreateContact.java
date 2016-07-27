@@ -1,7 +1,6 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.Contact;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
@@ -14,6 +13,7 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 
 public class CreateContact {
 
-
+    private static final Logger LOGGER = Logger.getLogger(CreateContact.class.getName());
     private ContactsHome contactsHome;
 
     private ContactDetail contactDetail;
@@ -111,7 +111,7 @@ public class CreateContact {
 
         contactDetail = contactForm.clickSaveBtn();
 
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(), "Contact was created");
+        LOGGER.info("Contact was created");
         Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
 
     }
@@ -124,6 +124,6 @@ public class CreateContact {
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(), "Contact was deleted");
+        LOGGER.info("Contact was deleted");
     }
 }

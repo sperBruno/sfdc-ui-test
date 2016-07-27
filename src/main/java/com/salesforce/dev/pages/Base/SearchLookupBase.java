@@ -3,45 +3,36 @@ package com.salesforce.dev.pages.Base;
 import java.util.LinkedList;
 import java.util.Set;
 
-import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.framework.LoggerManager;
+
+import com.salesforce.dev.pages.AbstractBasePage;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Contacts.ContactForm;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Marcelo.Vargas on 17-06-15.
  */
 @SuppressWarnings("unchecked")
-public class SearchLookupBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+public class SearchLookupBase extends AbstractBasePage{
+    private  static final Logger LOGGER = Logger.getLogger(SearchLookupBase.class.getName());
+
 
     @FindBy(id = "lksrch")
     @CacheLookup
-    WebElement searchTxt;
+    private WebElement searchTxt;
 
     @FindBy(name = "go")
     @CacheLookup
-    WebElement goBtn;
-
-    @SuppressWarnings({"unchecked","unsafe"})
-    public SearchLookupBase(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-    }
+    private WebElement goBtn;
 
     @SuppressWarnings({"unchecked","unsafe"})
     public void searchText(String text) {
@@ -61,30 +52,28 @@ public class SearchLookupBase {
 
             driver.findElement(By.linkText(text)).click();
             driver.switchTo().window(windowsArray.getFirst());
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Object was search and selected in SearchLookup");
+
+            LOGGER.info("Object was serach and selected in SearchLookup");
         }
         catch (WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Frames couldn't be found",
-                    e.fillInStackTrace());
+          LOGGER.fatal("The Frames couldn't be found",e);
 
         }
     }
 
     public ContactForm goToContactForm() {
-        return new ContactForm(driver);
+        return new ContactForm();
     }
     public CampaignForm goToCampaignForm() {
-        return new CampaignForm(driver);
+        return new CampaignForm();
     }
     public LeadForm goToLeadForm() {
-        return new LeadForm(driver);
+        return new LeadForm();
     }
     public AccountForm goToAccountForm() {
-        return new AccountForm(driver);
+        return new AccountForm();
     }
     public OpportunityForm goToOpportunityForm() {
-        return new OpportunityForm(driver);
+        return new OpportunityForm();
     }
 }

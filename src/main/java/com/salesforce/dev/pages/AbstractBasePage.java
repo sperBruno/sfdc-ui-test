@@ -12,9 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public abstract class AbstractBasePage {
 
-    protected WebDriver driver;
-
     protected WebDriverWait wait;
+    protected WebDriver driver;
 
     protected Actions action;
     public AbstractBasePage() {

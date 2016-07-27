@@ -1,241 +1,221 @@
 package com.salesforce.dev.pages.Leads;
 
-import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.DetailsBase;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Jimmy Vargas on 6/15/2015.
  */
 public class LeadDetail extends DetailsBase {
 
-    /*Lead Information*/
-    @FindBy(id = "lea1_ileinner")
-    @CacheLookup
-    WebElement owner;
-
-    @FindBy(id = "lea2_ileinner")
-    @CacheLookup
-    WebElement name;
-
-    @FindBy(id = "lea3_ileinner")
-    @CacheLookup
-    WebElement company;
-
-    @FindBy(id = "lea4_ileinner")
-    @CacheLookup
-    WebElement title;
-
-    @FindBy(id = "lea5_ileinner")
-    @CacheLookup
-    WebElement leadSource;
-
-    @FindBy(id = "lea6_ileinner")
-    @CacheLookup
-    WebElement industry;
-
-    @FindBy(id = "lea7_ileinner")
-    @CacheLookup
-    WebElement annualRevenue;
-
     @FindBy(id = "lea8_ileinner")
     @CacheLookup
     WebElement phone;
-
-    @FindBy(id = "lea9_ileinner")
-    @CacheLookup
-    WebElement mobile;
-
     @FindBy(id = "lea10_ileinner")
     @CacheLookup
     WebElement fax;
-
+    /*Lead Information*/
+    @FindBy(id = "lea1_ileinner")
+    @CacheLookup
+    private WebElement owner;
+    @FindBy(id = "lea2_ileinner")
+    @CacheLookup
+    private WebElement name;
+    @FindBy(id = "lea3_ileinner")
+    @CacheLookup
+    private WebElement company;
+    @FindBy(id = "lea4_ileinner")
+    @CacheLookup
+    private WebElement title;
+    @FindBy(id = "lea5_ileinner")
+    @CacheLookup
+    private WebElement leadSource;
+    @FindBy(id = "lea6_ileinner")
+    @CacheLookup
+    private WebElement industry;
+    @FindBy(id = "lea7_ileinner")
+    @CacheLookup
+    private WebElement annualRevenue;
+    @FindBy(id = "lea9_ileinner")
+    @CacheLookup
+    private WebElement mobile;
     @FindBy(id = "lea11_ileinner")
     @CacheLookup
-    WebElement email;
+    private WebElement email;
 
     @FindBy(id = "lea12_ileinner")
     @CacheLookup
-    WebElement website;
+    private WebElement website;
 
     @FindBy(id = "lea13_ileinner")
     @CacheLookup
-    WebElement leadStatus;
+    private WebElement leadStatus;
 
     @FindBy(id = "lea14_ileinner")
     @CacheLookup
-    WebElement rating;
+    private WebElement rating;
 
     @FindBy(id = "lea15_ileinner")
     @CacheLookup
-    WebElement numEmployees;
+    private WebElement numEmployees;
 
     /*Address Information*/
     @FindBy(id = "lea16_ileinner")
     @CacheLookup
-    WebElement address;
+    private WebElement address;
 
     /*additional information*/
     @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::div")
     @CacheLookup
-    WebElement productInterest;
+    private WebElement productInterest;
 
     @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::div")
     @CacheLookup
-    WebElement SICcode;
+    private WebElement SICcode;
 
     @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::div")
     @CacheLookup
-    WebElement numLocations;
+    private WebElement numLocations;
 
     @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::div")
     @CacheLookup
-    WebElement currentGenerators;
+    private WebElement currentGenerators;
 
     @FindBy(xpath = "//td[contains(.,'Primary')]/following::div")
     @CacheLookup
-    WebElement primary;
+    private WebElement primary;
 
     /*Others*/
     @FindBy(id = "lea17_ileinner")
     @CacheLookup
-    WebElement description;
+    private WebElement description;
 
     @FindBy(id = "lea20")
     @CacheLookup
-    WebElement campaign;
+    private WebElement campaign;
 
     @FindBy(id = "CreatedBy_ileinner")
     @CacheLookup
-    WebElement createdBy;
+    private WebElement createdBy;
 
     @FindBy(id = "LastModifiedBy_ileinner")
     @CacheLookup
-    WebElement lastModifiedBy;
+    private WebElement lastModifiedBy;
 
-    public LeadDetail(WebDriver driver){
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(super.driver, this);
-
-    }
 
     /*Lead Information*/
-    public String getOwner(){
+    public String getOwner() {
         return owner.getText();
     }
 
-    public String getName(){
+    public String getName() {
         return name.getText();
     }
 
-    public String getCompany(){
+    public String getCompany() {
         return company.getText();
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title.getText();
     }
 
-    public String getLeadSource(){
-        return  leadSource.getText();
+    public String getLeadSource() {
+        return leadSource.getText();
     }
 
-    public String getIndustry(){
+    public String getIndustry() {
         return industry.getText();
     }
 
-    public String getAnnualRevenue(){
+    public String getAnnualRevenue() {
         return annualRevenue.getText();
     }
 
-    public String getPhone(){
+    public String getPhone() {
         return phone.getText();
     }
 
-    public String getMobile(){
+    public String getMobile() {
         return mobile.getText();
     }
 
-    public String getFax(){
+    public String getFax() {
         return fax.getText();
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email.getText();
     }
 
-    public String getWebsite(){
+    public String getWebsite() {
         return website.getText();
     }
 
-    public String getLeadStatus(){
+    public String getLeadStatus() {
         return leadStatus.getText();
     }
 
-    public String getRating(){
+    public String getRating() {
         return rating.getText();
     }
 
-    public String getNumEmployees(){
+    public String getNumEmployees() {
         return numEmployees.getText();
     }
 
     /*Address Information*/
-    public String getAddress(){
+    public String getAddress() {
         return address.getText();
     }
 
     /*additional information*/
-    public String getProductInterest(){
+    public String getProductInterest() {
         return productInterest.getText();
     }
 
-    public String getSICcode(){
+    public String getSICcode() {
         return SICcode.getText();
     }
 
-    public String getNumLocations(){
+    public String getNumLocations() {
         return numLocations.getText();
     }
 
-    public String getCurrentGenerators(){
+    public String getCurrentGenerators() {
         return currentGenerators.getText();
     }
 
-    public String getPrimary(){
+    public String getPrimary() {
         return primary.getText();
     }
 
     /*Others*/
-    public String getDescription(){
+    public String getDescription() {
         return description.getText();
     }
 
-    public String getCampaign(){
+    public String getCampaign() {
         return campaign.getText();
     }
 
-    public String getCreatedBy(){
+    public String getCreatedBy() {
         return createdBy.getText();
     }
 
-    public String getLastModifiedBy(){
+    public String getLastModifiedBy() {
         return lastModifiedBy.getText();
     }
 
-    public LeadForm clickEditBtn(){
+    public LeadForm clickEditBtn() {
         super.clickEditButton();
-        return new LeadForm(this.driver);
+        return new LeadForm();
     }
 
 
-    public LeadsHome deleteLead(){
+    public LeadsHome deleteLead() {
         return clickDeleteBtn(true);
 
     }
@@ -243,6 +223,6 @@ public class LeadDetail extends DetailsBase {
     @Override
     protected LeadsHome clickDeleteBtn(boolean confirmDeletion) {
         super.clickDeleteButton(true);
-        return new LeadsHome(this.driver);
+        return new LeadsHome();
     }
 }

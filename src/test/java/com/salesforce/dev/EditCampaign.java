@@ -1,30 +1,30 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-
 /**
  * Created by Marcelo.Vargas on 6/21/2015.
  */
 public class EditCampaign {
-
+    private static final Logger LOGGER = Logger.getLogger(EditCampaign.class.getName());
     private String campaignNameToUpdated;
     private String campaignNameUpdated;
     private String campaignParentName;
@@ -52,7 +52,7 @@ public class EditCampaign {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         ///create campaign
-        Campaign campaign= CampaignGenie.getCampaign();
+        Campaign campaign = CampaignGenie.getCampaign();
         //create parent Campaign
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
         campaignNameToUpdated = campaign.getCampaignName();
@@ -66,11 +66,13 @@ public class EditCampaign {
         campaignDetail = campaignForm.clickSaveBtn();
         mainPage = campaignDetail.gotoMainPage();
     }
+
     @DataProvider(name = "dataDriven")
     public Iterator<Campaign[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getCampaign("EditCampaign.json");
     }
+
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testEditCampaign(Campaign campaign) {
         mainPage = Transporter.driverMainPage();
@@ -102,22 +104,19 @@ public class EditCampaign {
         Assert.assertTrue(campaignDetail.validateCampaignStartDate(campaign.getStartDate()));
         Assert.assertTrue(campaignDetail.validateCampaignEndDate(campaign.getEndDate()));
         Assert.assertTrue(campaignDetail.validateCampaignParent(campaign.getParentCampaign()));
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign has been updated");
+        LOGGER.info("Campaign has been updated");
 
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign was deleted");
+        LOGGER.info("Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
-        campaignDetail = campaignsHome.selectRecentItem(campaignParentName );
+        campaignDetail = campaignsHome.selectRecentItem(campaignParentName);
         campaignDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign Parent was deleted");
+        LOGGER.info("Campaign Parent was deleted");
     }
 }
