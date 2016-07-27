@@ -43,7 +43,7 @@ public class EditContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
 
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
@@ -79,7 +79,7 @@ public class EditContact {
 
         contactForm.setTitle(contact.getTitle());
         contactForm.setDepartment(contact.getDepartment());
-        contactForm.setBirthDate(6,6,2015);
+        contactForm.setBirthDate(6, 6, 2015);
 
         searchLookup = contactForm.clickLookupReportsTo();
         searchLookup.searchText(contact.getReportsTo());
