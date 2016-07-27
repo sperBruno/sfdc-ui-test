@@ -9,8 +9,8 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Contracts.ContractsHome;
 import com.salesforce.dev.pages.Dashboards.DashboardsHome;
 import com.salesforce.dev.pages.Forecasts.ForecastsHome;
-import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Orders.OrdersHome;
@@ -33,7 +33,7 @@ public class VerifyAllHomeTabs {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        mainPage = LoginPage.getLogin();
+        mainPage = Transporter.driverMainPage();
     }
 
     @Test(groups = {"BVT"})

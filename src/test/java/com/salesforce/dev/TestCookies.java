@@ -1,6 +1,6 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
 import org.apache.log4j.Logger;
@@ -20,7 +20,7 @@ public class TestCookies {
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         //  mainPage = Transporter.driverMainPage();
-        mainPage = LoginPage.getLogin();
+        mainPage = Transporter.driverMainPage();
     }
 
     @Test(groups = {"BVT"})

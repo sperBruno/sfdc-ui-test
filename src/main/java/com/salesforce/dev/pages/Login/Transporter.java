@@ -22,6 +22,9 @@ public class Transporter {
     }
 
     public static MainPage driverMainPage() {
+        if (mainPage== null) {
+            login();
+        }
         return mainPage;
     }
 

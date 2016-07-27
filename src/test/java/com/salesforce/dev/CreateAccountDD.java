@@ -38,8 +38,8 @@ public class CreateAccountDD {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = LoginPage.getLogin();
+
+        mainPage = Transporter.driverMainPage();
     }
 
 

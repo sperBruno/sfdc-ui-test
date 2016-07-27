@@ -1,7 +1,6 @@
 package com.salesforce.dev.pages.Home;
 
 import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,14 +48,6 @@ public class LoginPage extends AbstractBasePage {
     public boolean isLoginButtonPresent() {
         wait.until(ExpectedConditions.visibilityOf(loginBtn));
         return loginBtn.isDisplayed();
-    }
-
-    public static MainPage getLogin() {
-        if (Transporter.driverMainPage() == null) {
-            HomePage homePage = new HomePage();
-            return homePage.clickLoginBtn().loginAsPrimaryUser();
-        }
-        return Transporter.driverMainPage();
     }
 
     public void setUserName(String Name) {
