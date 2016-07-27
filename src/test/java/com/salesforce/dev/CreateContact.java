@@ -7,7 +7,6 @@ import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -28,8 +27,6 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 public class CreateContact {
 
 
-
-
     private ContactsHome contactsHome;
     private ContactDetail contactDetail;
     private ContactForm contactForm;
@@ -41,10 +38,11 @@ public class CreateContact {
     private AccountForm accountForm;
     private SearchLookupBase searchLookup;
     private String accountName = "AccountTest";
+
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
@@ -73,7 +71,7 @@ public class CreateContact {
 
         contactForm.setTitle(contact.getTitle())
                 .setDepartment(contact.getDepartment())
-                .setBirthDate(6,6,2015);
+                .setBirthDate(6, 6, 2015);
 
         searchLookup = contactForm.clickLookupReportsTo();
         searchLookup.searchText(contact.getReportsTo());
@@ -101,9 +99,9 @@ public class CreateContact {
                 .setLanguages(contact.getLanguages())
                 .setLevel(contact.getLevel())
                 .setDescription(contact.getDescription());
-                contactDetail = contactForm.clickSaveBtn();
+        contactDetail = contactForm.clickSaveBtn();
 
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),"Contact was created");
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(), "Contact was created");
         Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
 
     }
@@ -116,6 +114,6 @@ public class CreateContact {
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),"Contact was deleted");
+        LoggerManager.getInstance().addInfoLog(this.getClass().getName(), "Contact was deleted");
     }
 }
