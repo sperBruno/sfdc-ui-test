@@ -16,6 +16,7 @@ import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Orders.OrdersHome;
 import com.salesforce.dev.pages.Reports.ReportsHome;
 import com.salesforce.dev.pages.Solutions.SolutionsHome;
+import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -25,6 +26,8 @@ import static org.junit.Assert.assertTrue;
  * Created by Monica Pardo on 6/24/2015.
  */
 public class VerifyAllHomeTabs {
+
+    private static final Logger LOGGER = Logger.getLogger(VerifyAllHomeTabs.class.getName());
 
     private MainPage mainPage;
 
@@ -62,7 +65,6 @@ public class VerifyAllHomeTabs {
         assertTrue(reportsHome.IsUserInReportsTab());
         DashboardsHome dashboardsHome = navigationBar.goToDashboardsHome();
         assertTrue(dashboardsHome.IsUserInDashboardsTab());
-
-
+        LOGGER.info("Verifying all Home Tabs");
     }
 }

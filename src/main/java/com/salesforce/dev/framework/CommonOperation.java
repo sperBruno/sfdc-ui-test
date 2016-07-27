@@ -1,15 +1,17 @@
 package com.salesforce.dev.framework;
 
-import com.salesforce.dev.pages.AbstractBasePage;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by dante on 6/14/2016.
  */
-public class CommonOperation extends AbstractBasePage {
+public class CommonOperation {
+    
+    private static final WebDriverWait WAIT = DriverManager.getInstance().getWait();
 
     private CommonOperation() {
     }

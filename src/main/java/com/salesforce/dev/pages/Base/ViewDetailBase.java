@@ -32,7 +32,7 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
     protected void clickEditLink() {
         try {
-            WAIT.until(ExpectedConditions.visibilityOf(editLnk));
+            wait.until(ExpectedConditions.visibilityOf(editLnk));
             editLnk.click();
            LOGGER.info("Edit link was clicked");
         }
@@ -70,12 +70,12 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
 
     public String getViewSelected(){
-        WAIT.until(ExpectedConditions.visibilityOf(viewSelected));
+        wait.until(ExpectedConditions.visibilityOf(viewSelected));
         Select select = new Select(viewSelected);
         return select.getFirstSelectedOption().getText();
     }
     public boolean validateNameView(String nameView){
-        WAIT.until(ExpectedConditions.visibilityOf(viewSelected));
+        wait.until(ExpectedConditions.visibilityOf(viewSelected));
         Select select = new Select(viewSelected);
 
         String nameV = select.getFirstSelectedOption().getText();
@@ -85,7 +85,7 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
     public boolean validateFieldDisplayed(String field){
         By fieldDisplayed = By.xpath("//div[@title='" + field+"']");
-        WAIT.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
         return driver.findElement(fieldDisplayed).isDisplayed();
 
     }

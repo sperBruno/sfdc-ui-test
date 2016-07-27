@@ -14,12 +14,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class CampaignViewDetail extends ViewDetailBase {
     public CampaignViewDetail(WebDriver driver) {
         try {
-            WAIT.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            WAIT.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
     @Override

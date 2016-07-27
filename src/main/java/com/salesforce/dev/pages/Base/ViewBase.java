@@ -67,36 +67,36 @@ public abstract class ViewBase extends AbstractBasePage {
     protected abstract Object addNewFieldToDisplay(String newField);
     protected abstract Object selectRestrictVisibility(String optionVisibility);
     protected void clickSaveButton() {
-        WAIT.until(ExpectedConditions.visibilityOf(saveBtn));
+        wait.until(ExpectedConditions.visibilityOf(saveBtn));
         saveBtn.click();
 
     }
 
     protected void clickCancelButton() {
-        WAIT.until(ExpectedConditions.visibilityOf(cancelBtn));
+        wait.until(ExpectedConditions.visibilityOf(cancelBtn));
         cancelBtn.click();
 
     }
 
     protected void setViewNameFld(String viewName){
-        WAIT.until(ExpectedConditions.visibilityOf(viewNameFld));
+        wait.until(ExpectedConditions.visibilityOf(viewNameFld));
         viewNameFld.clear();
         viewNameFld.sendKeys(viewName);
     }
 
     protected  void setUniqueViewNameFld(String uniqueViewName){
-        WAIT.until(ExpectedConditions.visibilityOf(uniqueViewNameFld));
+        wait.until(ExpectedConditions.visibilityOf(uniqueViewNameFld));
         uniqueViewNameFld.clear();
         uniqueViewNameFld.sendKeys(uniqueViewName);
     }
 
     protected void checkFilterOwnerAll(){
-        WAIT.until(ExpectedConditions.visibilityOf(filterOwnerAll));
+        wait.until(ExpectedConditions.visibilityOf(filterOwnerAll));
         filterOwnerAll.click();
     }
 
     protected void checkFilterOwnerMy() {
-        WAIT.until(ExpectedConditions.visibilityOf(filterOwnerMy));
+        wait.until(ExpectedConditions.visibilityOf(filterOwnerMy));
         filterOwnerMy.click();
     }
 
@@ -105,25 +105,25 @@ public abstract class ViewBase extends AbstractBasePage {
         By filterField = By.id(idFieldField + "" + numberField);
         By filterOperator = By.id(idFieldOperator + "" + numberField);
         By filterValue = By.id(idFieldValue + "" + numberField);
-        WAIT.until(ExpectedConditions.visibilityOfElementLocated(filterField));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(filterField));
         driver.findElement(filterField).click();
         driver.findElement(filterField).sendKeys(field);
-        WAIT.until(ExpectedConditions.visibilityOfElementLocated(filterOperator));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(filterOperator));
         driver.findElement(filterOperator).click();
         driver.findElement(filterOperator).sendKeys(operator);
-        WAIT.until(ExpectedConditions.visibilityOfElementLocated(filterValue));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(filterValue));
         driver.findElement(filterValue).clear();
         driver.findElement(filterValue).sendKeys(value);
     }
 
     protected void selectAvailableFldToDisplay(String field){
-        WAIT.until(ExpectedConditions.visibilityOf(availableFields));
+        wait.until(ExpectedConditions.visibilityOf(availableFields));
         availableFields.click();
         availableFieldsMultiSelect.selectByVisibleText(field);
     }
 
     protected void clickAddNewFieldButton(){
-        WAIT.until(ExpectedConditions.visibilityOf(addFieldsBtn));
+        wait.until(ExpectedConditions.visibilityOf(addFieldsBtn));
         addFieldsBtn.click();
     }
 
@@ -134,15 +134,15 @@ public abstract class ViewBase extends AbstractBasePage {
     }
     protected void selectRestrictVisibilityRadio(String visibility){
         if (visibility.equals("only to me")) {
-            WAIT.until(ExpectedConditions.visibilityOf(visibilityOnlyMeRadio));
+            wait.until(ExpectedConditions.visibilityOf(visibilityOnlyMeRadio));
             visibilityOnlyMeRadio.click();
 
         } else if (visibility.equals("all users")) {
-            WAIT.until(ExpectedConditions.visibilityOf(visibilityAllRadio));
+            wait.until(ExpectedConditions.visibilityOf(visibilityAllRadio));
             visibilityAllRadio.click();
 
         } else if (visibility.equals("groups of users")) {
-            WAIT.until(ExpectedConditions.visibilityOf(visibilityGroupsRadio));
+            wait.until(ExpectedConditions.visibilityOf(visibilityGroupsRadio));
             visibilityGroupsRadio.click();
 
         }

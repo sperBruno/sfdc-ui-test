@@ -46,7 +46,7 @@ public class LeadsHome extends HomeBase {
 
     public LeadDetail openLead(String lead) {
         WebElement linkLead = driver.findElement(By.linkText(lead));
-        WAIT.until(ExpectedConditions.elementToBeClickable(linkLead));
+        wait.until(ExpectedConditions.elementToBeClickable(linkLead));
 
         linkLead.click();
         return new LeadDetail();
@@ -54,7 +54,7 @@ public class LeadsHome extends HomeBase {
 
     public boolean IsUserInLeadsTab() {
         try {
-            WAIT.until(ExpectedConditions.visibilityOf(leadSection));
+            wait.until(ExpectedConditions.visibilityOf(leadSection));
             return true;
         } catch (WebDriverException e) {
             return false;

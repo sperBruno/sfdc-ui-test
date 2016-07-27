@@ -47,7 +47,7 @@ public class AccountsHome extends HomeBase {
 
     public boolean IsUserInAccountsTab() {
         try {
-            WAIT.until(ExpectedConditions.visibilityOf(accountSection));
+            wait.until(ExpectedConditions.visibilityOf(accountSection));
             return true;
         } catch (WebDriverException e) {
             return false;

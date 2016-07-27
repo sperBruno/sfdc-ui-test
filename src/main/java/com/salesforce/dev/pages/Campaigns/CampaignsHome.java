@@ -46,7 +46,7 @@ public class CampaignsHome extends HomeBase {
 
     public boolean IsUserInCampaignsTab(){
         try{
-            WAIT.until(ExpectedConditions.visibilityOf(campaignSection));
+            wait.until(ExpectedConditions.visibilityOf(campaignSection));
             return true;
         }
         catch (WebDriverException e){

@@ -38,7 +38,7 @@ public class ContactsHome extends HomeBase {
     }
     public boolean IsUserInContactsTab(){
         try{
-            WAIT.until(ExpectedConditions.visibilityOf(contactSection));
+            wait.until(ExpectedConditions.visibilityOf(contactSection));
             return true;
         }
         catch (WebDriverException e){

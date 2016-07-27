@@ -1,22 +1,16 @@
 package com.salesforce.dev.pages.Product;
 
 
-import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Monica Pardo on 6/10/2015.
  */
 public class ProductForm extends FormBase {
-    WebDriver driver;
-    WebDriverWait wait;
-
     @FindBy(id = "Name")
     WebElement productNameField;
 
@@ -35,16 +29,10 @@ public class ProductForm extends FormBase {
     private String prodName, prodCode, prodDesc;
     private boolean activeProduct;
 
-    public ProductForm(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
+    public ProductForm() {
     }
 
     public ProductForm(ProductBuilder builder) {
-        this.driver = DriverManager.getInstance().getDriver();
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
         this.prodName = builder.getProductName();
         this.prodCode = builder.getProductCode();
         this.prodDesc = builder.getProductDesc();

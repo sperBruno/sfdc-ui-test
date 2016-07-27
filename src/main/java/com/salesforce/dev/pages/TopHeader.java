@@ -30,7 +30,7 @@ public class TopHeader extends AbstractBasePage {
     private WebElement logoutMenuOption;
 
     public TopHeader() {
-        this.WAIT.until(ExpectedConditions.visibilityOf(salesforceLogo));
+        this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
     }
 
     public void clickUserNameMenu() {
@@ -45,7 +45,7 @@ public class TopHeader extends AbstractBasePage {
     public String getUserName() {
         String userLogged = "";
         try {
-            WAIT.until(ExpectedConditions.visibilityOf(userMenu));
+            wait.until(ExpectedConditions.visibilityOf(userMenu));
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {
             e = new WebDriverException(e);

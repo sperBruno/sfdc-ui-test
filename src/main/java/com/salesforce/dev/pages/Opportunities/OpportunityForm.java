@@ -96,12 +96,12 @@ public class OpportunityForm extends FormBase {
 
     public OpportunityForm() {
 
-        WAIT.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
     }
 
     public OpportunityForm(OpportunityBuilder builder) {
 
-        WAIT.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
 
         //setting the mandatoryFields for an Opportunity;
         this.setOpportunityName(builder.opName);

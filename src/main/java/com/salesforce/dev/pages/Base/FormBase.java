@@ -71,7 +71,7 @@ public abstract class FormBase extends AbstractBasePage{
 
     protected void selectItemComboBox(WebElement webElement, String value){
         try {
-            WAIT.until(ExpectedConditions.visibilityOf(webElement));
+            wait.until(ExpectedConditions.visibilityOf(webElement));
             Select comboBox = new Select(webElement);
             comboBox.selectByVisibleText(value);
         }
@@ -81,7 +81,7 @@ public abstract class FormBase extends AbstractBasePage{
     }
 
     protected void fillTextBox(WebElement webElement, String value){
-        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         try {
             Thread.sleep(200);

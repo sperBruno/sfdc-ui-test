@@ -15,7 +15,7 @@ public class ProductsHome extends HomeBase {
 
     public ProductForm clickNewBtn() {
         CommonOperation.clickWebElement(newBtn);
-        return new ProductForm(this.driver);
+        return new ProductForm();
     }
 
     @Override

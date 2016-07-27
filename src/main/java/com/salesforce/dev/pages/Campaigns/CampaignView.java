@@ -16,12 +16,12 @@ public class CampaignView extends ViewBase {
     public CampaignView() {
 
         try {
-            WAIT.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            WAIT.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
+            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
     @Override

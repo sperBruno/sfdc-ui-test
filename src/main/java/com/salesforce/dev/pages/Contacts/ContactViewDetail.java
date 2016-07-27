@@ -18,12 +18,12 @@ public class ContactViewDetail extends ViewDetailBase {
     WebElement contactViewName;
     public ContactViewDetail(WebDriver driver) {
         try {
-            WAIT.withTimeout(10, TimeUnit.SECONDS)
+            wait.withTimeout(10, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            WAIT.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(15, TimeUnit.SECONDS);
         }
     }
     @Override

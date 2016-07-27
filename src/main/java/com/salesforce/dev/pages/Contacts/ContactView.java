@@ -21,12 +21,12 @@ public class ContactView extends ViewBase {
     public ContactView(WebDriver driver) {
 
         try {
-            WAIT.withTimeout(10, TimeUnit.SECONDS)
+            wait.withTimeout(10, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            WAIT.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(15, TimeUnit.SECONDS);
         }
     }
 

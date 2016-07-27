@@ -47,7 +47,7 @@ public class LoginPage extends AbstractBasePage {
     }
 
     public boolean isLoginButtonPresent() {
-        WAIT.until(ExpectedConditions.visibilityOf(loginBtn));
+        wait.until(ExpectedConditions.visibilityOf(loginBtn));
         return loginBtn.isDisplayed();
     }
 
