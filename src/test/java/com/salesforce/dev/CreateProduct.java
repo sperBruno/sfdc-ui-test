@@ -2,17 +2,16 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.Product.ProductBuilder;
 import com.salesforce.dev.pages.Product.ProductDetails;
 import com.salesforce.dev.pages.Product.ProductForm;
 import com.salesforce.dev.pages.Product.ProductsHome;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.Assert;
-import com.salesforce.dev.pages.Product.ProductBuilder;
 /**
  * Created by Monica Pardo on 6/13/2015.
  *
@@ -28,7 +27,8 @@ public class CreateProduct {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
-        mainPage = Transporter.driverMainPage();
+        homePage = new HomePage();
+        mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
 
     }
