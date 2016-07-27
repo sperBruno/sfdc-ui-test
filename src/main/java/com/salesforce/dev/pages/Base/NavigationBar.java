@@ -42,7 +42,7 @@ public class NavigationBar {
     @FindBy(linkText = "Contacts")
     WebElement contactsTab;
 
-    @FindBy(linkText = "Opportunities")
+    @FindBy(id = "Opportunity_Tab")
     WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
