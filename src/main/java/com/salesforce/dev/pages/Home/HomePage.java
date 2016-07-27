@@ -21,7 +21,7 @@ public class HomePage extends AbstractBasePage {
 
     @FindBy(id = "button-login")
     @CacheLookup
-    WebElement loginBtn;
+    private WebElement loginBtn;
 
     public HomePage() {
         driver = DriverManager.getInstance().getDriver();

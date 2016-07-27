@@ -1,31 +1,25 @@
 package com.salesforce.dev.pages.Objects;
 
-import com.salesforce.dev.framework.APIConnector;
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.LoggerManager;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.framework.Objects.FieldToDisplayView;
-import com.salesforce.dev.framework.Objects.FilterView;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Campaigns.CampaignView;
-import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.MainPage;
-import com.sforce.soap.partner.PartnerConnection;
-import com.sforce.soap.partner.QueryResult;
-import com.sforce.soap.partner.sobject.SObject;
-import com.sforce.ws.ConnectionException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import com.salesforce.dev.framework.APIConnector;
+import com.salesforce.dev.framework.DataDrivenManager;
+import com.salesforce.dev.framework.Objects.Campaign;
+import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import com.sforce.soap.partner.PartnerConnection;
+import com.sforce.soap.partner.sobject.SObject;
+import com.sforce.ws.ConnectionException;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Veronica Prado on 8/25/2015.
  * Class to get data related to Campaign
  */
 public class CampaignGenie {
+     private static final Logger LOGGER = Logger.getLogger(CampaignGenie.class.getName());
+
     public static  ViewSalesForce getCampaignView(String jsonFile) {
         PartnerConnection connection = APIConnector.getInstance().getConnection();
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
@@ -38,6 +32,7 @@ public class CampaignGenie {
         SObject account = new SObject();
         return viewSalesForce;
     }
+
     public static  Campaign getCampaign() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         Iterator<Campaign[]> iteratorCampaignData = dataDrivenManager.getCampaign("CreateCampaign.json");
@@ -48,6 +43,7 @@ public class CampaignGenie {
         Campaign campaign = listData.get(0)[0];
         return campaign ;
     }
+
     public static void createCampaign(Campaign campaign){
         PartnerConnection connection = APIConnector.getInstance().getConnection();
         //get parentCampaignId
@@ -75,7 +71,7 @@ public class CampaignGenie {
         try {
             connection.create(new SObject[]{objectSales});
         }catch(ConnectionException e){
-            LoggerManager.getInstance().addErrorLog("CampaignGenie","Error on Create campaign by Api :", e);
+            LOGGER.error("Error on Create campaign by Api :", e);
         }
     }
     public static void createParentCampaign(String nameCampaign){
@@ -87,7 +83,7 @@ public class CampaignGenie {
         try {
             connection.create(new SObject[]{objectSales});
         }catch(ConnectionException e){
-            LoggerManager.getInstance().addErrorLog("CampaignGenie","Error on Create parent campaign by Api :", e);
+            LOGGER.error("Error on Create parent campaign by Api :", e);
         }
     }
 

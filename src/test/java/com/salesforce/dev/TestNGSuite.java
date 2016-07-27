@@ -1,27 +1,35 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.DriverManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
+import static com.salesforce.dev.framework.DriverManager.getInstance;
 
 /**
  * Created by carlos_gonzales on 29-05-15.
  */
 public class TestNGSuite {
 
-    @BeforeSuite(groups = {"BVT","Acceptance"})
+    private static final Logger LOGGER = Logger.getLogger(TestNGSuite.class.getName());
+
+    @BeforeSuite(groups = {"BVT", "Acceptance"})
     public void beforeSuite() {
-        System.out.println("Starting suite");
+        final String startingSuite = "Starting suite";
+        LOGGER.info(startingSuite);
     }
 
-    @AfterSuite(groups = {"BVT","Acceptance"})
+    @AfterSuite(groups = {"BVT", "Acceptance"})
     public void afterSuite() {
+        final String driverNotFound = "Driver not found";
+        final String executionError = "Execution error";
         try {
-            DriverManager.getInstance().quit();
+            getInstance().quit();
+        } catch (WebDriverException e) {
+            LOGGER.error(driverNotFound, e);
+        } catch (RuntimeException e) {
+            LOGGER.error(executionError, e);
         }
-        catch(WebDriverException e){e.printStackTrace();}
-        catch(RuntimeException e){e.printStackTrace();}
-
     }
 }

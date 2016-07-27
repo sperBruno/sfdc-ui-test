@@ -1,16 +1,11 @@
 package com.salesforce.dev.pages.Home;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.pages.AbstractBasePage;
+import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.framework.Environment;
-import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.MainPage;
 
 import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.CommonOperation.setWebElement;
@@ -21,25 +16,26 @@ import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
  */
 public class LoginPage extends AbstractBasePage {
 
-    private MainPage mainPage=null;
     @FindBy(id = "username")
-    WebElement userNameFld;
+    private WebElement userNameFld;
 
     @FindBy(id = "password")
-    WebElement passwordFld;
+    private WebElement passwordFld;
 
     @FindBy(id = "Login")
-    WebElement loginBtn;
+    private WebElement loginBtn;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
+    public static MainPage getLogin() {
+        if (Transporter.driverMainPage() == null) {
+            HomePage homePage = new HomePage();
+            return homePage.clickLoginBtn().loginAsPrimaryUser();
+        }
+        return Transporter.driverMainPage();
     }
 
     public MainPage clickLoginBtn() {
         clickWebElement(loginBtn);
-        return new MainPage(this.driver);
+        return new MainPage();
     }
 
     /**
@@ -50,24 +46,20 @@ public class LoginPage extends AbstractBasePage {
      */
     public MainPage loginAs(String userName, String password) {
         if(mainPage==null){
-            this.setUserName(userName);
-            this.setPassword(password);
-            return this.clickLoginBtn();
+        this.setUserName(userName);
+        this.setPassword(password);
+        return this.clickLoginBtn();
         }
         return mainPage;
     }
 
     public MainPage loginAsPrimaryUser() {
-        return this.loginAs(ENVIRONMENT.getPrimaryUser(),Environment.getInstance().getPrimaryPassword());
+        return this.loginAs(ENVIRONMENT.getPrimaryUser(), ENVIRONMENT.getPrimaryPassword());
     }
 
     public boolean isLoginButtonPresent() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(loginBtn));
-            return loginBtn.isDisplayed();
-        } catch (WebDriverException e) {
-            return false;
-        }
+        WAIT.until(ExpectedConditions.visibilityOf(loginBtn));
+        return loginBtn.isDisplayed();
     }
 
     public void setUserName(String Name) {

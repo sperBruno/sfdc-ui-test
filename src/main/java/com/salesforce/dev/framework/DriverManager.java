@@ -1,6 +1,12 @@
 package com.salesforce.dev.framework;
 
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,16 +16,14 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import java.sql.Driver;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Jimmy Vargas on 6/4/2015.
  */
 public class DriverManager {
+    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/test/resources/log4j.properties";
+
+    private static final Logger LOGGER = Logger.getLogger(DriverManager.class.getName());
     private WebDriver driver;
     private WebDriverWait wait;
 
@@ -35,6 +39,7 @@ public class DriverManager {
     private int timeoutNormal= TIMEOUT_NORMAL;
     private DriverManager(){
         browser = Environment.getInstance().getBrowser();
+        PropertyConfigurator.configure(SRC_MAIN_RESOURCES_LOG4J_PROPERTIES);
         this.initializer();
 
     }
@@ -65,7 +70,7 @@ public class DriverManager {
                         new URL("http://" + username + ":" + key + "@ondemand.saucelabs.com:80/wd/hub"),
                         caps);
             }catch(MalformedURLException e){
-                LoggerManager.getInstance().addErrorLog(this.getClass().getName(),"Error on Initializer on remote environment :", e);
+                LOGGER.error("Error on Initializer on remote environment :", e);
             }
         }
 
@@ -100,9 +105,7 @@ public class DriverManager {
 
     public void quit(){
         try{
-
             driver.quit();
-
         }
         catch(WebDriverException e){
             System.out.println(e.getMessage());
@@ -111,9 +114,7 @@ public class DriverManager {
 
     public void close(){
         try{
-
             driver.close();
-
         }
         catch(WebDriverException e){
             System.out.println(e.getMessage());

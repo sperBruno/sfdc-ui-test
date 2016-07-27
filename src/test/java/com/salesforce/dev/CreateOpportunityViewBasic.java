@@ -1,19 +1,15 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.framework.RandomGenerator;
-import com.salesforce.dev.pages.Accounts.AccountView;
-import com.salesforce.dev.pages.Accounts.AccountViewDetail;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityView;
 import com.salesforce.dev.pages.Opportunities.OpportunityViewDetail;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
@@ -25,6 +21,7 @@ import java.util.Iterator;
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewBasic {
+    private static final Logger LOGGER =Logger.getLogger(CreateOpportunityViewBasic.class.getName());
     private OpportunitiesHome opportunitiesHome;
     private OpportunityView opportunityView;
     private MainPage mainPage;
@@ -49,15 +46,13 @@ public class CreateOpportunityViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         opportunityViewDetail = opportunityView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Opportunity was created");
+        LOGGER.info("Opportunity was created");
         Assert.assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         opportunityViewDetail.clickDeleteLnk(true);
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Opportunity View was deleted");
+            LOGGER.info("Opportunity View was deleted");
     }
 }

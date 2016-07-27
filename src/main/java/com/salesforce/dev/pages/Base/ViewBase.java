@@ -1,25 +1,19 @@
 package com.salesforce.dev.pages.Base;
 
-import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.pages.AbstractBasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Administrator on 8/20/2015.
  */
-public abstract class ViewBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+public abstract class ViewBase extends AbstractBasePage {
 
     @FindBy(name = "save")
     protected WebElement saveBtn;
-
 
     @FindBy(name = "cancel")
     protected WebElement cancelBtn;
@@ -73,43 +67,36 @@ public abstract class ViewBase {
     protected abstract Object addNewFieldToDisplay(String newField);
     protected abstract Object selectRestrictVisibility(String optionVisibility);
     protected void clickSaveButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(saveBtn));
+        WAIT.until(ExpectedConditions.visibilityOf(saveBtn));
         saveBtn.click();
 
     }
-    protected void initializer(){
-        if(driver == null){
-            driver = DriverManager.getInstance().getDriver();
-        }
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver,this);
 
-    }
     protected void clickCancelButton() {
-        wait.until(ExpectedConditions.visibilityOf(cancelBtn));
+        WAIT.until(ExpectedConditions.visibilityOf(cancelBtn));
         cancelBtn.click();
 
     }
 
     protected void setViewNameFld(String viewName){
-        wait.until(ExpectedConditions.visibilityOf(viewNameFld));
+        WAIT.until(ExpectedConditions.visibilityOf(viewNameFld));
         viewNameFld.clear();
         viewNameFld.sendKeys(viewName);
     }
 
     protected  void setUniqueViewNameFld(String uniqueViewName){
-        wait.until(ExpectedConditions.visibilityOf(uniqueViewNameFld));
+        WAIT.until(ExpectedConditions.visibilityOf(uniqueViewNameFld));
         uniqueViewNameFld.clear();
         uniqueViewNameFld.sendKeys(uniqueViewName);
     }
 
     protected void checkFilterOwnerAll(){
-        wait.until(ExpectedConditions.visibilityOf(filterOwnerAll));
+        WAIT.until(ExpectedConditions.visibilityOf(filterOwnerAll));
         filterOwnerAll.click();
     }
 
     protected void checkFilterOwnerMy() {
-        wait.until(ExpectedConditions.visibilityOf(filterOwnerMy));
+        WAIT.until(ExpectedConditions.visibilityOf(filterOwnerMy));
         filterOwnerMy.click();
     }
 
@@ -118,25 +105,25 @@ public abstract class ViewBase {
         By filterField = By.id(idFieldField + "" + numberField);
         By filterOperator = By.id(idFieldOperator + "" + numberField);
         By filterValue = By.id(idFieldValue + "" + numberField);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(filterField));
+        WAIT.until(ExpectedConditions.visibilityOfElementLocated(filterField));
         driver.findElement(filterField).click();
         driver.findElement(filterField).sendKeys(field);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(filterOperator));
+        WAIT.until(ExpectedConditions.visibilityOfElementLocated(filterOperator));
         driver.findElement(filterOperator).click();
         driver.findElement(filterOperator).sendKeys(operator);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(filterValue));
+        WAIT.until(ExpectedConditions.visibilityOfElementLocated(filterValue));
         driver.findElement(filterValue).clear();
         driver.findElement(filterValue).sendKeys(value);
     }
 
     protected void selectAvailableFldToDisplay(String field){
-        wait.until(ExpectedConditions.visibilityOf(availableFields));
+        WAIT.until(ExpectedConditions.visibilityOf(availableFields));
         availableFields.click();
         availableFieldsMultiSelect.selectByVisibleText(field);
     }
 
     protected void clickAddNewFieldButton(){
-        wait.until(ExpectedConditions.visibilityOf(addFieldsBtn));
+        WAIT.until(ExpectedConditions.visibilityOf(addFieldsBtn));
         addFieldsBtn.click();
     }
 
@@ -147,15 +134,15 @@ public abstract class ViewBase {
     }
     protected void selectRestrictVisibilityRadio(String visibility){
         if (visibility.equals("only to me")) {
-            wait.until(ExpectedConditions.visibilityOf(visibilityOnlyMeRadio));
+            WAIT.until(ExpectedConditions.visibilityOf(visibilityOnlyMeRadio));
             visibilityOnlyMeRadio.click();
 
         } else if (visibility.equals("all users")) {
-            wait.until(ExpectedConditions.visibilityOf(visibilityAllRadio));
+            WAIT.until(ExpectedConditions.visibilityOf(visibilityAllRadio));
             visibilityAllRadio.click();
 
         } else if (visibility.equals("groups of users")) {
-            wait.until(ExpectedConditions.visibilityOf(visibilityGroupsRadio));
+            WAIT.until(ExpectedConditions.visibilityOf(visibilityGroupsRadio));
             visibilityGroupsRadio.click();
 
         }

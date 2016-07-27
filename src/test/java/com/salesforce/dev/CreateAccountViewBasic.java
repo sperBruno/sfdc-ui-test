@@ -1,30 +1,30 @@
 package com.salesforce.dev;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.framework.RandomGenerator;
 import com.salesforce.dev.pages.Accounts.AccountView;
 import com.salesforce.dev.pages.Accounts.AccountViewDetail;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Campaigns.CampaignView;
-import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateAccountViewBasic {
+    private static final Logger LOGGER = Logger.getLogger(CreateAccountViewBasic.class.getName());
     private AccountsHome accountsHome;
     private AccountView accountView;
     private HomePage homePage;
@@ -50,15 +50,13 @@ public class CreateAccountViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         accountViewDetail = accountView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Account was created");
-        Assert.assertTrue(accountViewDetail.validateNameView(viewSalesForce.getViewName()));
+        LOGGER.info("Account was created");
+        assertTrue(accountViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         accountViewDetail.clickDeleteLnk(true);
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Account View was deleted");
+        LOGGER.info("Account View was deleted");
     }
 }

@@ -1,7 +1,6 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Leads.LeadView;
@@ -10,6 +9,7 @@ import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.LeadGenie;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -22,6 +22,7 @@ import java.util.Iterator;
  * Created by Ariel Mattos on 07/09/2015.
  */
 public class EditLeadsViewBasic {
+    private static final Logger LOGGER = Logger.getLogger(EditLeadsViewBasic.class.getName());
     private LeadsHome leadsHome;
     private MainPage mainPage;
     private NavigationBar navigationBar;
@@ -58,14 +59,12 @@ public class EditLeadsViewBasic {
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
         Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Leads View has been updated");
+        LOGGER.info("Leads View has been updated");
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         leadViewDetail.clickDeleteLnk(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Leads View was deleted");
+        LOGGER.info("Leads View was deleted");
     }
 }

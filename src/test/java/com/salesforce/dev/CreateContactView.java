@@ -1,4 +1,5 @@
 package com.salesforce.dev;
+
 import com.salesforce.dev.framework.Objects.FieldToDisplayView;
 import com.salesforce.dev.framework.Objects.FilterView;
 import com.salesforce.dev.framework.RamdonGenerator;
@@ -8,13 +9,13 @@ import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Contacts.ContactViewDetail;
 import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Contacts.ContactView;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -24,10 +25,13 @@ import org.testng.annotations.Test;
 import java.util.Iterator;
 import java.util.List;
 
+import static org.testng.Assert.assertFalse;
+
 /**
  * Created by Alexander Apaza on 6/12/2015.
  */
 public class CreateContactView {
+    private static final Logger LOGGER =Logger.getLogger(CreateContactView.class.getName());
     private ContactsHome contactHome;
     private ContactView contactView;
     private HomePage homePage;
@@ -51,7 +55,7 @@ public class CreateContactView {
     public void setUp() {
         campaignName = "Camp" + RamdonGenerator.getInstance().getRamdonString();
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -62,9 +66,9 @@ public class CreateContactView {
 
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
-    public void testCreateContactView(ViewSalesForce viewSalesForce){
+    public void testCreateContactView(ViewSalesForce viewSalesForce) {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         contactHome = navigationBar.goToContactsHome();
         contactView = contactHome.clickNewViewLnk()
@@ -75,27 +79,26 @@ public class CreateContactView {
                 .setFilterByCampaign(campaignName)
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
 
-        List <FilterView> additionalField = viewSalesForce.getAdditionalFields();
+        List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
         int count = 1;
-        for(FilterView addFilter: additionalField){
-            contactView = contactView.addAdditionalFiltersByField(count,addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(),addFilter.getValueFilter());
+        for (FilterView addFilter : additionalField) {
+            contactView = contactView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
+                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
             count++;
         }
-        List <FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for(FieldToDisplayView fields:fieldToDisplayViews)
+        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
+        for (FieldToDisplayView fields : fieldToDisplayViews)
             contactView = contactView.addNewFieldToDisplay(fields.getFieldToDisplay());
 
         contactViewDetail = contactView.clickSaveBtn();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),"Contact was created");
-        Assert.assertFalse(contactViewDetail.validateNameView("AnyName"));
+        LOGGER.info("Contact was created");
+        assertFalse(contactViewDetail.validateNameView("AnyName"));
 
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactViewDetail.clickDeleteLnk(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Contact View was deleted");
+        LOGGER.info("Contact View was deleted");
     }
 }

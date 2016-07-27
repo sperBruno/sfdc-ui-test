@@ -1,4 +1,6 @@
 package com.salesforce.dev.pages.Base;
+
+import com.salesforce.dev.pages.AbstractBasePage;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Cases.CasesHome;
@@ -13,94 +15,77 @@ import com.salesforce.dev.pages.Orders.OrdersHome;
 import com.salesforce.dev.pages.Product.ProductsHome;
 import com.salesforce.dev.pages.Reports.ReportsHome;
 import com.salesforce.dev.pages.Solutions.SolutionsHome;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import com.salesforce.dev.framework.DriverManager;
+
+import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 
 /**
  * Created by Monica Pardo on 6/5/2015.
  */
-public class NavigationBar {
+public class NavigationBar extends AbstractBasePage {
 
-    WebDriver driver;
-    WebDriverWait wait;
+    @FindBy(linkText = "Orders")
+    private WebElement ordersTab;
 
-    @FindBy(linkText ="Campaigns")
-    WebElement campaignsTab;
+    @FindBy(linkText = "Campaigns")
+    private WebElement campaignsTab;
 
-    @FindBy(linkText ="Leads")
-    WebElement leadsTab;
+    @FindBy(linkText = "Leads")
+    private WebElement leadsTab;
 
     @FindBy(linkText = "Accounts")
-    WebElement accountsTab;
+    private WebElement accountsTab;
 
     @FindBy(linkText = "Contacts")
-    WebElement contactsTab;
+    private WebElement contactsTab;
 
     @FindBy(linkText = "Opportunities")
-    WebElement opportunitiesTab;
+    private WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
-    WebElement productsTab;
+    private WebElement productsTab;
 
     @FindBy(linkText = "Chatter")
-    WebElement chatterTab;
+    private WebElement chatterTab;
 
-    @FindBy(linkText ="Forecasts")
-    WebElement forecastsTab;
+    @FindBy(linkText = "Forecasts")
+    private WebElement forecastsTab;
 
-    @FindBy(linkText ="Contracts")
-    WebElement contractsTab;
+    @FindBy(linkText = "Contracts")
+    private WebElement contractsTab;
 
-    @FindBy(linkText ="Orders")
-    WebElement ordersTab;
+    @FindBy(linkText = "Cases")
+    private WebElement casesTab;
 
-    @FindBy(linkText ="Cases")
-    WebElement casesTab;
+    @FindBy(linkText = "Solutions")
+    private WebElement solutionsTab;
 
-    @FindBy(linkText ="Solutions")
-    WebElement solutionsTab;
+    @FindBy(linkText = "Reports")
+    private WebElement reportsTab;
 
-    @FindBy(linkText ="Reports")
-    WebElement reportsTab;
+    @FindBy(linkText = "Dashboards")
+    private WebElement dashboardTab;
 
-    @FindBy(linkText ="Dashboards")
-    WebElement dashboardTab;
-
-    public NavigationBar(WebDriver driver){
-        this.driver=driver;
-        this.wait= DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-
+    public CampaignsHome goToCampaignsHome() {
+        clickWebElement(campaignsTab);
+        return new CampaignsHome();
     }
 
-    public CampaignsHome goToCampaignsHome(){
-        wait.until(ExpectedConditions.visibilityOf(campaignsTab));
-        campaignsTab.click();
-        return new CampaignsHome(driver);
+    public LeadsHome gotToLeadsHome() {
+        clickWebElement(leadsTab);
+        return new LeadsHome();
     }
 
-    public LeadsHome gotToLeadsHome(){
-        wait.until(ExpectedConditions.visibilityOf(leadsTab));
-        leadsTab.click();
-        return new LeadsHome(driver);
+    public AccountsHome goToAccountsHome() {
+        clickWebElement(accountsTab);
+        return new AccountsHome();
     }
 
-    public AccountsHome goToAccountsHome(){
-        wait.until(ExpectedConditions.visibilityOf(accountsTab));
-        accountsTab.click();
-        return new AccountsHome(driver);
-    }
-
-    public ContactsHome goToContactsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(contactsTab));
-        contactsTab.click();
-        return new ContactsHome(this.driver);
+    public ContactsHome goToContactsHome() {
+        clickWebElement(contactsTab);
+        return new ContactsHome();
     }
 
     /**
@@ -109,21 +94,18 @@ public class NavigationBar {
      * @author: Jimmy Vargas
      * @version: 1.0
      * @since: 6/10/2015
-     * */
-    public OpportunitiesHome goToOpportunitiesHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(opportunitiesTab));
-        opportunitiesTab.click();
-
-        return new OpportunitiesHome(this.driver);
+     */
+    public OpportunitiesHome goToOpportunitiesHome() {
+        clickWebElement(opportunitiesTab);
+        return new OpportunitiesHome();
     }
 
-    public ProductsHome goToProductsHome(){
-        wait.until(ExpectedConditions.visibilityOf(productsTab));
-        productsTab.click();
-        return new ProductsHome(driver);
+    public ProductsHome goToProductsHome() {
+        clickWebElement(productsTab);
+        return new ProductsHome();
     }
 
-    public boolean IsElementPresent(WebElement webElement){
+    public boolean IsElementPresent(WebElement webElement) {
         try {
             webElement.getTagName();
             return true;
@@ -132,54 +114,45 @@ public class NavigationBar {
         }
     }
 
-    
-    public ChatterHome goToChatterHome(){
-        wait.until(ExpectedConditions.visibilityOf(chatterTab));
-        chatterTab.click();
+
+    public ChatterHome goToChatterHome() {
+        clickWebElement(chatterTab);
         return new ChatterHome(driver);
     }
 
 
-    public ForecastsHome goToForescastsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(forecastsTab));
-        forecastsTab.click();
+    public ForecastsHome goToForescastsHome() {
+        clickWebElement(forecastsTab);
         return new ForecastsHome(this.driver);
     }
 
-    public ContractsHome goToContractsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(contractsTab));
-        contractsTab.click();
+    public ContractsHome goToContractsHome() {
+        clickWebElement(contractsTab);
         return new ContractsHome(this.driver);
     }
 
-    public OrdersHome goToOrdersHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(ordersTab));
-        ordersTab.click();
+    public OrdersHome goToOrdersHome() {
+        clickWebElement(ordersTab);
         return new OrdersHome(this.driver);
     }
 
-    public CasesHome goToCasesHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(casesTab));
-        casesTab.click();
+    public CasesHome goToCasesHome() {
+        clickWebElement(casesTab);
         return new CasesHome(this.driver);
     }
 
-    public SolutionsHome goToSolutionsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(solutionsTab));
-        solutionsTab.click();
+    public SolutionsHome goToSolutionsHome() {
+        clickWebElement(solutionsTab);
         return new SolutionsHome(this.driver);
     }
 
-    public ReportsHome goToReportsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(reportsTab));
-        reportsTab.click();
+    public ReportsHome goToReportsHome() {
+        clickWebElement(reportsTab);
         return new ReportsHome(this.driver);
     }
 
-    public DashboardsHome goToDashboardsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(dashboardTab));
-        dashboardTab.click();
+    public DashboardsHome goToDashboardsHome() {
+        clickWebElement(dashboardTab);
         return new DashboardsHome(this.driver);
     }
-
 }
