@@ -63,9 +63,6 @@ public class CreateContactView {
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateContactView(ViewSalesForce viewSalesForce){
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
-        navigationBar = mainPage.gotoNavBar();
         contactHome = navigationBar.goToContactsHome();
         contactView = contactHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())

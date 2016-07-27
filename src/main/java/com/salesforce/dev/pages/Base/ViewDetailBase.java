@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.Base;
 
 import com.salesforce.dev.framework.LoggerManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Administrator on 8/20/2015.
  */
-public abstract class ViewDetailBase {
+public abstract class ViewDetailBase extends AbstractWebDriverEventListener {
     protected WebDriver driver;
     protected WebDriverWait wait;
 

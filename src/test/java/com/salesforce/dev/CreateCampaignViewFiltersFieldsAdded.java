@@ -37,11 +37,16 @@ public class CreateCampaignViewFiltersFieldsAdded {
         return dataDrivenManager.getDataView("CreateCampaignViewFiltersFieldAdded.json");
     }
 
-
+    @BeforeMethod(groups = {"Acceptance"})
+    public void setUp() {
+        homePage = new HomePage();
+        mainPage = homePage.loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
+    }
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
-        mainPage = Transporter.driverMainPage();
-        navigationBar = mainPage.gotoNavBar();
+        //mainPage = Transporter.driverMainPage();
+
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignView = campaignsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
@@ -56,13 +61,15 @@ public class CreateCampaignViewFiltersFieldsAdded {
             count++;
         }
         List <FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for(FieldToDisplayView fields:fieldToDisplayViews)
+        for(FieldToDisplayView fields:fieldToDisplayViews) {
             campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
+        }
         campaignViewDetail = campaignView.clickSaveBtn();
         LOGGER.addInfoLog("Campaign view was created");
         Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
         for(FieldToDisplayView fields:fieldToDisplayViews){
+
             Assert.assertTrue(campaignViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
         }
     }

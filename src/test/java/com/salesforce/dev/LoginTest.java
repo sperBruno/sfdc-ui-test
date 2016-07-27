@@ -2,11 +2,11 @@ package com.salesforce.dev;
 
 import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.framework.LoggerManager;
-import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -33,7 +33,6 @@ public class LoginTest {
         Assert.assertEquals(topHeader.getUserName(), Environment.getInstance().getDisplayName());
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
                 "Login on Sales Force");
-
     }
 
 }
