@@ -1,19 +1,16 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
-
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.Assert;
 
 /**
  * Created by Walter on 13/06/2015.
@@ -60,9 +57,12 @@ public class EditAccount {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        mainPage = Transporter.driverMainPage();
-
+        homePage = new HomePage();
+        mainPage = homePage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
+//        mainPage = Transporter.driverMainPage();
+//
+//        navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
         accountForm.setAccountNameFld(accountName);
