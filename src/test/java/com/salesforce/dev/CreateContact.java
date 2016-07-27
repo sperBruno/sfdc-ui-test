@@ -51,7 +51,7 @@ public class CreateContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
@@ -79,8 +79,8 @@ public class CreateContact {
         contactForm = searchLookup.goToContactForm();
 
         contactForm.setTitle(contact.getTitle())
-                    .setDepartment(contact.getDepartment());
-//                .setBirthDate(6, 6, 2015);
+                .setDepartment(contact.getDepartment());
+
 
         searchLookup = contactForm.clickLookupReportsTo();
         searchLookup.searchText(contact.getReportsTo());

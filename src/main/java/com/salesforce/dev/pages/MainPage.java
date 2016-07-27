@@ -51,6 +51,4 @@ public class MainPage {
     public NavigationBar gotoNavBar(){
         return this.navBar;
     }
-
-
 }

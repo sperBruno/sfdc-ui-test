@@ -15,33 +15,34 @@ import com.salesforce.dev.pages.Opportunities.*;
  */
 public class Common {
 
-    public static void createOpportunity(Opportunity oppEnum){
+    public static void createOpportunity(Opportunity oppEnum) {
 
         HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.loginAsPrimaryUser();
+        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         opTab.clickNewBtn();
 
-        OpportunityForm opForm= new OpportunityBuilder(oppEnum.opportunityName,oppEnum.closeDate,oppEnum.stage)
+        OpportunityForm opForm = new OpportunityBuilder(oppEnum.opportunityName, oppEnum.closeDate, oppEnum.stage)
                 .setOpDescription(oppEnum.description)
                 .setOrderNumber(oppEnum.orderNumber)
                 .build();
         opForm.clickSaveBtn();
 
     }
-    public static void createLead(Lead lead){
+
+    public static void createLead(Lead lead) {
 
 
-        MainPage mainPage ;
+        MainPage mainPage;
         mainPage = Transporter.driverMainPage();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         LeadsHome leadsHome = navBar.gotToLeadsHome();
         leadsHome.clickNewBtn();
 
-        LeadForm leadForm= new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
+        LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
                 .build();
         leadForm.clickSaveBtn();
 
