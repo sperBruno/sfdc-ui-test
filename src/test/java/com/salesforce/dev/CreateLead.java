@@ -13,6 +13,7 @@ import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadDetail;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
 
@@ -42,13 +43,13 @@ public class CreateLead {
     private String campaignParentName;
     private HomePage homePage;
     private MainPage mainPage;
-
+    private NavigationBar navigationBar;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
-        //mainPage = Transporter.driverMainPage();
+        mainPage = Transporter.driverMainPage();
         homePage = new HomePage();
-       // mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
         lead = JSONMapper.getLead("src\\test\\resources\\CreateLead.json");
@@ -129,6 +130,10 @@ public class CreateLead {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail = leadsHome.openLead(lead.lastName+", "+lead.firstName);
         leadDetail.deleteLead();
+        navigationBar = mainPage.gotoNavBar();
+        campaignsHome = navigationBar.goToCampaignsHome();
+        campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
+        campaignDetail.clickDeleteBtn(true);
 
     }
 }

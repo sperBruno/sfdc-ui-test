@@ -88,6 +88,7 @@ public class CreateContact {
 
         contactForm.setLeadSource(contact.getLeadSource())
                 .setPhone(contact.getPhone())
+                .setBirthDate(6,6,2015)
                 .setHomePhone(contact.getHomePhone())
                 .setMobile(contact.getMobile())
                 .setOtherPhone(contact.getOtherPhone())
