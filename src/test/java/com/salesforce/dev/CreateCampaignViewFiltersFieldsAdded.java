@@ -13,6 +13,7 @@ import com.salesforce.dev.pages.Campaigns.CampaignView;
 import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 
 import org.apache.log4j.Logger;
