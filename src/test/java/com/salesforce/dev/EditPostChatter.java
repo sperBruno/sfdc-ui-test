@@ -33,7 +33,7 @@ public class EditPostChatter {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();
-        chatterHome.clickPost();
+//        chatterHome.clickPost();
         chatterHome.setPost(createChatter.getPost());
         chatterHome.clickShareBtn();
     }
