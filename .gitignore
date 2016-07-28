@@ -18,10 +18,4 @@ build/
 *.png
 logs/
 *.puml
-
-
-
-
-
-
-
+/classes/

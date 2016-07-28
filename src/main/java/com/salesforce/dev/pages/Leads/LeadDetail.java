@@ -1,6 +1,6 @@
 package com.salesforce.dev.pages.Leads;
 
-import com.salesforce.dev.pages.Base.DetailsBase;
+import com.salesforce.dev.pages.base.DetailsBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;

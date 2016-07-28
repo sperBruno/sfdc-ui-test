@@ -1,11 +1,10 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
 import java.util.LinkedList;
 import java.util.Set;
 
 
-import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.Accounts.AccountForm;
+import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Contacts.ContactForm;
 import com.salesforce.dev.pages.Leads.LeadForm;

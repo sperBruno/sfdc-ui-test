@@ -1,20 +1,18 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.framework.Objects.Lead;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.framework.dto.Lead;
+import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadDetail;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
-
+import com.salesforce.dev.pages.base.NavigationBar;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -43,7 +41,6 @@ public class CreateLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        mainPage = Transporter.driverMainPage();
         homePage = new HomePage();
         mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();

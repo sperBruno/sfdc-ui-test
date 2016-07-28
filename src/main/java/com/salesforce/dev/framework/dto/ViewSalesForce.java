@@ -1,4 +1,4 @@
-package com.salesforce.dev.framework.Objects;
+package com.salesforce.dev.framework.dto;
 
 import java.util.List;
 

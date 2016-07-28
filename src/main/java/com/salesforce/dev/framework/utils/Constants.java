@@ -1,7 +1,5 @@
 package com.salesforce.dev.framework.utils;
 
-import com.salesforce.dev.framework.Environment;
-
 /**
  * Created by brunobarrios on 7/26/2016.
  */

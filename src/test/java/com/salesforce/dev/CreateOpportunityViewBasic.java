@@ -1,9 +1,9 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityView;
@@ -30,7 +30,7 @@ public class CreateOpportunityViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
+        return dataDrivenManager.getDataView("json/CreateOpportunityViewBasic.json");
     }
 
     @BeforeMethod(groups = {"BVT"})

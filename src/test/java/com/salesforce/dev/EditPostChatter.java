@@ -1,11 +1,11 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.Chatter;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.Chatter;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -28,19 +28,19 @@ public class EditPostChatter {
     public void setUp(){
         //create
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("Chatter.json");
+        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("json/Chatter.json");
         Chatter createChatter = chattersData.next()[0];
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();
-        chatterHome.clickPost();
+//        chatterHome.clickPost();
         chatterHome.setPost(createChatter.getPost());
         chatterHome.clickShareBtn();
     }
     @DataProvider(name = "dataDriven")
     public Iterator<Chatter[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getChatter("EditChatter.json");
+        return dataDrivenManager.getChatter("json/EditChatter.json");
     }
 
     @Test(groups = {"Acceptance"}, dataProvider ="dataDriven")

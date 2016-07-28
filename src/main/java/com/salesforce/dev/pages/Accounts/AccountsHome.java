@@ -1,10 +1,10 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
-import com.salesforce.dev.pages.Base.HomeBase;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.CommonOperation.isWebElementVisible;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 
 /**
@@ -12,7 +12,7 @@ import static com.salesforce.dev.framework.CommonOperation.isWebElementVisible;
  */
 public class AccountsHome extends HomeBase {
 
-    @FindBy(xpath = "//h1[contains(.,'Accounts:')]")
+    @FindBy(xpath = "//h1[contains(.,'accounts:')]")
     private WebElement accountSection;
 
     @Override

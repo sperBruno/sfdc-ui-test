@@ -2,16 +2,15 @@ package com.salesforce.dev;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
-import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.apache.log4j.Logger;
@@ -41,7 +40,7 @@ public class CreateCampaign {
     @DataProvider(name = "dataDriven")
     public Iterator<Campaign[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getCampaign("CreateCampaign.json");
+        return dataDrivenManager.getCampaign("json/CreateCampaign.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})

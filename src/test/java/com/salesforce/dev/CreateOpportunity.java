@@ -1,9 +1,9 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Opportunity;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.framework.dto.Opportunity;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityBuilder;
@@ -33,7 +33,7 @@ public class CreateOpportunity {
         homePage = new HomePage();
         mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-        oppEnum = JSONMapper.getOpportunity("CreateOpportunity.json");
+        oppEnum = JSONMapper.getOpportunity("json/CreateOpportunity.json");
     }
 
     @Test(groups = {"Acceptance"})
