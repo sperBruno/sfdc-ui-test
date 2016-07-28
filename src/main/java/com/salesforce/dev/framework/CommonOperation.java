@@ -1,5 +1,6 @@
 package com.salesforce.dev.framework;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CommonOperation {
     
     private static final WebDriverWait WAIT = DriverManager.getInstance().getWait();
+
+    private static final WebDriver DRIVER =DriverManager.getInstance().getDriver();
 
     private CommonOperation() {
     }
@@ -53,4 +56,16 @@ public class CommonOperation {
         Select comboBox = new Select(webElement);
         comboBox.selectByVisibleText(value);
     }
+
+    public static boolean isWebElementVisible(WebElement webElement) {
+        try{
+
+            WAIT.until(ExpectedConditions.visibilityOf(webElement));
+            return true;
+        }
+        catch (WebDriverException e){
+            return false;
+        }
+    }
+
 }
