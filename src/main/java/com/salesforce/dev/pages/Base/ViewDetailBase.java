@@ -77,7 +77,6 @@ public abstract class ViewDetailBase extends AbstractBasePage {
     public boolean validateNameView(String nameView) {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
         Select select = new Select(viewSelected);
-
         String nameV = select.getFirstSelectedOption().getText();
         return nameV.equals(nameView);
     }
@@ -88,6 +87,7 @@ public abstract class ViewDetailBase extends AbstractBasePage {
         WebElement webElement = driver.findElement(By.id("ext-gen10"));
         moveHorizontalWebElementScroll(driver, webElement, horizontalScrollPosition);
         wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
+
         return driver.findElement(fieldDisplayed).isDisplayed();
     }
 }

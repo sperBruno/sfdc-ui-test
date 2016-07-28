@@ -4,6 +4,7 @@ import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Leads.LeadView;
 import com.salesforce.dev.pages.Leads.LeadViewDetail;
 import com.salesforce.dev.pages.Leads.LeadsHome;

@@ -1,6 +1,5 @@
 package com.salesforce.dev.framework;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -14,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class CommonOperation {
     
     private static final WebDriverWait WAIT = DriverManager.getInstance().getWait();
+
+    private static final WebDriver DRIVER =DriverManager.getInstance().getDriver();
 
     private CommonOperation() {
     }
@@ -56,9 +57,27 @@ public class CommonOperation {
         comboBox.selectByVisibleText(value);
     }
 
+
+    public static boolean isWebElementVisible(WebElement webElement) {
+        try{
+
+            WAIT.until(ExpectedConditions.visibilityOf(webElement));
+            return true;
+        }
+        catch (WebDriverException e){
+            return false;
+        }
+
+    public static String getTextWebElement(WebElement webElement) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+
+    }
+
     public static void moveHorizontalWebElementScroll(WebDriver driver, WebElement webElement, int horizontal) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollLeft+=arguments[1];", webElement, horizontal);
     }
+
 }

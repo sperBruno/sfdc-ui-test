@@ -116,7 +116,7 @@ public abstract class ViewBase extends AbstractBasePage {
         driver.findElement(filterValue).sendKeys(value);
     }
 
-    protected void selectAvailableFldToDisplay(String field){
+    protected void selectAvailableFldToDisplay(String field) {
         wait.until(ExpectedConditions.visibilityOf(availableFields));
         availableFields.click();
         availableFieldsMultiSelect.selectByVisibleText(field);

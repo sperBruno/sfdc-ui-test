@@ -58,8 +58,9 @@ public class EditCampaign {
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
         campaignNameToUpdated = campaign.getCampaignName();
         campaignParentName = campaign.getParentCampaign();
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+
+        mainPage = LoginPage.loginAsPrimaryUser();
+
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -77,7 +78,9 @@ public class EditCampaign {
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testEditCampaign(Campaign campaign) {
-       // mainPage = Transporter.driverMainPage();
+
+        mainPage = LoginPage.loginAsPrimaryUser();
+
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
 

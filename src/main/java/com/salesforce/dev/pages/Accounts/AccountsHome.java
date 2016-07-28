@@ -1,10 +1,10 @@
 package com.salesforce.dev.pages.Accounts;
 
 import com.salesforce.dev.pages.Base.HomeBase;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static com.salesforce.dev.framework.CommonOperation.isWebElementVisible;
 
 
 /**
@@ -46,11 +46,6 @@ public class AccountsHome extends HomeBase {
     }
 
     public boolean IsUserInAccountsTab() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(accountSection));
-            return true;
-        } catch (WebDriverException e) {
-            return false;
-        }
+        return isWebElementVisible(accountSection);
     }
 }
