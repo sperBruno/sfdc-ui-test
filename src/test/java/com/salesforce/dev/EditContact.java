@@ -106,7 +106,7 @@ public class EditContact {
         contactForm.setDescription(contact.getDescription());
         contactDetail = contactForm.clickSaveBtn();
 
-        Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
+        Assert.assertTrue(contactDetail.validateContactName(String.format ("%s %s %s", contact.getcontactRole(), contact.getFirstName(), contact.getLastNameastName())));
     }
 
     @AfterMethod(groups = {"Acceptance"})

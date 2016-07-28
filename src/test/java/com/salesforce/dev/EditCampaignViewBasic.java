@@ -29,7 +29,6 @@ public class EditCampaignViewBasic {
     private CampaignView campaignView;
     private String nameView;
     private CampaignViewDetail campaignViewDetail;
-    HomePage homePage;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
