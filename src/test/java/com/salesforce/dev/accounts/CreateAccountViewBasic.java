@@ -11,7 +11,6 @@ import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
