@@ -6,6 +6,7 @@ import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.framework.RandomGenerator;
 import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
@@ -38,16 +39,13 @@ public class CreateOpportunityViewBasic {
     
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-     
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
-//        mainPage = Transporter.driverMainPage();
-//        navigationBar = mainPage.gotoNavBar();
         OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
         opportunityView = opportunitiesHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())

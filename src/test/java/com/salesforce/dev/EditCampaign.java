@@ -51,13 +51,15 @@ public class EditCampaign {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
+        homePage = new HomePage();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
         ///create campaign
         Campaign campaign = CampaignGenie.getCampaign();
         //create parent Campaign
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
         campaignNameToUpdated = campaign.getCampaignName();
         campaignParentName = campaign.getParentCampaign();
-        mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -105,7 +107,6 @@ public class EditCampaign {
         Assert.assertTrue(campaignDetail.validateCampaignEndDate(campaign.getEndDate()));
         Assert.assertTrue(campaignDetail.validateCampaignParent(campaign.getParentCampaign()));
         LOGGER.info("Campaign has been updated");
-
     }
 
     @AfterMethod(groups = {"Acceptance"})

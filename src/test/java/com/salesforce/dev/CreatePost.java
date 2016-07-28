@@ -1,6 +1,5 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
 import com.salesforce.dev.pages.Home.HomePage;
@@ -13,7 +12,6 @@ import org.testng.annotations.Test;
 
 /**
  * Created by Monica Pardo on 6/13/2015.
- *
  */
 public class CreatePost {
 
@@ -26,14 +24,13 @@ public class CreatePost {
     ChatterHome chatterHome;
 
     @BeforeMethod(groups = {"Acceptance"})
-    public void setUp(){
+    public void setUp() {
         mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
-
     }
-    @Test(groups = {"Acceptance"})
-    public void CreatePostAndComment(){
 
+    @Test(groups = {"Acceptance"})
+    public void CreatePostAndComment() {
         chatterHome = navigationBar.goToChatterHome();
         chatterHome.clickPost();
         chatterHome.setPost(post);
@@ -43,14 +40,10 @@ public class CreatePost {
         chatterHome.setComment(comment);
         chatterHome.clickCommentBtn();
         Assert.assertTrue(chatterHome.VerifyCommentCreated(comment), "Comment Was not Created");
-
-
-
-
     }
 
     @AfterMethod(groups = {"Acceptance"})
-    public void tearDown(){
+    public void tearDown() {
         chatterHome.DeletePost();
     }
 
