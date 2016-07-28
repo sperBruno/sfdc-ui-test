@@ -13,10 +13,12 @@ import com.salesforce.dev.pages.Campaigns.CampaignView;
 import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
+
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -41,11 +43,16 @@ public class CreateCampaignViewFiltersFieldsAdded {
         return dataDrivenManager.getDataView("CreateCampaignViewFiltersFieldAdded.json");
     }
 
-
+    @BeforeMethod(groups = {"Acceptance"})
+    public void setUp() {
+        homePage = new HomePage();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
+    }
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
-        mainPage = Transporter.driverMainPage();
-        navigationBar = mainPage.gotoNavBar();
+        //mainPage = Transporter.driverMainPage();
+
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignView = campaignsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
@@ -59,15 +66,17 @@ public class CreateCampaignViewFiltersFieldsAdded {
                     addFilter.getOperatorFilter(), addFilter.getValueFilter());
             count++;
         }
-        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for (FieldToDisplayView fields : fieldToDisplayViews)
+        List <FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
+        for(FieldToDisplayView fields:fieldToDisplayViews) {
             campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
+        }
         campaignViewDetail = campaignView.clickSaveBtn();
         LOGGER.info("Campaign view was created");
         assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
-        for (FieldToDisplayView fields : fieldToDisplayViews) {
-            assertTrue(campaignViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
+        for(FieldToDisplayView fields:fieldToDisplayViews){
+
+            Assert.assertTrue(campaignViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
         }
     }
 

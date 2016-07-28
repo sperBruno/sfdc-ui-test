@@ -38,6 +38,7 @@ public class CreateCampaignViewBasic {
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
+        Transporter.login();
         mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();

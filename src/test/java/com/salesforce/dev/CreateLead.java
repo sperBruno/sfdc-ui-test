@@ -1,12 +1,21 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.JSONMapper;
+import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.pages.Campaigns.CampaignDetail;
+import com.salesforce.dev.pages.Campaigns.CampaignForm;
+import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Leads.*;
-import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.Leads.LeadBuilder;
+import com.salesforce.dev.pages.Leads.LeadDetail;
+import com.salesforce.dev.pages.Leads.LeadForm;
+import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.Objects.CampaignGenie;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,19 +25,39 @@ import org.testng.annotations.Test;
  * Created by Jimmy Vargas on 6/15/2015.
  */
 public class CreateLead {
-    HomePage homePage;
-    MainPage mainPage;
+
     NavigationBar navBar;
 
     Lead lead;
+    private CampaignsHome campaignsHome;
+    private CampaignDetail campaignDetail;
+    private CampaignForm campaignForm;
+    private String parentCampaign = "CampaignParent";
+
+
+    private SearchLookupBase searchLookup;
+
+    private String campaignNameToUpdated;
+    private String campaignNameUpdated;
+    private String campaignParentName;
+    private HomePage homePage;
+    private MainPage mainPage;
 
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
-        mainPage = Transporter.driverMainPage();
+        //mainPage = Transporter.driverMainPage();
+        homePage = new HomePage();
+        mainPage = homePage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
         lead = JSONMapper.getLead("src\\test\\resources\\CreateLead.json");
+
+        ///create campaign
+        Campaign campaign= CampaignGenie.getCampaign();
+        //create parent Campaign
+        CampaignGenie.createParentCampaign(campaign.getParentCampaign());
+
     }
 
     @Test(groups = {"Acceptance"})

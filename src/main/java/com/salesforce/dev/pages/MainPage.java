@@ -2,7 +2,6 @@ package com.salesforce.dev.pages;
 
 import com.salesforce.dev.pages.Base.NavigationBar;
 
-
 /**
  * Created by Jimmy Vargas on 6/4/2015.
  */
