@@ -66,7 +66,7 @@ public class CampaignForm extends FormBase {
     private WebElement numSentFld;
 
 
-    @FindBy(xpath = "//img[@alt='Parent Campaign Lookup (New Window)']")
+    @FindBy(css = ".lookupIcon")
     @CacheLookup
     private WebElement lookupCampaignImg;
 

@@ -1,6 +1,23 @@
 [{
 "viewName":"view Account01",
-"viewUniqueName":"viewAccount01",
+"uniqueViewName":"viewAccount01",
 "filterByOwner":"All Accounts",
-"restrictVisibility":"Visible only to me"
+"restrictVisibility":"Visible only to me",
+"filterByCampaign":"sdfd",
+  "additionalFields":[
+    {"fieldFilter":"Campaign Name",
+      "operatorFilter":"contains",
+      "valueFilter":"n"
+    },
+    {"fieldFilter":"Total Contacts",
+      "operatorFilter":"not equal to",
+      "valueFilter":"0"
+    }
+  ],
+  "fieldsDisplay":[
+    {"fieldToDisplay":"Active"},
+    {"fieldToDisplay":"Total Responses"},
+    {"fieldToDisplay":"Num Sent"}
+  ]
 }]
+

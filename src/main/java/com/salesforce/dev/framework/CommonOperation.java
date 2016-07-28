@@ -56,6 +56,11 @@ public class CommonOperation {
         comboBox.selectByVisibleText(value);
     }
 
+    public static String getTextWebElement(WebElement webElement) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+    }
+
     public static void moveHorizontalWebElementScroll(WebDriver driver, WebElement webElement, int horizontal) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         JavascriptExecutor js = (JavascriptExecutor) driver;

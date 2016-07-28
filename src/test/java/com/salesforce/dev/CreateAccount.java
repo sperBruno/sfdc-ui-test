@@ -1,7 +1,5 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
@@ -26,12 +24,15 @@ public class CreateAccount {
     private MainPage mainPage;
     private AccountDetail accountDetail;
     private HomePage homePage;
+    private NavigationBar navigationBar;
     private Account account = JSONMapper.getAccountBase();
+    private LoginPage loginPage;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = LoginPage.getLogin();
+        HomePage homePage = new HomePage();
+        loginPage = homePage.clickLoginBtn();
+        mainPage = loginPage.loginAsPrimaryUser();
     }
 
     @Test(groups = {"Acceptance"})
@@ -39,32 +40,31 @@ public class CreateAccount {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn()
-                .setAccountNameFld(account.getAccountName())
-                .setAccountRatingFld(account.getRating())
-                .setAccountOwnershipFld(account.getOwnership())
-                .setAccountPhoneFld(account.getPhone())
-                .setAccountFaxFld(account.getFax())
-                .setAccountNumberFld(account.getNumber())
-                .setAccountWebsiteFld(account.getWebsite())
-                .setAccountSiteFld(account.getAccountSite())
-                .setAccountThickerFld(account.getTickerSymbol())
-                .setAccountTypeFld(account.getType())
-                .setAccountIndustryFld(account.getIndustry())
-                .setAccountEmployeesFld(account.getEmployees())
-                .setAccountAnnualRevenueFld(account.getAnnualRevenue())
-                .setAccountSICCodeFld(account.getSicCode())
-                .setAccountBillingStreetFld(account.getBillingAddress())
-                .setAccountShippingStreetFld(account.getShippingAddress())
-                .setAccountCustomerPriorityFld(account.getCustomerPriority())
-                .setAccountSLAFld(account.getSla())
-                .setAccountUpsellOpportunityFld(account.getUpSellOpportunity())
-                .setAccountActiveFld(account.getActive())
-                .setAccountSLAExpirationDateFld(account.getSlaExpirationDate())
-                .setAccountSLAExpirationDateFld(12, 15, 2016)
-                .setAccountSLASerialNumberFld(account.getSlaSerialNumber())
-                .setAccountNumberLocationsFld(account.getNumberOfLocations())
-                .setAccountDescriptionFld(account.getAccountDesc());
 
+            .setAccountNameFld(account.getAccountName())
+            .setAccountRatingFld(account.getRating())
+            .setAccountOwnershipFld(account.getOwnership())
+            .setAccountPhoneFld(account.getPhone())
+            .setAccountFaxFld(account.getFax())
+            .setAccountNumberFld(account.getNumber())
+            .setAccountWebsiteFld(account.getWebsite())
+            .setAccountSiteFld(account.getAccountSite())
+            .setAccountThickerFld(account.getTickerSymbol())
+            .setAccountTypeFld(account.getType())
+            .setAccountIndustryFld(account.getIndustry())
+            .setAccountEmployeesFld(account.getEmployees())
+            .setAccountAnnualRevenueFld(account.getAnnualRevenue())
+            .setAccountSICCodeFld(account.getSicCode())
+            .setAccountBillingStreetFld(account.getBillingAddress())
+            .setAccountShippingStreetFld(account.getShippingAddress())
+            .setAccountCustomerPriorityFld(account.getCustomerPriority())
+            .setAccountSLAFld(account.getSla())
+            //.setAccountUpsellOpportunityFld(account.getUpSellOpportunity()) //JsonMapper error not loading
+            .setAccountActiveFld(account.getActive())
+            .setAccountSLAExpirationDateFld(account.getSlaExpirationDate())
+            .setAccountSLASerialNumberFld(account.getSlaSerialNumber())
+            .setAccountNumberLocationsFld(account.getNumberOfLocations())
+            .setAccountDescriptionFld(account.getAccountDesc());
         accountDetail = accountForm.clickSaveBtn();
 
         Assert.assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));

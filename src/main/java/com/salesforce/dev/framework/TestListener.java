@@ -89,7 +89,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-        MainPage mainPage = Transporter.driverMainPage();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         TopHeader topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();
         LoginPage loginPage = topHeader.clickLogoutOption();
