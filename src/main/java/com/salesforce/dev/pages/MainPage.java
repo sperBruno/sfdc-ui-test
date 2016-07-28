@@ -18,7 +18,7 @@ public class MainPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public MainPage(WebDriver driver){
+    public MainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         topHeader = new TopHeader(this.driver);
@@ -26,18 +26,20 @@ public class MainPage {
 
         PageFactory.initElements(this.driver, this);
     }
-    public MainPage(){
-//        if(driver == null){
-//            driver = DriverManager.getInstance().getDriver();
-//        }
-//        this.wait = DriverManager.getInstance().getWait();
-//
-//        topHeader = new TopHeader(this.driver);
-//        navBar = new NavigationBar(this.driver);
-//
-//        PageFactory.initElements(this.driver, this);
+
+    public MainPage() {
+        if (driver == null) {
+            driver = DriverManager.getInstance().getDriver();
+        }
+        this.wait = DriverManager.getInstance().getWait();
+
+        topHeader = new TopHeader(this.driver);
+        navBar = new NavigationBar(this.driver);
+
+        PageFactory.initElements(this.driver, this);
     }
-    public TopHeader gotoTopHeader(){
+
+    public TopHeader gotoTopHeader() {
         return this.topHeader;
     }
 
@@ -45,12 +47,12 @@ public class MainPage {
      * Returns the navigation bar where all the HOMEs are located
      *
      * @author: Jimmy Vargas
-     * */
-    public NavigationBar gotoNavBar(){
+     */
+    public NavigationBar gotoNavBar() {
         return this.navBar;
     }
 
-    public WebDriver getDriverMainPage(){
+    public WebDriver getDriverMainPage() {
         return driver;
     }
 }

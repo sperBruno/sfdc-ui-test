@@ -18,7 +18,7 @@ import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
  */
 public class LoginPage extends AbstractBasePage {
 
-    private WebDriver driver2 = this.driver;
+    private static WebDriver driverBackUp;
 
     @FindBy(id = "username")
     WebElement userNameFld;
@@ -33,7 +33,7 @@ public class LoginPage extends AbstractBasePage {
 
     public MainPage clickLoginBtn() {
         clickWebElement(loginBtn);
-        return new MainPage(driver2);
+        return new MainPage(this.driver);
     }
 
     /**
@@ -81,7 +81,8 @@ public class LoginPage extends AbstractBasePage {
 
     public static MainPage loginAs2(String userName, String password) {
             MainPage mainPage = new MainPage();
-        if (null == mainPage.getDriverMainPage()) {
+        if (!(driverBackUp == mainPage.getDriverMainPage())) {
+            driverBackUp = mainPage.getDriverMainPage();
             HomePage homePage = new HomePage();
             LoginPage loginPage = homePage.clickLoginBtn();
             loginPage.setUserName(userName);
