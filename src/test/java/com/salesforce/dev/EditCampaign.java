@@ -51,15 +51,15 @@ public class EditCampaign {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
-        navigationBar = mainPage.gotoNavBar();
+        
         ///create campaign
         Campaign campaign = CampaignGenie.getCampaign();
         //create parent Campaign
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
         campaignNameToUpdated = campaign.getCampaignName();
         campaignParentName = campaign.getParentCampaign();
+        homePage = new HomePage();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -77,7 +77,7 @@ public class EditCampaign {
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testEditCampaign(Campaign campaign) {
-        mainPage = Transporter.driverMainPage();
+       // mainPage = Transporter.driverMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
 
@@ -89,6 +89,7 @@ public class EditCampaign {
         campaignForm.setStatusSelect(campaign.getCampaignStatus());
         campaignForm.setStartDate(campaign.getStartDate());
         campaignForm.setEndDate(campaign.getEndDate());
+        campaignForm.clickPanel();
         campaignForm.setExpectedRevenue(campaign.getExpectedRevenue());
         campaignForm.setBudgetedCost(campaign.getBudgetedCost());
         campaignForm.setActualCost(campaign.getActualCost());
