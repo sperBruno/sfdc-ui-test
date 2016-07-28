@@ -38,7 +38,6 @@ public class CreateOpportunity {
 
     @Test(groups = {"Acceptance"})
     public void testCreateOpportunity() {
-
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         opTab.clickNewBtn();
 

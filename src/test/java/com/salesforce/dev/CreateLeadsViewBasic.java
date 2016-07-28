@@ -25,17 +25,17 @@ public class CreateLeadsViewBasic {
 
     private static final Logger LOGGER = Logger.getLogger(CreateLeadsViewBasic.class.getName());
 
-    HomePage homePage;
+    private HomePage homePage;
 
-    MainPage mainPage;
+    private MainPage mainPage;
 
-    NavigationBar navBar;
+    private NavigationBar navBar;
 
-    LeadsHome leadsHome;
+    private LeadsHome leadsHome;
 
-    LeadView leadView;
+    private LeadView leadView;
 
-    LeadViewDetail leadViewDetail;
+    private LeadViewDetail leadViewDetail;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -53,7 +53,6 @@ public class CreateLeadsViewBasic {
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateLeadView(ViewSalesForce viewSalesForce) {
-
         leadsHome = navBar.gotToLeadsHome();
         leadView = leadsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
