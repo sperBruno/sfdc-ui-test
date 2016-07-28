@@ -6,7 +6,7 @@ import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -20,13 +20,11 @@ public class CreateAccount {
 
     private MainPage mainPage;
     private AccountDetail accountDetail;
-    private HomePage homePage;
     private Account account = JSONMapper.getAccountBase();
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        mainPage = LoginPage.loginAsPrimaryUser();
     }
 
     @Test(groups = {"Acceptance"})
@@ -52,10 +50,10 @@ public class CreateAccount {
                 .setAccountShippingStreetFld(account.getShippingAddress())
                 .setAccountCustomerPriorityFld(account.getCustomerPriority())
                 .setAccountSLAFld(account.getSla())
-//                .setAccountUpsellOpportunityFld(account.getUpSellOpportunity())
+                .setAccountUpsellOpportunityFld(account.getUpSellOpportunity())
                 .setAccountActiveFld(account.getActive())
                 .setAccountSLAExpirationDateFld(account.getSlaExpirationDate())
-//                .setAccountSLAExpirationDateFld(12, 15, 2016)
+                .setAccountSLAExpirationDateFld(12, 15, 2016)
                 .setAccountSLASerialNumberFld(account.getSlaSerialNumber())
                 .setAccountNumberLocationsFld(account.getNumberOfLocations())
                 .setAccountDescriptionFld(account.getAccountDesc());

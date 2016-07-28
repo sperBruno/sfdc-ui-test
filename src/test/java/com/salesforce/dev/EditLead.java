@@ -9,9 +9,8 @@ import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Common;
 import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Leads.LeadDetail;
-import com.salesforce.dev.pages.Leads.LeadForm;
-import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Leads.*;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.testng.Assert;
@@ -53,8 +52,8 @@ public class EditLead {
 
     @Test(groups = {"Acceptance"})
     public void testEditLead(){
-
-        LeadsHome leadsHome = navBar.gotToLeadsHome();
+        mainPage = LoginPage.loginAsPrimaryUser();
+        LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();
 
