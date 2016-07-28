@@ -13,9 +13,10 @@
                   }
                    ],
 "fieldsDisplay":[
-                {"fieldToDisplay":"Campaign ID"},
-                {"fieldToDisplay":"Num Sent"},
-                {"fieldToDisplay":"Total Responses"}
+                {"fieldToDisplay":"Active"},
+                {"fieldToDisplay":"Total Responses"},
+                {"fieldToDisplay":"Converted Leads"}
+
                 ],
 "restrictVisibility":"all users"
 }]
