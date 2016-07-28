@@ -11,6 +11,7 @@ import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.apache.log4j.Logger;
@@ -47,20 +48,20 @@ public class CreateCampaign {
     public void setUp() {
         parentCampaign = CampaignGenie.getCampaign().getParentCampaign();
         CampaignGenie.createParentCampaign(parentCampaign);
+        mainPage = LoginPage.loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaign(Campaign campaign) {
-        mainPage = LoginPage.loginAsPrimaryUser();
-        navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
         campaignForm.setCampaignName(campaign.getCampaignName());
         campaignForm.checkActiveCheckbox();
         campaignForm.setTypeSelect(campaign.getCampaignType());
         campaignForm.setStatusSelect(campaign.getCampaignStatus());
-        campaignForm.setStartDate(campaign.getStartDate());
         campaignForm.setEndDate(campaign.getEndDate());
+        campaignForm.setStartDate(campaign.getStartDate());
         campaignForm.setExpectedRevenue(campaign.getExpectedRevenue());
         campaignForm.setBudgetedCost(campaign.getBudgetedCost());
         campaignForm.setActualCost(campaign.getActualCost());
@@ -83,11 +84,5 @@ public class CreateCampaign {
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
         LOGGER.info("Campaign was deleted");
-        mainPage = campaignDetail.gotoMainPage();
-        navigationBar = mainPage.gotoNavBar();
-        campaignsHome = navigationBar.goToCampaignsHome();
-        campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
-        campaignDetail.clickDeleteBtn(true);
-        LOGGER.info("Campaign Parent was deleted");
     }
 }

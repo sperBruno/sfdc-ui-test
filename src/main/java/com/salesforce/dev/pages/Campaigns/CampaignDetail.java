@@ -1,9 +1,12 @@
 package com.salesforce.dev.pages.Campaigns;
 
+import com.salesforce.dev.framework.CommonOperation;
 import com.salesforce.dev.pages.Base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.salesforce.dev.framework.CommonOperation.getTextWebElement;
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
@@ -60,48 +63,48 @@ public class CampaignDetail extends DetailsBase{
     }
 
     public Boolean validateCampaignNameFld(String value) {
-        String realValue = campaignName.getText().substring(0, campaignName.getText().length() - 17);
+        String realValue = getTextWebElement(campaignName).substring(0, campaignName.getText().length() - 17);
         return realValue.equals(value);
     }
 
     public Boolean validateCampaignType(String value) {
-        return campaignType.getText().equals(value);
+        return getTextWebElement(campaignType).equals(value);
     }
 
     public Boolean validateCampaignStatus(String value) {
-        return campaignStatus.getText().equals(value);
+        return getTextWebElement(campaignStatus).equals(value);
     }
 
     public Boolean validateCampaignStartDate(String value) {
-        return campaignStartDate.getText().equals(value);
+        return getTextWebElement(campaignStartDate).equals(value);
     }
 
     public Boolean validateCampaignEndDate(String value) {
-        return campaignEndDate.getText().equals(value);
+        return getTextWebElement(campaignEndDate).equals(value);
     }
 
     public Boolean validateCampaignExpectedRevenue(String value) {
-        return campaignExpectedRevenue.getText().equals("¤" + value);
+        return getTextWebElement(campaignExpectedRevenue).equals("¤" + value);
     }
 
     public Boolean validateCampaignBudgetedCost(String value) {
-        return campaignBudgetedCost.getText().equals("¤" + value);
+        return getTextWebElement(campaignBudgetedCost).equals("¤" + value);
     }
 
     public Boolean validateCampaignActualCost(String value) {
-        System.out.println(value + " ****** " + campaignActualCost.getText());
-        return campaignActualCost.getText().equals("¤" + value);
+
+        return getTextWebElement(campaignActualCost).equals("¤" + value);
     }
 
     public Boolean validateCampaignExpectedResponse(String value) {
-        return campaignExpectedResponse.getText().equals(value);
+        return getTextWebElement(campaignExpectedResponse).equals(value);
     }
 
     public Boolean validateCampaignNumSent(String value) {
-        return campaignNumSent.getText().equals(value);
+        return getTextWebElement(campaignNumSent).equals(value);
     }
 
     public Boolean validateCampaignParent(String value) {
-        return campaignParent.getText().equals(value);
+        return getTextWebElement(campaignParent).equals(value);
     }
 }

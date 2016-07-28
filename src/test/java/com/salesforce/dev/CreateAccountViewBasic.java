@@ -11,9 +11,11 @@ import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -36,15 +38,20 @@ public class CreateAccountViewBasic {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateAccountsViewBasic.json");
     }
+    @BeforeMethod(groups = {"BVT"})
+    public void setUp() {
+        mainPage = LoginPage.loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
+    }
 
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
-        mainPage = LoginPage.loginAsPrimaryUser();
-        navigationBar = mainPage.gotoNavBar();
+        String viewName = viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString();
+        viewSalesForce.setViewName(viewName);
         accountsHome = navigationBar.goToAccountsHome();
         accountView = accountsHome.clickNewViewLnk()
-                .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
+                .setViewName(viewName)
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());

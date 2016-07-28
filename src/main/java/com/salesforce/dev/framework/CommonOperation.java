@@ -57,6 +57,7 @@ public class CommonOperation {
         comboBox.selectByVisibleText(value);
     }
 
+
     public static boolean isWebElementVisible(WebElement webElement) {
         try{
 
@@ -66,6 +67,11 @@ public class CommonOperation {
         catch (WebDriverException e){
             return false;
         }
+
+    public static String getTextWebElement(WebElement webElement) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+
     }
 
     public static void moveHorizontalWebElementScroll(WebDriver driver, WebElement webElement, int horizontal) {

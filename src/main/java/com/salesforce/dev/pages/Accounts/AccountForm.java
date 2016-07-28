@@ -12,7 +12,7 @@ public class AccountForm extends FormBase{
 
     //Account Information
 
-    @FindBy(name = "acc2")
+    @FindBy(id = "acc2")
     private WebElement accountNameFld;
 
     @FindBy(id = "acc3")
@@ -109,7 +109,7 @@ public class AccountForm extends FormBase{
     @FindBy(xpath = "//label[contains(.,'SLA Serial Number')]/following::input")
     private WebElement accountSLASerialNumberFld;
 
-    @FindBy(xpath = "//label[contains(.,'Upsell Opportunity')]/following::select")
+    @FindBy(id = "00N50000006coqc")
     private WebElement accountUpsellOpportunityFld;
 
     //Description Information
