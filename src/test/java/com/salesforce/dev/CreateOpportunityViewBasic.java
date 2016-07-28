@@ -14,6 +14,7 @@ import com.salesforce.dev.pages.Opportunities.OpportunityViewDetail;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -27,21 +28,29 @@ public class CreateOpportunityViewBasic {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private OpportunityViewDetail opportunityViewDetail;
+    private HomePage homePage;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
     }
-
+    
+    @BeforeMethod(groups = {"BVT"})
+    public void setUp() {
+     
+        homePage = new HomePage();
+        mainPage = homePage.loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
+    }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
-        mainPage = Transporter.driverMainPage();
-        navigationBar = mainPage.gotoNavBar();
-        opportunitiesHome = navigationBar.goToOpportunitiesHome();
+//        mainPage = Transporter.driverMainPage();
+//        navigationBar = mainPage.gotoNavBar();
+        OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
         opportunityView = opportunitiesHome.clickNewViewLnk()
-                .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
+                .setViewName(viewSalesForce.getViewName())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
