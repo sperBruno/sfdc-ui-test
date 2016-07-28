@@ -68,4 +68,10 @@ public class CommonOperation {
         }
     }
 
+    public static void moveHorizontalWebElementScroll(WebDriver driver, WebElement webElement, int horizontal) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollLeft+=arguments[1];", webElement, horizontal);
+    }
+
 }
