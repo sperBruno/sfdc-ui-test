@@ -25,7 +25,7 @@ public class CreateOpportunity {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp(){
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
         oppEnum = JSONMapper.getOpportunity("src\\test\\resources\\CreateOpportunity.json");

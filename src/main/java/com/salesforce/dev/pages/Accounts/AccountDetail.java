@@ -1,13 +1,9 @@
 package com.salesforce.dev.pages.Accounts;
 
-import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.DetailsBase;
-
 import com.salesforce.dev.pages.MainPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Walter on 10/06/2015.
@@ -86,28 +82,21 @@ public class AccountDetail extends DetailsBase {
     @FindBy(xpath = "//td[contains(.,'Upsell Opportunity')]/following::div")
     private WebElement accountUpSellOpportunityFld;
 
-
-    public AccountDetail(WebDriver driver) {
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(super.driver, this);
-    }
-
     @Override
     public AccountForm clickEditBtn() {
         clickEditButton();
-        return new AccountForm(driver);
+        return new AccountForm();
     }
 
     @Override
     public AccountsHome clickDeleteBtn(boolean confirmDeletion) {
         clickDeletedAccButton(true);
-        return new AccountsHome(driver);
+        return new AccountsHome();
 
     }
 
-    public MainPage gotoMainPage(){
-        return new MainPage(driver);
+    public MainPage gotoMainPage() {
+        return new MainPage();
     }
 
     public Boolean validateAccountNameFld(String value) {
@@ -133,8 +122,7 @@ public class AccountDetail extends DetailsBase {
 
     public Boolean validateAccountAnnualRevenueFld(Integer value) {
         String realValue = accountAnnualRevenueFld.getText().replaceAll("[-+.^:,]", "");
-
-        return realValue.substring(1).toString().equals(value.toString());
+        return realValue.substring(1).equals(value.toString());
     }
 
     public Boolean validateAccountBillingAddressFld(String value) {

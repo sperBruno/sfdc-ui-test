@@ -1,22 +1,20 @@
 package com.salesforce.dev.pages.Base;
 
-import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.pages.AbstractBasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 
 /**
  * Created by Walter on 13/06/2015.
  */
-public abstract class FormBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+public abstract class FormBase extends AbstractBasePage{
+
 
     @FindBy(name = "save")
     protected WebElement saveBtn;
@@ -37,19 +35,6 @@ public abstract class FormBase {
     protected String[] months;
 
     /**
-     * This method initialize the driver and wait when creating the
-     * page with a builder specifically
-     *
-     * @author: Jimmy Vargas
-     * */
-    protected void initializer(){
-        if(driver == null){
-            driver = DriverManager.getInstance().getDriver();
-        }
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver,this);
-    }
-    /**
      * Method clicks the New button in the home page for each different category
      *
      * @author: Walter
@@ -64,21 +49,15 @@ public abstract class FormBase {
      * @author: Walter
      */
     protected void clickSaveButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(saveBtn));
-        saveBtn.click();
-
+        clickWebElement(saveBtn);
     }
 
     protected void clickSaveNewButton() {
-        wait.until(ExpectedConditions.visibilityOf(saveNewBtn));
-        saveNewBtn.click();
-
+        clickWebElement(saveNewBtn);
     }
 
     protected void clickCancelButton() {
-        wait.until(ExpectedConditions.visibilityOf(cancelBtn));
-        cancelBtn.click();
-
+      clickWebElement(cancelBtn);
     }
 
     protected void selectDatePicker(Integer month, Integer day, Integer year){

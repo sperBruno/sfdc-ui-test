@@ -1,12 +1,9 @@
 package com.salesforce.dev.pages.Campaigns;
 
-import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
@@ -14,59 +11,52 @@ import org.openqa.selenium.support.PageFactory;
 public class CampaignDetail extends DetailsBase{
 
     @FindBy(id = "cpn1_ileinner")
-    WebElement campaignName;
+    private WebElement campaignName;
 
     @FindBy(id = "cpn2_ileinner")
-    WebElement campaignType;
+    private WebElement campaignType;
 
     @FindBy(id = "cpn3_ileinner")
-    WebElement campaignStatus;
+    private WebElement campaignStatus;
 
     @FindBy(id = "cpn5_ileinner")
-    WebElement campaignStartDate;
+    private WebElement campaignStartDate;
 
     @FindBy(id = "cpn6_ileinner")
-    WebElement campaignEndDate;
+    private WebElement campaignEndDate;
 
     @FindBy(id = "cpn8_ileinner")
-    WebElement campaignExpectedRevenue;
+    private WebElement campaignExpectedRevenue;
 
     @FindBy(id = "cpn9_ileinner")
-    WebElement campaignBudgetedCost;
+    private WebElement campaignBudgetedCost;
 
     @FindBy(id = "cpn10_ileinner")
-    WebElement campaignActualCost;
+    private WebElement campaignActualCost;
 
     @FindBy(id = "cpn11_ileinner")
-    WebElement campaignExpectedResponse;
+    private WebElement campaignExpectedResponse;
 
     @FindBy(id = "cpn13_ileinner")
-    WebElement campaignNumSent;
+    private WebElement campaignNumSent;
 
     @FindBy(id = "Parent_ileinner")
-    WebElement campaignParent;
-
-    public CampaignDetail(WebDriver driver) {
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-        PageFactory.initElements(driver, this);
-    }
+    private WebElement campaignParent;
 
     @Override
     public CampaignForm clickEditBtn(){
         clickEditButton();
-        return new CampaignForm(driver);
+        return new CampaignForm();
     }
 
     @Override
     public CampaignsHome clickDeleteBtn(boolean confirmDeletion){
         clickDeleteButton(confirmDeletion);
-        return new CampaignsHome(driver);
+        return new CampaignsHome();
     }
 
     public MainPage gotoMainPage(){
-        return new MainPage(driver);
+        return new MainPage();
     }
 
     public Boolean validateCampaignNameFld(String value) {

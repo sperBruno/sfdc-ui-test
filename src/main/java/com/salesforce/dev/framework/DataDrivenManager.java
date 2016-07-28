@@ -3,23 +3,28 @@ package com.salesforce.dev.framework;
 /**
  * Created by Walter Mercado on 6/22/2015.
  */
-import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.framework.Objects.Chatter;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class DataDrivenManager {
     private JSONParser parser;
-    private static final LoggerManager LOGGER = LoggerManager.getInstance().setClassName(DataDrivenManager.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(DataDrivenManager.class.getName());
 
     public DataDrivenManager(){
     }
@@ -75,9 +80,9 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            LOGGER.addErrorLog("Error on data view from Json file:", e);
+            LOGGER.error("Error on data view from Json file:", e);
         } catch (ParseException e) {
-            LOGGER.addErrorLog("Error on data view from Json file:", e);
+            LOGGER.error("Error on data view from Json file:", e);
         }
         return viewSalesForcesArray.iterator();
     }
@@ -105,9 +110,9 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
+            LOGGER.error("Error on data for Campaign from Json file:", e);
         } catch (ParseException e) {
-            LOGGER.addErrorLog("Error on data for Campaign from Json file:", e);
+            LOGGER.error("Error on data for Campaign from Json file:", e);
         }
         return campaignsArray.iterator();
     }
@@ -132,11 +137,11 @@ public class DataDrivenManager {
                 chattersArray.add(new Chatter[]{chatter});
 
         } catch (FileNotFoundException e) {
-            LOGGER.addErrorLog("File not found for chatter - Json file:", e);;
+            LOGGER.error("File not found for chatter - Json file:", e);;
         } catch (IOException e) {
-            LOGGER.addErrorLog("Error on data for Chatter from Json file:", e);
+            LOGGER.error("Error on data for Chatter from Json file:", e);
         } catch (ParseException e) {
-            LOGGER.addErrorLog( "Error on data for Chatter:", e);
+            LOGGER.error( "Error on data for Chatter:", e);
         }
         return chattersArray.iterator();
     }

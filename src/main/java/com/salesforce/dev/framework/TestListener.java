@@ -1,11 +1,16 @@
 package com.salesforce.dev.framework;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -14,36 +19,30 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import javax.xml.bind.SchemaOutputResolver;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-
 
 /**
  * Created by Marcelo.Vargas on 6/22/2015.
  */
 public class TestListener implements ITestListener {
+    private static final Logger LOGGER=Logger.getLogger(TestListener.class.getName());
+
     WebDriver driver;
     String filePath =  "build\\reports\\tests\\html\\screenshots";
 
     @Override
     public void onTestStart(ITestResult result) {
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "On Execution Test Star");
+        LOGGER.info("On Execution Test Star");
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "On Test success");
+        LOGGER.info("On Test success");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        System.out.println("***** Error " + result.getName() + " test has failed *****");
-        LoggerManager.getInstance().addErrorLog(this.getClass().getName(),
-                "On Execution Test failure", null);
+        LOGGER.error("***** Error " + result.getName() + " test has failed *****");
+        LOGGER.error("On Execution Test failure", null);
         String methodName = result.getName().toString().trim();
         takeScreenShot(methodName);
     }
@@ -84,8 +83,7 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext context) {
-        LoggerManager.getInstance().addErrorLog(this.getClass().getName(),
-                "Test suite Start", null);
+        LOGGER.error("Test suite Start", null);
         Transporter.login();
     }
 
@@ -97,7 +95,6 @@ public class TestListener implements ITestListener {
         LoginPage loginPage = topHeader.clickLogoutOption();
         DriverManager.getInstance().close();
         DriverManager.getInstance().quit();
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "On Finish");
+        LOGGER.info("On Finish");
     }
 }

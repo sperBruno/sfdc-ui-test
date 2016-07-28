@@ -1,11 +1,8 @@
 package com.salesforce.dev.pages.Accounts;
 
-import com.salesforce.dev.framework.DriverManager;
 import com.salesforce.dev.pages.Base.FormBase;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 
 /**
@@ -120,11 +117,6 @@ public class AccountForm extends FormBase{
     @FindBy(name = "acc20")
     private WebElement accountDescriptionFld;
 
-    public AccountForm(WebDriver driver) {
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(super.driver, this);
-    }
 
     @Override
     public Object clickSaveNewBtn() {
@@ -139,7 +131,7 @@ public class AccountForm extends FormBase{
     @Override
     public AccountDetail clickSaveBtn() {
         clickSaveButton();
-        return new AccountDetail(driver);
+        return new AccountDetail();
     }
 
     public AccountForm setAccountNameFld(String accountName) {

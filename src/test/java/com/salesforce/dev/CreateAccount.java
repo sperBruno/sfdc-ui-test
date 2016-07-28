@@ -7,6 +7,8 @@ import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 
 import org.testng.annotations.AfterMethod;
@@ -22,12 +24,15 @@ public class CreateAccount {
     private MainPage mainPage;
     private AccountDetail accountDetail;
     private HomePage homePage;
+    private NavigationBar navigationBar;
     private Account account = JSONMapper.getAccountBase();
+    private LoginPage loginPage;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        HomePage homePage = new HomePage();
+        loginPage = homePage.clickLoginBtn();
+        mainPage = loginPage.loginAsPrimaryUser();
     }
 
     @Test(groups = {"Acceptance"})
@@ -35,6 +40,7 @@ public class CreateAccount {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn()
+
             .setAccountNameFld(account.getAccountName())
             .setAccountRatingFld(account.getRating())
             .setAccountOwnershipFld(account.getOwnership())
@@ -59,7 +65,6 @@ public class CreateAccount {
             .setAccountSLASerialNumberFld(account.getSlaSerialNumber())
             .setAccountNumberLocationsFld(account.getNumberOfLocations())
             .setAccountDescriptionFld(account.getAccountDesc());
-
         accountDetail = accountForm.clickSaveBtn();
 
         Assert.assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));

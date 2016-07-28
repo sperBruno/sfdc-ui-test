@@ -10,6 +10,7 @@ import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.DataDrivenManager;
@@ -37,19 +38,17 @@ public class CreateAccountDD {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        homePage = new HomePage();
-       //mainPage = homePage.getLogin();
         mainPage = Transporter.driverMainPage();
+        navigationBar = mainPage.gotoNavBar();
     }
 
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateAccount(Account account) {
-        navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn()
-            .setAccountNameFld(account.getAccountName())
-            .setAccountDescriptionFld(account.getAccountDesc());
+                .setAccountNameFld(account.getAccountName())
+                .setAccountDescriptionFld(account.getAccountDesc());
 
         accountDetail = accountForm.clickSaveBtn();
 

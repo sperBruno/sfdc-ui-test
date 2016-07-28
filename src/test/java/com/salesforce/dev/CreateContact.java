@@ -1,25 +1,22 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.Contact;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
-import com.salesforce.dev.pages.Login.Transporter;
-import com.salesforce.dev.pages.MainPage;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import org.testng.Assert;
-
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
-
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.Contacts.ContactDetail;
 import com.salesforce.dev.pages.Contacts.ContactForm;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
+import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  * Created by Marcelo.Vargas on 6/12/2015.
@@ -27,9 +24,7 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 
 public class CreateContact {
 
-
-
-
+    private static final Logger LOGGER = Logger.getLogger(CreateContact.class.getName());
     private ContactsHome contactsHome;
     private ContactDetail contactDetail;
     private ContactForm contactForm;
@@ -41,10 +36,11 @@ public class CreateContact {
     private AccountForm accountForm;
     private SearchLookupBase searchLookup;
     private String accountName = "AccountTest";
+
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
@@ -73,7 +69,7 @@ public class CreateContact {
 
         contactForm.setTitle(contact.getTitle())
                 .setDepartment(contact.getDepartment())
-                .setBirthDate(6,6,2015);
+                .setBirthDate(6, 6, 2015);
 
         searchLookup = contactForm.clickLookupReportsTo();
         searchLookup.searchText(contact.getReportsTo());
@@ -101,9 +97,9 @@ public class CreateContact {
                 .setLanguages(contact.getLanguages())
                 .setLevel(contact.getLevel())
                 .setDescription(contact.getDescription());
-                contactDetail = contactForm.clickSaveBtn();
+        contactDetail = contactForm.clickSaveBtn();
 
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),"Contact was created");
+        LOGGER.info("Contact was created");
         Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
 
     }
@@ -116,6 +112,6 @@ public class CreateContact {
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),"Contact was deleted");
+        LOGGER.info("Contact was deleted");
     }
 }
