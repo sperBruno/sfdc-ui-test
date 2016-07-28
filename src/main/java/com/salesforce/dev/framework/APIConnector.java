@@ -34,7 +34,9 @@ public class APIConnector {
         try {
             connection = com.sforce.soap.partner.Connector.newConnection(config);
         } catch (ConnectionException e) {
+
             LOGGER.error("Error on Connect to Api :", e);
+
         }
     }
 
