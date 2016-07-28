@@ -1,13 +1,12 @@
 package com.salesforce.dev.pages.Base;
 
-import org.openqa.selenium.WebDriverException;
-
-import org.openqa.selenium.support.ui.Select;
 import com.salesforce.dev.framework.CommonOperation;
 import com.salesforce.dev.pages.AbstractBasePage;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -89,6 +88,10 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
     public boolean validateFieldDisplayed(String field){
         By fieldDisplayed = By.xpath("//div[@title='" + field+"']");
+        //CommonOperation.moveScroll(driver,0,500);
+        WebElement scroll = driver.findElement(By.id("ext-gen10"));
+        WebElement element = driver.findElement(By.id("id_of_element"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
         return driver.findElement(fieldDisplayed).isDisplayed();
 

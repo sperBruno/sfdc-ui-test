@@ -75,7 +75,6 @@ public class CreateCampaignViewFiltersFieldsAdded {
         assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
         for(FieldToDisplayView fields:fieldToDisplayViews){
-
             Assert.assertTrue(campaignViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
         }
     }

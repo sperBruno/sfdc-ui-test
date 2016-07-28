@@ -48,7 +48,7 @@ public class CreateLead {
     public void setUp(){
         //mainPage = Transporter.driverMainPage();
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+       // mainPage = homePage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
         lead = JSONMapper.getLead("src\\test\\resources\\CreateLead.json");
