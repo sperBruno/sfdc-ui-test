@@ -4,7 +4,7 @@ import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.Objects.Opportunity;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Common;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
@@ -19,7 +19,6 @@ import org.testng.annotations.Test;
  */
 public class EditOpportunity {
 
-    private HomePage homePage;
     private MainPage mainPage;
     private NavigationBar navBar;
 
@@ -28,8 +27,7 @@ public class EditOpportunity {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar ();
 
         oppEnum = JSONMapper.getOpportunity("CreateOpportunityBase.json");

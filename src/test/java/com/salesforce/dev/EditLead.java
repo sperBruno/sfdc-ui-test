@@ -1,29 +1,26 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.Campaign;
 import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Campaigns.CampaignDetail;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Common;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
-import com.salesforce.dev.pages.Leads.*;
+import com.salesforce.dev.pages.Leads.LeadDetail;
+import com.salesforce.dev.pages.Leads.LeadForm;
+import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Objects.CampaignGenie;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.salesforce.dev.pages.Home.LoginPage.loginAsPrimaryUser2;
-
 /**
  * Created by jimmy vargas on 6/21/2015.
  */
 public class EditLead {
+    private static final Logger LOGGER = Logger.getLogger (EditLead.class.getName ());
     private HomePage homePage;
     private MainPage mainPage;
     private Campaign campaign;
@@ -33,20 +30,18 @@ public class EditLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
-        ///create campaign
-        campaign= CampaignGenie.getCampaign();
-        //create parent Campaign
-        CampaignGenie.createParentCampaign(campaign.getParentCampaign());
-
-        lead = JSONMapper.getLead("src/test/resources/CreateLeadBase.json");
-        leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
+//        ///create campaign
+//        campaign= CampaignGenie.getCampaign();
+//        //create parent Campaign
+//        CampaignGenie.createParentCampaign(campaign.getParentCampaign());
+//
+//        lead = JSONMapper.getLead("src/test/resources/CreateLeadBase.json");
+//        leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
 
         //Creating a lead
         Common.createLead(lead);
 
-//        homePage = new HomePage();
-        //mainPage = getLogin();
-        mainPage = loginAsPrimaryUser2();
+        mainPage = LoginPage.loginAsPrimaryUser ();
         navBar = mainPage.gotoNavBar ();
     }
 
@@ -85,22 +80,21 @@ public class EditLead {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(leadEditEnum.lastName);
         leadDetail.deleteLead();
-
-        // Borrar campaign
-        CampaignsHome campaignsHome = mainPage.gotoNavBar().goToCampaignsHome();
-        String campaignNameToUpdated = campaign.getCampaignName();
-        String campaignParentName = campaign.getParentCampaign();
-        CampaignDetail campaignDetail = campaignsHome.selectRecentItem (campaignNameToUpdated);
-        campaignDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign was deleted");
-        mainPage = campaignDetail.gotoMainPage();
-        NavigationBar navigationBar = mainPage.gotoNavBar ();
-        campaignsHome = navigationBar.goToCampaignsHome();
-        campaignDetail = campaignsHome.selectRecentItem(campaignParentName );
-        campaignDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Campaign Parent was deleted");
+//
+//        // Borrar campaign
+//        CampaignsHome campaignsHome;
+//        campaignsHome = mainPage.gotoNavBar().goToCampaignsHome();
+//        String campaignNameToUpdated = campaign.getCampaignName();
+//        String campaignParentName = campaign.getParentCampaign();
+//        CampaignDetail campaignDetail = campaignsHome.selectRecentItem (campaignNameToUpdated);
+//        campaignDetail.clickDeleteBtn(true);
+//        LOGGER.info ("Campaign was deleted");
+//        mainPage = campaignDetail.gotoMainPage();
+//        NavigationBar navigationBar = mainPage.gotoNavBar ();
+//        campaignsHome = navigationBar.goToCampaignsHome();
+//        campaignDetail = campaignsHome.selectRecentItem(campaignParentName );
+//        campaignDetail.clickDeleteBtn(true);
+//        LOGGER.info ("Campaign Parent was deleted");
 
 
 

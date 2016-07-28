@@ -44,7 +44,6 @@ public class TopHeader extends AbstractBasePage {
     public String getUserName() {
         String userLogged = "";
         try {
-//            wait.until(ExpectedConditions.visibilityOf(userMenu));
             driver.manage().timeouts().implicitlyWait(8, SECONDS);
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {

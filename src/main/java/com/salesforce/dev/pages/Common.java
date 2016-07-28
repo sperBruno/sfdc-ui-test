@@ -3,7 +3,6 @@ package com.salesforce.dev.pages;
 import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.framework.Objects.Opportunity;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadForm;
@@ -18,9 +17,7 @@ import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 public class Common extends AbstractBasePage {
 
     public static void createOpportunity(Opportunity oppEnum) {
-
-        HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser ();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
@@ -34,8 +31,7 @@ public class Common extends AbstractBasePage {
     }
 
     public static void createLead(Lead lead) {
-        MainPage mainPage;
-        mainPage = LoginPage.loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         LeadsHome leadsHome = navBar.gotToLeadsHome();
