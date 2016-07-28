@@ -1,7 +1,5 @@
 package com.salesforce.dev;
 
-import java.util.Iterator;
-
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
 import com.salesforce.dev.pages.Base.NavigationBar;
@@ -10,12 +8,15 @@ import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityView;
 import com.salesforce.dev.pages.Opportunities.OpportunityViewDetail;
+
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.Iterator;
 
 /**
  * Created by Carlos Orellana on 8/22/2015.
