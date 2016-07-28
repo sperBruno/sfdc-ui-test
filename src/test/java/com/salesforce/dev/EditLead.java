@@ -1,11 +1,11 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Lead;
-import com.salesforce.dev.pages.Common;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.framework.dto.Lead;
+import com.salesforce.dev.pages.ObjectGenie;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.Leads.*;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -27,13 +27,13 @@ public class EditLead {
         leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
 
         //Creating a lead
-        Common.createLead(lead);
+        ObjectGenie.createLead(lead);
 
     }
 
     @Test(groups = {"Acceptance"})
     public void testEditLead(){
-        mainPage = Transporter.driverMainPage();
+        mainPage = LoginPage.loginAsPrimaryUser();
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();

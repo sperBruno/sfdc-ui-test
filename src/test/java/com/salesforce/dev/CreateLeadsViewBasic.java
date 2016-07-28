@@ -1,9 +1,9 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.Leads.LeadView;
 import com.salesforce.dev.pages.Leads.LeadViewDetail;
 import com.salesforce.dev.pages.Leads.LeadsHome;
@@ -40,7 +40,7 @@ public class CreateLeadsViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateLeadsViewBasic.json");
+        return dataDrivenManager.getDataView("json/CreateLeadsViewBasic.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})

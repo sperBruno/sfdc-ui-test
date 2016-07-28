@@ -2,14 +2,14 @@ package com.salesforce.dev;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignView;
 import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
@@ -34,8 +34,10 @@ public class CreateCampaignViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateCampaignViewBasic.json");
+        return dataDrivenManager.getDataView("json/CreateCampaignViewBasic.json");
     }
+
+
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();

@@ -2,13 +2,13 @@ package com.salesforce.dev;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.Leads.LeadView;
 import com.salesforce.dev.pages.Leads.LeadViewDetail;
 import com.salesforce.dev.pages.Leads.LeadsHome;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.LeadGenie;
 import org.apache.log4j.Logger;
@@ -33,14 +33,14 @@ public class EditLeadsViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("EditLeadsViewBasic.json");
+        return dataDrivenManager.getDataView("json/EditLeadsViewBasic.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        ViewSalesForce viewSalesForce = LeadGenie.getLeadsView("CreateLeadsViewBasic.json");
+        ViewSalesForce viewSalesForce = LeadGenie.getLeadsView("json/CreateLeadsViewBasic.json");
         viewName = viewSalesForce.getViewName();
-        mainPage = Transporter.driverMainPage();
+        mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         leadsHome = navigationBar.gotToLeadsHome();
         leadView = leadsHome.clickNewViewLnk()

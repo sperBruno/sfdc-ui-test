@@ -1,6 +1,6 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
-import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

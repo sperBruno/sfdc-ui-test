@@ -2,14 +2,14 @@ package com.salesforce.dev;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
@@ -58,8 +58,9 @@ public class EditCampaign {
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
         campaignNameToUpdated = campaign.getCampaignName();
         campaignParentName = campaign.getParentCampaign();
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+
+        mainPage = LoginPage.loginAsPrimaryUser();
+
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();
@@ -72,12 +73,14 @@ public class EditCampaign {
     @DataProvider(name = "dataDriven")
     public Iterator<Campaign[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getCampaign("EditCampaign.json");
+        return dataDrivenManager.getCampaign("json/EditCampaign.json");
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testEditCampaign(Campaign campaign) {
-       // mainPage = Transporter.driverMainPage();
+
+        mainPage = LoginPage.loginAsPrimaryUser();
+
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
 

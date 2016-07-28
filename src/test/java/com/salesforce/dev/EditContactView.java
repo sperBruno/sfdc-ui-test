@@ -2,14 +2,14 @@ package com.salesforce.dev;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.framework.RamdonGenerator;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.Contacts.ContactView;
 import com.salesforce.dev.pages.Contacts.ContactViewDetail;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.CampaignGenie;
 import org.apache.log4j.Logger;
@@ -37,12 +37,12 @@ public class EditContactView {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("EditContactView.json");
+        return dataDrivenManager.getDataView("json/EditContactView.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateContactView.json");
+        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("json/CreateContactView.json");
         nameView = viewSalesForce.getViewName();
         homePage = new HomePage();
         mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
@@ -62,7 +62,7 @@ public class EditContactView {
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         String fieldToUpdate = "View Name";
-        String newValue = "viewUpdatedContact" + RamdonGenerator.getInstance().getRamdonString();
+        String newValue = "viewUpdatedContact" + RandomGenerator.getInstance().getRandomString();
         contactView = contactsHome.clickEditViewLnk(nameView)
                 .setViewName(viewSalesForceUpdate.getViewName())
                 .setUniqueViewName(viewSalesForceUpdate.getUniqueViewName())

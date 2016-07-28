@@ -1,10 +1,10 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
-import com.salesforce.dev.pages.Base.HomeBase;
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 
 /**
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class AccountsHome extends HomeBase {
 
-    @FindBy(xpath = "//h1[contains(.,'Accounts:')]")
+    @FindBy(xpath = "//h1[contains(.,'accounts:')]")
     private WebElement accountSection;
 
     @Override
@@ -46,11 +46,6 @@ public class AccountsHome extends HomeBase {
     }
 
     public boolean IsUserInAccountsTab() {
-        try {
-            wait.until(ExpectedConditions.visibilityOf(accountSection));
-            return true;
-        } catch (WebDriverException e) {
-            return false;
-        }
+        return isWebElementVisible(accountSection);
     }
 }

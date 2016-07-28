@@ -1,6 +1,5 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.pages.AbstractBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

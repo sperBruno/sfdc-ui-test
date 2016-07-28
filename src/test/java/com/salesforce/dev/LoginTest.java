@@ -1,14 +1,12 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.Objects.UserInformation;
 import com.salesforce.dev.pages.TopHeader;
-
 import org.apache.log4j.Logger;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -18,25 +16,15 @@ public class LoginTest {
 
     private static final Logger LOGGER = Logger.getLogger(LoginTest.class.getName());
 
-    private LoginPage loginPage;
     private MainPage mainPage;
 
-    @BeforeMethod(groups = {"BVT"})
-    public void setUp() {
-        mainPage = loginPage.loginAsPrimaryUser();
-    }
-
     @Test(groups = {"BVT"})
-    public void testLogin() {
-
+    public void testLogin1() {
+        mainPage = LoginPage.loginAsPrimaryUser();
         TopHeader topHeader = mainPage.gotoTopHeader();
-        assertEquals(topHeader.getUserName(), ENVIRONMENT.getDisplayName());
+        assertEquals(topHeader.getUserName(), UserInformation.getUserFullName());
         LOGGER.info("Login on Sales Force");
     }
-    @Test(groups = {"BVT"})
-    public void testLoginSecond() {
-        TopHeader topHeader = mainPage.gotoTopHeader();
-        assertEquals(topHeader.getUserName(), ENVIRONMENT.getDisplayName());
-        LOGGER.info("Login on Sales Force");
-    }
+
+
 }

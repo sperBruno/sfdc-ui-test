@@ -1,8 +1,8 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -18,9 +18,8 @@ public class CreatePost {
     private ChatterHome chatterHome;
 
     @BeforeMethod(groups = {"Acceptance"})
-    public void setUp() {
-        HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+    public void setUp(){
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.salesforce.dev.framework.APIConnector;
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import com.salesforce.dev.framework.soap.APIConnector;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
