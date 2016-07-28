@@ -3,12 +3,14 @@ package com.salesforce.dev.pages.Base;
 import java.util.LinkedList;
 import java.util.Set;
 
+
 import com.salesforce.dev.pages.AbstractBasePage;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
 import com.salesforce.dev.pages.Contacts.ContactForm;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Opportunities.OpportunityForm;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -50,6 +52,7 @@ public class SearchLookupBase extends AbstractBasePage{
 
             driver.findElement(By.linkText(text)).click();
             driver.switchTo().window(windowsArray.getFirst());
+
             LOGGER.info("Object was serach and selected in SearchLookup");
         }
         catch (WebDriverException e){

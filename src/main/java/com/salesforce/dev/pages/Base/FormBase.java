@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.Base;
 
 import com.salesforce.dev.pages.AbstractBasePage;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 /**
  * Created by Walter on 13/06/2015.
  */
-public abstract class FormBase extends AbstractBasePage{
+public abstract class FormBase extends AbstractBasePage {
 
 
     @FindBy(name = "save")
@@ -40,7 +41,9 @@ public abstract class FormBase extends AbstractBasePage{
      * @author: Walter
      */
     protected abstract Object clickSaveBtn();
+
     protected abstract Object clickSaveNewBtn();
+
     protected abstract Object clickCancelBtn();
 
     /**
@@ -57,11 +60,11 @@ public abstract class FormBase extends AbstractBasePage{
     }
 
     protected void clickCancelButton() {
-      clickWebElement(cancelBtn);
+        clickWebElement(cancelBtn);
     }
 
-    protected void selectDatePicker(Integer month, Integer day, Integer year){
-        months = new String []{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    protected void selectDatePicker(Integer month, Integer day, Integer year) {
+        months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
         this.selectItemComboBox(monthPicker, months[month - 1]);
         this.selectItemComboBox(yearPicker, year.toString());
         WebElement selectDate = driver.findElement(
@@ -69,24 +72,29 @@ public abstract class FormBase extends AbstractBasePage{
         selectDate.click();
     }
 
-    protected void selectItemComboBox(WebElement webElement, String value){
+    protected void selectItemComboBox(WebElement webElement, String value) {
+        if (value.equals(null)) {
+            throw new IllegalArgumentException("The value cannot be null.");
+        }
         try {
             wait.until(ExpectedConditions.visibilityOf(webElement));
             Select comboBox = new Select(webElement);
             comboBox.selectByVisibleText(value);
-        }
-        catch(WebDriverException e){
-            throw new WebDriverException("The value " +value+ "couldn't be selected");
+        } catch (WebDriverException e) {
+            throw new WebDriverException("The value " + value + "couldn't be selected");
         }
     }
 
-    protected void fillTextBox(WebElement webElement, String value){
+    protected void fillTextBox(WebElement webElement, String value) {
+        if (value.equals(null)) {
+            throw new IllegalArgumentException("The value cannot be null.");
+        }
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         try {
             Thread.sleep(200);
+        } catch (Exception e) {
         }
-        catch (Exception e){}
 
         webElement.sendKeys(value);
     }
