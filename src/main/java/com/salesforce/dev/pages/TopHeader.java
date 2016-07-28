@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.utils.Constants.WEB_ELEMENT_COULD_NOT_BE_FOUNT;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * Created by Jimmy Vargas on 6/5/2015.
@@ -30,7 +31,10 @@ public class TopHeader extends AbstractBasePage {
     private WebElement logoutMenuOption;
 
 //    public TopHeader() {
-//        this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
+//        try {
+//            this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
+//        }catch ()
+//
 //    }
 
     public void clickUserNameMenu() {
@@ -45,11 +49,13 @@ public class TopHeader extends AbstractBasePage {
     public String getUserName() {
         String userLogged = "";
         try {
-            wait.until(ExpectedConditions.visibilityOf(userMenu));
+            driver.manage().timeouts().implicitlyWait(8, SECONDS);
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {
             e = new WebDriverException(e);
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
+        }finally {
+            driver.manage().timeouts().implicitlyWait(15, SECONDS);
         }
         return userLogged;
     }

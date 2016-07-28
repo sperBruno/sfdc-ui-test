@@ -29,15 +29,4 @@ public class LeadGenie {
         return viewSalesForce;
     }
 
-    public static String getEmail() {
-        String result = "";
-        try {
-            PartnerConnection connection = APIConnector.getInstance().getConnection();
-            GetUserInfoResult userInfo = connection.getUserInfo();
-            result = userInfo.getUserFullName();
-        } catch (ConnectionException ce) {
-            ce.printStackTrace();
-        }
-        return result;
-    }
 }

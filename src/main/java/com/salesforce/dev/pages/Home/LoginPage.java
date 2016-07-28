@@ -4,6 +4,7 @@ import com.salesforce.dev.pages.AbstractBasePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Objects.LeadGenie;
+import com.salesforce.dev.pages.Objects.UserInformation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,7 +39,7 @@ public class LoginPage extends AbstractBasePage {
      */
     public static MainPage loginAs(String userName, String password) {
         MainPage mainPage = new MainPage();
-        if (!mainPage.gotoTopHeader().getUserName().equalsIgnoreCase(LeadGenie.getEmail())) {
+        if (!mainPage.gotoTopHeader().getUserName().equalsIgnoreCase(UserInformation.getFullName())) {
             HomePage homePage = new HomePage();
             LoginPage loginPage = homePage.clickLoginBtn();
             loginPage.setUserName(userName);

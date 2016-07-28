@@ -53,4 +53,9 @@ public class CommonOperation {
         Select comboBox = new Select(webElement);
         comboBox.selectByVisibleText(value);
     }
+
+    public static String getTextWebElement(WebElement webElement) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        return webElement.getText();
+    }
 }

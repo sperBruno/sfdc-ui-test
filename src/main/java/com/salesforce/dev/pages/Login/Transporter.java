@@ -16,13 +16,13 @@ public class Transporter {
     private static MainPage mainPage;
 
     public static void login() {
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        //homePage = new HomePage();
+        //mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
 
     }
 
     public static MainPage driverMainPage() {
-        login();
+        //login();
         return mainPage;
     }
 

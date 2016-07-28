@@ -10,6 +10,7 @@ import com.salesforce.dev.pages.Accounts.AccountViewDetail;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
@@ -37,15 +38,17 @@ public class CreateAccountViewBasic {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateAccountsViewBasic.json");
     }
-
+    @BeforeMethod(groups = {"BVT"})
+    public void setUp() {
+        mainPage = LoginPage.loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
+    }
 
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
-        mainPage = Transporter.driverMainPage();
         String viewName = viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString();
         viewSalesForce.setViewName(viewName);
-        navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountView = accountsHome.clickNewViewLnk()
                 .setViewName(viewName)
