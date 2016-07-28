@@ -11,6 +11,8 @@ import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityBuilder;
 import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 
+import static com.salesforce.dev.pages.Home.LoginPage.loginAsPrimaryUser2;
+
 /**
  * Created by jimmy vargas on 6/23/2015.
  */
@@ -34,8 +36,8 @@ public class Common {
 
     public static void createLead(Lead lead){
 
-        HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+//        HomePage homePage = new HomePage();
+        MainPage mainPage = loginAsPrimaryUser2();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         LeadsHome leadsHome = navBar.gotToLeadsHome();

@@ -1,13 +1,13 @@
 package com.salesforce.dev.pages.Home;
 
+import com.salesforce.dev.pages.AbstractBasePage;
+import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.MainPage;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import com.salesforce.dev.pages.Login.Transporter;
-import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.MainPage;
 
 import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.CommonOperation.setWebElement;
@@ -18,6 +18,8 @@ import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
  */
 public class LoginPage extends AbstractBasePage {
 
+    private WebDriver driver2 = this.driver;
+
     @FindBy(id = "username")
     WebElement userNameFld;
 
@@ -27,9 +29,11 @@ public class LoginPage extends AbstractBasePage {
     @FindBy(id = "Login")
     WebElement loginBtn;
 
+    MainPage mainPage;
+
     public MainPage clickLoginBtn() {
         clickWebElement(loginBtn);
-        return new MainPage(this.driver);
+        return new MainPage(driver2);
     }
 
     /**
@@ -72,4 +76,23 @@ public class LoginPage extends AbstractBasePage {
     public void setPassword(String Password) {
         setWebElement(passwordFld, Password);
     }
+
+//Daniel
+
+    public static MainPage loginAs2(String userName, String password) {
+            MainPage mainPage = new MainPage();
+        if (null == mainPage.getDriverMainPage()) {
+            HomePage homePage = new HomePage();
+            LoginPage loginPage = homePage.clickLoginBtn();
+            loginPage.setUserName(userName);
+            loginPage.setPassword(password);
+            return loginPage.clickLoginBtn();
+        }
+        return mainPage;
+    }
+
+    public static MainPage loginAsPrimaryUser2() {
+        return loginAs2(ENVIRONMENT.getPrimaryUser(), ENVIRONMENT.getPrimaryPassword());
+    }
+
 }

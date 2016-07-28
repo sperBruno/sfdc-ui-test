@@ -4,6 +4,7 @@ import com.salesforce.dev.framework.Environment;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
+import org.openqa.selenium.WebDriver;
 
 
 /**
@@ -23,6 +24,10 @@ public class Transporter {
 
     public static MainPage driverMainPage() {
         return mainPage;
+    }
+
+    public static WebDriver driverActualMainPage() {
+        return mainPage.getDriverMainPage();
     }
 
     public static void logout() {

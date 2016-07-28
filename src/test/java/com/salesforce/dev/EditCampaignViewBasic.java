@@ -22,6 +22,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.salesforce.dev.pages.Home.LoginPage.loginAsPrimaryUser2;
+
 
 /**
  * Created by Veronica Prado on 8/22/2015.
@@ -45,8 +47,9 @@ public class EditCampaignViewBasic {
         ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateCampaignViewBasic.json");
         nameView = viewSalesForce.getViewName();
         // Add for daniel
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+//        homePage = new HomePage();
+//        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        mainPage = loginAsPrimaryUser2();
         //
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();

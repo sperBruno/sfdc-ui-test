@@ -27,15 +27,15 @@ public class MainPage {
         PageFactory.initElements(this.driver, this);
     }
     public MainPage(){
-        if(driver == null){
-            driver = DriverManager.getInstance().getDriver();
-        }
-        this.wait = DriverManager.getInstance().getWait();
-
-        topHeader = new TopHeader(this.driver);
-        navBar = new NavigationBar(this.driver);
-
-        PageFactory.initElements(this.driver, this);
+//        if(driver == null){
+//            driver = DriverManager.getInstance().getDriver();
+//        }
+//        this.wait = DriverManager.getInstance().getWait();
+//
+//        topHeader = new TopHeader(this.driver);
+//        navBar = new NavigationBar(this.driver);
+//
+//        PageFactory.initElements(this.driver, this);
     }
     public TopHeader gotoTopHeader(){
         return this.topHeader;
@@ -48,5 +48,9 @@ public class MainPage {
      * */
     public NavigationBar gotoNavBar(){
         return this.navBar;
+    }
+
+    public WebDriver getDriverMainPage(){
+        return driver;
     }
 }

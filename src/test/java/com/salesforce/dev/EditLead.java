@@ -19,6 +19,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.salesforce.dev.pages.Home.LoginPage.loginAsPrimaryUser2;
+
 /**
  * Created by jimmy vargas on 6/21/2015.
  */
@@ -45,6 +47,7 @@ public class EditLead {
 
 //        homePage = new HomePage();
         //mainPage = getLogin();
+        mainPage = loginAsPrimaryUser2();
         navBar = mainPage.gotoNavBar ();
     }
 

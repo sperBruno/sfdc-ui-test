@@ -33,7 +33,7 @@ public class TopHeader {
         this.driver = driver;
         this.wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(this.driver, this);
-        this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
+//        this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
     }
 
     public void clickUserNameMenu() {
