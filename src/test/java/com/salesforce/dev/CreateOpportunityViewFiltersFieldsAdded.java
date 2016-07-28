@@ -43,7 +43,7 @@ public class CreateOpportunityViewFiltersFieldsAdded {
     public void setUp() {
 
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
