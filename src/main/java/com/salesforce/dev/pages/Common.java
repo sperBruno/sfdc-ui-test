@@ -4,7 +4,6 @@ import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.framework.Objects.Opportunity;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
@@ -31,13 +30,12 @@ public class Common {
                 .setOrderNumber(oppEnum.orderNumber)
                 .build();
         opForm.clickSaveBtn();
-
     }
 
     public static void createLead(Lead lead){
 
         HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.loginAsPrimaryUser();
+        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         LeadsHome leadsHome = navBar.gotToLeadsHome();
@@ -46,7 +44,6 @@ public class Common {
         LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
                 .build();
         leadForm.clickSaveBtn();
-
     }
 
 }

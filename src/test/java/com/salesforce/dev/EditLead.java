@@ -28,7 +28,7 @@ public class EditLead {
     private Campaign campaign;
     private NavigationBar navBar;
 
-    Lead lead,leadEditEnum;
+    private Lead lead,leadEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
@@ -41,12 +41,11 @@ public class EditLead {
         leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
 
         //Creating a lead
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
-        navBar = mainPage.gotoNavBar ();
-
         Common.createLead(lead);
 
+//        homePage = new HomePage();
+        //mainPage = getLogin();
+        navBar = mainPage.gotoNavBar ();
     }
 
     @Test(groups = {"Acceptance"})
@@ -77,8 +76,6 @@ public class EditLead {
         Assert.assertEquals(leadDetail.getProductInterest(), leadEditEnum.productInterest, "The product interest is not equal");
         Assert.assertEquals(leadDetail.getPrimary(), leadEditEnum.primary, "The primary is not equal");
         Assert.assertEquals(leadDetail.getDescription(), leadEditEnum.description, "The description is not correct");
-
-
     }
 
     @AfterMethod(groups = {"Acceptance"})

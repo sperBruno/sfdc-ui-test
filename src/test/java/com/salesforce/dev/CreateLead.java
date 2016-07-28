@@ -86,7 +86,6 @@ public class CreateLead {
                 lead.zipCode + "\n" +
                 lead.country, "The address is not correct");//needs to review
 
-
         Assert.assertEquals(leadDetail.getProductInterest(), lead.productInterest,"The product interest is not correct");
         Assert.assertEquals(leadDetail.getSICcode(), lead.SICCode,"The SICCode is not correct");
         Assert.assertEquals(leadDetail.getNumLocations(), lead.numberLocations,"The number of locations is not correct");

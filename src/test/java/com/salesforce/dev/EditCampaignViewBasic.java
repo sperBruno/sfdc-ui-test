@@ -33,6 +33,7 @@ public class EditCampaignViewBasic {
     private CampaignView campaignView;
     private String nameView;
     private CampaignViewDetail campaignViewDetail;
+    HomePage homePage;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -42,9 +43,11 @@ public class EditCampaignViewBasic {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateCampaignViewBasic.json");
-        Transporter.login ();
         nameView = viewSalesForce.getViewName();
-        mainPage = Transporter.driverMainPage();
+        // Add for daniel
+        homePage = new HomePage();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        //
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignView = campaignsHome.clickNewViewLnk()

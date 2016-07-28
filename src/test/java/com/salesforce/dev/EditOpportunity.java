@@ -29,7 +29,7 @@ public class EditOpportunity {
     @BeforeMethod(groups = {"Acceptance"})
     public void setup(){
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar ();
 
         oppEnum = JSONMapper.getOpportunity("CreateOpportunityBase.json");

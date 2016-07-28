@@ -19,6 +19,8 @@ import com.salesforce.dev.pages.Objects.CampaignGenie;
 
 import java.util.Iterator;
 
+import static com.salesforce.dev.pages.Home.LoginPage.getLogin;
+
 /**
  * Created by alex on 06/09/2015.
  */
@@ -44,7 +46,7 @@ public class EditContactView {
         nameView = viewSalesForce.getViewName();
 
         homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
 
         contactsHome = navigationBar.goToContactsHome();
@@ -54,11 +56,8 @@ public class EditContactView {
         contactViewDetail = contactView.clickSaveBtn();
     }
 
-
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testEditContact(ViewSalesForce viewSalesForceUpdate) {
-        homePage = new HomePage();
-        mainPage = homePage.getLogin ();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         String fieldToUpdate ="View Name";
@@ -77,13 +76,9 @@ public class EditContactView {
     public void tearDown() {
         contactViewDetail.clickDeleteLnk(true);
         LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Contact was deleted");
+                "Contact View was deleted");
         mainPage = contactViewDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
-        //Añadir paso
-        contactViewDetail.clickDeleteLnk(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Contact Parent was deleted");
     }
 }
