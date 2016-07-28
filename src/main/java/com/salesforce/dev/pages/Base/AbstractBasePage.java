@@ -1,6 +1,6 @@
-package com.salesforce.dev.pages;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.framework.selenium.DriverManager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -14,12 +14,12 @@ public abstract class AbstractBasePage {
 
     protected WebDriverWait wait;
     protected WebDriver driver;
-
     protected Actions action;
+
     public AbstractBasePage() {
         driver = DriverManager.getInstance().getDriver();
         wait = DriverManager.getInstance().getWait();
-        action=new Actions(driver);
+        action = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 

@@ -2,7 +2,7 @@ package com.salesforce.dev.pages.Opportunities;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.pages.Base.ViewDetailBase;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;

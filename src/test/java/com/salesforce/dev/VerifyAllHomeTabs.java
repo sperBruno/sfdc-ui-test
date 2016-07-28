@@ -1,7 +1,7 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Cases.CasesHome;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
@@ -9,7 +9,7 @@ import com.salesforce.dev.pages.Contacts.ContactsHome;
 import com.salesforce.dev.pages.Contracts.ContractsHome;
 import com.salesforce.dev.pages.Dashboards.DashboardsHome;
 import com.salesforce.dev.pages.Forecasts.ForecastsHome;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.Leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;

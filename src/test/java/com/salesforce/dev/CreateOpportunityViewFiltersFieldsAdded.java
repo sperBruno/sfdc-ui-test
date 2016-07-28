@@ -3,12 +3,12 @@ package com.salesforce.dev;
 import java.util.Iterator;
 import java.util.List;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.FieldToDisplayView;
-import com.salesforce.dev.framework.Objects.FilterView;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.FieldToDisplayView;
+import com.salesforce.dev.framework.dto.FilterView;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityView;
@@ -31,7 +31,7 @@ public class CreateOpportunityViewFiltersFieldsAdded {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateOpportunityViewFiltersFieldAdded.json");
+        return dataDrivenManager.getDataView("json/CreateOpportunityViewFiltersFieldAdded.json");
     }
 
     @BeforeMethod(groups = {"BVT"})

@@ -1,12 +1,12 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.framework.Objects.Lead;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.framework.dto.Lead;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadDetail;
 import com.salesforce.dev.pages.Leads.LeadForm;

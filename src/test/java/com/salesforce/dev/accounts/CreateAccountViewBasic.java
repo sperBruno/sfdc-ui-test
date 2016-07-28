@@ -1,16 +1,16 @@
-package com.salesforce.dev;
+package com.salesforce.dev.accounts;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.framework.RandomGenerator;
-import com.salesforce.dev.pages.Accounts.AccountView;
-import com.salesforce.dev.pages.Accounts.AccountViewDetail;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.accounts.AccountView;
+import com.salesforce.dev.pages.accounts.AccountViewDetail;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
@@ -36,7 +36,7 @@ public class CreateAccountViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateAccountsViewBasic.json");
+        return dataDrivenManager.getDataView("json/CreateAccountsViewBasic.json");
     }
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {

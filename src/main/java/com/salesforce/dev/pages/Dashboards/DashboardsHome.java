@@ -1,10 +1,10 @@
 package com.salesforce.dev.pages.Dashboards;
 
-import com.salesforce.dev.pages.AbstractBasePage;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.CommonOperation.isWebElementVisible;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 /**
  * Created by Monica Pardo on 6/24/2015.

@@ -5,10 +5,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Opportunity;
-import com.salesforce.dev.pages.Common;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.framework.dto.Opportunity;
+import com.salesforce.dev.pages.ObjectGenie;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
@@ -33,7 +33,7 @@ public class EditOpportunity {
         oppEditEnum = JSONMapper.getOpportunity("src\\test\\resources\\EditOpportunity.json");
 
         // creating the opportunity base
-        Common.createOpportunity(oppEnum);
+        ObjectGenie.createOpportunity(oppEnum);
 
     }
 

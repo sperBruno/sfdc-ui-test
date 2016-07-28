@@ -1,12 +1,12 @@
 package com.salesforce.dev.pages.Product;
 
-import com.salesforce.dev.framework.CommonOperation;
-import com.salesforce.dev.pages.Base.HomeBase;
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.CommonOperation.isElementPresent;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
  * Created by monica on 6/11/2015.

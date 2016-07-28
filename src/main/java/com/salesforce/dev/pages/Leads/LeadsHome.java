@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages.Leads;
 
-import com.salesforce.dev.framework.CommonOperation;
-import com.salesforce.dev.pages.Base.HomeBase;
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;

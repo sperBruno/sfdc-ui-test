@@ -1,5 +1,6 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.selenium;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -59,14 +60,14 @@ public class CommonOperation {
 
 
     public static boolean isWebElementVisible(WebElement webElement) {
-        try{
+        try {
 
             WAIT.until(ExpectedConditions.visibilityOf(webElement));
             return true;
-        }
-        catch (WebDriverException e){
+        } catch (WebDriverException e) {
             return false;
         }
+    }
 
     public static String getTextWebElement(WebElement webElement) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));

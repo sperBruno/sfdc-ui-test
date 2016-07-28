@@ -1,6 +1,4 @@
-package com.salesforce.dev.pages.Base;
-
-import com.salesforce.dev.pages.AbstractBasePage;
+package com.salesforce.dev.pages.base;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
@@ -11,8 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
-import static com.salesforce.dev.framework.CommonOperation.moveHorizontalWebElementScroll;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.moveHorizontalWebElementScroll;
 
 /**
  * Created by Administrator on 8/20/2015.

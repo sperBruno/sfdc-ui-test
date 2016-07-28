@@ -1,14 +1,14 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.utils;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.salesforce.dev.framework.Objects.Account;
-import com.salesforce.dev.framework.Objects.Contact;
-import com.salesforce.dev.framework.Objects.Lead;
-import com.salesforce.dev.framework.Objects.Opportunity;
 
 import java.io.File;
 import java.io.IOException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.salesforce.dev.framework.dto.Account;
+import com.salesforce.dev.framework.dto.Contact;
+import com.salesforce.dev.framework.dto.Lead;
+import com.salesforce.dev.framework.dto.Opportunity;
 
 /**
  * Created by jimmy vargas on 6/22/2015.

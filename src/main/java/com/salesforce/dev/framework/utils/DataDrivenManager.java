@@ -1,4 +1,4 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.utils;
 
 /**
  * Created by Walter Mercado on 6/22/2015.
@@ -13,10 +13,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.salesforce.dev.framework.Objects.Account;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.framework.Objects.Chatter;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
+import com.salesforce.dev.framework.dto.Account;
+import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.framework.dto.Chatter;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;

@@ -4,7 +4,7 @@ package com.salesforce.dev;
  * Created by Luffy on 22/06/2015.
  */
 
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
 import org.apache.log4j.Logger;

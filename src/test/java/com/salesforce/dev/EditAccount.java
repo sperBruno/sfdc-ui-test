@@ -1,11 +1,11 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.Accounts.AccountDetail;
-import com.salesforce.dev.pages.Accounts.AccountForm;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.accounts.AccountDetail;
+import com.salesforce.dev.pages.accounts.AccountForm;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

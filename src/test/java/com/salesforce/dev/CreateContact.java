@@ -1,16 +1,16 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Contact;
-import com.salesforce.dev.pages.Accounts.AccountDetail;
-import com.salesforce.dev.pages.Accounts.AccountForm;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.framework.dto.Contact;
+import com.salesforce.dev.pages.accounts.AccountDetail;
+import com.salesforce.dev.pages.accounts.AccountForm;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.Contacts.ContactDetail;
 import com.salesforce.dev.pages.Contacts.ContactForm;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 
 import org.apache.log4j.Logger;

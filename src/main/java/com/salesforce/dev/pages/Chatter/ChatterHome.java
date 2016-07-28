@@ -1,13 +1,12 @@
 package com.salesforce.dev.pages.Chatter;
 
-import com.salesforce.dev.framework.DriverManager;
+import com.salesforce.dev.framework.selenium.DriverManager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by Monica Pardo on 6/13/2015.
