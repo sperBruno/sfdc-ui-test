@@ -1,5 +1,7 @@
 package com.salesforce.dev.framework;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -57,5 +59,11 @@ public class CommonOperation {
     public static String getTextWebElement(WebElement webElement) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
+    }
+
+    public static void moveHorizontalWebElementScroll(WebDriver driver, WebElement webElement, int horizontal) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollLeft+=arguments[1];", webElement, horizontal);
     }
 }
