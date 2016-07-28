@@ -1,8 +1,8 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.pages.Base.ViewBase;
+import com.salesforce.dev.pages.base.ViewBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -54,7 +54,7 @@ public class AccountView extends ViewBase {
 
     @Override
     public AccountView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All Accounts") == 0)
+        if(filter.compareToIgnoreCase("All accounts") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

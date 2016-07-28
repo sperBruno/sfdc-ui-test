@@ -1,11 +1,12 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.testng;
 
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.framework.selenium.DriverManager;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
 import org.apache.commons.io.FileUtils;

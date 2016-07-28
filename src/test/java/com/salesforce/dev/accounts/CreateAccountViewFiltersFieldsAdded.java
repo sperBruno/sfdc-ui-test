@@ -1,18 +1,18 @@
-package com.salesforce.dev;
+package com.salesforce.dev.accounts;
 
 import java.util.Iterator;
 import java.util.List;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.FieldToDisplayView;
-import com.salesforce.dev.framework.Objects.FilterView;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.framework.RandomGenerator;
-import com.salesforce.dev.pages.Accounts.AccountView;
-import com.salesforce.dev.pages.Accounts.AccountViewDetail;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.FieldToDisplayView;
+import com.salesforce.dev.framework.dto.FilterView;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.accounts.AccountView;
+import com.salesforce.dev.pages.accounts.AccountViewDetail;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -34,7 +34,7 @@ public class CreateAccountViewFiltersFieldsAdded {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateAccountsViewFiltersFieldAdded.json");
+        return dataDrivenManager.getDataView("json/CreateAccountsViewFiltersFieldAdded.json");
     }
 
 

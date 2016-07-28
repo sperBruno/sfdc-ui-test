@@ -1,4 +1,4 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.utils;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
@@ -12,22 +12,25 @@ public class RandomGenerator {
 
 
     private static RandomGenerator instance = null;
-    private RandomGenerator(){
+
+    private RandomGenerator() {
         this.initializer();
     }
-    private void initializer(){
+
+    private void initializer() {
         random = new SecureRandom();
-        randomValue= new BigInteger(12, random).toString(32);
+        randomValue = new BigInteger(12, random).toString(32);
 
     }
-    public static RandomGenerator getInstance(){
-        if(instance==null){
+
+    public static RandomGenerator getInstance() {
+        if (instance == null) {
             instance = new RandomGenerator();
         }
         return instance;
     }
-    public String getRandomString(){
 
+    public String getRandomString() {
         return randomValue;
     }
 }

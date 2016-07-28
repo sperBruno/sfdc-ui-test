@@ -1,7 +1,6 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
+import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Cases.CasesHome;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
@@ -19,8 +18,8 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
-import static com.salesforce.dev.framework.CommonOperation.isElementPresent;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
  * Created by Monica Pardo on 6/5/2015.
@@ -36,7 +35,7 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(linkText = "Leads")
     private WebElement leadsTab;
 
-    @FindBy(linkText = "Accounts")
+    @FindBy(linkText = "accounts")
     private WebElement accountsTab;
 
     @FindBy(linkText = "Contacts")

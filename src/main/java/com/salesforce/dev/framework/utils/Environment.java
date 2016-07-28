@@ -1,4 +1,4 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

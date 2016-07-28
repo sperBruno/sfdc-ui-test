@@ -1,10 +1,10 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Lead;
-import com.salesforce.dev.pages.Common;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.framework.dto.Lead;
+import com.salesforce.dev.pages.ObjectGenie;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.Leads.*;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
@@ -27,7 +27,7 @@ public class EditLead {
         leadEditEnum = JSONMapper.getLead("src/test/resources/EditLead.json");
 
         //Creating a lead
-        Common.createLead(lead);
+        ObjectGenie.createLead(lead);
 
     }
 

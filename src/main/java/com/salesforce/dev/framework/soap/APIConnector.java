@@ -1,5 +1,6 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.soap;
 
+import com.salesforce.dev.framework.utils.Environment;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;

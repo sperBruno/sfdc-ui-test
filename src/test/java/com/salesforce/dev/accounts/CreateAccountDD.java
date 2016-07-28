@@ -1,18 +1,18 @@
-package com.salesforce.dev;
+package com.salesforce.dev.accounts;
 
 /**
  * Created by Walter Mercado on 6/22/2015.
  */
 
-import com.salesforce.dev.framework.Objects.Account;
-import com.salesforce.dev.pages.Accounts.AccountDetail;
-import com.salesforce.dev.pages.Accounts.AccountForm;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.framework.dto.Account;
+import com.salesforce.dev.pages.accounts.AccountDetail;
+import com.salesforce.dev.pages.accounts.AccountForm;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.framework.DataDrivenManager;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
 import org.testng.Assert;
 import org.testng.annotations.*;
 

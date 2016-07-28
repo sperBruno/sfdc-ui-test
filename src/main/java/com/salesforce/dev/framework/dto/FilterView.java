@@ -1,4 +1,4 @@
-package com.salesforce.dev.framework.Objects;
+package com.salesforce.dev.framework.dto;
 
 /**
  * Created by veronica on 8/21/2015.

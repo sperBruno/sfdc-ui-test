@@ -1,12 +1,11 @@
 package com.salesforce.dev.pages.Campaigns;
 
-import com.salesforce.dev.framework.CommonOperation;
-import com.salesforce.dev.pages.Base.DetailsBase;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.CommonOperation.getTextWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.getTextWebElement;
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.

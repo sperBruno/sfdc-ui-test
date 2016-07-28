@@ -1,17 +1,19 @@
-package com.salesforce.dev;
+package com.salesforce.dev.accounts;
 
-import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.Objects.Account;
-import com.salesforce.dev.pages.Accounts.AccountDetail;
-import com.salesforce.dev.pages.Accounts.AccountForm;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.framework.dto.Account;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-
+import com.salesforce.dev.pages.accounts.AccountDetail;
+import com.salesforce.dev.pages.accounts.AccountForm;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Walter on 13/06/2015.
@@ -64,29 +66,29 @@ public class CreateAccount {
             .setAccountDescriptionFld(account.getAccountDesc());
         accountDetail = accountForm.clickSaveBtn();
 
-        Assert.assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));
-        Assert.assertTrue(accountDetail.validateAccountRatingFld(account.getRating()));
-        Assert.assertTrue(accountDetail.validateAccountOwnershipFld(account.getOwnership()));
-        Assert.assertTrue(accountDetail.validateAccountPhoneFld(account.getPhone()));
-        Assert.assertTrue(accountDetail.validateAccountFaxFld(account.getFax()));
-        Assert.assertTrue(accountDetail.validateAccountNumberFld(account.getNumber()));
-        Assert.assertTrue(accountDetail.validateAccountWebsiteFld(account.getWebsite()));
-        Assert.assertTrue(accountDetail.validateAccountSiteFld(account.getAccountSite()));
-        Assert.assertTrue(accountDetail.validateAccountTickerSymbolFld(account.getTickerSymbol()));
-        Assert.assertTrue(accountDetail.validateAccountTypeFld(account.getType()));
-        Assert.assertTrue(accountDetail.validateAccountIndustryFld(account.getIndustry()));
-        Assert.assertTrue(accountDetail.validateAccountEmployeesFld(account.getEmployees()));
-        Assert.assertTrue(accountDetail.validateAccountAnnualRevenueFld(account.getAnnualRevenue()));
-        Assert.assertTrue(accountDetail.validateAccountSICCodeFld(account.getSicCode()));
-        Assert.assertTrue(accountDetail.validateAccountBillingAddressFld(account.getBillingAddress()));
-        Assert.assertTrue(accountDetail.validateAccountShippingAddressFld(account.getShippingAddress()));
-        Assert.assertTrue(accountDetail.validateAccountCustomPriorityFld(account.getCustomerPriority()));
-        Assert.assertTrue(accountDetail.validateAccountSLAFld(account.getSla()));
-        Assert.assertTrue(accountDetail.validateAccountActiveFld(account.getActive()));
-        Assert.assertTrue(accountDetail.validateAccountSLAExpirationDateFld(account.getSlaExpirationDate()));
-        Assert.assertTrue(accountDetail.validateAccountSerialNumberFld(account.getSlaSerialNumber()));
-        Assert.assertTrue(accountDetail.validateAccountNumberOfLocationsFld(account.getNumberOfLocations()));
-        Assert.assertTrue(accountDetail.validateAccountDescriptionFld(account.getAccountDesc()));
+        assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));
+        assertTrue(accountDetail.validateAccountRatingFld(account.getRating()));
+        assertTrue(accountDetail.validateAccountOwnershipFld(account.getOwnership()));
+        assertTrue(accountDetail.validateAccountPhoneFld(account.getPhone()));
+        assertTrue(accountDetail.validateAccountFaxFld(account.getFax()));
+        assertTrue(accountDetail.validateAccountNumberFld(account.getNumber()));
+        assertTrue(accountDetail.validateAccountWebsiteFld(account.getWebsite()));
+        assertTrue(accountDetail.validateAccountSiteFld(account.getAccountSite()));
+        assertTrue(accountDetail.validateAccountTickerSymbolFld(account.getTickerSymbol()));
+        assertTrue(accountDetail.validateAccountTypeFld(account.getType()));
+        assertTrue(accountDetail.validateAccountIndustryFld(account.getIndustry()));
+        assertTrue(accountDetail.validateAccountEmployeesFld(account.getEmployees()));
+        assertTrue(accountDetail.validateAccountAnnualRevenueFld(account.getAnnualRevenue()));
+        assertTrue(accountDetail.validateAccountSICCodeFld(account.getSicCode()));
+        assertTrue(accountDetail.validateAccountBillingAddressFld(account.getBillingAddress()));
+        assertTrue(accountDetail.validateAccountShippingAddressFld(account.getShippingAddress()));
+        assertTrue(accountDetail.validateAccountCustomPriorityFld(account.getCustomerPriority()));
+        assertTrue(accountDetail.validateAccountSLAFld(account.getSla()));
+        assertTrue(accountDetail.validateAccountActiveFld(account.getActive()));
+        assertTrue(accountDetail.validateAccountSLAExpirationDateFld(account.getSlaExpirationDate()));
+        assertTrue(accountDetail.validateAccountSerialNumberFld(account.getSlaSerialNumber()));
+        assertTrue(accountDetail.validateAccountNumberOfLocationsFld(account.getNumberOfLocations()));
+        assertTrue(accountDetail.validateAccountDescriptionFld(account.getAccountDesc()));
     }
 
     @AfterMethod(groups = {"Acceptance"})

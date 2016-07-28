@@ -2,8 +2,8 @@ package com.salesforce.dev.pages.Campaigns;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.ViewBase;
+import com.salesforce.dev.framework.selenium.DriverManager;
+import com.salesforce.dev.pages.base.ViewBase;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 

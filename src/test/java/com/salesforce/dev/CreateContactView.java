@@ -1,19 +1,17 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.framework.DataDrivenManager;
-import com.salesforce.dev.framework.Objects.FieldToDisplayView;
-import com.salesforce.dev.framework.Objects.FilterView;
-import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.framework.RamdonGenerator;
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.dto.FieldToDisplayView;
+import com.salesforce.dev.framework.dto.FilterView;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
-import com.salesforce.dev.pages.Campaigns.CampaignView;
-import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Contacts.ContactView;
 import com.salesforce.dev.pages.Contacts.ContactViewDetail;
 import com.salesforce.dev.pages.Contacts.ContactsHome;
-import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 
 import org.apache.log4j.Logger;
@@ -55,12 +53,12 @@ public class CreateContactView {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateContactView.json");
+        return dataDrivenManager.getDataView("json/CreateContactView.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        campaignName = "Camp" + RamdonGenerator.getInstance().getRamdonString();
+        campaignName = "Camp" + RandomGenerator.getInstance().getRandomString();
         homePage = new HomePage();
         mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();

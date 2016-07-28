@@ -1,10 +1,11 @@
-package com.salesforce.dev.framework;
+package com.salesforce.dev.framework.selenium;
 
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import com.salesforce.dev.framework.utils.Environment;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;

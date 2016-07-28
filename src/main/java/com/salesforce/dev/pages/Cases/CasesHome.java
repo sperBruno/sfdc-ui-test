@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages.Cases;
 
-import com.salesforce.dev.framework.CommonOperation;
-import com.salesforce.dev.pages.AbstractBasePage;
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
