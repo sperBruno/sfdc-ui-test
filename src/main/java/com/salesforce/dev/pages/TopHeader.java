@@ -30,12 +30,7 @@ public class TopHeader extends AbstractBasePage {
     @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
     private WebElement logoutMenuOption;
 
-//    public TopHeader() {
-//        try {
-//            this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
-//        }catch ()
-//
-//    }
+
 
     public void clickUserNameMenu() {
         try {
@@ -49,6 +44,7 @@ public class TopHeader extends AbstractBasePage {
     public String getUserName() {
         String userLogged = "";
         try {
+//            wait.until(ExpectedConditions.visibilityOf(userMenu));
             driver.manage().timeouts().implicitlyWait(8, SECONDS);
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {
@@ -71,6 +67,7 @@ public class TopHeader extends AbstractBasePage {
     }
 
     public boolean checkIfCookieIsPresent() {
+        wait.until(ExpectedConditions.visibilityOf(userMenu));
         return this.driver.manage().getCookieNamed("com.salesforce.LocaleInfo").getDomain().equals(".salesforce.com");
     }
 }

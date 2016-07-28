@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Monica on 6/11/2015.
  */
-public class ProductDetails extends DetailsBase {
+public class    ProductDetails extends DetailsBase {
 
 
     @FindBy(id = "Name_ileinner")

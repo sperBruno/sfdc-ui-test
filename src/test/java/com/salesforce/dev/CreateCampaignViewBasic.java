@@ -36,6 +36,8 @@ public class CreateCampaignViewBasic {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateCampaignViewBasic.json");
     }
+
+
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();

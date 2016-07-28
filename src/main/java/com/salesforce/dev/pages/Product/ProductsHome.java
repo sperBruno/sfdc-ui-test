@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.salesforce.dev.framework.CommonOperation.isElementPresent;
+
 /**
  * Created by monica on 6/11/2015.
  */
@@ -44,7 +46,7 @@ public class ProductsHome extends HomeBase {
     }
 
     public boolean IsUserInProductsTab() {
-        return CommonOperation.isElementPresent(productsSection);
+        return isElementPresent(productsSection);
     }
 
 }

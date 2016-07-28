@@ -4,8 +4,8 @@ import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.Objects.Lead;
 import com.salesforce.dev.pages.Common;
 import com.salesforce.dev.pages.Home.HomePage;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Leads.*;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -33,7 +33,7 @@ public class EditLead {
 
     @Test(groups = {"Acceptance"})
     public void testEditLead(){
-        mainPage = Transporter.driverMainPage();
+        mainPage = LoginPage.loginAsPrimaryUser();
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();

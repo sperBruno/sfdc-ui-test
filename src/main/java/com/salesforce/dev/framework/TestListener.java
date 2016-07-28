@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Date;
 
 import com.salesforce.dev.pages.Home.LoginPage;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
 import org.apache.commons.io.FileUtils;
@@ -84,7 +83,7 @@ public class TestListener implements ITestListener {
     @Override
     public void onStart(ITestContext context) {
         LOGGER.error("Test suite Start", null);
-        Transporter.login();
+        LoginPage.loginAsPrimaryUser();
     }
 
     @Override
