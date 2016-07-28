@@ -1,18 +1,26 @@
 package com.salesforce.dev.pages.Base;
 
-import com.salesforce.dev.framework.LoggerManager;
-import org.openqa.selenium.*;
+import org.openqa.selenium.WebDriverException;
+
 import org.openqa.selenium.support.ui.Select;
+import com.salesforce.dev.framework.CommonOperation;
+import com.salesforce.dev.pages.AbstractBasePage;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by Administrator on 8/20/2015.
  */
-public abstract class ViewDetailBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+
+public abstract class ViewDetailBase extends AbstractBasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(ViewDetailBase.class.getName());
 
     @FindBy(linkText = "Edit")
     protected WebElement editLnk;
@@ -30,19 +38,15 @@ public abstract class ViewDetailBase {
         try {
             wait.until(ExpectedConditions.visibilityOf(editLnk));
             editLnk.click();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Edit link was clicked");
+           LOGGER.info("Edit link was clicked");
         }
         catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Edit link couldn't be found",
-                    e.fillInStackTrace());
+            LOGGER.fatal("The Edit link couldn't be found",e);
         }
     }
 
     protected void clickDeleteLink(boolean confirmDeletion) {
-        wait.until(ExpectedConditions.visibilityOf(deleteLnk));
-        deleteLnk.click();
+        CommonOperation.clickWebElement(deleteLnk);
         Alert alert;
 
         try{
@@ -52,13 +56,10 @@ public abstract class ViewDetailBase {
                 alert.accept();
             }
             alert.dismiss();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Delete link was clicked");
+           LOGGER.info("Delete link was clicked");
         }
         catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Delete link couldn't be found",
-                    e.fillInStackTrace());
+            LOGGER.fatal("The Delete link couldn't be found", e);
         }
     }
 

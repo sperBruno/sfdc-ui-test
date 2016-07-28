@@ -4,11 +4,12 @@ import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
+
+import org.apache.log4j.Logger;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
-import static com.salesforce.dev.framework.utils.Constants.LOGGER_MANAGER;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -16,7 +17,7 @@ import static org.testng.Assert.assertEquals;
  */
 public class LoginTest {
 
-    private static final String LOGIN_TEST = LoginTest.class.getName();
+    private static final Logger LOGGER = Logger.getLogger(LoginTest.class.getName());
 
     private LoginPage loginPage;
 
@@ -31,6 +32,6 @@ public class LoginTest {
         MainPage mainPage = loginPage.loginAsPrimaryUser();
         TopHeader topHeader = mainPage.gotoTopHeader();
         assertEquals(topHeader.getUserName(), ENVIRONMENT.getDisplayName());
-        LOGGER_MANAGER.addInfoLog(LOGIN_TEST, "Login on Sales Force");
+        LOGGER.info("Login on Sales Force");
     }
 }

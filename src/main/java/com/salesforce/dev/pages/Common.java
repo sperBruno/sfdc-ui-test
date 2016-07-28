@@ -7,16 +7,15 @@ import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Leads.LeadBuilder;
 import com.salesforce.dev.pages.Leads.LeadForm;
 import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityBuilder;
 import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 
-import static com.salesforce.dev.pages.Home.LoginPage.loginAsPrimaryUser2;
-
 /**
  * Created by jimmy vargas on 6/23/2015.
  */
-public class Common {
+public class Common extends AbstractBasePage {
 
     public static void createOpportunity(Opportunity oppEnum) {
 
@@ -47,5 +46,4 @@ public class Common {
                 .build();
         leadForm.clickSaveBtn();
     }
-
 }

@@ -1,31 +1,29 @@
 package com.salesforce.dev;
 
 import com.salesforce.dev.framework.JSONMapper;
-import com.salesforce.dev.framework.LoggerManager;
 import com.salesforce.dev.framework.Objects.Contact;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
+import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.pages.Contacts.ContactDetail;
+import com.salesforce.dev.pages.Contacts.ContactForm;
+import com.salesforce.dev.pages.Contacts.ContactsHome;
+import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Home.HomePage;
-
-import com.salesforce.dev.pages.Contacts.ContactDetail;
-import com.salesforce.dev.pages.Contacts.ContactForm;
-import com.salesforce.dev.pages.Contacts.ContactsHome;
 
 /**
  * Created by Marcelo.Vargas on 6/21/2015.
  */
 
 public class EditContact {
-
+    private static final Logger LOGGER = Logger.getLogger(EditContact.class.getName());
     Contact contact = JSONMapper.getContactToUpdate();
 
     private ContactsHome contactsHome;
@@ -114,14 +112,12 @@ public class EditContact {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Contact was deleted");
+        LOGGER.info("Contact was deleted");
         mainPage = accountDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(contact.getAccountName());
         accountDetail.clickDeleteBtn(true);
-        LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                "Account was deleted");
+        LOGGER.info("Account was deleted");
     }
 }

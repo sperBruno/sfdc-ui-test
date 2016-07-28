@@ -1,13 +1,10 @@
 package com.salesforce.dev.pages.Contacts;
 
-import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.Base.FormBase;
-import org.openqa.selenium.WebDriver;
+import com.salesforce.dev.pages.Base.SearchLookupBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 
 /**
@@ -26,7 +23,7 @@ public class ContactForm extends FormBase {
     @FindBy(name = "name_lastcon2")
     private WebElement lastNameFld;
 
-    @FindBy(xpath = "//img[@alt='Account Name Lookup (New Window)']")
+    @FindBy(id = "con4_lkwgt")
     @CacheLookup
     WebElement lookupAccountImg;
 
@@ -42,7 +39,7 @@ public class ContactForm extends FormBase {
     @FindBy(id = "con7") // calendar
     private WebElement birthDayFld;
 
-    @FindBy(xpath = "//img[@alt='Reports To Lookup (New Window)']")
+    @FindBy(id = "con8_lkwgt")
     @CacheLookup
     WebElement lookupReportsToImg;
 
@@ -125,12 +122,6 @@ public class ContactForm extends FormBase {
     @CacheLookup
     private WebElement saveBtn;
 
-    public ContactForm(WebDriver driver) {
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-    }
-
     @Override
     public Object clickSaveNewBtn() {
         return null;
@@ -144,12 +135,12 @@ public class ContactForm extends FormBase {
     @Override
     public ContactDetail clickSaveBtn() {
         clickSaveButton();
-        return new ContactDetail(driver);
+        return new ContactDetail();
     }
 
     public SearchLookupBase clickLookupAccount() {
         lookupAccountImg.click();
-        return new SearchLookupBase(driver);
+        return new SearchLookupBase();
     }
 
     public ContactForm setFirstNameRole(String text) {
@@ -185,11 +176,11 @@ public class ContactForm extends FormBase {
 
     public SearchLookupBase clickLookupReportsTo() {
         lookupReportsToImg.click();
-        return new SearchLookupBase(driver);
+        return new SearchLookupBase();
     }
 
     public ContactForm setLeadSource(String text) {
-        selectItemComboBox(leadSourceSelect, text);
+//        selectItemComboBox(leadSourceSelect, text);
         return this;
     }
 
