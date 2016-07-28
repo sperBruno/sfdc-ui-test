@@ -4,9 +4,8 @@ import java.util.Iterator;
 
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.ViewSalesForce;
-import com.salesforce.dev.framework.RandomGenerator;
 import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Login.Transporter;
+import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.Opportunities.OpportunityView;
@@ -22,34 +21,28 @@ import org.testng.annotations.Test;
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewBasic {
+
     private static final Logger LOGGER = Logger.getLogger(CreateOpportunityViewBasic.class.getName());
-    private OpportunitiesHome opportunitiesHome;
-    private OpportunityView opportunityView;
-    private MainPage mainPage;
     private NavigationBar navigationBar;
     private OpportunityViewDetail opportunityViewDetail;
-    private HomePage homePage;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
     }
-    
+
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-     
-        homePage = new HomePage();
-        mainPage = homePage.loginAsPrimaryUser();
+        HomePage homePage = new HomePage();
+        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
-    public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
-//        mainPage = Transporter.driverMainPage();
-//        navigationBar = mainPage.gotoNavBar();
+    public void testCreateOpportunityViewBasic(ViewSalesForce viewSalesForce) {
         OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
-        opportunityView = opportunitiesHome.clickNewViewLnk()
+        OpportunityView opportunityView = opportunitiesHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
