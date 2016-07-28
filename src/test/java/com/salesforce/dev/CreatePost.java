@@ -26,7 +26,7 @@ public class CreatePost {
     @Test(groups = {"Acceptance"})
     public void CreatePostAndComment() {
         chatterHome = navigationBar.goToChatterHome();
-        chatterHome.clickPost();
+//        chatterHome.clickPost();
         String post = "Post test";
         chatterHome.setPost(post);
         chatterHome.clickShareBtn();
