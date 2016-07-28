@@ -55,8 +55,10 @@ public class CommonOperation {
         Select comboBox = new Select(webElement);
         comboBox.selectByVisibleText(value);
     }
-    public static void moveScroll(WebDriver driver,int horizontal,int vertical){
+
+    public static void moveHorizontalWebElementScroll(WebDriver driver, WebElement webElement, int horizontal) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("javascript:window.scrollBy("+horizontal+","+vertical+")");
+        js.executeScript("arguments[0].scrollLeft+=arguments[1];", webElement, horizontal);
     }
 }

@@ -1,17 +1,18 @@
 package com.salesforce.dev.pages.Base;
 
-import com.salesforce.dev.framework.CommonOperation;
 import com.salesforce.dev.pages.AbstractBasePage;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+
+import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.CommonOperation.moveHorizontalWebElementScroll;
 
 /**
  * Created by Administrator on 8/20/2015.
@@ -37,27 +38,25 @@ public abstract class ViewDetailBase extends AbstractBasePage {
         try {
             wait.until(ExpectedConditions.visibilityOf(editLnk));
             editLnk.click();
-           LOGGER.info("Edit link was clicked");
-        }
-        catch(WebDriverException e){
-            LOGGER.fatal("The Edit link couldn't be found",e);
+            LOGGER.info("Edit link was clicked");
+        } catch (WebDriverException e) {
+            LOGGER.fatal("The Edit link couldn't be found", e);
         }
     }
 
     protected void clickDeleteLink(boolean confirmDeletion) {
-        CommonOperation.clickWebElement(deleteLnk);
+        clickWebElement(deleteLnk);
         Alert alert;
 
-        try{
+        try {
             alert = driver.switchTo().alert();
 
-            if (confirmDeletion){
+            if (confirmDeletion) {
                 alert.accept();
             }
             alert.dismiss();
-           LOGGER.info("Delete link was clicked");
-        }
-        catch(WebDriverException e){
+            LOGGER.info("Delete link was clicked");
+        } catch (WebDriverException e) {
             LOGGER.fatal("The Delete link couldn't be found", e);
         }
     }
@@ -66,34 +65,29 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
     /**
      * Returns next view
-    *
      */
     protected abstract Object clickDeleteLnk(boolean confirmDeletion);
 
-
-
-    public String getViewSelected(){
+    public String getViewSelected() {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
         Select select = new Select(viewSelected);
         return select.getFirstSelectedOption().getText();
     }
-    public boolean validateNameView(String nameView){
+
+    public boolean validateNameView(String nameView) {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
         Select select = new Select(viewSelected);
 
         String nameV = select.getFirstSelectedOption().getText();
         return nameV.equals(nameView);
-
     }
 
-    public boolean validateFieldDisplayed(String field){
-        By fieldDisplayed = By.xpath("//div[@title='" + field+"']");
-        //CommonOperation.moveScroll(driver,0,500);
-        WebElement scroll = driver.findElement(By.id("ext-gen10"));
-        WebElement element = driver.findElement(By.id("id_of_element"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    public boolean validateFieldDisplayed(String field) {
+        final int horizontalScrollPosition = 200;
+        By fieldDisplayed = By.xpath("//div[@title='" + field + "']");
+        WebElement webElement = driver.findElement(By.id("ext-gen10"));
+        moveHorizontalWebElementScroll(driver, webElement, horizontalScrollPosition);
         wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
         return driver.findElement(fieldDisplayed).isDisplayed();
-
     }
 }
