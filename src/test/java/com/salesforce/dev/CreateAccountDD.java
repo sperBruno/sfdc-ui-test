@@ -38,7 +38,10 @@ public class CreateAccountDD {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        mainPage = Transporter.driverMainPage();
+//        mainPage = Transporter.driverMainPage();
+//        navigationBar = mainPage.gotoNavBar();
+
+        mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 

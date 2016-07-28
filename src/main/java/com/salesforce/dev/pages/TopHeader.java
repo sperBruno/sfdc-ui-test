@@ -29,9 +29,9 @@ public class TopHeader extends AbstractBasePage {
     @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
     private WebElement logoutMenuOption;
 
-    public TopHeader() {
-        this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
-    }
+//    public TopHeader() {
+//        this.wait.until(ExpectedConditions.visibilityOf(salesforceLogo));
+//    }
 
     public void clickUserNameMenu() {
         try {

@@ -3,12 +3,12 @@ package com.salesforce.dev.pages.Home;
 import com.salesforce.dev.pages.AbstractBasePage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.Objects.LeadGenie;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
-import static com.salesforce.dev.framework.CommonOperation.setWebElement;
+import static com.salesforce.dev.framework.CommonOperation.*;
 import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
 
 /**
@@ -36,14 +36,20 @@ public class LoginPage extends AbstractBasePage {
      *
      * @author: Jimmy Vargas
      */
-    public MainPage loginAs(String userName, String password) {
-        this.setUserName(userName);
-        this.setPassword(password);
-        return this.clickLoginBtn();
+    public static MainPage loginAs(String userName, String password) {
+        MainPage mainPage = new MainPage();
+        if (!mainPage.gotoTopHeader().getUserName().equalsIgnoreCase(LeadGenie.getEmail())) {
+            HomePage homePage = new HomePage();
+            LoginPage loginPage = homePage.clickLoginBtn();
+            loginPage.setUserName(userName);
+            loginPage.setPassword(password);
+            return loginPage.clickLoginBtn();
+        }
+        return mainPage;
     }
 
-    public MainPage loginAsPrimaryUser() {
-        return this.loginAs(ENVIRONMENT.getPrimaryUser(), ENVIRONMENT.getPrimaryPassword());
+    public static MainPage loginAsPrimaryUser() {
+        return loginAs(ENVIRONMENT.getPrimaryUser(), ENVIRONMENT.getPrimaryPassword());
     }
 
     public boolean isLoginButtonPresent() {

@@ -1,6 +1,5 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
@@ -19,16 +18,22 @@ public class LoginTest {
     private static final Logger LOGGER = Logger.getLogger(LoginTest.class.getName());
 
     private LoginPage loginPage;
+    private MainPage mainPage;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        HomePage homePage = new HomePage();
-        loginPage = homePage.clickLoginBtn();
+        mainPage = loginPage.loginAsPrimaryUser();
     }
 
     @Test(groups = {"BVT"})
     public void testLogin() {
-        MainPage mainPage = loginPage.loginAsPrimaryUser();
+
+        TopHeader topHeader = mainPage.gotoTopHeader();
+        assertEquals(topHeader.getUserName(), ENVIRONMENT.getDisplayName());
+        LOGGER.info("Login on Sales Force");
+    }
+    @Test(groups = {"BVT"})
+    public void testLoginSecond() {
         TopHeader topHeader = mainPage.gotoTopHeader();
         assertEquals(topHeader.getUserName(), ENVIRONMENT.getDisplayName());
         LOGGER.info("Login on Sales Force");

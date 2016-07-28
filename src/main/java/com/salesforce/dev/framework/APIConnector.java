@@ -1,6 +1,5 @@
 package com.salesforce.dev.framework;
 
-import com.sforce.soap.partner.Connector;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
@@ -30,7 +29,7 @@ public class APIConnector {
         config.setPassword(primaryUserPasswordToken);
         config.setAuthEndpoint(urlApi);
         config.setServiceEndpoint(urlApi);
-        config.setProxy("172.20.240.5", 8080);
+       // config.setProxy("172.20.240.5", 8080);
         try {
             connection = com.sforce.soap.partner.Connector.newConnection(config);
         } catch (ConnectionException e) {

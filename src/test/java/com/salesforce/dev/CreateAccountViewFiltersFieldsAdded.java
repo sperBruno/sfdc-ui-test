@@ -12,11 +12,13 @@ import com.salesforce.dev.pages.Accounts.AccountView;
 import com.salesforce.dev.pages.Accounts.AccountViewDetail;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.Home.LoginPage;
 import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -36,12 +38,14 @@ public class CreateAccountViewFiltersFieldsAdded {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateAccountsViewFiltersFieldAdded.json");
     }
-
+    @BeforeMethod(groups = {"BVT"})
+    public void setUp() {
+        mainPage = LoginPage.loginAsPrimaryUser();
+        navigationBar = mainPage.gotoNavBar();
+    }
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
-        mainPage = Transporter.driverMainPage();
-        navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountView = accountsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName() + RandomGenerator.getInstance().getRandomString())
