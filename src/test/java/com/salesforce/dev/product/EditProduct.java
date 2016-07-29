@@ -28,11 +28,11 @@ public class EditProduct {
     private NavigationBar navigationBar;
     private String productName="New product";
 
-    @BeforeMethod
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
-        productsHome=navigationBar.goToProductsHome();
+       productsHome=navigationBar.goToProductsHome();
         productForm=productsHome.clickNewBtn();
         ProductForm productForm= new ProductBuilder(productName)
                 .setProductName(productName).build();
@@ -59,6 +59,7 @@ public class EditProduct {
         productDetails.clickDeleteBtn(true);
 
     }
+
     @DataProvider
     public Object[][] getProductValues() {
         return new Object[][]{{"New product update","Codigo2","this is an update product"}};

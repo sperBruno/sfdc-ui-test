@@ -149,7 +149,7 @@ public class NavigationBar extends AbstractBasePage {
     }
 
     private void clickElementOfHomeTab(WebElement webElement) {
-        if ((isElementPresent(webElement) == false) && (isElementPresent(moreTabsComboBox) == true)) {
+        if ((!isElementPresent(webElement)) && (isElementPresent(moreTabsComboBox))) {
             clickWebElement(moreTabsComboBox);
             clickWebElement(webElement);
         } else {

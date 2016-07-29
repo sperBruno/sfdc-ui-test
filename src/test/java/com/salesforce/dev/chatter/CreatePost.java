@@ -1,9 +1,9 @@
 package com.salesforce.dev.chatter;
 
-import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.chatter.ChatterHome;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.chatter.ChatterHome;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,7 +26,7 @@ public class CreatePost {
     @Test(groups = {"Acceptance"})
     public void CreatePostAndComment() {
         chatterHome = navigationBar.goToChatterHome();
-//        chatterHome.clickPost();
+        chatterHome.clickPost();
         String post = "Post test";
         chatterHome.setPost(post);
         chatterHome.clickShareBtn();
