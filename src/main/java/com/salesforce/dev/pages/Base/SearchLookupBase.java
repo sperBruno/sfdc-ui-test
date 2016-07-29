@@ -42,7 +42,7 @@ public class SearchLookupBase extends AbstractBasePage{
         try {
             driver.switchTo().window(windowsArray.getLast());
             driver.switchTo().frame(driver.findElement(By.name("searchFrame")));
-
+            searchTxt.clear();
             searchTxt.sendKeys(text);
 
             goBtn.click();
