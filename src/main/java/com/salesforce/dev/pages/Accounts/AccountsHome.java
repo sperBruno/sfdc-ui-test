@@ -12,7 +12,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElement
  */
 public class AccountsHome extends HomeBase {
 
-    @FindBy(xpath = "//h1[contains(.,'accounts:')]")
+    @FindBy(xpath = "//h1[contains(.,'Accounts:')]")
     private WebElement accountSection;
 
     @Override

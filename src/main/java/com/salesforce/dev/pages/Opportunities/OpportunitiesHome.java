@@ -13,7 +13,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  * Created by Jimmy Vargas on 6/10/2015.
  */
 public class OpportunitiesHome extends HomeBase {
-    @FindBy(xpath = "//h1[contains(.,'opportunities:')]")
+    @FindBy(xpath = "//h1[contains(.,'Opportunities:')]")
     @CacheLookup
     private WebElement opportunitiesSection;
 
