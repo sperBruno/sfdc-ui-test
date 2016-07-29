@@ -80,4 +80,10 @@ public class CommonOperation {
         js.executeScript("arguments[0].scrollLeft+=arguments[1];", webElement, horizontal);
     }
 
+    public static String getFirstSelectOption(WebElement webElement) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        Select select = new Select(webElement);
+        return  select.getFirstSelectedOption().getText();
+    }
+
 }
