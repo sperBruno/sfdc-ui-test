@@ -33,7 +33,7 @@ public class CreateAccountViewFiltersFieldsAdded {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateAccountsViewFiltersFieldAdded.json");
+        return dataDrivenManager.getDataView("CreateAccountsViewFiltersFieldAdded.json");
     }
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")

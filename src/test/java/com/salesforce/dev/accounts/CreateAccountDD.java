@@ -31,7 +31,7 @@ public class CreateAccountDD {
     @DataProvider(name = "dataDriven")
     public Iterator<Account[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getAccountsDD();
+        return dataDrivenManager.getAccountsDD("AccountsBaseDD.json");
     }
 
     @BeforeMethod(groups = {"BVT"})
@@ -57,7 +57,7 @@ public class CreateAccountDD {
 
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
-        accountDetail.clickDeleteBtn(true);
+        AccountsHome accountsHome= accountDetail.clickDeleteBtn(true);
 
     }
 }
