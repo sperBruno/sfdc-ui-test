@@ -1,48 +1,17 @@
 package com.salesforce.dev.framework.dto;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.salesforce.dev.pages.Accounts.AccountSteps;
-import com.salesforce.dev.pages.Campaigns.CampaignSteps;
+import com.salesforce.dev.pages.campaigns.CampaignSteps;
 
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_ACTIVE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_ANNUAL_REVENUE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_BILLING_STREET;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_CUSTOMER_PRIORITY;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_DESCRIPTION;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_EMPLOYEES;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_FAX;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_INDUSTRY;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_NAME;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_NUMBER;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_NUMBER_LOCATIONS;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_OWNER_SHIP;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_PHONE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_RATING;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_SHIPPING_STREET;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_SICCODE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_SITE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_SLA;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_SLASERIAL_NUMBER;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_SLA_EXPIRATION_DATE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_THICKER;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_TYPE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_UPSELL_OPPORTUNITY;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_WEBSITE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.ACTUAL_COST;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.BUDGETED_COST;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.CAMPAIGN_NAME;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.CAMPAIGN_STATUS;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.CAMPAIGN_TYPE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.END_DATE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.EXPECTED_RESPONSE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.EXPECTED_REVENUE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.NUM_SENT;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.PARENT_CAMPAIGN;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.START_DATE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_NAME;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_STATUS;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_TYPE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.END_DATE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.PARENT_CAMPAIGN;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.START_DATE;
 
 /**
  * Created by Veronica Prado on 8/27/2015.

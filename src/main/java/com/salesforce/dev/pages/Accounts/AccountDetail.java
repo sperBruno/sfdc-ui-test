@@ -1,8 +1,9 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
 import java.util.Map;
 import java.util.HashMap;
 
+import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebElement;

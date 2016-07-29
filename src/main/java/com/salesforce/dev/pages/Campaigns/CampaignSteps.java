@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Campaigns;
+package com.salesforce.dev.pages.campaigns;
 
 /**
  * Created by mijhailvillarroel on 7/29/2016.

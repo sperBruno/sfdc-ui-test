@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
 /**
  * Created by mijhailvillarroel on 7/28/2016.

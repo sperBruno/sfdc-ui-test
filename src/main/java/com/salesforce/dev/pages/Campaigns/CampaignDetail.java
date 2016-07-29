@@ -1,5 +1,4 @@
-package com.salesforce.dev.pages.Campaigns;
-
+package com.salesforce.dev.pages.campaigns;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +15,6 @@ import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_TYPE;
 import static com.salesforce.dev.pages.campaigns.CampaignSteps.END_DATE;
 import static com.salesforce.dev.pages.campaigns.CampaignSteps.PARENT_CAMPAIGN;
 import static com.salesforce.dev.pages.campaigns.CampaignSteps.START_DATE;
-
 import static com.salesforce.dev.framework.selenium.CommonOperation.getTextWebElement;
 
 

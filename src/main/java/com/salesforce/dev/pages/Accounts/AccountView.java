@@ -60,7 +60,7 @@ public class AccountView extends ViewBase {
 
     @Override
     public AccountView checkFilterByOwner(String filter) {
-        if (filter.compareToIgnoreCase("All Accounts") == 0)
+        if (filter.compareToIgnoreCase("All Accounts") == 0){
             checkFilterOwnerAll();
         }else{
             checkFilterOwnerMy();

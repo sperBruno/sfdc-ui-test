@@ -26,19 +26,19 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  */
 public class NavigationBar extends AbstractBasePage {
 
-    @FindBy(linkText = "Orders")
+    @FindBy(linkText = "orders")
     private WebElement ordersTab;
 
     @FindBy(id ="Campaign_Tab")
     WebElement campaignsTab;
 
-    @FindBy(linkText = "Leads")
+    @FindBy(linkText = "leads")
     private WebElement leadsTab;
 
-    @FindBy(linkText = "Accounts")
+    @FindBy(linkText = "accounts")
     private WebElement accountsTab;
 
-    @FindBy(linkText = "Contacts")
+    @FindBy(linkText = "contacts")
     private WebElement contactsTab;
 
     @FindBy(id = "Opportunity_Tab")
@@ -47,25 +47,25 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(linkText = "Products")
     private WebElement productsTab;
 
-    @FindBy(linkText = "Chatter")
+    @FindBy(linkText = "chatter")
     private WebElement chatterTab;
 
-    @FindBy(linkText = "Forecasts")
+    @FindBy(linkText = "forecasts")
     private WebElement forecastsTab;
 
-    @FindBy(linkText = "Contracts")
+    @FindBy(linkText = "contracts")
     private WebElement contractsTab;
 
-    @FindBy(linkText = "Cases")
+    @FindBy(linkText = "cases")
     private WebElement casesTab;
 
-    @FindBy(linkText = "Solutions")
+    @FindBy(linkText = "solutions")
     private WebElement solutionsTab;
 
-    @FindBy(linkText = "Reports")
+    @FindBy(linkText = "reports")
     private WebElement reportsTab;
 
-    @FindBy(linkText = "Dashboards")
+    @FindBy(linkText = "dashboards")
     private WebElement dashboardTab;
 
     @FindBy(id = "MoreTabs_Tab")

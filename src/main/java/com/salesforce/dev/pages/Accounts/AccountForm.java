@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
 
 import java.util.HashMap;
