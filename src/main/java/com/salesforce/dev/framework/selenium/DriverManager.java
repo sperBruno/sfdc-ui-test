@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by Jimmy Vargas on 6/4/2015.
  */
 public class DriverManager {
-    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/test/resources/log4j.properties";
+    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
 
     private static final Logger LOGGER = Logger.getLogger(DriverManager.class.getName());
     private WebDriver driver;

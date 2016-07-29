@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Contracts;
+package com.salesforce.dev.pages.contracts;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;

@@ -5,10 +5,10 @@ import java.util.Set;
 
 
 import com.salesforce.dev.pages.accounts.AccountForm;
-import com.salesforce.dev.pages.Campaigns.CampaignForm;
-import com.salesforce.dev.pages.Contacts.ContactForm;
-import com.salesforce.dev.pages.Leads.LeadForm;
-import com.salesforce.dev.pages.Opportunities.OpportunityForm;
+import com.salesforce.dev.pages.campaigns.CampaignForm;
+import com.salesforce.dev.pages.contacts.ContactForm;
+import com.salesforce.dev.pages.leads.LeadForm;
+import com.salesforce.dev.pages.opportunities.OpportunityForm;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -42,7 +42,7 @@ public class SearchLookupBase extends AbstractBasePage{
         try {
             driver.switchTo().window(windowsArray.getLast());
             driver.switchTo().frame(driver.findElement(By.name("searchFrame")));
-
+            searchTxt.clear();
             searchTxt.sendKeys(text);
 
             goBtn.click();

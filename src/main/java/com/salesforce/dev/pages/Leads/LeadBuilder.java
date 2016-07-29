@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Leads;
+package com.salesforce.dev.pages.leads;
 
 /**
  * Created by Jimmy Vargas on 6/15/2015.

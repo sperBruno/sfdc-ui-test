@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Contacts;
+package com.salesforce.dev.pages.contacts;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,6 +1,5 @@
-package com.salesforce.dev.pages.Leads;
+package com.salesforce.dev.pages.leads;
 
-import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,13 +7,15 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
+
 /**
  * Created by Jimmy Vargas on 6/5/2015.
  */
 public class LeadsHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Leads:')]")
     @CacheLookup
-    WebElement leadSection;
+    private WebElement leadSection;
 
     public LeadForm clickNewBtn() {
         super.clickNewButton();
@@ -53,7 +54,7 @@ public class LeadsHome extends HomeBase {
     }
 
     public boolean IsUserInLeadsTab() {
-        return CommonOperation.isWebElementVisible(leadSection);
+        return isWebElementVisible(leadSection);
     }
 
 }

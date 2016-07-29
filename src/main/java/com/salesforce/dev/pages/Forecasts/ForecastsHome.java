@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Forecasts;
+package com.salesforce.dev.pages.forecasts;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
