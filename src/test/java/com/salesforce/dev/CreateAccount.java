@@ -1,9 +1,12 @@
 package com.salesforce.dev;
 
+import java.util.Map;
+
 import com.salesforce.dev.framework.JSONMapper;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
+import com.salesforce.dev.pages.Accounts.AccountSteps;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
@@ -30,8 +33,6 @@ public class CreateAccount {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        HomePage homePage = new HomePage();
-        loginPage = homePage.clickLoginBtn();
         mainPage = loginPage.loginAsPrimaryUser();
     }
 
@@ -39,32 +40,12 @@ public class CreateAccount {
     public void testCreateAccount() {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
-        AccountForm accountForm = accountsHome.clickNewBtn()
+        AccountForm accountForm = accountsHome.clickNewBtn();
+        Map<AccountSteps, Object> mapAccount =account.convertToMap();
+        mapAccount.keySet().stream().forEach((step) -> {
+            accountForm.getStrategyStepMap(mapAccount).get(step).executeStep();
+        });
 
-            .setAccountNameFld(account.getAccountName())
-            .setAccountRatingFld(account.getRating())
-            .setAccountOwnershipFld(account.getOwnership())
-            .setAccountPhoneFld(account.getPhone())
-            .setAccountFaxFld(account.getFax())
-            .setAccountNumberFld(account.getNumber())
-            .setAccountWebsiteFld(account.getWebsite())
-            .setAccountSiteFld(account.getAccountSite())
-            .setAccountThickerFld(account.getTickerSymbol())
-            .setAccountTypeFld(account.getType())
-            .setAccountIndustryFld(account.getIndustry())
-            .setAccountEmployeesFld(account.getEmployees())
-            .setAccountAnnualRevenueFld(account.getAnnualRevenue())
-            .setAccountSICCodeFld(account.getSicCode())
-            .setAccountBillingStreetFld(account.getBillingAddress())
-            .setAccountShippingStreetFld(account.getShippingAddress())
-            .setAccountCustomerPriorityFld(account.getCustomerPriority())
-            .setAccountSLAFld(account.getSla())
-            //.setAccountUpsellOpportunityFld(account.getUpSellOpportunity()) //JsonMapper error not loading
-            .setAccountActiveFld(account.getActive())
-            .setAccountSLAExpirationDateFld(account.getSlaExpirationDate())
-            .setAccountSLASerialNumberFld(account.getSlaSerialNumber())
-            .setAccountNumberLocationsFld(account.getNumberOfLocations())
-            .setAccountDescriptionFld(account.getAccountDesc());
         accountDetail = accountForm.clickSaveBtn();
 
         Assert.assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));
