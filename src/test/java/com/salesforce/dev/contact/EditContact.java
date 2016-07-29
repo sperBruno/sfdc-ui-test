@@ -25,7 +25,6 @@ import org.testng.annotations.Test;
 public class EditContact {
     private static final Logger LOGGER = Logger.getLogger(EditContact.class.getName());
     private Contact contact = JSONMapper.getContactToUpdate();
-
     private ContactsHome contactsHome;
     private ContactDetail contactDetail;
     private ContactForm contactForm;
@@ -104,7 +103,7 @@ public class EditContact {
         contactForm.setDescription(contact.getDescription());
         contactDetail = contactForm.clickSaveBtn();
 
-        Assert.assertTrue(contactDetail.validateContactName(String.format ("%s %s %s", contact.getcontactRole(), contact.getFirstName(), contact.getLastNameastName())));
+        Assert.assertTrue(contactDetail.validateContactName(String.format("%s %s %s", contact.getcontactRole(), contact.getFirstName(), contact.getLastNameastName())));
     }
 
     @AfterMethod(groups = {"Acceptance"})

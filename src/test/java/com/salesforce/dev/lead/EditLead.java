@@ -18,13 +18,13 @@ import org.testng.annotations.Test;
  * Created by jimmy vargas on 6/21/2015.
  */
 public class EditLead {
-    private static final Logger LOGGER = Logger.getLogger (EditLead.class.getName ());
+    private static final Logger LOGGER = Logger.getLogger(EditLead.class.getName());
     private MainPage mainPage;
 
-    private Lead lead,leadEditEnum;
+    private Lead lead, leadEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
-    public void setup(){
+    public void setup() {
         lead = JSONMapper.getLead("json/CreateLeadBase.json");
         leadEditEnum = JSONMapper.getLead("json/EditLead.json");
 
@@ -34,28 +34,28 @@ public class EditLead {
     }
 
     @Test(groups = {"Acceptance"})
-    public void testEditLead(){
+    public void testEditLead() {
         mainPage = LoginPage.loginAsPrimaryUser();
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail= leadsHome.openLead(lead.lastName);
+        LeadDetail leadDetail = leadsHome.openLead(lead.lastName);
         LeadForm leadForm = leadDetail.clickEditBtn();
 
         //editing some fields
-            leadForm.setLastName(leadEditEnum.lastName);
-            leadForm.setPhone(leadEditEnum.phone);
-            leadForm.setWebsite(leadEditEnum.website);
-            leadForm.selectLeadStatusByVisibleText(leadEditEnum.leadStatus);
-            leadForm.setNumEmployees(leadEditEnum.numEmployees);
-            leadForm.selectProductInterestByVisibleText(leadEditEnum.productInterest);
-            leadForm.selectPrimaryByVisibleText(leadEditEnum.primary);
-            leadForm.setDescription(leadEditEnum.description);
+        leadForm.setLastName(leadEditEnum.lastName);
+        leadForm.setPhone(leadEditEnum.phone);
+        leadForm.setWebsite(leadEditEnum.website);
+        leadForm.selectLeadStatusByVisibleText(leadEditEnum.leadStatus);
+        leadForm.setNumEmployees(leadEditEnum.numEmployees);
+        leadForm.selectProductInterestByVisibleText(leadEditEnum.productInterest);
+        leadForm.selectPrimaryByVisibleText(leadEditEnum.primary);
+        leadForm.setDescription(leadEditEnum.description);
         leadDetail = leadForm.clickSaveBtn();
 
         //assertions
         Assert.assertTrue(leadDetail.getName().contains(leadEditEnum.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
         Assert.assertEquals(leadDetail.getCompany(), leadEditEnum.company, "The company is not equal");
         Assert.assertEquals(leadDetail.getPhone(), leadEditEnum.phone, "The phone is not equal");
-        Assert.assertEquals(leadDetail.getWebsite(), "http://"+leadEditEnum.website, "The website is not equal");
+        Assert.assertEquals(leadDetail.getWebsite(), "http://" + leadEditEnum.website, "The website is not equal");
         Assert.assertEquals(leadDetail.getLeadStatus(), leadEditEnum.leadStatus, "The lead is not equal");
         Assert.assertEquals(leadDetail.getNumEmployees(), leadEditEnum.numEmployees, "The number of employees is not equal");
         Assert.assertEquals(leadDetail.getProductInterest(), leadEditEnum.productInterest, "The product interest is not equal");
@@ -64,9 +64,9 @@ public class EditLead {
     }
 
     @AfterMethod(groups = {"Acceptance"})
-    public void tearDown(){
+    public void tearDown() {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail= leadsHome.openLead(leadEditEnum.lastName);
+        LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.lastName);
         leadDetail.deleteLead();
         LOGGER.info("Lead was deleted");
     }
