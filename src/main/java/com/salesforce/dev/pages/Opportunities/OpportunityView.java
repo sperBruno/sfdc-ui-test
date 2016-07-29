@@ -1,8 +1,8 @@
-package com.salesforce.dev.pages.Opportunities;
+package com.salesforce.dev.pages.opportunities;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.pages.Base.ViewBase;
+import com.salesforce.dev.pages.base.ViewBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -54,7 +54,7 @@ public class OpportunityView extends ViewBase {
 
     @Override
     public OpportunityView checkFilterByOwner(String filter) {
-        if (filter.compareToIgnoreCase("All Opportunities") == 0)
+        if (filter.compareToIgnoreCase("All opportunities") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

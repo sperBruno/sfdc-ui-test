@@ -1,7 +1,7 @@
-package com.salesforce.dev.pages.Contacts;
+package com.salesforce.dev.pages.contacts;
 
-import com.salesforce.dev.pages.Base.FormBase;
-import com.salesforce.dev.pages.Base.SearchLookupBase;
+import com.salesforce.dev.pages.base.FormBase;
+import com.salesforce.dev.pages.base.SearchLookupBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -180,7 +180,7 @@ public class ContactForm extends FormBase {
     }
 
     public ContactForm setLeadSource(String text) {
-//        selectItemComboBox(leadSourceSelect, text);
+        selectItemComboBox(leadSourceSelect, text);
         return this;
     }
 

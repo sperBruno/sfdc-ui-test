@@ -1,9 +1,9 @@
-package com.salesforce.dev.pages.Campaigns;
+package com.salesforce.dev.pages.campaigns;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.ViewBase;
+import com.salesforce.dev.framework.selenium.DriverManager;
+import com.salesforce.dev.pages.base.ViewBase;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -55,7 +55,7 @@ public class CampaignView extends ViewBase {
 
     @Override
     public CampaignView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All Campaigns") == 0)
+        if(filter.compareToIgnoreCase("All campaigns") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

@@ -1,0 +1,14 @@
+[
+     {"campaignName" :"Campaign Name Update",
+      "campaignType" :"Conference",
+       "campaignStatus":"In Progress",
+       "startDate":"7/28/2015",
+       "endDate":"7/28/2015",
+       "expectedRevenue":"2000",
+       "budgetedCost":"3000",
+       "actualCost":"2000",
+       "expectedResponse":"70",
+       "numSent":"10",
+       "parentCampaign":"CampaignParent"
+     }
+]
