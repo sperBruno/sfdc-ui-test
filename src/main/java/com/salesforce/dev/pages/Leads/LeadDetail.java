@@ -103,7 +103,7 @@ public class LeadDetail extends DetailsBase {
     @CacheLookup
     private WebElement currentGenerators;
 
-    @FindBy(xpath = "//td[contains(.,'Primary')]/following::div")
+    @FindBy(id = "00N50000006d6vQ_ileinner")
     @CacheLookup
     private WebElement primary;
 

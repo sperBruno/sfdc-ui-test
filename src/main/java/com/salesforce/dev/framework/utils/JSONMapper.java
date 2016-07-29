@@ -27,11 +27,12 @@ public class JSONMapper {
         return opportunity;
     }
 
-    public static Lead getLead(String jsonFile){
+    public static Lead getLead(String fileJson){
         Lead lead = new Lead();
+        final String pathFileJson = "src/test/resources/" + fileJson;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            lead = mapper.readValue(new File(jsonFile), Lead.class);
+            lead = mapper.readValue(new File(pathFileJson), Lead.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +63,7 @@ public class JSONMapper {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File("src/test/resources/EditContact.json"), Contact.class);
+            contact = mapper.readValue(new File("src/test/resources/json/EditContact.json"), Contact.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
