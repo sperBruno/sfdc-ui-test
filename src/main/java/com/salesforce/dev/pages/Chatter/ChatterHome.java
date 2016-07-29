@@ -15,16 +15,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class ChatterHome extends AbstractBasePage {
 
-    @FindBy(className = "publisherattachtext ")
+    @FindBy(id = "publisherAttachTextPost")
     WebElement postLink;
 
-    //@FindBy(id = "publishereditablearea")
     @FindBy(css = ".chatterPublisherRTE.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders.placeholder")
     WebElement postDescField;
 
     @FindBy(id = "publishersharebutton")
     WebElement shareBtn;
-
 
     @FindBy(xpath = "//textarea[@title='Write a comment...']")
     WebElement commentField;
@@ -35,7 +33,7 @@ public class ChatterHome extends AbstractBasePage {
     @FindBy(xpath = "//a[@title='More Actions']")
     WebElement postMenu;
 
-    @FindBy(xpath = "//a[@title='Delete this chatter']")
+    @FindBy(xpath = "//a[@title='Delete this post']")
     WebElement deletePostOption;
 
     @FindBy(xpath = "//a[@title='Edit this chatter']")
@@ -52,6 +50,12 @@ public class ChatterHome extends AbstractBasePage {
 
     @FindBy(css = ".cke_wysiwyg_frame.cke_reset")
     private WebElement richTextEditorFrame;
+
+    public ChatterHome clickPost() {
+        wait.until(ExpectedConditions.visibilityOf(postLink));
+        postLink.click();
+        return this;
+    }
 
     public ChatterHome setPost(String PostDesc) {
         driver.switchTo().frame(richTextEditorFrame);

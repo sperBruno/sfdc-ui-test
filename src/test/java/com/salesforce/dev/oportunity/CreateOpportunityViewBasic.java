@@ -2,6 +2,7 @@ package com.salesforce.dev.oportunity;
 
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
@@ -35,8 +36,7 @@ public class CreateOpportunityViewBasic {
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 

@@ -26,13 +26,13 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  */
 public class NavigationBar extends AbstractBasePage {
 
-    @FindBy(linkText = "orders")
+    @FindBy(linkText = "Orders")
     private WebElement ordersTab;
 
-    @FindBy(linkText = "campaigns")
+    @FindBy(linkText = "Campaigns")
     private WebElement campaignsTab;
 
-    @FindBy(linkText = "leads")
+    @FindBy(linkText = "Leads")
     private WebElement leadsTab;
 
     @FindBy(id = "Account_Tab")
@@ -41,13 +41,14 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(linkText = "contacts")
     private WebElement contactsTab;
 
-    @FindBy(linkText = "opportunities")
+    @FindBy(id = "Opportunity_Tab")
     private WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
+    //Product2_Tab
     private WebElement productsTab;
 
-    @FindBy(linkText = "chatter")
+    @FindBy(id = "Chatter_Tab")
     private WebElement chatterTab;
 
     @FindBy(linkText = "forecasts")
@@ -104,7 +105,7 @@ public class NavigationBar extends AbstractBasePage {
     }
 
     public ProductsHome goToProductsHome() {
-        clickWebElement(productsTab);
+        clickElementOfHomeTab(productsTab);
         return new ProductsHome();
     }
 
@@ -162,5 +163,14 @@ public class NavigationBar extends AbstractBasePage {
             clickWebElement(dashboardTab);
         }
         return new DashboardsHome();
+    }
+
+    private void clickElementOfHomeTab(WebElement webElement) {
+        if ((isElementPresent(webElement) == false) && (isElementPresent(moreTabsComboBox) == true)) {
+            clickWebElement(moreTabsComboBox);
+            clickWebElement(webElement);
+        } else {
+            clickWebElement(webElement);
+        }
     }
 }

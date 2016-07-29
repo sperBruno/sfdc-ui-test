@@ -35,13 +35,12 @@ public class CampaignGenie {
 
     public static Campaign getCampaign() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<Campaign[]> iteratorCampaignData = dataDrivenManager.getCampaign("CreateCampaign.json");
+        Iterator<Campaign[]> iteratorCampaignData = dataDrivenManager.getCampaign("json/CreateCampaign.json");
         List<Campaign[]> listData = new ArrayList<Campaign[]>();
         while (iteratorCampaignData.hasNext()) {
             listData.add(iteratorCampaignData.next());
         }
         Campaign campaign = listData.get(0)[0];
-        System.out.println(campaign);
         return campaign;
     }
 

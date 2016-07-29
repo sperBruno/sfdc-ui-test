@@ -42,7 +42,7 @@ public class JSONMapper {
         Account account = new Account();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            account = mapper.readValue(new File("src/test/resources/CreateAccountBase.json"), Account.class);
+            account = mapper.readValue(new File("src/test/resources/json/CreateAccountBase.json"), Account.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
