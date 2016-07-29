@@ -93,7 +93,7 @@ public class DataDrivenManager {
         Collection<Campaign[]> campaignsArray = new ArrayList<Campaign[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src/test/resources/" + fileJson));
+            Object jsonObject = parser.parse(new FileReader("src/test/resources/json/" + fileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
             ObjectMapper objectMapper = new ObjectMapper();

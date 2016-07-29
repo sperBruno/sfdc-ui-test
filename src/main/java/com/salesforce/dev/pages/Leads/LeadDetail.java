@@ -67,7 +67,7 @@ public class LeadDetail extends DetailsBase {
     private WebElement address;
 
     /*additional information*/
-    @FindBy(xpath = "//td[contains(.,'product Interest')]/following::div")
+    @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::div")
     @CacheLookup
     private WebElement productInterest;
 
