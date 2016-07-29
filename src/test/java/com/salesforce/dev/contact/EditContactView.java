@@ -2,15 +2,14 @@ package com.salesforce.dev.contact;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
-import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.contacts.ContactView;
 import com.salesforce.dev.pages.contacts.ContactViewDetail;
 import com.salesforce.dev.pages.contacts.ContactsHome;
-import com.salesforce.dev.pages.HomePage;
-import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.objects.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
@@ -31,7 +30,7 @@ public class EditContactView {
     private NavigationBar navigationBar;
     private ContactView contactView;
     private String nameView;
-    private static final String NAME_TEST = "anyname";
+    private static final String NAME_TEST = "anyName";
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {

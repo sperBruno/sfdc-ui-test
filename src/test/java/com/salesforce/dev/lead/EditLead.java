@@ -1,12 +1,13 @@
 package com.salesforce.dev.lead;
 
-import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.framework.dto.Lead;
-import com.salesforce.dev.pages.ObjectGenie;
-import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.leads.*;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.ObjectGenie;
+import com.salesforce.dev.pages.leads.LeadDetail;
+import com.salesforce.dev.pages.leads.LeadForm;
+import com.salesforce.dev.pages.leads.LeadsHome;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -18,8 +19,7 @@ import org.testng.annotations.Test;
  */
 public class EditLead {
     private static final Logger LOGGER = Logger.getLogger (EditLead.class.getName ());
-    private Campaign campaign;
-    private NavigationBar navBar;
+    private MainPage mainPage;
 
     private Lead lead,leadEditEnum;
 
@@ -68,6 +68,6 @@ public class EditLead {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail= leadsHome.openLead(leadEditEnum.lastName);
         leadDetail.deleteLead();
-
+        LOGGER.info("Lead was deleted");
     }
 }

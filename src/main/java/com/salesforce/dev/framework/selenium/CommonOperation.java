@@ -31,7 +31,6 @@ public class CommonOperation {
 
     public static void setWebElement(WebElement webElement, String text) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
-        webElement.clear();
         webElement.sendKeys(text);
     }
 

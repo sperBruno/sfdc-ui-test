@@ -1,7 +1,9 @@
 package com.salesforce.dev.contact;
 
-import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.framework.dto.Contact;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountsHome;
@@ -10,8 +12,6 @@ import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.contacts.ContactDetail;
 import com.salesforce.dev.pages.contacts.ContactForm;
 import com.salesforce.dev.pages.contacts.ContactsHome;
-import com.salesforce.dev.pages.HomePage;
-import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 
 public class EditContact {
     private static final Logger LOGGER = Logger.getLogger(EditContact.class.getName());
-    Contact contact = JSONMapper.getContactToUpdate();
+    private Contact contact = JSONMapper.getContactToUpdate();
 
     private ContactsHome contactsHome;
     private ContactDetail contactDetail;
