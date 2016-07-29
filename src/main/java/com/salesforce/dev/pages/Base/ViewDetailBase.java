@@ -1,5 +1,7 @@
 package com.salesforce.dev.pages.base;
 
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.getFirstSelectOption;
 import static com.salesforce.dev.framework.selenium.CommonOperation.moveHorizontalWebElementScroll;
 
 /**
@@ -45,10 +48,8 @@ public abstract class ViewDetailBase extends AbstractBasePage {
     protected void clickDeleteLink(boolean confirmDeletion) {
         clickWebElement(deleteLnk);
         Alert alert;
-
         try {
             alert = driver.switchTo().alert();
-
             if (confirmDeletion) {
                 alert.accept();
             }
@@ -68,15 +69,11 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
     public String getViewSelected() {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
-        Select select = new Select(viewSelected);
-        return select.getFirstSelectedOption().getText();
+        return getFirstSelectOption(viewSelected);
     }
 
     public boolean validateNameView(String nameView) {
-        wait.until(ExpectedConditions.visibilityOf(viewSelected));
-        Select select = new Select(viewSelected);
-        String nameV = select.getFirstSelectedOption().getText();
-        return nameV.equals(nameView);
+        return getFirstSelectOption(viewSelected).equals(nameView);
     }
 
     public boolean validateFieldDisplayed(String field) {
@@ -85,7 +82,6 @@ public abstract class ViewDetailBase extends AbstractBasePage {
         WebElement webElement = driver.findElement(By.id("ext-gen10"));
         moveHorizontalWebElementScroll(driver, webElement, horizontalScrollPosition);
         wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
-
         return driver.findElement(fieldDisplayed).isDisplayed();
     }
 }
