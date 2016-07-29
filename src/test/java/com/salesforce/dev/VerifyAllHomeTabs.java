@@ -60,7 +60,7 @@ public class VerifyAllHomeTabs {
         OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
         assertTrue(opportunitiesHome.IsUserInOpportunitiesTab());
 
-        ForecastsHome forecastsHome = navigationBar.goToForescastsHome();
+        ForecastsHome forecastsHome = navigationBar.goToForesCastsHome();
         assertTrue(forecastsHome.IsUserInForecastsTab());
 
         ContractsHome contractsHome = navigationBar.goToContractsHome();

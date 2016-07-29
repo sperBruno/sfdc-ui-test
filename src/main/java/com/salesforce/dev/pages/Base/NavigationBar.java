@@ -1,6 +1,5 @@
 package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Cases.CasesHome;
 import com.salesforce.dev.pages.Chatter.ChatterHome;
@@ -14,7 +13,7 @@ import com.salesforce.dev.pages.Orders.OrdersHome;
 import com.salesforce.dev.pages.Product.ProductsHome;
 import com.salesforce.dev.pages.Reports.ReportsHome;
 import com.salesforce.dev.pages.Solutions.SolutionsHome;
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.pages.accounts.AccountsHome;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -35,7 +34,7 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(linkText = "Leads")
     private WebElement leadsTab;
 
-    @FindBy(linkText = "accounts")
+    @FindBy(linkText = "Accounts")
     private WebElement accountsTab;
 
     @FindBy(linkText = "Contacts")
@@ -72,7 +71,7 @@ public class NavigationBar extends AbstractBasePage {
     private WebElement moreTabsComboBox;
 
     public CampaignsHome goToCampaignsHome() {
-        clickWebElement(campaignsTab);
+        clickElementOfHomeTab(campaignsTab);
         return new CampaignsHome();
     }
 
@@ -82,12 +81,12 @@ public class NavigationBar extends AbstractBasePage {
     }
 
     public AccountsHome goToAccountsHome() {
-        clickWebElement(accountsTab);
+        clickElementOfHomeTab(accountsTab);
         return new AccountsHome();
     }
 
     public ContactsHome goToContactsHome() {
-        clickWebElement(contactsTab);
+        clickElementOfHomeTab(contactsTab);
         return new ContactsHome();
     }
 
@@ -99,68 +98,62 @@ public class NavigationBar extends AbstractBasePage {
      * @since: 6/10/2015
      */
     public OpportunitiesHome goToOpportunitiesHome() {
-        clickWebElement(opportunitiesTab);
+        clickElementOfHomeTab(opportunitiesTab);
         return new OpportunitiesHome();
     }
 
     public ProductsHome goToProductsHome() {
-        clickWebElement(productsTab);
+        clickElementOfHomeTab(productsTab);
         return new ProductsHome();
     }
 
-    public boolean IsElementPresent(WebElement webElement) {
-        try {
-            webElement.getTagName();
-            return true;
-        } catch (WebDriverException e) {
-            return false;
-        }
-    }
-
-
     public ChatterHome goToChatterHome() {
-        clickWebElement(chatterTab);
+        clickElementOfHomeTab(chatterTab);
         return new ChatterHome();
     }
 
 
-    public ForecastsHome goToForescastsHome() {
-        clickWebElement(forecastsTab);
+    public ForecastsHome goToForesCastsHome() {
+        clickElementOfHomeTab(forecastsTab);
         return new ForecastsHome();
     }
 
     public ContractsHome goToContractsHome() {
-        clickWebElement(contractsTab);
+        clickElementOfHomeTab(contractsTab);
         return new ContractsHome();
     }
 
     public OrdersHome goToOrdersHome() {
-        clickWebElement(ordersTab);
+        clickElementOfHomeTab(ordersTab);
         return new OrdersHome();
     }
 
     public CasesHome goToCasesHome() {
-        clickWebElement(casesTab);
+        clickElementOfHomeTab(casesTab);
         return new CasesHome();
     }
 
     public SolutionsHome goToSolutionsHome() {
-        clickWebElement(solutionsTab);
+        clickElementOfHomeTab(solutionsTab);
         return new SolutionsHome();
     }
 
     public ReportsHome goToReportsHome() {
-        clickWebElement(reportsTab);
+        clickElementOfHomeTab(reportsTab);
         return new ReportsHome();
     }
 
     public DashboardsHome goToDashboardsHome() {
-        if((isElementPresent(dashboardTab) == false) && (isElementPresent(moreTabsComboBox)== true)) {
-            clickWebElement(moreTabsComboBox);
-            clickWebElement(dashboardTab);
-        }else{
-            clickWebElement(dashboardTab);
-        }
+        clickElementOfHomeTab(dashboardTab);
         return new DashboardsHome();
+    }
+
+    private void clickElementOfHomeTab(WebElement webElement) {
+        if ((isElementPresent(webElement) == false) && (isElementPresent(moreTabsComboBox) == true)) {
+            clickWebElement(moreTabsComboBox);
+            clickWebElement(webElement);
+        } else {
+            clickWebElement(webElement);
+        }
     }
 }

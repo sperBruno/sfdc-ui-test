@@ -37,6 +37,7 @@ public class EditPostChatter {
         chatterHome.setPost(createChatter.getPost());
         chatterHome.clickShareBtn();
     }
+
     @DataProvider(name = "dataDriven")
     public Iterator<Chatter[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();

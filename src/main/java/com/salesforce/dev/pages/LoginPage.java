@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages;
 
-import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.Objects.UserInformation;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +14,7 @@ import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
  * Created by Monica Pardo on 6/4/2015.
  */
 public class LoginPage extends AbstractBasePage {
+
 
 
     @FindBy(id = "username")

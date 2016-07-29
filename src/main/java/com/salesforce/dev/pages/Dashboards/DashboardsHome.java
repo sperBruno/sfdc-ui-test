@@ -9,14 +9,14 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElement
 /**
  * Created by Monica Pardo on 6/24/2015.
  */
-public class DashboardsHome extends AbstractBasePage {
+public class DashboardsHome extends AbstractBasePage{
 
-    @FindBy(id = "Dashboard_Tab")
+    @FindBy(id = "ext-gen3")
     WebElement dashboardSection;
 
 
-    public boolean IsUserInDashboardsTab() {
-        return isWebElementVisible(dashboardSection);
+    public boolean IsUserInDashboardsTab(){
+       return isWebElementVisible(dashboardSection);
     }
 
 }
