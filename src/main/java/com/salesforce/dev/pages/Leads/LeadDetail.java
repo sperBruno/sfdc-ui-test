@@ -1,46 +1,66 @@
 package com.salesforce.dev.pages.leads;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.pages.base.DetailsBase;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 /**
  * Created by Jimmy Vargas on 6/15/2015.
  */
 public class LeadDetail extends DetailsBase {
 
+    private static final Logger LOGGER = Logger.getLogger(LeadDetail.class.getName());
+
     @FindBy(id = "lea8_ileinner")
     @CacheLookup
     WebElement phone;
+
     @FindBy(id = "lea10_ileinner")
     @CacheLookup
     WebElement fax;
+
     /*Lead Information*/
     @FindBy(id = "lea1_ileinner")
     @CacheLookup
     private WebElement owner;
+
     @FindBy(id = "lea2_ileinner")
     @CacheLookup
     private WebElement name;
+
     @FindBy(id = "lea3_ileinner")
     @CacheLookup
     private WebElement company;
+
     @FindBy(id = "lea4_ileinner")
     @CacheLookup
     private WebElement title;
+
     @FindBy(id = "lea5_ileinner")
     @CacheLookup
     private WebElement leadSource;
+
     @FindBy(id = "lea6_ileinner")
     @CacheLookup
     private WebElement industry;
+
     @FindBy(id = "lea7_ileinner")
     @CacheLookup
     private WebElement annualRevenue;
+
     @FindBy(id = "lea9_ileinner")
     @CacheLookup
     private WebElement mobile;
+
     @FindBy(id = "lea11_ileinner")
     @CacheLookup
     private WebElement email;
@@ -67,7 +87,7 @@ public class LeadDetail extends DetailsBase {
     private WebElement address;
 
     /*additional information*/
-    @FindBy(id = "00N50000006d6vR_ileinner")
+    @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::div")
     @CacheLookup
     private WebElement productInterest;
 
@@ -224,5 +244,46 @@ public class LeadDetail extends DetailsBase {
     protected LeadsHome clickDeleteBtn(boolean confirmDeletion) {
         super.clickDeleteButton(true);
         return new LeadsHome();
+    }
+
+    public void validateFields(Lead lead) {
+        try {
+            Field[] classFields = lead.getClass().getDeclaredFields();
+            for (Field field : classFields) {
+                String fieldName = field.getName();
+                Object actualFieldValue = getAssertCreateLeadMap().get(LeadSteps.valueOf(fieldName.toUpperCase()));
+                if (actualFieldValue != null) {
+                    String expectedFieldValue = (String) field.get(lead);
+                    Assert.assertEquals(actualFieldValue.toString(), expectedFieldValue, String.format("The field %s is not correct", fieldName));
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e.getMessage()));
+        } catch (IllegalAccessException e) {
+            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e.getMessage()));
+        }
+    }
+
+    public Map<LeadSteps, Object> getAssertCreateLeadMap() {
+        Map<LeadSteps, Object> assertionLeadMap = new HashMap<>();
+        assertionLeadMap.put(LeadSteps.LASTNAME, getName());
+        assertionLeadMap.put(LeadSteps.COMPANY, getCompany());
+        assertionLeadMap.put(LeadSteps.TITLE, getTitle());
+        assertionLeadMap.put(LeadSteps.LEADSOURCE, getLeadSource());
+        assertionLeadMap.put(LeadSteps.INDUSTRY, getIndustry());
+        assertionLeadMap.put(LeadSteps.PHONE, getPhone());
+        assertionLeadMap.put(LeadSteps.MOBILE, getMobile());
+        assertionLeadMap.put(LeadSteps.FAX, getFax());
+        assertionLeadMap.put(LeadSteps.EMAIL, getEmail());
+        assertionLeadMap.put(LeadSteps.LEADSTATUS, getLeadStatus());
+        assertionLeadMap.put(LeadSteps.RATING, getRating());
+        assertionLeadMap.put(LeadSteps.NUMEMPLOYEES, getNumEmployees());
+        assertionLeadMap.put(LeadSteps.PRODUCTINTEREST, getProductInterest());
+        assertionLeadMap.put(LeadSteps.SICCODE, getSICcode());
+        assertionLeadMap.put(LeadSteps.NUMBERLOCATIONS, getNumLocations());
+        assertionLeadMap.put(LeadSteps.DESCRIPTION, getDescription());
+        assertionLeadMap.put(LeadSteps.CURRENTGENERATORS, getCurrentGenerators());
+        assertionLeadMap.put(LeadSteps.PRIMARY, getPrimary());
+        return assertionLeadMap;
     }
 }
