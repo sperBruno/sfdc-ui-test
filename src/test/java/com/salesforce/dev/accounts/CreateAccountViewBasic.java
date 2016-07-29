@@ -33,7 +33,7 @@ public class CreateAccountViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateAccountsViewBasic.json");
+        return dataDrivenManager.getDataView("CreateAccountsViewBasic.json");
     }
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {

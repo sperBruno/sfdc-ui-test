@@ -45,7 +45,7 @@ public class CreateLead {
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-        lead = JSONMapper.getLead("src\\test\\resources\\json\\CreateLead.json");
+        lead = JSONMapper.getLead("CreateLead.json");
         Campaign campaign = CampaignGenie.getCampaign();
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
     }
