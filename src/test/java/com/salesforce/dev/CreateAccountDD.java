@@ -7,6 +7,7 @@ package com.salesforce.dev;
 import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.pages.Accounts.AccountDetail;
 import com.salesforce.dev.pages.Accounts.AccountForm;
+import com.salesforce.dev.pages.Accounts.AccountSteps;
 import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
@@ -18,6 +19,8 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.*;
+
+import static org.testng.Assert.assertEquals;
 
 
 /**
@@ -52,8 +55,11 @@ public class CreateAccountDD {
 
         accountDetail = accountForm.clickSaveBtn();
 
-        Assert.assertTrue(accountDetail.validateAccountNameFld(account.getAccountName()));
-        Assert.assertTrue(accountDetail.validateAccountDescriptionFld(account.getAccountDesc()));
+        Map<AccountSteps, Object> mapAccount =account.convertToMap();
+        Map<AccountSteps, Object> mapExpected = accountDetail.getAssertionMap();
+        mapAccount.keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
+        });
 
     }
 

@@ -74,7 +74,7 @@ public abstract class FormBase extends AbstractBasePage {
 
     protected void selectItemComboBox(WebElement webElement, String value) {
         if (value.equals(null)) {
-            throw new IllegalArgumentException("The value cannot be null.");
+            throw new IllegalArgumentException("The value cannot be null");
         }
         try {
             wait.until(ExpectedConditions.visibilityOf(webElement));

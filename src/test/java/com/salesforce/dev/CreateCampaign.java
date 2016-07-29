@@ -55,18 +55,18 @@ public class CreateCampaign {
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaign(Campaign campaign) {
         campaignsHome = navigationBar.goToCampaignsHome();
-        campaignForm = campaignsHome.clickNewBtn();
-        campaignForm.setCampaignName(campaign.getCampaignName());
-        campaignForm.checkActiveCheckbox();
-        campaignForm.setTypeSelect(campaign.getCampaignType());
-        campaignForm.setStatusSelect(campaign.getCampaignStatus());
-        campaignForm.setEndDate(campaign.getEndDate());
-        campaignForm.setStartDate(campaign.getStartDate());
-        campaignForm.setExpectedRevenue(campaign.getExpectedRevenue());
-        campaignForm.setBudgetedCost(campaign.getBudgetedCost());
-        campaignForm.setActualCost(campaign.getActualCost());
-        campaignForm.setExpectedResponse(campaign.getExpectedResponse());
-        campaignForm.setNumSent(campaign.getNumSent());
+        campaignForm = campaignsHome.clickNewBtn()
+                .setEndDate(campaign.getEndDate())
+                .setStartDate(campaign.getStartDate())
+                .setCampaignName(campaign.getCampaignName())
+                .checkActiveCheckbox()
+                .setTypeSelect(campaign.getCampaignType())
+                .setStatusSelect(campaign.getCampaignStatus())
+                .setExpectedRevenue(campaign.getExpectedRevenue())
+                .setBudgetedCost(campaign.getBudgetedCost())
+                .setActualCost(campaign.getActualCost())
+                .setExpectedResponse(campaign.getExpectedResponse())
+                .setNumSent(campaign.getNumSent());
         searchLookup = campaignForm.clickLookupParentCampaign();
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();

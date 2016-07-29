@@ -3,19 +3,12 @@ package com.salesforce.dev.pages.Accounts;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.salesforce.dev.framework.Objects.Account;
 import com.salesforce.dev.framework.utils.IAutomationStep;
 import com.salesforce.dev.pages.Base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.salesforce.dev.pages.Accounts.AccountSteps.*;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_ANNUAL_REVENUE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_INDUSTRY;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_NUMBER;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_SITE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_TYPE;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.PARENT_ACCOUNT;
 
 
 /**
@@ -303,8 +296,8 @@ public class AccountForm extends FormBase{
         return this;
     }
 
-    public AccountForm setAccountUpsellOpportunityFld(String accountUpsellOpportunity) {
-        selectItemComboBox(accountUpsellOpportunityFld, accountUpsellOpportunity);
+    public AccountForm setAccountUpsellOpportunityFld(String accountUpSellOpportunity) {
+        selectItemComboBox(accountUpsellOpportunityFld, accountUpSellOpportunity);
         return this;
     }
 

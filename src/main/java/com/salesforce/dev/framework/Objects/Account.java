@@ -278,8 +278,25 @@ public class Account {
         mapAccount.put(ACCOUNT_ACTIVE, active );
         mapAccount.put( ACCOUNT_SLA, sla);
         mapAccount.put(ACCOUNT_SLASERIAL_NUMBER, slaSerialNumber );
-       // mapAccount.put(ACCOUNT_UPSELL_OPPORTUNITY, upSellOpportunity );
+        mapAccount.put(ACCOUNT_UPSELL_OPPORTUNITY, upSellOpportunity );
         mapAccount.put(ACCOUNT_DESCRIPTION, accountDesc );
-        return mapAccount;
+        Map<AccountSteps, Object> mapAccount2 = new HashMap<>();
+        mapAccount.entrySet().stream().forEach((step) -> {
+            if (!(step.getValue() == null)) {
+                mapAccount2.put(step.getKey(),step.getValue());
+            }
+
+        });
+
+        return mapAccount2;
+    }
+
+    public static void main(String[] args) {
+        Account account = new Account();
+        account.setAccountDesc("asdasd");
+        account.setAccountName("asdasdasd");
+        account.convertToMap().entrySet().stream().forEach((step) -> {
+            System.out.println("Key: "+step.getKey()+" "+"value:"+ step.getValue());
+        });
     }
 }
