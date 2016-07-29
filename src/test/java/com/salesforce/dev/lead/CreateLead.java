@@ -1,17 +1,18 @@
-package com.salesforce.dev;
+package com.salesforce.dev.lead;
 
 import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.framework.utils.JSONMapper;
-import com.salesforce.dev.pages.Campaigns.CampaignDetail;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
+import com.salesforce.dev.pages.campaigns.CampaignDetail;
+import com.salesforce.dev.pages.campaigns.CampaignsHome;
 import com.salesforce.dev.pages.HomePage;
-import com.salesforce.dev.pages.Leads.LeadBuilder;
-import com.salesforce.dev.pages.Leads.LeadDetail;
-import com.salesforce.dev.pages.Leads.LeadForm;
-import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.leads.LeadBuilder;
+import com.salesforce.dev.pages.leads.LeadDetail;
+import com.salesforce.dev.pages.leads.LeadForm;
+import com.salesforce.dev.pages.leads.LeadsHome;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Objects.CampaignGenie;
+import com.salesforce.dev.pages.objects.CampaignGenie;
 import com.salesforce.dev.pages.base.NavigationBar;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -41,11 +42,10 @@ public class CreateLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        lead = JSONMapper.getLead("src\\test\\resources\\CreateLead.json");
+        lead = JSONMapper.getLead("src\\test\\resources\\json\\CreateLead.json");
 
         ///create campaign
         Campaign campaign = CampaignGenie.getCampaign();

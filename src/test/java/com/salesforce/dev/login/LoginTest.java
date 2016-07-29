@@ -1,8 +1,8 @@
-package com.salesforce.dev;
+package com.salesforce.dev.login;
 
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Objects.UserInformation;
+import com.salesforce.dev.pages.objects.UserInformation;
 import com.salesforce.dev.pages.TopHeader;
 import org.apache.log4j.Logger;
 import org.testng.annotations.Test;

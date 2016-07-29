@@ -1,16 +1,17 @@
-package com.salesforce.dev;
+package com.salesforce.dev.contact;
 
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.FieldToDisplayView;
 import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.Campaigns.CampaignForm;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Contacts.ContactView;
-import com.salesforce.dev.pages.Contacts.ContactViewDetail;
-import com.salesforce.dev.pages.Contacts.ContactsHome;
+import com.salesforce.dev.pages.campaigns.CampaignForm;
+import com.salesforce.dev.pages.campaigns.CampaignsHome;
+import com.salesforce.dev.pages.contacts.ContactView;
+import com.salesforce.dev.pages.contacts.ContactViewDetail;
+import com.salesforce.dev.pages.contacts.ContactsHome;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 
@@ -59,8 +60,7 @@ public class CreateContactView {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         campaignName = "Camp" + RandomGenerator.getInstance().getRandomString();
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignForm = campaignsHome.clickNewBtn();

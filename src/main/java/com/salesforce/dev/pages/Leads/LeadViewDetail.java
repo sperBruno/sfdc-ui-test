@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Leads;
+package com.salesforce.dev.pages.leads;
 
 import java.util.concurrent.TimeUnit;
 

@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Orders;
+package com.salesforce.dev.pages.orders;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class OrdersHome extends AbstractBasePage {
 
-    @FindBy(xpath = "//h1[contains(.,'Orders:')]")
+    @FindBy(xpath = "//h1[contains(.,'orders:')]")
     WebElement ordersSection;
 
     public boolean IsUserInOrdersTab() {

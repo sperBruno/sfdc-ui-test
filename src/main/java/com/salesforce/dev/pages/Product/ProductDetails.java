@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Product;
+package com.salesforce.dev.pages.product;
 
 import com.salesforce.dev.pages.base.DetailsBase;
 import org.openqa.selenium.WebElement;

@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Leads;
+package com.salesforce.dev.pages.leads;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.HomeBase;
@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Created by Jimmy Vargas on 6/5/2015.
  */
 public class LeadsHome extends HomeBase {
-    @FindBy(xpath = "//h1[contains(.,'Leads:')]")
+    @FindBy(xpath = "//h1[contains(.,'leads:')]")
     @CacheLookup
     WebElement leadSection;
 

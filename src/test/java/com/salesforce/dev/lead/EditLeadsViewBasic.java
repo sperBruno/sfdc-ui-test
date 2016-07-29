@@ -1,4 +1,4 @@
-package com.salesforce.dev;
+package com.salesforce.dev.lead;
 
 import java.util.Iterator;
 
@@ -6,11 +6,11 @@ import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.Leads.LeadView;
-import com.salesforce.dev.pages.Leads.LeadViewDetail;
-import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.leads.LeadView;
+import com.salesforce.dev.pages.leads.LeadViewDetail;
+import com.salesforce.dev.pages.leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Objects.LeadGenie;
+import com.salesforce.dev.pages.objects.LeadGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -60,12 +60,12 @@ public class EditLeadsViewBasic {
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
         Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
-        LOGGER.info("Leads View has been updated");
+        LOGGER.info("leads View has been updated");
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         leadViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Leads View was deleted");
+        LOGGER.info("leads View was deleted");
     }
 }

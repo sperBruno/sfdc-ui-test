@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Opportunities;
+package com.salesforce.dev.pages.opportunities;
 
 import com.salesforce.dev.pages.base.DetailsBase;
 import org.openqa.selenium.WebElement;
@@ -106,7 +106,7 @@ public class OpportunityDetail extends DetailsBase {
     }
 
     /**
-     * Deletes the Opportunity returning to the Opportunities Home
+     * Deletes the Opportunity returning to the opportunities Home
      *
      * @author: Jimmy Vargas
      * @since: 06/13/2015

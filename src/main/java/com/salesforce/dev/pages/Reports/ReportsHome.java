@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Reports;
+package com.salesforce.dev.pages.reports;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;

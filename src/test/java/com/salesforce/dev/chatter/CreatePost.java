@@ -1,7 +1,7 @@
-package com.salesforce.dev;
+package com.salesforce.dev.chatter;
 
 import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.Chatter.ChatterHome;
+import com.salesforce.dev.pages.chatter.ChatterHome;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;

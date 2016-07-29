@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Chatter;
+package com.salesforce.dev.pages.chatter;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
@@ -35,10 +35,10 @@ public class ChatterHome extends AbstractBasePage {
     @FindBy(xpath = "//a[@title='More Actions']")
     WebElement postMenu;
 
-    @FindBy(xpath = "//a[@title='Delete this post']")
+    @FindBy(xpath = "//a[@title='Delete this chatter']")
     WebElement deletePostOption;
 
-    @FindBy(xpath = "//a[@title='Edit this post']")
+    @FindBy(xpath = "//a[@title='Edit this chatter']")
     WebElement editPostOption;
 
     @FindBy(className = "publisherattachtext ")

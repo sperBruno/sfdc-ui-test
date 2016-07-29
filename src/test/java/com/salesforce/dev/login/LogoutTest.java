@@ -1,4 +1,4 @@
-package com.salesforce.dev;
+package com.salesforce.dev.login;
 
 /**
  * Created by Luffy on 22/06/2015.

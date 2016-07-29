@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Product;
+package com.salesforce.dev.pages.product;
 
 /**
  * Created by Monica on 6/11/2015.

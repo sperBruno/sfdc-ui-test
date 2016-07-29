@@ -1,11 +1,11 @@
-package com.salesforce.dev;
+package com.salesforce.dev.lead;
 
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.pages.ObjectGenie;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.Leads.*;
+import com.salesforce.dev.pages.leads.*;
 import com.salesforce.dev.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
