@@ -8,11 +8,12 @@ import com.salesforce.dev.pages.product.ProductBuilder;
 import com.salesforce.dev.pages.product.ProductDetails;
 import com.salesforce.dev.pages.product.ProductForm;
 import com.salesforce.dev.pages.product.ProductsHome;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertTrue;
 
 /**
  * Created by Monica Pardo on 6/13/2015.
@@ -43,7 +44,7 @@ public class CreateProduct {
                 .setProductDesc(prodDesc)
                 .setProductActive(true).build();
         productDetails = productForm.saveProduct();
-        Assert.assertTrue(productDetails.VerifyProduct(productName), "product Was not Created");
+        assertTrue(productDetails.VerifyProduct(productName), "product Was not Created");
 
     }
 

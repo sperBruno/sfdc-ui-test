@@ -1,24 +1,26 @@
 package com.salesforce.dev.campaign;
 
 import java.util.Iterator;
+import java.util.Map;
 
 import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
-import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
+import com.salesforce.dev.pages.campaigns.CampaignSteps;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
 import com.salesforce.dev.pages.objects.CampaignGenie;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Marcelo.Vargas on 6/21/2015.
@@ -54,7 +56,7 @@ public class EditCampaign {
     @DataProvider(name = "dataDriven")
     public Iterator<Campaign[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getCampaign("json/EditCampaign.json");
+        return dataDrivenManager.getCampaign("EditCampaign.json");
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
@@ -80,13 +82,11 @@ public class EditCampaign {
 
         campaignParentName = campaign.getParentCampaign();
 
-        Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaign.getCampaignName()));
-        Assert.assertTrue(campaignDetail.validateCampaignType(campaign.getCampaignType()));
-        Assert.assertTrue(campaignDetail.validateCampaignStatus(campaign.getCampaignStatus()));
-        Assert.assertTrue(campaignDetail.validateCampaignStartDate(campaign.getStartDate()));
-        Assert.assertTrue(campaignDetail.validateCampaignEndDate(campaign.getEndDate()));
-        Assert.assertTrue(campaignDetail.validateCampaignParent(campaign.getParentCampaign()));
-        LOGGER.info("Campaign has been updated");
+        Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
+        Map<CampaignSteps, Object> mapExpected = campaignDetail.getAssertionEditMap();
+        mapCampaign.keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
+        });
     }
 
     @AfterMethod(groups = {"Acceptance"})
