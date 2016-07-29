@@ -130,7 +130,7 @@ public class AccountForm extends FormBase {
     @FindBy(xpath = "//label[contains(.,'Number of Locations')]/following::input")
     private WebElement accountNumberLocationsFld;
 
-    @FindBy(xpath = "//label[contains(.,'Active')]/following::select")
+    @FindBy(id = "00N50000006a5Xj")
     private WebElement accountActiveFld;
 
     @FindBy(xpath = "//label[contains(.,'SLA')]/following::select")
@@ -139,7 +139,7 @@ public class AccountForm extends FormBase {
     @FindBy(xpath = "//label[contains(.,'SLA Serial Number')]/following::input")
     private WebElement accountSLASerialNumberFld;
 
-    @FindBy(id = "00N50000006coqc")
+    @FindBy(id = "00N50000006a5Xp")
     private WebElement accountUpsellOpportunityFld;
 
     //Description Information

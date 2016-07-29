@@ -44,8 +44,10 @@ public class ChatterHome extends AbstractBasePage {
 
     @FindBy(className = "publisherattachtext ")
     WebElement postSection;
+
     @FindBy(id = "quickActionFeedBodyInput")
     WebElement editPostTextArea;
+
     @FindBy(name = "quickActionSubmitButton")
     WebElement saveEditBtn;
     @FindBy(id = "quickActionContainer")

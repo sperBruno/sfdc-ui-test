@@ -44,9 +44,10 @@ public class NavigationBar extends AbstractBasePage {
     private WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
+    //Product2_Tab
     private WebElement productsTab;
 
-    @FindBy(linkText = "Chatter")
+    @FindBy(id = "Chatter_Tab")
     private WebElement chatterTab;
 
     @FindBy(linkText = "Forecasts")
@@ -160,6 +161,15 @@ public class NavigationBar extends AbstractBasePage {
 
     private void clickElementOfHomeTab(WebElement webElement) {
         if ((!isElementPresent(webElement)) && (isElementPresent(moreTabsComboBox))) {
+            clickWebElement(moreTabsComboBox);
+            clickWebElement(webElement);
+        } else {
+            clickWebElement(webElement);
+        }
+    }
+
+    private void clickElementOfHomeTab(WebElement webElement) {
+        if ((isElementPresent(webElement) == false) && (isElementPresent(moreTabsComboBox) == true)) {
             clickWebElement(moreTabsComboBox);
             clickWebElement(webElement);
         } else {
