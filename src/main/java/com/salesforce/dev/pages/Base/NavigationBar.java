@@ -26,46 +26,46 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  */
 public class NavigationBar extends AbstractBasePage {
 
-    @FindBy(linkText = "orders")
+    @FindBy(linkText = "Orders")
     private WebElement ordersTab;
 
-    @FindBy(linkText = "campaigns")
-    private WebElement campaignsTab;
+    @FindBy(id ="Campaign_Tab")
+    WebElement campaignsTab;
 
-    @FindBy(linkText = "leads")
+    @FindBy(linkText = "Leads")
     private WebElement leadsTab;
 
-    @FindBy(id = "Account_Tab")
+    @FindBy(linkText = "Accounts")
     private WebElement accountsTab;
 
-    @FindBy(linkText = "contacts")
+    @FindBy(linkText = "Contacts")
     private WebElement contactsTab;
 
-    @FindBy(linkText = "opportunities")
-    private WebElement opportunitiesTab;
+    @FindBy(id = "Opportunity_Tab")
+    WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
     private WebElement productsTab;
 
-    @FindBy(linkText = "chatter")
+    @FindBy(linkText = "Chatter")
     private WebElement chatterTab;
 
-    @FindBy(linkText = "forecasts")
+    @FindBy(linkText = "Forecasts")
     private WebElement forecastsTab;
 
-    @FindBy(linkText = "contracts")
+    @FindBy(linkText = "Contracts")
     private WebElement contractsTab;
 
-    @FindBy(linkText = "cases")
+    @FindBy(linkText = "Cases")
     private WebElement casesTab;
 
-    @FindBy(linkText = "solutions")
+    @FindBy(linkText = "Solutions")
     private WebElement solutionsTab;
 
-    @FindBy(linkText = "reports")
+    @FindBy(linkText = "Reports")
     private WebElement reportsTab;
 
-    @FindBy(linkText = "dashboards")
+    @FindBy(linkText = "Dashboards")
     private WebElement dashboardTab;
 
     @FindBy(id = "MoreTabs_Tab")
