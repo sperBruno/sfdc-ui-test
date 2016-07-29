@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Dashboards;
+package com.salesforce.dev.pages.dashboards;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;

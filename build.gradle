@@ -31,14 +31,10 @@ repositories {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    // The production code uses the SLF4J logging API at compile time
-    compile 'org.slf4j:slf4j-api:1.7.12'
     compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
-    compile 'com.force.api:force-metadata-api:35.0.0'
-    compile 'com.force.api:force-partner-api:35.0.0'
     compile 'com.force.api:force-wsc:35.0.0'
-    compile 'com.force.api:force-apex-api:35.0.0'
-    compile 'org.testng:testng:6.9.10'
+    compile 'com.force.api:force-partner-api:35.0.0'
+    compile 'org.testng:testng:6.9.12'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.4'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.4'
@@ -46,13 +42,6 @@ dependencies {
     compile 'org.uncommons:reportng:1.1.4'
     compile 'com.google.inject:guice:3.0'
     compile 'log4j:log4j:1.2.17'
-
-    // Declare the dependency for your favourite test framework you want to use in your tests.
-    // TestNG is also supported by the Gradle Test task. Just change the
-    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
-    // 'test.useTestNG()' to your build script.
-    testCompile 'org.testng:testng:6.8.1'
-
 }
 
 task runTestNGTestCases(type: Test) {
@@ -69,6 +58,7 @@ task runTestNGTestCases(type: Test) {
         excludeGroups(excludeGroup)
         listeners << 'org.uncommons.reportng.HTMLReporter'
         listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+        listeners << 'com.salesforce.dev.framework.testng.TestListener'
     }
 
     systemProperties.put('primaryUserName', primaryUserName)
@@ -111,5 +101,4 @@ task runTestNGTestCases(type: Test) {
     if (browser != "Firefox") {
         downloadDrivers.execute()
     }
-
 }

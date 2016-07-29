@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Chatter;
+package com.salesforce.dev.pages.chatter;
 
 import com.salesforce.dev.framework.selenium.DriverManager;
 import org.openqa.selenium.By;

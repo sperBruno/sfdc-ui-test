@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Orders;
+package com.salesforce.dev.pages.orders;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;

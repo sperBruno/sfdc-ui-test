@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Leads;
+package com.salesforce.dev.pages.leads;
 
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;
@@ -108,7 +108,7 @@ public class LeadForm extends FormBase {
     private WebElement zipCode;
 
     /*additional information*/
-    @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::span/select")
+    @FindBy(xpath = "//td[contains(.,'product Interest')]/following::span/select")
     @CacheLookup
     private WebElement productInterest;
 

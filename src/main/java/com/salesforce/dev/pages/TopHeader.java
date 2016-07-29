@@ -56,14 +56,14 @@ public class TopHeader extends AbstractBasePage {
         return userLogged;
     }
 
-    public HomePage clickLogoutOption() {
+    public LoginPage clickLogoutOption() {
         try {
             clickWebElement(logoutMenuOption);
         } catch (WebDriverException e) {
             e = new WebDriverException(e);
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
         }
-        return new HomePage();
+        return new LoginPage();
     }
 
     public boolean checkIfCookieIsPresent() {

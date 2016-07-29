@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.Date;
 
 import com.salesforce.dev.framework.selenium.DriverManager;
-import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
@@ -93,7 +92,7 @@ public class TestListener implements ITestListener {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         TopHeader topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();
-        HomePage loginPage = topHeader.clickLogoutOption();
+        LoginPage loginPage = topHeader.clickLogoutOption();
         DriverManager.getInstance().close();
         DriverManager.getInstance().quit();
         LOGGER.info("On Finish");

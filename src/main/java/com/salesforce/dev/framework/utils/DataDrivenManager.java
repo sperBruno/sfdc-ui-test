@@ -119,7 +119,7 @@ public class DataDrivenManager {
 
     /*Returns chatter properties
     * @param fileJson
-    * @return Iterator<Chatter[]>
+    * @return Iterator<chatter[]>
     * */
     public Iterator<Chatter[]> getChatter(String fileJson) {
 
@@ -139,9 +139,9 @@ public class DataDrivenManager {
         } catch (FileNotFoundException e) {
             LOGGER.error("File not found for chatter - Json file:", e);;
         } catch (IOException e) {
-            LOGGER.error("Error on data for Chatter from Json file:", e);
+            LOGGER.error("Error on data for chatter from Json file:", e);
         } catch (ParseException e) {
-            LOGGER.error( "Error on data for Chatter:", e);
+            LOGGER.error( "Error on data for chatter:", e);
         }
         return chattersArray.iterator();
     }

@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Solutions;
+package com.salesforce.dev.pages.solutions;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;

@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Opportunities;
+package com.salesforce.dev.pages.opportunities;
 
 /**
  * Created by Jimmy Vargas on 6/14/2015.
