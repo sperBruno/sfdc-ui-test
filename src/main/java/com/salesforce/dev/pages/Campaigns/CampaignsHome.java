@@ -1,17 +1,16 @@
-package com.salesforce.dev.pages.Campaigns;
+package com.salesforce.dev.pages.campaigns;
 
-import com.salesforce.dev.pages.Base.HomeBase;
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
  */
 public class CampaignsHome extends HomeBase {
 
-    @FindBy(xpath = "//h1[contains(.,'Campaigns:')]")
+    @FindBy(xpath = "//h1[contains(.,'campaigns:')]")
     private WebElement campaignSection;
 
     @Override
@@ -45,12 +44,6 @@ public class CampaignsHome extends HomeBase {
     }
 
     public boolean IsUserInCampaignsTab(){
-        try{
-            wait.until(ExpectedConditions.visibilityOf(campaignSection));
-            return true;
-        }
-        catch (WebDriverException e){
-            return false;
-        }
+        return CommonOperation.isWebElementVisible(campaignSection);
     }
 }

@@ -1,8 +1,8 @@
-package com.salesforce.dev.pages.Contacts;
+package com.salesforce.dev.pages.contacts;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.pages.Base.ViewDetailBase;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;

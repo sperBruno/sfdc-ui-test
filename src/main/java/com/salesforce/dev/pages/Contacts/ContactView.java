@@ -1,9 +1,9 @@
-package com.salesforce.dev.pages.Contacts;
+package com.salesforce.dev.pages.contacts;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.framework.RamdonGenerator;
-import com.salesforce.dev.pages.Base.ViewBase;
+import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.base.ViewBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -37,13 +37,13 @@ public class ContactView extends ViewBase {
 
     @Override
     public ContactView setViewName(String viewName) {
-        setViewNameFld(viewName+ RamdonGenerator.getInstance().getRamdonString());
+        setViewNameFld(viewName+ RandomGenerator.getInstance().getRandomString());
         return this;
     }
 
     @Override
     public ContactView setUniqueViewName(String uniqueViewName) {
-        setUniqueViewNameFld(uniqueViewName+ RamdonGenerator.getInstance().getRamdonString());
+        setUniqueViewNameFld(uniqueViewName+ RandomGenerator.getInstance().getRandomString());
         return this;
     }
 

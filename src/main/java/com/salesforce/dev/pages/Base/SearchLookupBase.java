@@ -1,15 +1,14 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
 import java.util.LinkedList;
 import java.util.Set;
 
 
-import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.Accounts.AccountForm;
-import com.salesforce.dev.pages.Campaigns.CampaignForm;
-import com.salesforce.dev.pages.Contacts.ContactForm;
-import com.salesforce.dev.pages.Leads.LeadForm;
-import com.salesforce.dev.pages.Opportunities.OpportunityForm;
+import com.salesforce.dev.pages.accounts.AccountForm;
+import com.salesforce.dev.pages.campaigns.CampaignForm;
+import com.salesforce.dev.pages.contacts.ContactForm;
+import com.salesforce.dev.pages.leads.LeadForm;
+import com.salesforce.dev.pages.opportunities.OpportunityForm;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;

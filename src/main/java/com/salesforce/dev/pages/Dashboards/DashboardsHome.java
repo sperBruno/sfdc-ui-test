@@ -1,39 +1,22 @@
-package com.salesforce.dev.pages.Dashboards;
+package com.salesforce.dev.pages.dashboards;
 
-import com.salesforce.dev.framework.DriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 /**
  * Created by Monica Pardo on 6/24/2015.
  */
-public class DashboardsHome {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class DashboardsHome extends AbstractBasePage {
 
-    @FindBy(id = "ext-gen3")
+    @FindBy(id = "Dashboard_Tab")
     WebElement dashboardSection;
 
 
-    public DashboardsHome(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-    }
-
-    public boolean IsUserInDashboardsTab(){
-        try{
-            wait.until(ExpectedConditions.visibilityOf(dashboardSection));
-            return true;
-        }
-        catch (WebDriverException e){
-            return false;
-        }
+    public boolean IsUserInDashboardsTab() {
+        return isWebElementVisible(dashboardSection);
     }
 
 }

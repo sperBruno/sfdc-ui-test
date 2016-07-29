@@ -1,6 +1,6 @@
-package com.salesforce.dev.pages.Objects;
+package com.salesforce.dev.pages.objects;
 
-import com.salesforce.dev.framework.APIConnector;
+import com.salesforce.dev.framework.soap.APIConnector;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.soap.partner.QueryResult;
 import com.sforce.soap.partner.sobject.SObject;

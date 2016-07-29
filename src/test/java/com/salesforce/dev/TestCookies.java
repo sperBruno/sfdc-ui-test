@@ -1,6 +1,6 @@
 package com.salesforce.dev;
 
-import com.salesforce.dev.pages.Home.LoginPage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
 import org.apache.log4j.Logger;

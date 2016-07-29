@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages;
 
-import com.salesforce.dev.pages.Base.NavigationBar;
+import com.salesforce.dev.pages.base.AbstractBasePage;
+import com.salesforce.dev.pages.base.NavigationBar;
 
 /**
  * Created by Jimmy Vargas on 6/4/2015.
