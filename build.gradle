@@ -50,8 +50,9 @@ dependencies {
 
 task runTestNGTestCases(type: Test) {
     ignoreFailures = true
-    useTestNG()
-
+    useTestNG(){
+        suites "src/test/resources/suites/TestNGSuite.xml"
+    }
     testLogging {
         events "started", "passed", "failed", "skipped"
     }
