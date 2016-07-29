@@ -62,7 +62,7 @@ public class JSONMapper {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File("src/test/resources/EditContact.json"), Contact.class);
+            contact = mapper.readValue(new File("src/test/resources/json/EditContact.json"), Contact.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
