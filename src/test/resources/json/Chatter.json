@@ -1,5 +1,6 @@
 [
-     {"post" :"Post Sales Force",
-      "comment" :"Comment Sales Force"
-     }
+  {
+    "post": "Post Sales Force",
+    "comment": "Comment Sales Force"
+  }
 ]

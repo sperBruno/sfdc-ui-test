@@ -35,4 +35,13 @@ public class LogoutTest {
         assertTrue(loginPage.isLoginButtonPresent());
         LOGGER.info("Logout from SalesForce");
     }
+
+    @Test(groups = {"BVT"})
+    public void testLogout2() {
+        TopHeader topHeader = mainPage.gotoTopHeader();
+        topHeader.clickUserNameMenu();
+        LoginPage loginPage = topHeader.clickLogoutOption();
+        assertTrue(loginPage.isLoginButtonPresent());
+        LOGGER.info("Logout from SalesForce");
+    }
 }
