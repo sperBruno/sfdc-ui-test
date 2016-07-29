@@ -10,7 +10,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElement
  * Created by marcelo on 6/22/2015.
  */
 public class ContractsHome extends AbstractBasePage {
-    @FindBy(xpath = "//h1[contains(.,'contracts:')]")
+    @FindBy(xpath = "//h1[contains(.,'Contracts:')]")
     WebElement contractsSection;
 
     public boolean IsUserInContractsTab() {

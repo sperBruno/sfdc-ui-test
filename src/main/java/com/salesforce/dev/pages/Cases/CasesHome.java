@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class CasesHome extends AbstractBasePage {
 
-    @FindBy(xpath = "//h1[contains(.,'cases:')]")
+    @FindBy(xpath = "//h1[contains(.,'Cases:')]")
     WebElement casesSection;
 
     public boolean IsUserInCasesTab() {

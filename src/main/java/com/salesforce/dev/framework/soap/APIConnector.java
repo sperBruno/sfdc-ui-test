@@ -13,41 +13,50 @@ import org.apache.log4j.Logger;
 public class APIConnector {
 
     private static APIConnector instance;
-    private static final Logger LOGGER = Logger.getLogger(APIConnector.class.getName());
+    private static final Logger LOGGER = Logger.getLogger (APIConnector.class.getName ());
     private ConnectorConfig config;
     private PartnerConnection connection;
-    private String primaryUserName = Environment.getInstance().getPrimaryUser();
-    private String primaryUserPasswordToken = Environment.getInstance().getPrimaryUserPasswordToken();
-    private String urlApi = Environment.getInstance().getUrlApi();
+    private String primaryUserName = Environment.getInstance ().getPrimaryUser ();
+    private String primaryUserPasswordToken = Environment.getInstance ().getPrimaryUserPasswordToken ();
+    private String urlApi = Environment.getInstance ().getUrlApi ();
+    private String proxyHost = Environment.getInstance ().getProxyHost ();
+    private int proxyPort = Environment.getInstance ().getProxyPort ();
 
-    private APIConnector() {
-        this.initializer();
+    private APIConnector () {
+        this.initializer ();
     }
 
-    private void initializer() {
-        config = new ConnectorConfig();
-        config.setUsername(primaryUserName);
-        config.setPassword(primaryUserPasswordToken);
-        config.setAuthEndpoint(urlApi);
-        config.setServiceEndpoint(urlApi);
-        config.setProxy("172.20.240.5", 8080);
+    private void initializer () {
+        config = new ConnectorConfig ();
+        if (proxyHost != null && proxyPort != 0) {
+            config.setUsername (primaryUserName);
+            config.setPassword (primaryUserPasswordToken);
+            config.setAuthEndpoint (urlApi);
+            config.setServiceEndpoint (urlApi);
+            config.setProxy (proxyHost, proxyPort);
+        } else {
+            config.setUsername (primaryUserName);
+            config.setPassword (primaryUserPasswordToken);
+            config.setAuthEndpoint (urlApi);
+            config.setServiceEndpoint (urlApi);
+        }
         try {
-            connection = com.sforce.soap.partner.Connector.newConnection(config);
+            connection = com.sforce.soap.partner.Connector.newConnection (config);
         } catch (ConnectionException e) {
 
-            LOGGER.error("Error on Connect to Api :", e);
+            LOGGER.error ("Error on Connect to Api :", e);
 
         }
     }
 
-    public static APIConnector getInstance() {
+    public static APIConnector getInstance () {
         if (instance == null) {
-            instance = new APIConnector();
+            instance = new APIConnector ();
         }
         return instance;
     }
 
-    public PartnerConnection getConnection() {
+    public PartnerConnection getConnection () {
         return this.connection;
     }
 }

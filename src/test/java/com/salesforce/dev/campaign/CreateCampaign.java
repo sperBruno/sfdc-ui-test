@@ -3,7 +3,6 @@ package com.salesforce.dev.campaign;
 import java.util.Iterator;
 import java.util.Map;
 
-
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.campaigns.CampaignDetail;
@@ -40,7 +39,7 @@ public class CreateCampaign {
     @DataProvider(name = "dataDriven")
     public Iterator<Campaign[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getCampaign("json/CreateCampaign.json");
+        return dataDrivenManager.getCampaign("CreateCampaign.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})

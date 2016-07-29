@@ -9,6 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
+
 /**
  * Created by Monica Pardo on 6/13/2015.
  * *
@@ -36,7 +39,7 @@ public class ChatterHome extends AbstractBasePage {
     @FindBy(xpath = "//a[@title='Delete this post']")
     WebElement deletePostOption;
 
-    @FindBy(xpath = "//a[@title='Edit this chatter']")
+    @FindBy(xpath = "//a[@title='Edit this post']")
     WebElement editPostOption;
 
     @FindBy(className = "publisherattachtext ")
@@ -47,33 +50,30 @@ public class ChatterHome extends AbstractBasePage {
 
     @FindBy(name = "quickActionSubmitButton")
     WebElement saveEditBtn;
-
+    @FindBy(id = "quickActionContainer")
+    private WebElement editContainer;
+    @FindBy(className = "cke_wysiwyg_frame cke_reset")
+    private WebElement editFrame;
     @FindBy(css = ".cke_wysiwyg_frame.cke_reset")
     private WebElement richTextEditorFrame;
 
     public ChatterHome clickPost() {
-        wait.until(ExpectedConditions.visibilityOf(postLink));
-        postLink.click();
+        clickWebElement(postLink);
         return this;
     }
 
-    public ChatterHome setPost(String PostDesc) {
+    public ChatterHome setPost(String postDesc) {
         driver.switchTo().frame(richTextEditorFrame);
         wait.until(ExpectedConditions.visibilityOf(postDescField));
-        postDescField.clear();
-        postDescField.sendKeys(PostDesc);
+        setWebElement(postDescField, postDesc);
         driver.switchTo().defaultContent();
         return this;
     }
 
-    public ChatterHome editPost(String updatadePost) {
-        //postMenu.click();
-        //feeditembodyandfooter
-        driver.findElement(By.xpath("//div[@class='feeditembodyandfooter']/descendant::span[contains(.,'" + updatadePost + "')]/following::a[contains(.,'More Action')]")).click();
-        editPostOption.click();
-        editPostTextArea.sendKeys(updatadePost);
-        saveEditBtn.click();
-        return this;
+    public EditPost editPost(String postName) {
+        clickWebElement(driver.findElement(By.xpath("//div[@id='feedwrapper']/descendant::span[contains(.,'" + postName + "')]/following::a[contains(@title,'More Actions')]")));
+        clickWebElement(editPostOption);
+        return new EditPost();
     }
 
     public ChatterHome clickShareBtn() {
@@ -108,7 +108,6 @@ public class ChatterHome extends AbstractBasePage {
 
     public boolean VerifyPostCreated(String post) {
         try {
-            //feeditemtext cxfeeditemtext
             WebElement postValuePage = driver.findElement(By.xpath("//div[@id='feedwrapper']/descendant::span[contains(.,'" + post + "')]"));
             wait.until(ExpectedConditions.visibilityOf(postValuePage));
             return true;

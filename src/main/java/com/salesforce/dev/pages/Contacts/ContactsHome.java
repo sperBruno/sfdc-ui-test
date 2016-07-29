@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Marcelo Vargas on 11/06/2015.
  */
 public class ContactsHome extends HomeBase {
-    @FindBy(xpath = "//h1[contains(.,'contacts:')]")
+    @FindBy(xpath = "//h1[contains(.,'Contacts:')]")
     WebElement contactSection;
 
     public ContactForm clickNewBtn() {
