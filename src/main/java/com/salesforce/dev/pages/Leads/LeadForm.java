@@ -108,7 +108,7 @@ public class LeadForm extends FormBase {
     private WebElement zipCode;
 
     /*additional information*/
-    @FindBy(id = "00N50000006d6vR")
+    @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::span/select")
     @CacheLookup
     private WebElement productInterest;
 

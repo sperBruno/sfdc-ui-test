@@ -3,17 +3,18 @@ package com.salesforce.dev.lead;
 import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
-import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.leads.LeadBuilder;
 import com.salesforce.dev.pages.leads.LeadDetail;
 import com.salesforce.dev.pages.leads.LeadForm;
 import com.salesforce.dev.pages.leads.LeadsHome;
-import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.objects.CampaignGenie;
-import com.salesforce.dev.pages.base.NavigationBar;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -44,12 +45,8 @@ public class CreateLead {
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-
         lead = JSONMapper.getLead("src\\test\\resources\\json\\CreateLead.json");
-
-        ///create campaign
         Campaign campaign = CampaignGenie.getCampaign();
-        //create parent Campaign
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
     }
 
@@ -87,33 +84,13 @@ public class CreateLead {
                 .setDescription(lead.description)
                 .build();
         LeadDetail leadDetail = leadForm.clickSaveBtn();
-
-        //Assertions
-        Assert.assertTrue(leadDetail.getName().contains(lead.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
-        Assert.assertEquals(leadDetail.getCompany(), lead.company, "The company are not equal");
-        Assert.assertEquals(leadDetail.getTitle(), lead.title, "The title is not correct");
-        Assert.assertEquals(leadDetail.getLeadSource(), lead.leadSource, "The lead source is not correct");
-        Assert.assertEquals(leadDetail.getIndustry(), lead.industry, "The industry is not correct");
-        Assert.assertEquals(leadDetail.getPhone(), lead.phone, "The phone is not correct");
-        Assert.assertEquals(leadDetail.getMobile(), lead.mobile, "The mobile is not correct");
-        Assert.assertEquals(leadDetail.getFax(), lead.fax, "The fax is not correct");
-        Assert.assertEquals(leadDetail.getEmail(), lead.email, "The email is not correct");
         Assert.assertEquals(leadDetail.getWebsite(), "http://" + lead.website, "The website is not correct");
-        Assert.assertEquals(leadDetail.getLeadStatus(), lead.leadStatus, "The lead status is not correct");
-        Assert.assertEquals(leadDetail.getRating(), lead.rating, "The rating is not correct");
-        Assert.assertEquals(leadDetail.getNumEmployees(), lead.numEmployees, "The number of employees is not correct");
         Assert.assertEquals(leadDetail.getAddress(), lead.street + "\n" +
                 lead.city + ", " +
                 lead.stateProvince + " " +
                 lead.zipCode + "\n" +
-                lead.country, "The address is not correct");//needs to review
-
-        Assert.assertEquals(leadDetail.getProductInterest(), lead.productInterest, "The product interest is not correct");
-        Assert.assertEquals(leadDetail.getSICcode(), lead.SICCode, "The SICCode is not correct");
-        Assert.assertEquals(leadDetail.getNumLocations(), lead.numberLocations, "The number of locations is not correct");
-        Assert.assertEquals(leadDetail.getDescription(), lead.description, "The description is not correct");
-        Assert.assertEquals(leadDetail.getCurrentGenerators(), lead.currentGenerators, "The current generators is not correct");
-        Assert.assertEquals(leadDetail.getPrimary(), lead.primary, "The primary is not correct");
+                lead.country, "The address is not correct");
+        leadDetail.validateFields(lead);
     }
 
     @AfterMethod(groups = {"Acceptance"})
