@@ -1,6 +1,6 @@
-package com.salesforce.dev.pages.Opportunities;
+package com.salesforce.dev.pages.opportunities;
 
-import com.salesforce.dev.pages.Base.DetailsBase;
+import com.salesforce.dev.pages.base.DetailsBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -106,7 +106,7 @@ public class OpportunityDetail extends DetailsBase {
     }
 
     /**
-     * Deletes the Opportunity returning to the Opportunities Home
+     * Deletes the Opportunity returning to the opportunities Home
      *
      * @author: Jimmy Vargas
      * @since: 06/13/2015

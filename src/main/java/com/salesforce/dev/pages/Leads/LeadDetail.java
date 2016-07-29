@@ -1,6 +1,6 @@
-package com.salesforce.dev.pages.Leads;
+package com.salesforce.dev.pages.leads;
 
-import com.salesforce.dev.pages.Base.DetailsBase;
+import com.salesforce.dev.pages.base.DetailsBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -67,7 +67,7 @@ public class LeadDetail extends DetailsBase {
     private WebElement address;
 
     /*additional information*/
-    @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::div")
+    @FindBy(id = "00N50000006d6vR_ileinner")
     @CacheLookup
     private WebElement productInterest;
 
@@ -83,7 +83,7 @@ public class LeadDetail extends DetailsBase {
     @CacheLookup
     private WebElement currentGenerators;
 
-    @FindBy(xpath = "//td[contains(.,'Primary')]/following::div")
+    @FindBy(id = "00N50000006d6vQ_ileinner")
     @CacheLookup
     private WebElement primary;
 

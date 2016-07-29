@@ -1,20 +1,19 @@
-package com.salesforce.dev.pages.Contacts;
+package com.salesforce.dev.pages.contacts;
 
-import com.salesforce.dev.pages.Base.HomeBase;
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 /**
  * Created by Marcelo Vargas on 11/06/2015.
  */
 public class ContactsHome extends HomeBase {
-    @FindBy(xpath = "//h1[contains(.,'Contacts:')]")
+    @FindBy(xpath = "//h1[contains(.,'contacts:')]")
     WebElement contactSection;
 
-    public ContactForm clickNewBtn(){
+    public ContactForm clickNewBtn() {
         clickNewButton();
         return new ContactForm();
     }
@@ -32,18 +31,13 @@ public class ContactsHome extends HomeBase {
         return new ContactView(this.driver);
     }
 
-    public ContactDetail selectRecentItem(String opportunity){
+    public ContactDetail selectRecentItem(String opportunity) {
         super.clickRecentItem(opportunity);
         return new ContactDetail();
     }
-    public boolean IsUserInContactsTab(){
-        try{
-            wait.until(ExpectedConditions.visibilityOf(contactSection));
-            return true;
-        }
-        catch (WebDriverException e){
-            return false;
-        }
+
+    public boolean IsUserInContactsTab() {
+        return CommonOperation.isWebElementVisible(contactSection);
     }
 
     @Override

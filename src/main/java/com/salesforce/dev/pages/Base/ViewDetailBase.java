@@ -1,8 +1,7 @@
 package com.salesforce.dev.pages.Base;
 
-import com.salesforce.dev.framework.CommonOperation;
-import com.salesforce.dev.pages.AbstractBasePage;
-
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,8 +11,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
-import static com.salesforce.dev.framework.CommonOperation.moveHorizontalWebElementScroll;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.getFirstSelectOption;
+import static com.salesforce.dev.framework.selenium.CommonOperation.moveHorizontalWebElementScroll;
 
 /**
  * Created by Administrator on 8/20/2015.
@@ -69,11 +69,11 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
     public String getViewSelected() {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
-        return CommonOperation.getFirstSelectOption(viewSelected);
+        return getFirstSelectOption(viewSelected);
     }
 
     public boolean validateNameView(String nameView) {
-        return CommonOperation.getFirstSelectOption(viewSelected).equals(nameView);
+        return getFirstSelectOption(viewSelected).equals(nameView);
     }
 
     public boolean validateFieldDisplayed(String field) {

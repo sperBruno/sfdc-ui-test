@@ -1,25 +1,25 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.pages.AbstractBasePage;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Cases.CasesHome;
-import com.salesforce.dev.pages.Chatter.ChatterHome;
-import com.salesforce.dev.pages.Contacts.ContactsHome;
-import com.salesforce.dev.pages.Contracts.ContractsHome;
-import com.salesforce.dev.pages.Dashboards.DashboardsHome;
-import com.salesforce.dev.pages.Forecasts.ForecastsHome;
-import com.salesforce.dev.pages.Leads.LeadsHome;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Orders.OrdersHome;
-import com.salesforce.dev.pages.Product.ProductsHome;
-import com.salesforce.dev.pages.Reports.ReportsHome;
-import com.salesforce.dev.pages.Solutions.SolutionsHome;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.campaigns.CampaignsHome;
+import com.salesforce.dev.pages.cases.CasesHome;
+import com.salesforce.dev.pages.chatter.ChatterHome;
+import com.salesforce.dev.pages.contacts.ContactsHome;
+import com.salesforce.dev.pages.contracts.ContractsHome;
+import com.salesforce.dev.pages.dashboards.DashboardsHome;
+import com.salesforce.dev.pages.forecasts.ForecastsHome;
+import com.salesforce.dev.pages.leads.LeadsHome;
+import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.orders.OrdersHome;
+import com.salesforce.dev.pages.product.ProductsHome;
+import com.salesforce.dev.pages.reports.ReportsHome;
+import com.salesforce.dev.pages.solutions.SolutionsHome;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
  * Created by Monica Pardo on 6/5/2015.
@@ -29,8 +29,8 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(linkText = "Orders")
     private WebElement ordersTab;
 
-    @FindBy(linkText = "Campaigns")
-    private WebElement campaignsTab;
+    @FindBy(id ="Campaign_Tab")
+    WebElement campaignsTab;
 
     @FindBy(linkText = "Leads")
     private WebElement leadsTab;
@@ -41,8 +41,8 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(linkText = "Contacts")
     private WebElement contactsTab;
 
-    @FindBy(linkText = "Opportunities")
-    private WebElement opportunitiesTab;
+    @FindBy(id = "Opportunity_Tab")
+    WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
     private WebElement productsTab;
@@ -67,6 +67,9 @@ public class NavigationBar extends AbstractBasePage {
 
     @FindBy(linkText = "Dashboards")
     private WebElement dashboardTab;
+
+    @FindBy(id = "MoreTabs_Tab")
+    private WebElement moreTabsComboBox;
 
     public CampaignsHome goToCampaignsHome() {
         clickWebElement(campaignsTab);
@@ -117,42 +120,47 @@ public class NavigationBar extends AbstractBasePage {
 
     public ChatterHome goToChatterHome() {
         clickWebElement(chatterTab);
-        return new ChatterHome(driver);
+        return new ChatterHome();
     }
 
 
     public ForecastsHome goToForescastsHome() {
         clickWebElement(forecastsTab);
-        return new ForecastsHome(this.driver);
+        return new ForecastsHome();
     }
 
     public ContractsHome goToContractsHome() {
         clickWebElement(contractsTab);
-        return new ContractsHome(this.driver);
+        return new ContractsHome();
     }
 
     public OrdersHome goToOrdersHome() {
         clickWebElement(ordersTab);
-        return new OrdersHome(this.driver);
+        return new OrdersHome();
     }
 
     public CasesHome goToCasesHome() {
         clickWebElement(casesTab);
-        return new CasesHome(this.driver);
+        return new CasesHome();
     }
 
     public SolutionsHome goToSolutionsHome() {
         clickWebElement(solutionsTab);
-        return new SolutionsHome(this.driver);
+        return new SolutionsHome();
     }
 
     public ReportsHome goToReportsHome() {
         clickWebElement(reportsTab);
-        return new ReportsHome(this.driver);
+        return new ReportsHome();
     }
 
     public DashboardsHome goToDashboardsHome() {
-        clickWebElement(dashboardTab);
-        return new DashboardsHome(this.driver);
+        if((isElementPresent(dashboardTab) == false) && (isElementPresent(moreTabsComboBox)== true)) {
+            clickWebElement(moreTabsComboBox);
+            clickWebElement(dashboardTab);
+        }else{
+            clickWebElement(dashboardTab);
+        }
+        return new DashboardsHome();
     }
 }

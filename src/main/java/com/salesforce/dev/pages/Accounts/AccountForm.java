@@ -1,20 +1,44 @@
 package com.salesforce.dev.pages.Accounts;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
 import com.salesforce.dev.framework.utils.IAutomationStep;
-import com.salesforce.dev.pages.Base.FormBase;
+import com.salesforce.dev.pages.base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.pages.Accounts.AccountSteps.*;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ACTIVE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ANNUAL_REVENUE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_BILLING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_CUSTOMER_PRIORITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_DESCRIPTION;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_EMPLOYEES;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_FAX;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_INDUSTRY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NAME;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER_LOCATIONS;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_OWNER_SHIP;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_PHONE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_RATING;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SHIPPING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SICCODE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SITE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLASERIAL_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA_EXPIRATION_DATE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_THICKER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_TYPE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_UPSELL_OPPORTUNITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 /**
  * Created by Walter on 10/06/2015.
  */
-public class AccountForm extends FormBase{
+public class AccountForm extends FormBase {
 
     //Account Information
 
@@ -270,7 +294,7 @@ public class AccountForm extends FormBase{
         return this;
     }
 
-    public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year){
+    public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year) {
         accountSLAExpirationDateFld.click();
         selectDatePicker(month, day, year);
         return this;
@@ -310,7 +334,7 @@ public class AccountForm extends FormBase{
         Map<AccountSteps, IAutomationStep> strategyMap = new HashMap<>();
         strategyMap.put(ACCOUNT_NAME, () -> setAccountNameFld((String.valueOf(values.get(ACCOUNT_NAME)))));
         strategyMap.put(ACCOUNT_NUMBER, () -> setAccountNumberFld((values.get(ACCOUNT_NUMBER).toString())));
-        strategyMap.put(ACCOUNT_SITE, () -> setAccountSiteFld((values.get(ACCOUNT_SITE).toString())) );
+        strategyMap.put(ACCOUNT_SITE, () -> setAccountSiteFld((values.get(ACCOUNT_SITE).toString())));
         strategyMap.put(ACCOUNT_TYPE, () -> setAccountTypeFld((values.get(ACCOUNT_TYPE).toString())));
         strategyMap.put(ACCOUNT_INDUSTRY, () -> setAccountIndustryFld((values.get(ACCOUNT_INDUSTRY).toString())));
         strategyMap.put(ACCOUNT_ANNUAL_REVENUE, () -> setAccountAnnualRevenueFld(Integer.valueOf(values.get(ACCOUNT_ANNUAL_REVENUE).toString())));

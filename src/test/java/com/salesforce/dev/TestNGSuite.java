@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriverException;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import static com.salesforce.dev.framework.DriverManager.getInstance;
+import static com.salesforce.dev.framework.selenium.DriverManager.getInstance;
 
 /**
  * Created by carlos_gonzales on 29-05-15.

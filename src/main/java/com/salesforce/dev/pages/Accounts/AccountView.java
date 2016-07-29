@@ -1,12 +1,14 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
+
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.framework.Objects.FieldToDisplayView;
-import com.salesforce.dev.framework.Objects.FilterView;
-import com.salesforce.dev.pages.Base.ViewBase;
-import org.apache.log4j.Logger;
+
+import com.salesforce.dev.framework.dto.FieldToDisplayView;
+import com.salesforce.dev.framework.dto.FilterView;
+import com.salesforce.dev.pages.base.ViewBase;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -60,8 +62,9 @@ public class AccountView extends ViewBase {
     public AccountView checkFilterByOwner(String filter) {
         if (filter.compareToIgnoreCase("All Accounts") == 0)
             checkFilterOwnerAll();
-        else
+        }else{
             checkFilterOwnerMy();
+        }
         return this;
     }
 

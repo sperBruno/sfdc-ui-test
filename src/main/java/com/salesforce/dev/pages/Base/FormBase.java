@@ -1,6 +1,4 @@
-package com.salesforce.dev.pages.Base;
-
-import com.salesforce.dev.pages.AbstractBasePage;
+package com.salesforce.dev.pages.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -9,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import static com.salesforce.dev.framework.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 
 /**
  * Created by Walter on 13/06/2015.

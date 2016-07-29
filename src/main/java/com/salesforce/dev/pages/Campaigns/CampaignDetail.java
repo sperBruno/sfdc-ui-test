@@ -1,29 +1,24 @@
 package com.salesforce.dev.pages.Campaigns;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.salesforce.dev.framework.CommonOperation;
-import com.salesforce.dev.framework.Objects.Campaign;
-import com.salesforce.dev.pages.Accounts.AccountSteps;
-import com.salesforce.dev.pages.Base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.DetailsBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.CommonOperation.getTextWebElement;
-import static com.salesforce.dev.pages.Accounts.AccountSteps.ACCOUNT_NAME;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.ACTUAL_COST;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.BUDGETED_COST;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.CAMPAIGN_NAME;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.CAMPAIGN_STATUS;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.CAMPAIGN_TYPE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.END_DATE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.EXPECTED_RESPONSE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.EXPECTED_REVENUE;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.NUM_SENT;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.PARENT_CAMPAIGN;
-import static com.salesforce.dev.pages.Campaigns.CampaignSteps.START_DATE;
+
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_NAME;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_STATUS;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_TYPE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.END_DATE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.PARENT_CAMPAIGN;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.START_DATE;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.getTextWebElement;
+
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
