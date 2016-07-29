@@ -80,7 +80,7 @@ public abstract class ViewDetailBase extends AbstractBasePage {
     }
 
     public boolean validateFieldDisplayed(String field) {
-        final int horizontalScrollPosition = 300;
+        final int horizontalScrollPosition = 200;
         By fieldDisplayed = By.xpath("//div[@title='" + field + "']");
         WebElement webElement = driver.findElement(By.id("ext-gen10"));
         moveHorizontalWebElementScroll(driver, webElement, horizontalScrollPosition);

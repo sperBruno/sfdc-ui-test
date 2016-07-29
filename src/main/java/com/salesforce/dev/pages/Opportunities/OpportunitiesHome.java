@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Opportunities;
+package com.salesforce.dev.pages.opportunities;
 
 import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.By;
@@ -13,7 +13,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  * Created by Jimmy Vargas on 6/10/2015.
  */
 public class OpportunitiesHome extends HomeBase {
-    @FindBy(xpath = "//h1[contains(.,'Opportunities:')]")
+    @FindBy(xpath = "//h1[contains(.,'opportunities:')]")
     @CacheLookup
     private WebElement opportunitiesSection;
 

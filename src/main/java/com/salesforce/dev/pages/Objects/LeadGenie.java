@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Objects;
+package com.salesforce.dev.pages.objects;
 
 import java.util.ArrayList;
 import java.util.Iterator;

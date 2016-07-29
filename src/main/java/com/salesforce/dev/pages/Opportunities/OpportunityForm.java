@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Opportunities;
+package com.salesforce.dev.pages.opportunities;
 
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;

@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Cases;
+package com.salesforce.dev.pages.cases;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class CasesHome extends AbstractBasePage {
 
-    @FindBy(xpath = "//h1[contains(.,'Cases:')]")
+    @FindBy(xpath = "//h1[contains(.,'cases:')]")
     WebElement casesSection;
 
     public boolean IsUserInCasesTab() {

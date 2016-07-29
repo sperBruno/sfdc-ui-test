@@ -1,13 +1,13 @@
-package com.salesforce.dev;
+package com.salesforce.dev.oportunity;
 
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Opportunities.OpportunityView;
-import com.salesforce.dev.pages.Opportunities.OpportunityViewDetail;
+import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.opportunities.OpportunityView;
+import com.salesforce.dev.pages.opportunities.OpportunityViewDetail;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;

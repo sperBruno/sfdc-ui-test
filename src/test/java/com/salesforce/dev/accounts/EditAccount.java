@@ -1,4 +1,4 @@
-package com.salesforce.dev;
+package com.salesforce.dev.accounts;
 
 import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;

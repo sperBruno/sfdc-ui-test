@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Solutions;
+package com.salesforce.dev.pages.solutions;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class SolutionsHome extends AbstractBasePage {
 
-    @FindBy(xpath = "//h1[contains(.,'Solutions:')]")
+    @FindBy(xpath = "//h1[contains(.,'solutions:')]")
     WebElement solutionSection;
 
     public boolean IsUserInSolutionsTab() {

@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Campaigns;
+package com.salesforce.dev.pages.campaigns;
 
 import java.util.concurrent.TimeUnit;
 

@@ -2,12 +2,12 @@ package com.salesforce.dev.pages;
 
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.framework.dto.Opportunity;
-import com.salesforce.dev.pages.Leads.LeadBuilder;
-import com.salesforce.dev.pages.Leads.LeadForm;
-import com.salesforce.dev.pages.Leads.LeadsHome;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Opportunities.OpportunityBuilder;
-import com.salesforce.dev.pages.Opportunities.OpportunityForm;
+import com.salesforce.dev.pages.leads.LeadBuilder;
+import com.salesforce.dev.pages.leads.LeadForm;
+import com.salesforce.dev.pages.leads.LeadsHome;
+import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.opportunities.OpportunityBuilder;
+import com.salesforce.dev.pages.opportunities.OpportunityForm;
 import com.salesforce.dev.pages.base.NavigationBar;
 
 /**
