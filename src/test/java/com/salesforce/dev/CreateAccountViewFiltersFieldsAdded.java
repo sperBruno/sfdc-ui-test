@@ -29,14 +29,12 @@ public class CreateAccountViewFiltersFieldsAdded {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private AccountViewDetail accountViewDetail;
-    private static final Logger LOGGER = Logger.getLogger(CreateAccountViewFiltersFieldsAdded.class.getName());
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateAccountsViewFiltersFieldAdded.json");
     }
-
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
@@ -48,20 +46,12 @@ public class CreateAccountViewFiltersFieldsAdded {
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
-        List <FilterView> additionalField = viewSalesForce.getAdditionalFields();
-        int count = 1;
-        for(FilterView addFilter: additionalField){
-            accountView = accountView.addAdditionalFiltersByField(count,addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(),addFilter.getValueFilter());
-            count++;
-        }
-        List <FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for(FieldToDisplayView fields:fieldToDisplayViews)
-            accountView = accountView.addNewFieldToDisplay(fields.getFieldToDisplay());
+        accountView.addFilter(viewSalesForce.getAdditionalFields());
+        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
+        accountView.addAccountView(fieldToDisplayViews);
         accountViewDetail = accountView.clickSaveBtn();
-        LOGGER.info("Account view was created");
-        Assert.assertTrue(accountViewDetail.validateNameView(viewSalesForce.getViewName()));
-        for(FieldToDisplayView fields:fieldToDisplayViews){
+        Assert.assertEquals(accountViewDetail.getViewSelected(), viewSalesForce.getViewName());
+        for (FieldToDisplayView fields : fieldToDisplayViews) {
             Assert.assertTrue(accountViewDetail.validateFieldDisplayed(fields.getFieldToDisplay()));
         }
     }
@@ -69,6 +59,5 @@ public class CreateAccountViewFiltersFieldsAdded {
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
         accountViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Account View was deleted");
     }
 }

@@ -1,13 +1,16 @@
 package com.salesforce.dev;
 
 import java.util.Iterator;
+import java.util.Map;
 
 import com.salesforce.dev.framework.DataDrivenManager;
 import com.salesforce.dev.framework.Objects.Campaign;
+import com.salesforce.dev.pages.Accounts.AccountSteps;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Base.SearchLookupBase;
 import com.salesforce.dev.pages.Campaigns.CampaignDetail;
 import com.salesforce.dev.pages.Campaigns.CampaignForm;
+import com.salesforce.dev.pages.Campaigns.CampaignSteps;
 import com.salesforce.dev.pages.Campaigns.CampaignsHome;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
@@ -21,17 +24,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+
 /**
  * Created by Marcelo.Vargas on 6/15/2015.
  */
 public class CreateCampaign {
-    private static final Logger LOGGER = Logger.getLogger(CreateCampaign.class.getName());
-    private String parentCampaign = "CampaignParent";
 
+    private String parentCampaign = "CampaignParent";
     private CampaignsHome campaignsHome;
     private CampaignDetail campaignDetail;
     private CampaignForm campaignForm;
-    private HomePage homePage;
     private MainPage mainPage;
     private NavigationBar navigationBar;
 
@@ -71,18 +74,15 @@ public class CreateCampaign {
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
         campaignDetail = campaignForm.clickSaveBtn();
-        Assert.assertTrue(campaignDetail.validateCampaignNameFld(campaign.getCampaignName()));
-        Assert.assertTrue(campaignDetail.validateCampaignType(campaign.getCampaignType()));
-        Assert.assertTrue(campaignDetail.validateCampaignStatus(campaign.getCampaignStatus()));
-        Assert.assertTrue(campaignDetail.validateCampaignStartDate(campaign.getStartDate()));
-        Assert.assertTrue(campaignDetail.validateCampaignEndDate(campaign.getEndDate()));
-        Assert.assertTrue(campaignDetail.validateCampaignParent(parentCampaign));
-        LOGGER.info("Campaign has been created");
+        Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
+        Map<CampaignSteps, Object> mapExpected = campaignDetail.getAssertionMap();
+        mapCampaign.keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
+        });
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
-        LOGGER.info("Campaign was deleted");
     }
 }

@@ -1,8 +1,12 @@
 package com.salesforce.dev.pages.Accounts;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.salesforce.dev.framework.Objects.FieldToDisplayView;
+import com.salesforce.dev.framework.Objects.FilterView;
 import com.salesforce.dev.pages.Base.ViewBase;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,7 +15,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Created by Carlos Orellana on 9/2/2015.
  */
 public class AccountView extends ViewBase {
-
     public AccountView(WebDriver driver) {
 
         try {
@@ -23,6 +26,7 @@ public class AccountView extends ViewBase {
             wait.withTimeout(15, TimeUnit.SECONDS);
         }
     }
+
     @Override
     public Object clickCancelBtn() {
         return null;
@@ -54,7 +58,7 @@ public class AccountView extends ViewBase {
 
     @Override
     public AccountView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All Accounts") == 0)
+        if (filter.compareToIgnoreCase("All Accounts") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();
@@ -83,5 +87,21 @@ public class AccountView extends ViewBase {
     public AccountViewDetail clickSaveBtn() {
         clickSaveButton();
         return new AccountViewDetail(driver);
+
+    }
+
+    public void addFilter(List<FilterView> additionalField) {
+        int count = 1;
+        for (FilterView addFilter : additionalField) {
+            addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
+                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
+            count++;
+        }
+    }
+
+    public void addAccountView(List<FieldToDisplayView> fieldToDisplayViews) {
+        for (FieldToDisplayView fields : fieldToDisplayViews) {
+            addNewFieldToDisplay(fields.getFieldToDisplay());
+        }
     }
 }

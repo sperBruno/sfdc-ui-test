@@ -19,14 +19,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertTrue;
+
 /**
  * Created by Veronica Prado on 8/22/2015.
  */
 public class CreateCampaignViewBasic {
-    private static final Logger LOGGER =Logger.getLogger(CreateCampaignViewBasic.class.getName());
     private CampaignsHome campaignsHome;
     private CampaignView campaignView;
-    private HomePage homePage;
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private CampaignViewDetail campaignViewDetail;
@@ -51,13 +51,11 @@ public class CreateCampaignViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         campaignViewDetail = campaignView.clickSaveBtn();
-        LOGGER.info("Campaign was created");
-        Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
+        assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-            campaignViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Campaign View was deleted");
+        campaignViewDetail.clickDeleteLnk(true);
     }
 }

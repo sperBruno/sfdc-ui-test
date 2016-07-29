@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.Base;
 
+import com.salesforce.dev.framework.CommonOperation;
 import com.salesforce.dev.pages.AbstractBasePage;
 
 import org.apache.log4j.Logger;
@@ -47,10 +48,8 @@ public abstract class ViewDetailBase extends AbstractBasePage {
     protected void clickDeleteLink(boolean confirmDeletion) {
         clickWebElement(deleteLnk);
         Alert alert;
-
         try {
             alert = driver.switchTo().alert();
-
             if (confirmDeletion) {
                 alert.accept();
             }
@@ -70,15 +69,11 @@ public abstract class ViewDetailBase extends AbstractBasePage {
 
     public String getViewSelected() {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
-        Select select = new Select(viewSelected);
-        return select.getFirstSelectedOption().getText();
+        return CommonOperation.getFirstSelectOption(viewSelected);
     }
 
     public boolean validateNameView(String nameView) {
-        wait.until(ExpectedConditions.visibilityOf(viewSelected));
-        Select select = new Select(viewSelected);
-        String nameV = select.getFirstSelectedOption().getText();
-        return nameV.equals(nameView);
+        return CommonOperation.getFirstSelectOption(viewSelected).equals(nameView);
     }
 
     public boolean validateFieldDisplayed(String field) {
@@ -87,7 +82,6 @@ public abstract class ViewDetailBase extends AbstractBasePage {
         WebElement webElement = driver.findElement(By.id("ext-gen10"));
         moveHorizontalWebElementScroll(driver, webElement, horizontalScrollPosition);
         wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
-
         return driver.findElement(fieldDisplayed).isDisplayed();
     }
 }

@@ -12,10 +12,8 @@ import com.salesforce.dev.pages.Accounts.AccountsHome;
 import com.salesforce.dev.pages.Base.NavigationBar;
 import com.salesforce.dev.pages.Home.HomePage;
 import com.salesforce.dev.pages.Home.LoginPage;
-import com.salesforce.dev.pages.Login.Transporter;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.DataDrivenManager;
-import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.*;
@@ -29,7 +27,6 @@ import static org.testng.Assert.assertEquals;
 public class CreateAccountDD {
 
     private MainPage mainPage;
-    private HomePage homePage;
     private AccountDetail accountDetail;
     private NavigationBar navigationBar;
 
@@ -52,15 +49,12 @@ public class CreateAccountDD {
         AccountForm accountForm = accountsHome.clickNewBtn()
                 .setAccountNameFld(account.getAccountName())
                 .setAccountDescriptionFld(account.getAccountDesc());
-
         accountDetail = accountForm.clickSaveBtn();
-
         Map<AccountSteps, Object> mapAccount =account.convertToMap();
         Map<AccountSteps, Object> mapExpected = accountDetail.getAssertionMap();
         mapAccount.keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
         });
-
     }
 
     @AfterMethod(groups = {"Regression"})

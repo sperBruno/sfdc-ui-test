@@ -265,18 +265,18 @@ public class Account {
         mapAccount.put(ACCOUNT_PHONE, phone);
         mapAccount.put(ACCOUNT_NAME, getAccountName());
         mapAccount.put(ACCOUNT_FAX, fax );
-        mapAccount.put( ACCOUNT_WEBSITE, website);
+        mapAccount.put(ACCOUNT_WEBSITE, website);
         mapAccount.put(ACCOUNT_THICKER, tickerSymbol );
-        mapAccount.put( ACCOUNT_OWNER_SHIP, ownership);
-        mapAccount.put( ACCOUNT_EMPLOYEES, employees);
-        mapAccount.put( ACCOUNT_SICCODE, sicCode);
-        mapAccount.put( ACCOUNT_BILLING_STREET,billingAddress);
+        mapAccount.put(ACCOUNT_OWNER_SHIP, ownership);
+        mapAccount.put(ACCOUNT_EMPLOYEES, employees);
+        mapAccount.put(ACCOUNT_SICCODE, sicCode);
+        mapAccount.put(ACCOUNT_BILLING_STREET,billingAddress);
         mapAccount.put(ACCOUNT_SHIPPING_STREET, shippingAddress );
         mapAccount.put(ACCOUNT_CUSTOMER_PRIORITY, customerPriority );
         mapAccount.put(ACCOUNT_SLA_EXPIRATION_DATE, slaExpirationDate );
-        mapAccount.put( ACCOUNT_NUMBER_LOCATIONS, numberOfLocations);
+        mapAccount.put(ACCOUNT_NUMBER_LOCATIONS, numberOfLocations);
         mapAccount.put(ACCOUNT_ACTIVE, active );
-        mapAccount.put( ACCOUNT_SLA, sla);
+        mapAccount.put(ACCOUNT_SLA, sla);
         mapAccount.put(ACCOUNT_SLASERIAL_NUMBER, slaSerialNumber );
         mapAccount.put(ACCOUNT_UPSELL_OPPORTUNITY, upSellOpportunity );
         mapAccount.put(ACCOUNT_DESCRIPTION, accountDesc );
@@ -285,18 +285,7 @@ public class Account {
             if (!(step.getValue() == null)) {
                 mapAccount2.put(step.getKey(),step.getValue());
             }
-
         });
-
         return mapAccount2;
-    }
-
-    public static void main(String[] args) {
-        Account account = new Account();
-        account.setAccountDesc("asdasd");
-        account.setAccountName("asdasdasd");
-        account.convertToMap().entrySet().stream().forEach((step) -> {
-            System.out.println("Key: "+step.getKey()+" "+"value:"+ step.getValue());
-        });
     }
 }

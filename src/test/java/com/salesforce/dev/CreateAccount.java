@@ -25,14 +25,11 @@ public class CreateAccount {
 
     private MainPage mainPage;
     private AccountDetail accountDetail;
-    private HomePage homePage;
-    private NavigationBar navigationBar;
     private Account account = JSONMapper.getAccountBase();
-    private LoginPage loginPage;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
-        mainPage = loginPage.loginAsPrimaryUser();
+        mainPage = LoginPage.loginAsPrimaryUser();
     }
 
     @Test(groups = {"Acceptance"})
@@ -44,10 +41,8 @@ public class CreateAccount {
         mapAccount.keySet().stream().forEach((step) -> {
             accountForm.getStrategyStepMap(mapAccount).get(step).executeStep();
         });
-
         accountDetail = accountForm.clickSaveBtn();
         Map<AccountSteps, Object> mapExpected = accountDetail.getAssertionMap();
-
         mapAccount.keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
         });
