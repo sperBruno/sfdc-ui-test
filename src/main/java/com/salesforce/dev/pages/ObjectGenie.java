@@ -16,9 +16,7 @@ import com.salesforce.dev.pages.base.NavigationBar;
 public class ObjectGenie {
 
     public static void createOpportunity(Opportunity oppEnum) {
-
-        HomePage homePage = new HomePage();
-        MainPage mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser ();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
@@ -29,12 +27,10 @@ public class ObjectGenie {
                 .setOrderNumber(oppEnum.orderNumber)
                 .build();
         opForm.clickSaveBtn();
-
     }
 
     public static void createLead(Lead lead) {
-        MainPage mainPage;
-        mainPage = LoginPage.loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         NavigationBar navBar = mainPage.gotoNavBar();
 
         LeadsHome leadsHome = navBar.gotToLeadsHome();
@@ -43,6 +39,5 @@ public class ObjectGenie {
         LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
                 .build();
         leadForm.clickSaveBtn();
-
     }
 }

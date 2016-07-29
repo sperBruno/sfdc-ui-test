@@ -1,5 +1,35 @@
 package com.salesforce.dev.framework.dto;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.salesforce.dev.pages.accounts.AccountSteps;
+
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ACTIVE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ANNUAL_REVENUE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_BILLING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_CUSTOMER_PRIORITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_DESCRIPTION;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_EMPLOYEES;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_FAX;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_INDUSTRY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NAME;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER_LOCATIONS;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_OWNER_SHIP;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_PHONE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_RATING;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SHIPPING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SICCODE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SITE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLASERIAL_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA_EXPIRATION_DATE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_THICKER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_TYPE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_UPSELL_OPPORTUNITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
+
 /**
  * Created by Walter Mercado on 6/24/2015.
  */
@@ -222,5 +252,40 @@ public class Account {
 
     public void setNumberOfLocations(Integer numberOfLocations) {
         this.numberOfLocations = numberOfLocations;
+    }
+
+    public Map<AccountSteps, Object> convertToMap() {
+        Map<AccountSteps, Object> mapAccount = new HashMap<>();
+        mapAccount.put(ACCOUNT_NUMBER,number);
+        mapAccount.put(ACCOUNT_SITE, accountSite);
+        mapAccount.put(ACCOUNT_TYPE, type);
+        mapAccount.put(ACCOUNT_INDUSTRY, industry);
+        mapAccount.put(ACCOUNT_ANNUAL_REVENUE, annualRevenue);
+        mapAccount.put(ACCOUNT_RATING, rating);
+        mapAccount.put(ACCOUNT_PHONE, phone);
+        mapAccount.put(ACCOUNT_NAME, getAccountName());
+        mapAccount.put(ACCOUNT_FAX, fax );
+        mapAccount.put(ACCOUNT_WEBSITE, website);
+        mapAccount.put(ACCOUNT_THICKER, tickerSymbol );
+        mapAccount.put(ACCOUNT_OWNER_SHIP, ownership);
+        mapAccount.put(ACCOUNT_EMPLOYEES, employees);
+        mapAccount.put(ACCOUNT_SICCODE, sicCode);
+        mapAccount.put(ACCOUNT_BILLING_STREET,billingAddress);
+        mapAccount.put(ACCOUNT_SHIPPING_STREET, shippingAddress );
+        mapAccount.put(ACCOUNT_CUSTOMER_PRIORITY, customerPriority );
+        mapAccount.put(ACCOUNT_SLA_EXPIRATION_DATE, slaExpirationDate );
+        mapAccount.put(ACCOUNT_NUMBER_LOCATIONS, numberOfLocations);
+        mapAccount.put(ACCOUNT_ACTIVE, active );
+        mapAccount.put(ACCOUNT_SLA, sla);
+        mapAccount.put(ACCOUNT_SLASERIAL_NUMBER, slaSerialNumber );
+        mapAccount.put(ACCOUNT_UPSELL_OPPORTUNITY, upSellOpportunity );
+        mapAccount.put(ACCOUNT_DESCRIPTION, accountDesc );
+        Map<AccountSteps, Object> mapAccount2 = new HashMap<>();
+        mapAccount.entrySet().stream().forEach((step) -> {
+            if (!(step.getValue() == null)) {
+                mapAccount2.put(step.getKey(),step.getValue());
+            }
+        });
+        return mapAccount2;
     }
 }

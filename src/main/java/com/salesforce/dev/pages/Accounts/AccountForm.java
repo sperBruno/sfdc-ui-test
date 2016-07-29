@@ -1,14 +1,44 @@
 package com.salesforce.dev.pages.accounts;
 
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.salesforce.dev.framework.utils.IAutomationStep;
 import com.salesforce.dev.pages.base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ACTIVE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ANNUAL_REVENUE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_BILLING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_CUSTOMER_PRIORITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_DESCRIPTION;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_EMPLOYEES;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_FAX;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_INDUSTRY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NAME;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER_LOCATIONS;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_OWNER_SHIP;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_PHONE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_RATING;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SHIPPING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SICCODE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SITE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLASERIAL_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA_EXPIRATION_DATE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_THICKER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_TYPE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_UPSELL_OPPORTUNITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 /**
  * Created by Walter on 10/06/2015.
  */
-public class AccountForm extends FormBase{
+public class AccountForm extends FormBase {
 
     //Account Information
 
@@ -264,7 +294,7 @@ public class AccountForm extends FormBase{
         return this;
     }
 
-    public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year){
+    public AccountForm setAccountSLAExpirationDateFld(Integer month, Integer day, Integer year) {
         accountSLAExpirationDateFld.click();
         selectDatePicker(month, day, year);
         return this;
@@ -290,8 +320,8 @@ public class AccountForm extends FormBase{
         return this;
     }
 
-    public AccountForm setAccountUpsellOpportunityFld(String accountUpsellOpportunity) {
-        selectItemComboBox(accountUpsellOpportunityFld, accountUpsellOpportunity);
+    public AccountForm setAccountUpsellOpportunityFld(String accountUpSellOpportunity) {
+        selectItemComboBox(accountUpsellOpportunityFld, accountUpSellOpportunity);
         return this;
     }
 
@@ -300,4 +330,32 @@ public class AccountForm extends FormBase{
         return this;
     }
 
+    public Map<AccountSteps, IAutomationStep> getStrategyStepMap(Map<AccountSteps, Object> values) {
+        Map<AccountSteps, IAutomationStep> strategyMap = new HashMap<>();
+        strategyMap.put(ACCOUNT_NAME, () -> setAccountNameFld((String.valueOf(values.get(ACCOUNT_NAME)))));
+        strategyMap.put(ACCOUNT_NUMBER, () -> setAccountNumberFld((values.get(ACCOUNT_NUMBER).toString())));
+        strategyMap.put(ACCOUNT_SITE, () -> setAccountSiteFld((values.get(ACCOUNT_SITE).toString())));
+        strategyMap.put(ACCOUNT_TYPE, () -> setAccountTypeFld((values.get(ACCOUNT_TYPE).toString())));
+        strategyMap.put(ACCOUNT_INDUSTRY, () -> setAccountIndustryFld((values.get(ACCOUNT_INDUSTRY).toString())));
+        strategyMap.put(ACCOUNT_ANNUAL_REVENUE, () -> setAccountAnnualRevenueFld(Integer.valueOf(values.get(ACCOUNT_ANNUAL_REVENUE).toString())));
+        strategyMap.put(ACCOUNT_RATING, () -> setAccountRatingFld((values.get(ACCOUNT_RATING).toString())));
+        strategyMap.put(ACCOUNT_PHONE, () -> setAccountPhoneFld((values.get(ACCOUNT_PHONE).toString())));
+        strategyMap.put(ACCOUNT_FAX, () -> setAccountFaxFld((values.get(ACCOUNT_FAX).toString())));
+        strategyMap.put(ACCOUNT_WEBSITE, () -> setAccountWebsiteFld((values.get(ACCOUNT_WEBSITE).toString())));
+        strategyMap.put(ACCOUNT_THICKER, () -> setAccountThickerFld((values.get(ACCOUNT_THICKER).toString())));
+        strategyMap.put(ACCOUNT_OWNER_SHIP, () -> setAccountOwnershipFld((values.get(ACCOUNT_OWNER_SHIP).toString())));
+        strategyMap.put(ACCOUNT_EMPLOYEES, () -> setAccountEmployeesFld(Integer.valueOf(values.get(ACCOUNT_EMPLOYEES).toString())));
+        strategyMap.put(ACCOUNT_SICCODE, () -> setAccountSICCodeFld((values.get(ACCOUNT_SICCODE).toString())));
+        strategyMap.put(ACCOUNT_BILLING_STREET, () -> setAccountBillingStreetFld((values.get(ACCOUNT_BILLING_STREET).toString())));
+        strategyMap.put(ACCOUNT_SHIPPING_STREET, () -> setAccountShippingStreetFld((values.get(ACCOUNT_SHIPPING_STREET).toString())));
+        strategyMap.put(ACCOUNT_CUSTOMER_PRIORITY, () -> setAccountCustomerPriorityFld((values.get(ACCOUNT_CUSTOMER_PRIORITY).toString())));
+        strategyMap.put(ACCOUNT_SLA_EXPIRATION_DATE, () -> setAccountSLAExpirationDateFld((values.get(ACCOUNT_SLA_EXPIRATION_DATE).toString())));
+        strategyMap.put(ACCOUNT_NUMBER_LOCATIONS, () -> setAccountNumberLocationsFld(Integer.valueOf(values.get(ACCOUNT_NUMBER_LOCATIONS).toString())));
+        strategyMap.put(ACCOUNT_ACTIVE, () -> setAccountActiveFld((values.get(ACCOUNT_ACTIVE).toString())));
+        strategyMap.put(ACCOUNT_SLA, () -> setAccountSLAFld((values.get(ACCOUNT_SLA).toString())));
+        strategyMap.put(ACCOUNT_SLASERIAL_NUMBER, () -> setAccountSLASerialNumberFld((values.get(ACCOUNT_SLASERIAL_NUMBER).toString())));
+        strategyMap.put(ACCOUNT_UPSELL_OPPORTUNITY, () -> setAccountUpsellOpportunityFld((String.valueOf(values.get(ACCOUNT_UPSELL_OPPORTUNITY)))));
+        strategyMap.put(ACCOUNT_DESCRIPTION, () -> setAccountDescriptionFld((values.get(ACCOUNT_DESCRIPTION).toString())));
+        return strategyMap;
+    }
 }

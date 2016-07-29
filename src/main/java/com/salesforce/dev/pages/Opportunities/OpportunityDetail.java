@@ -1,14 +1,25 @@
 package com.salesforce.dev.pages.opportunities;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
+
+import com.salesforce.dev.framework.dto.Opportunity;
 import com.salesforce.dev.pages.base.DetailsBase;
+import com.salesforce.dev.pages.leads.LeadSteps;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 /**
  * Created by Jimmy Vargas on 6/10/2015.
  */
 public class OpportunityDetail extends DetailsBase {
+
+    private static final Logger LOGGER = Logger.getLogger(OpportunityDetail.class.getName());
 
     @FindBy(id = "opp1_ileinner")
     @CacheLookup
@@ -213,5 +224,41 @@ public class OpportunityDetail extends DetailsBase {
     }
 
 
+    public void validateFields(Opportunity oppEnum) {
+        try {
+            Field[] classFields = oppEnum.getClass().getDeclaredFields();
+            for (Field field : classFields) {
+                String fieldName = field.getName();
+                Object actualFieldValue = getAssertCreateOportunityMap().get(LeadSteps.valueOf(fieldName.toUpperCase()));
+                if (actualFieldValue != null) {
+                    String expectedFieldValue = (String) field.get(oppEnum);
+                    Assert.assertEquals(actualFieldValue.toString(), expectedFieldValue, String.format("The field %s is not correct", fieldName));
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e.getMessage()));
+        } catch (IllegalAccessException e) {
+            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e.getMessage()));
+        }
+    }
+
+    public Map<OpportunitySteps, Object> getAssertCreateOportunityMap() {
+        Map<OpportunitySteps, Object> assertionOpportunityMap = new HashMap<>();
+        assertionOpportunityMap.put(OpportunitySteps.OPPORTUNITYNAME, getOpName());
+        assertionOpportunityMap.put(OpportunitySteps.CLOSEDATE, getCloseDate());
+        assertionOpportunityMap.put(OpportunitySteps.STAGE, getStage());
+        assertionOpportunityMap.put(OpportunitySteps.PRIVATECHK, isPrivate());
+        assertionOpportunityMap.put(OpportunitySteps.TYPE, getType());
+        assertionOpportunityMap.put(OpportunitySteps.LEADSOURCE, getLeadSource());
+        assertionOpportunityMap.put(OpportunitySteps.NEXTSTEP, getNextStep());
+        assertionOpportunityMap.put(OpportunitySteps.AMOUNT, getAmount());
+        assertionOpportunityMap.put(OpportunitySteps.PROBABILITY, getProbability());
+        assertionOpportunityMap.put(OpportunitySteps.ORDERNUMBER, getOrderNumber());
+        assertionOpportunityMap.put(OpportunitySteps.TRACKINGNUMBER, getTrackingNumber());
+        assertionOpportunityMap.put(OpportunitySteps.MAINCOMPETITORS, getMainCompetitors());
+        assertionOpportunityMap.put(OpportunitySteps.DELIVERYSTATUS, getDeliveryInstallationStatus());
+        assertionOpportunityMap.put(OpportunitySteps.DESCRIPTION, getOpDescription());
+        return assertionOpportunityMap;
+    }
 }
 

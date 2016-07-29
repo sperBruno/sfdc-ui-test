@@ -1,9 +1,40 @@
 package com.salesforce.dev.pages.accounts;
 
+import java.util.Map;
+import java.util.HashMap;
+
+import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ACTIVE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_ANNUAL_REVENUE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_BILLING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_CUSTOMER_PRIORITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_DESCRIPTION;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_EMPLOYEES;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_FAX;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_INDUSTRY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NAME;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_NUMBER_LOCATIONS;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_OWNER_SHIP;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_PHONE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_RATING;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SHIPPING_STREET;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SICCODE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SITE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLASERIAL_NUMBER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA_EXPIRATION_DATE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_THICKER;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_TYPE;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_UPSELL_OPPORTUNITY;
+import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
+
+
 
 /**
  * Created by Walter on 10/06/2015.
@@ -99,103 +130,130 @@ public class AccountDetail extends DetailsBase {
         return new MainPage();
     }
 
-    public Boolean validateAccountNameFld(String value) {
+    public String validateAccountNameFld() {
         String realValue = accountNameFld.getText().substring(0, accountNameFld.getText().length() - 17);
-        return realValue.equals(value);
+        return realValue;
     }
 
-    public Boolean validateAccountNumberFld(String value) {
-        return accountNumberFld.getText().equals(value);
+    public String validateAccountNumberFld() {
+        return accountNumberFld.getText();
     }
 
-    public Boolean validateAccountSiteFld(String value) {
-        return accountSiteFld.getText().equals(value);
+    public String validateAccountSiteFld() {
+        return accountSiteFld.getText();
     }
 
-    public Boolean validateAccountTypeFld(String value) {
-        return accountTypeFld.getText().equals(value);
+    public String validateAccountTypeFld() {
+        return accountTypeFld.getText();
     }
 
-    public Boolean validateAccountIndustryFld(String value) {
-        return accountIndustryFld.getText().equals(value);
+    public String validateAccountIndustryFld() {
+        return accountIndustryFld.getText();
     }
 
-    public Boolean validateAccountAnnualRevenueFld(Integer value) {
+    public String validateAccountAnnualRevenueFld() {
         String realValue = accountAnnualRevenueFld.getText().replaceAll("[-+.^:,]", "");
-        return realValue.substring(1).equals(value.toString());
+        return realValue.substring(1);
     }
 
-    public Boolean validateAccountBillingAddressFld(String value) {
-        return accountBillingAddressFld.getText().equals(value);
+    public String validateAccountBillingAddressFld() {
+        return accountBillingAddressFld.getText();
     }
 
-    public Boolean validateAccountCustomPriorityFld(String value) {
-        return accountCustomPriorityFld.getText().equals(value);
+    public String validateAccountCustomPriorityFld() {
+        return accountCustomPriorityFld.getText();
     }
 
-    public Boolean validateAccountSLAExpirationDateFld(String value) {
-        return accountSLAExpirationDateFld.getText().equals(value);
+    public String validateAccountSLAExpirationDateFld() {
+        return accountSLAExpirationDateFld.getText();
     }
 
-    public Boolean validateAccountNumberOfLocationsFld(Integer value) {
-        return accountNumberOfLocationsFld.getText().equals(value.toString());
+    public String validateAccountNumberOfLocationsFld() {
+        return accountNumberOfLocationsFld.getText();
     }
 
-    public Boolean validateAccountActiveFld(String value) {
-        return accountActiveFld.getText().equals(value);
+    public String validateAccountActiveFld() {
+        return accountActiveFld.getText();
     }
 
-    public Boolean validateAccountDescriptionFld(String value) {
-        return accountDescriptionFld.getText().equals(value);
+    public String validateAccountDescriptionFld() {
+        return accountDescriptionFld.getText();
     }
 
-    public Boolean validateAccountRatingFld(String value) {
-        return accountRatingFld.getText().equals(value);
+    public String validateAccountRatingFld() {
+        return accountRatingFld.getText();
     }
 
-    public Boolean validateAccountPhoneFld(String value) {
-        return accountPhoneFld.getText().equals(value);
+    public String validateAccountPhoneFld() {
+        return accountPhoneFld.getText();
     }
 
-    public Boolean validateAccountFaxFld(String value) {
-        return accountFaxFld.getText().equals(value);
+    public String validateAccountFaxFld() {
+        return accountFaxFld.getText();
     }
 
-    public Boolean validateAccountWebsiteFld(String value) {
-        return accountWebsiteFld.getText().equals(value);
+    public String validateAccountWebsiteFld() {
+        return accountWebsiteFld.getText();
     }
 
-    public Boolean validateAccountTickerSymbolFld(String value) {
-        return accountTickerSymbolFld.getText().equals(value);
+    public String validateAccountTickerSymbolFld() {
+        return accountTickerSymbolFld.getText();
     }
 
-    public Boolean validateAccountOwnershipFld(String value) {
-        return accountOwnershipFld.getText().equals(value);
+    public String validateAccountOwnershipFld() {
+        return accountOwnershipFld.getText();
     }
 
-    public Boolean validateAccountEmployeesFld(Integer value) {
+    public String validateAccountEmployeesFld() {
         String realValue = accountEmployeesFld.getText().replaceAll("[-+.^:,]", "");
-        return realValue.equals(value.toString());
+        return realValue;
     }
 
-    public Boolean validateAccountSICCodeFld(String value) {
-        return accountSICCodeFld.getText().equals(value);
+    public String validateAccountSICCodeFld() {
+        return accountSICCodeFld.getText();
     }
 
-    public Boolean validateAccountShippingAddressFld(String value) {
-        return accountShippingAddressFld.getText().equals(value);
+    public String validateAccountShippingAddressFld() {
+        return accountShippingAddressFld.getText();
     }
 
-    public Boolean validateAccountSLAFld(String value) {
-        return accountSLAFld.getText().equals(value);
+    public String validateAccountSLAFld() {
+        return accountSLAFld.getText();
     }
 
-    public Boolean validateAccountSerialNumberFld(String value) {
-        return accountSerialNumberFld.getText().equals(value);
+    public String validateAccountSerialNumberFld() {
+        return accountSerialNumberFld.getText();
     }
 
-    public Boolean validateAccountUpSellOpportunityFld(String value) {
-        return accountUpSellOpportunityFld.getText().equals(value);
+    public String validateAccountUpSellOpportunityFld() {
+        return accountUpSellOpportunityFld.getText();
     }
 
+    public Map<AccountSteps, Object> getAssertionMap() {
+        Map<AccountSteps, Object> assertionMap = new HashMap<>();
+        assertionMap.put(ACCOUNT_NAME, validateAccountNameFld());
+        assertionMap.put(ACCOUNT_RATING, validateAccountRatingFld());
+        assertionMap.put(ACCOUNT_OWNER_SHIP, validateAccountOwnershipFld());
+        assertionMap.put(ACCOUNT_PHONE, validateAccountPhoneFld());
+        assertionMap.put(ACCOUNT_FAX, validateAccountFaxFld());
+        assertionMap.put(ACCOUNT_NUMBER, validateAccountNumberFld());
+        assertionMap.put(ACCOUNT_WEBSITE, validateAccountWebsiteFld());
+        assertionMap.put(ACCOUNT_SITE, validateAccountSiteFld());
+        assertionMap.put(ACCOUNT_THICKER, validateAccountTickerSymbolFld());
+        assertionMap.put(ACCOUNT_TYPE, validateAccountTypeFld());
+        assertionMap.put(ACCOUNT_INDUSTRY, validateAccountIndustryFld());
+        assertionMap.put(ACCOUNT_EMPLOYEES, validateAccountEmployeesFld());
+        assertionMap.put(ACCOUNT_ANNUAL_REVENUE, validateAccountAnnualRevenueFld());
+        assertionMap.put(ACCOUNT_SICCODE, validateAccountSICCodeFld());
+        assertionMap.put(ACCOUNT_BILLING_STREET, validateAccountBillingAddressFld());
+        assertionMap.put(ACCOUNT_SHIPPING_STREET, validateAccountShippingAddressFld());
+        assertionMap.put(ACCOUNT_CUSTOMER_PRIORITY, validateAccountCustomPriorityFld());
+        assertionMap.put(ACCOUNT_SLA, validateAccountSLAFld());
+        assertionMap.put(ACCOUNT_ACTIVE, validateAccountActiveFld());
+        assertionMap.put(ACCOUNT_SLA_EXPIRATION_DATE, validateAccountSLAExpirationDateFld());
+        assertionMap.put(ACCOUNT_SLASERIAL_NUMBER, validateAccountSerialNumberFld());
+        assertionMap.put(ACCOUNT_NUMBER_LOCATIONS, validateAccountNumberOfLocationsFld());
+        assertionMap.put(ACCOUNT_DESCRIPTION, validateAccountDescriptionFld());
+        return assertionMap;
+    }
 }
