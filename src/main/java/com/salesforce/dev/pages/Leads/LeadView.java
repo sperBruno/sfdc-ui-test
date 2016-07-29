@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Leads;
+package com.salesforce.dev.pages.leads;
 
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +53,7 @@ public class LeadView extends ViewBase {
 
     @Override
     public LeadView checkFilterByOwner(String filter) {
-        if (filter.compareToIgnoreCase("All Unconverted Leads") == 0)
+        if (filter.compareToIgnoreCase("All Unconverted leads") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

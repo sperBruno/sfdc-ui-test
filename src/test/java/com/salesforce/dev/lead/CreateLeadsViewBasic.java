@@ -1,12 +1,13 @@
-package com.salesforce.dev;
+package com.salesforce.dev.lead;
 
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.HomePage;
-import com.salesforce.dev.pages.Leads.LeadView;
-import com.salesforce.dev.pages.Leads.LeadViewDetail;
-import com.salesforce.dev.pages.Leads.LeadsHome;
+import com.salesforce.dev.pages.leads.LeadView;
+import com.salesforce.dev.pages.leads.LeadViewDetail;
+import com.salesforce.dev.pages.leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
 
 import org.apache.log4j.Logger;
@@ -45,9 +46,7 @@ public class CreateLeadsViewBasic {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
     }
 
@@ -60,7 +59,7 @@ public class CreateLeadsViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
-        LOGGER.info("Basic Leads View was created");
+        LOGGER.info("Basic leads View was created");
         Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForce.getViewName()),
                 "View name does not match " + viewSalesForce.getViewName());
     }

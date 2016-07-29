@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Contracts;
+package com.salesforce.dev.pages.contracts;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
@@ -10,7 +10,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElement
  * Created by marcelo on 6/22/2015.
  */
 public class ContractsHome extends AbstractBasePage {
-    @FindBy(xpath = "//h1[contains(.,'Contracts:')]")
+    @FindBy(xpath = "//h1[contains(.,'contracts:')]")
     WebElement contractsSection;
 
     public boolean IsUserInContractsTab() {

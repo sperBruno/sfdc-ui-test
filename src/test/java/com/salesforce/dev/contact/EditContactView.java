@@ -1,4 +1,4 @@
-package com.salesforce.dev;
+package com.salesforce.dev.contact;
 
 import java.util.Iterator;
 
@@ -6,12 +6,12 @@ import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.Contacts.ContactView;
-import com.salesforce.dev.pages.Contacts.ContactViewDetail;
-import com.salesforce.dev.pages.Contacts.ContactsHome;
+import com.salesforce.dev.pages.contacts.ContactView;
+import com.salesforce.dev.pages.contacts.ContactViewDetail;
+import com.salesforce.dev.pages.contacts.ContactsHome;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Objects.CampaignGenie;
+import com.salesforce.dev.pages.objects.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

@@ -1,17 +1,18 @@
-package com.salesforce.dev;
-import com.salesforce.dev.pages.base.NavigationBar;
+package com.salesforce.dev.product;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.Product.ProductBuilder;
-import com.salesforce.dev.pages.Product.ProductDetails;
-import com.salesforce.dev.pages.Product.ProductForm;
-import com.salesforce.dev.pages.Product.ProductsHome;
+import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.product.ProductBuilder;
+import com.salesforce.dev.pages.product.ProductDetails;
+import com.salesforce.dev.pages.product.ProductForm;
+import com.salesforce.dev.pages.product.ProductsHome;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import com.salesforce.dev.pages.*;
 /**
  * Created by Monica Pardo on 6/10/2015.
  */

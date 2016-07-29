@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Objects;
+package com.salesforce.dev.pages.objects;
 
 import com.salesforce.dev.framework.soap.APIConnector;
 import com.sforce.soap.partner.GetUserInfoResult;

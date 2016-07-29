@@ -1,16 +1,16 @@
-package com.salesforce.dev;
+package com.salesforce.dev.campaign;
 
 import java.util.Iterator;
 
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.Campaigns.CampaignView;
-import com.salesforce.dev.pages.Campaigns.CampaignViewDetail;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
+import com.salesforce.dev.pages.campaigns.CampaignView;
+import com.salesforce.dev.pages.campaigns.CampaignViewDetail;
+import com.salesforce.dev.pages.campaigns.CampaignsHome;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Objects.CampaignGenie;
+import com.salesforce.dev.pages.objects.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

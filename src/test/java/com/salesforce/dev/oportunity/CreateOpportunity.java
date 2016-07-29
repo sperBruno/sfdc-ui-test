@@ -1,14 +1,15 @@
-package com.salesforce.dev;
+package com.salesforce.dev.oportunity;
 
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.framework.dto.Opportunity;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Opportunities.OpportunityBuilder;
-import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
-import com.salesforce.dev.pages.Opportunities.OpportunityForm;
+import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.opportunities.OpportunityBuilder;
+import com.salesforce.dev.pages.opportunities.OpportunityDetail;
+import com.salesforce.dev.pages.opportunities.OpportunityForm;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -30,8 +31,7 @@ public class CreateOpportunity {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        homePage = new HomePage();
-        mainPage = homePage.clickLoginBtn().loginAsPrimaryUser();
+        mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
         oppEnum = JSONMapper.getOpportunity("json/CreateOpportunity.json");
     }

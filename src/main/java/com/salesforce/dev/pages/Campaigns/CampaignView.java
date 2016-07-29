@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Campaigns;
+package com.salesforce.dev.pages.campaigns;
 
 import java.util.concurrent.TimeUnit;
 
@@ -55,7 +55,7 @@ public class CampaignView extends ViewBase {
 
     @Override
     public CampaignView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All Campaigns") == 0)
+        if(filter.compareToIgnoreCase("All campaigns") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();

@@ -1,18 +1,18 @@
-package com.salesforce.dev;
+package com.salesforce.dev.oportunity;
+
+import com.salesforce.dev.framework.dto.Opportunity;
+import com.salesforce.dev.framework.utils.JSONMapper;
+import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.ObjectGenie;
+import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.opportunities.OpportunityDetail;
+import com.salesforce.dev.pages.opportunities.OpportunityForm;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import com.salesforce.dev.framework.utils.JSONMapper;
-import com.salesforce.dev.framework.dto.Opportunity;
-import com.salesforce.dev.pages.ObjectGenie;
-import com.salesforce.dev.pages.HomePage;
-import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Opportunities.OpportunityDetail;
-import com.salesforce.dev.pages.Opportunities.OpportunityForm;
 /**
  * Created by jimmy vargas on 6/20/2015.
  */

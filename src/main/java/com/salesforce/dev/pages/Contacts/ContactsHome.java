@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Contacts;
+package com.salesforce.dev.pages.contacts;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.HomeBase;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  * Created by Marcelo Vargas on 11/06/2015.
  */
 public class ContactsHome extends HomeBase {
-    @FindBy(xpath = "//h1[contains(.,'Contacts:')]")
+    @FindBy(xpath = "//h1[contains(.,'contacts:')]")
     WebElement contactSection;
 
     public ContactForm clickNewBtn() {

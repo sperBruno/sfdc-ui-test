@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Campaigns;
+package com.salesforce.dev.pages.campaigns;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.HomeBase;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class CampaignsHome extends HomeBase {
 
-    @FindBy(xpath = "//h1[contains(.,'Campaigns:')]")
+    @FindBy(xpath = "//h1[contains(.,'campaigns:')]")
     private WebElement campaignSection;
 
     @Override

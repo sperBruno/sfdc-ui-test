@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Campaigns;
+package com.salesforce.dev.pages.campaigns;
 
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;

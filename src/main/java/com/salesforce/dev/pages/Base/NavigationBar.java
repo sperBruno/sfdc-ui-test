@@ -1,19 +1,19 @@
 package com.salesforce.dev.pages.base;
 
 import com.salesforce.dev.pages.accounts.AccountsHome;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Cases.CasesHome;
-import com.salesforce.dev.pages.Chatter.ChatterHome;
-import com.salesforce.dev.pages.Contacts.ContactsHome;
-import com.salesforce.dev.pages.Contracts.ContractsHome;
-import com.salesforce.dev.pages.Dashboards.DashboardsHome;
-import com.salesforce.dev.pages.Forecasts.ForecastsHome;
-import com.salesforce.dev.pages.Leads.LeadsHome;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Orders.OrdersHome;
-import com.salesforce.dev.pages.Product.ProductsHome;
-import com.salesforce.dev.pages.Reports.ReportsHome;
-import com.salesforce.dev.pages.Solutions.SolutionsHome;
+import com.salesforce.dev.pages.campaigns.CampaignsHome;
+import com.salesforce.dev.pages.cases.CasesHome;
+import com.salesforce.dev.pages.chatter.ChatterHome;
+import com.salesforce.dev.pages.contacts.ContactsHome;
+import com.salesforce.dev.pages.contracts.ContractsHome;
+import com.salesforce.dev.pages.dashboards.DashboardsHome;
+import com.salesforce.dev.pages.forecasts.ForecastsHome;
+import com.salesforce.dev.pages.leads.LeadsHome;
+import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.orders.OrdersHome;
+import com.salesforce.dev.pages.product.ProductsHome;
+import com.salesforce.dev.pages.reports.ReportsHome;
+import com.salesforce.dev.pages.solutions.SolutionsHome;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,46 +26,46 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  */
 public class NavigationBar extends AbstractBasePage {
 
-    @FindBy(linkText = "Orders")
+    @FindBy(linkText = "orders")
     private WebElement ordersTab;
 
-    @FindBy(linkText = "Campaigns")
+    @FindBy(linkText = "campaigns")
     private WebElement campaignsTab;
 
-    @FindBy(linkText = "Leads")
+    @FindBy(linkText = "leads")
     private WebElement leadsTab;
 
-    @FindBy(linkText = "accounts")
+    @FindBy(id = "Account_Tab")
     private WebElement accountsTab;
 
-    @FindBy(linkText = "Contacts")
+    @FindBy(linkText = "contacts")
     private WebElement contactsTab;
 
-    @FindBy(linkText = "Opportunities")
+    @FindBy(linkText = "opportunities")
     private WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
     private WebElement productsTab;
 
-    @FindBy(linkText = "Chatter")
+    @FindBy(linkText = "chatter")
     private WebElement chatterTab;
 
-    @FindBy(linkText = "Forecasts")
+    @FindBy(linkText = "forecasts")
     private WebElement forecastsTab;
 
-    @FindBy(linkText = "Contracts")
+    @FindBy(linkText = "contracts")
     private WebElement contractsTab;
 
-    @FindBy(linkText = "Cases")
+    @FindBy(linkText = "cases")
     private WebElement casesTab;
 
-    @FindBy(linkText = "Solutions")
+    @FindBy(linkText = "solutions")
     private WebElement solutionsTab;
 
-    @FindBy(linkText = "Reports")
+    @FindBy(linkText = "reports")
     private WebElement reportsTab;
 
-    @FindBy(linkText = "Dashboards")
+    @FindBy(linkText = "dashboards")
     private WebElement dashboardTab;
 
     @FindBy(id = "MoreTabs_Tab")

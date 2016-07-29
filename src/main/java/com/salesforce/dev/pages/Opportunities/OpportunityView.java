@@ -1,4 +1,4 @@
-package com.salesforce.dev.pages.Opportunities;
+package com.salesforce.dev.pages.opportunities;
 
 import java.util.concurrent.TimeUnit;
 
@@ -54,7 +54,7 @@ public class OpportunityView extends ViewBase {
 
     @Override
     public OpportunityView checkFilterByOwner(String filter) {
-        if (filter.compareToIgnoreCase("All Opportunities") == 0)
+        if (filter.compareToIgnoreCase("All opportunities") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();
