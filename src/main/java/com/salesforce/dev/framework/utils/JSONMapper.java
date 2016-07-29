@@ -10,12 +10,12 @@ import com.salesforce.dev.framework.dto.Contact;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.framework.dto.Opportunity;
 
+import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JSON;
+
 /**
  * Created by jimmy vargas on 6/22/2015.
  */
 public class JSONMapper {
-
-    public static final String SRC_TEST_RESOURCES_JSON = "src/test/resources/json/";
 
     public static Opportunity getOpportunity(String fileJson){
         Opportunity opportunity = new Opportunity();

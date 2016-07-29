@@ -14,6 +14,8 @@ import com.salesforce.dev.pages.orders.OrdersHome;
 import com.salesforce.dev.pages.product.ProductsHome;
 import com.salesforce.dev.pages.reports.ReportsHome;
 import com.salesforce.dev.pages.solutions.SolutionsHome;
+
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -123,7 +125,6 @@ public class NavigationBar extends AbstractBasePage {
         return new ChatterHome();
     }
 
-
     public ForecastsHome goToForesCastsHome() {
         clickElementOfHomeTab(forecastsTab);
         return new ForecastsHome();
@@ -161,15 +162,6 @@ public class NavigationBar extends AbstractBasePage {
 
     private void clickElementOfHomeTab(WebElement webElement) {
         if ((!isElementPresent(webElement)) && (isElementPresent(moreTabsComboBox))) {
-            clickWebElement(moreTabsComboBox);
-            clickWebElement(webElement);
-        } else {
-            clickWebElement(webElement);
-        }
-    }
-
-    private void clickElementOfHomeTab(WebElement webElement) {
-        if ((isElementPresent(webElement) == false) && (isElementPresent(moreTabsComboBox) == true)) {
             clickWebElement(moreTabsComboBox);
             clickWebElement(webElement);
         } else {
