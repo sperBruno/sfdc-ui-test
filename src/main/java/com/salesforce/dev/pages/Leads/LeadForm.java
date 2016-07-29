@@ -108,7 +108,7 @@ public class LeadForm extends FormBase {
     private WebElement zipCode;
 
     /*additional information*/
-    @FindBy(xpath = "//td[contains(.,'product Interest')]/following::span/select")
+    @FindBy(id = "00N50000006d6vR")
     @CacheLookup
     private WebElement productInterest;
 
@@ -124,7 +124,7 @@ public class LeadForm extends FormBase {
     @CacheLookup
     private WebElement currentGenerators;
 
-    @FindBy(xpath = "//td[contains(.,'Primary')]/following::span/select")
+    @FindBy(id = "00N50000006d6vQ")
     @CacheLookup
     private WebElement primary;
 
@@ -237,87 +237,130 @@ public class LeadForm extends FormBase {
         }
     }
 
-    public void selectIndustryByVisibleText(String industry) {
-        selectItemComboBox(this.industry, industry);
+    public void selectIndustryByVisibleText (String industry) {
+        if (industry != null) {
+            selectItemComboBox (this.industry, industry);
+        }
     }
 
-    public void setAnnualRevenue(String annualRevenue) {
-        fillTextBox(this.annualRevenue, annualRevenue);
+    public void setAnnualRevenue (String annualRevenue) {
+        if (annualRevenue != null) {
+            fillTextBox (this.annualRevenue, annualRevenue);
+        }
     }
 
-    public void setPhone(String phone) {
-        fillTextBox(this.phone, phone);
+    public void setPhone (String phone) {
+        if (phone != null) {
+            fillTextBox (this.phone, phone);
+        }
     }
 
-    public void setMobile(String mobile) {
-        fillTextBox(this.mobile, mobile);
+    public void setMobile (String mobile) {
+        if (mobile != null) {
+            fillTextBox (this.mobile, mobile);
+        }
     }
 
-    public void setFax(String fax) {
-        fillTextBox(this.fax, fax);
+    public void setFax (String fax) {
+        if (fax != null) {
+            fillTextBox (this.fax, fax);
+        }
     }
 
-    public void setEmail(String email) {
-        fillTextBox(this.email, email);
+    public void setEmail (String email) {
+        if (email != null) {
+            fillTextBox (this.email, email);
+        }
     }
 
-    public void setWebsite(String website) {
-        fillTextBox(this.website, website);
+    public void setWebsite (String website) {
+        if (website != null) {
+            fillTextBox (this.website, website);
+        }
     }
 
 
-    public void selectRatingByVisibleText(String rating) {
-        selectItemComboBox(this.rating, rating);
+    public void selectRatingByVisibleText (String rating) {
+        if (rating != null) {
+            selectItemComboBox (this.rating, rating);
+        }
     }
 
-    public void setNumEmployees(String numEmployees) {
-        fillTextBox(this.numEmployees, numEmployees);
+    public void setNumEmployees (String numEmployees) {
+        if (numEmployees != null) {
+            fillTextBox (this.numEmployees, numEmployees);
+        }
     }
 
     /*Address Information*/
-    public void setStreet(String street) {
-        fillTextBox(this.street, street);
+    public void setStreet (String street) {
+        if (street != null) {
+            fillTextBox (this.street, street);
+        }
     }
 
-    public void setCity(String city) {
-        fillTextBox(this.city, city);
+    public void setCity (String city) {
+        if (city != null) {
+            fillTextBox (this.city, city);
+        }
     }
 
-    public void setState(String state) {
-        fillTextBox(this.state, state);
+    public void setState (String state) {
+        if (state != null) {
+            fillTextBox (this.state, state);
+        }
     }
 
-    public void setZipCode(String zipCode) {
-        fillTextBox(this.zipCode, zipCode);
+    public void setZipCode (String zipCode) {
+        if (zipCode != null) {
+            fillTextBox (this.zipCode, zipCode);
+        }
     }
 
-    public void setCountry(String country) {
-        fillTextBox(this.country, country);
+    public void setCountry (String country) {
+        if (country != null) {
+            fillTextBox (this.country, country);
+        }
     }
 
     /*additional information*/
-    public void selectProductInterestByVisibleText(String productInterest) {
-        selectItemComboBox(this.productInterest, productInterest);
+    public void selectProductInterestByVisibleText (String productInterest) {
+        if (productInterest != null) {
+            selectItemComboBox (this.productInterest, productInterest);
+
+        }
     }
 
-    public void setSICcode(String SICcode) {
-        fillTextBox(this.SICcode, SICcode);
+    public void setSICcode (String SICcode) {
+        if (SICcode != null) {
+            fillTextBox (this.SICcode, SICcode);
+        }
+
     }
 
-    public void setNumLocations(String numLocations) {
-        fillTextBox(this.numLocations, numLocations);
+    public void setNumLocations (String numLocations) {
+        if (numLocations != null) {
+            fillTextBox (this.numLocations, numLocations);
+        }
     }
 
-    public void setCurrentGenerators(String currentGenerators) {
-        fillTextBox(this.currentGenerators, currentGenerators);
+    public void setCurrentGenerators (String currentGenerators) {
+        if (currentGenerators != null) {
+            fillTextBox (this.currentGenerators, currentGenerators);
+        }
     }
 
-    public void selectPrimaryByVisibleText(String primary) {
-        selectItemComboBox(this.primary, primary);
+    public void selectPrimaryByVisibleText (String primary) {
+        if (primary != null) {
+            selectItemComboBox (this.primary, primary);
+
+        }
     }
 
-    public void setDescription(String description) {
-        fillTextBox(this.description, description);
+    public void setDescription (String description) {
+        if (description != null) {
+            fillTextBox (this.description, description);
+        }
     }
 
     public void setAssignRuleCheckBox(boolean assignRule) {

@@ -27,11 +27,12 @@ public class JSONMapper {
         return opportunity;
     }
 
-    public static Lead getLead(String jsonFile){
+    public static Lead getLead(String fileJson){
         Lead lead = new Lead();
+        final String pathFileJson = "src/test/resources/" + fileJson;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            lead = mapper.readValue(new File(jsonFile), Lead.class);
+            lead = mapper.readValue(new File(pathFileJson), Lead.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
