@@ -15,9 +15,11 @@ import com.salesforce.dev.framework.dto.Opportunity;
  */
 public class JSONMapper {
 
+    public static final String SRC_TEST_RESOURCES_JSON = "src/test/resources/json/";
+
     public static Opportunity getOpportunity(String fileJson){
         Opportunity opportunity = new Opportunity();
-        final String pathFileJson = "src/test/resources/" + fileJson;
+        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
         try {
             ObjectMapper mapper = new ObjectMapper();
             opportunity = mapper.readValue(new File(pathFileJson), Opportunity.class);
@@ -27,11 +29,12 @@ public class JSONMapper {
         return opportunity;
     }
 
-    public static Lead getLead(String jsonFile){
+    public static Lead getLead(String fileJson){
         Lead lead = new Lead();
+        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            lead = mapper.readValue(new File(jsonFile), Lead.class);
+            lead = mapper.readValue(new File(pathFileJson), Lead.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +45,7 @@ public class JSONMapper {
         Account account = new Account();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            account = mapper.readValue(new File("src/test/resources/CreateAccountBase.json"), Account.class);
+            account = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "CreateAccountBase.json"), Account.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -52,7 +55,7 @@ public class JSONMapper {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File("src/test/resources/json/CreateContact.json"), Contact.class);
+            contact = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "CreateContact.json"), Contact.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,7 +65,7 @@ public class JSONMapper {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File("src/test/resources/EditContact.json"), Contact.class);
+            contact = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "EditContact.json"), Contact.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

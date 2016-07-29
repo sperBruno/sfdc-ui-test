@@ -28,19 +28,19 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(linkText = "Orders")
     private WebElement ordersTab;
 
-    @FindBy(linkText = "Campaigns")
+    @FindBy(id = "Campaign_Tab")
     private WebElement campaignsTab;
 
-    @FindBy(linkText = "Leads")
+    @FindBy(id = "Lead_Tab")
     private WebElement leadsTab;
 
     @FindBy(linkText = "Accounts")
     private WebElement accountsTab;
 
-    @FindBy(linkText = "Contacts")
+    @FindBy(id = "Contact_Tab")
     private WebElement contactsTab;
 
-    @FindBy(linkText = "Opportunities")
+    @FindBy(id = "Opportunity_Tab")
     private WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
@@ -106,6 +106,16 @@ public class NavigationBar extends AbstractBasePage {
         clickElementOfHomeTab(productsTab);
         return new ProductsHome();
     }
+
+    public boolean IsElementPresent(WebElement webElement) {
+        try {
+            webElement.getTagName();
+            return true;
+        } catch (WebDriverException e) {
+            return false;
+        }
+    }
+
 
     public ChatterHome goToChatterHome() {
         clickElementOfHomeTab(chatterTab);
