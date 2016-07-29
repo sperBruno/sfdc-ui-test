@@ -41,7 +41,7 @@ public class CreateLeadsViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateLeadsViewBasic.json");
+        return dataDrivenManager.getDataView("CreateLeadsViewBasic.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})

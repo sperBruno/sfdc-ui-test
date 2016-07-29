@@ -173,8 +173,8 @@ public class CampaignForm extends FormBase {
 
     @FindBy(className = "detailList")
     private WebElement panel;
-    public void clickPanel() {
-        
+    public CampaignForm clickPanel() {
         clickWebElement(panel);
+        return this;
     }
 }

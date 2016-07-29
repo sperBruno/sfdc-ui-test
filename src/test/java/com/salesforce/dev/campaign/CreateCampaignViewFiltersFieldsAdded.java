@@ -46,7 +46,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateCampaignViewFiltersFieldAdded.json");
+        return dataDrivenManager.getDataView("CreateCampaignViewFiltersFieldAdded.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})

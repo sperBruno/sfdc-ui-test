@@ -14,6 +14,8 @@ import com.salesforce.dev.pages.orders.OrdersHome;
 import com.salesforce.dev.pages.product.ProductsHome;
 import com.salesforce.dev.pages.reports.ReportsHome;
 import com.salesforce.dev.pages.solutions.SolutionsHome;
+
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -44,9 +46,10 @@ public class NavigationBar extends AbstractBasePage {
     private WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
+    //Product2_Tab
     private WebElement productsTab;
 
-    @FindBy(linkText = "Chatter")
+    @FindBy(id = "Chatter_Tab")
     private WebElement chatterTab;
 
     @FindBy(linkText = "Forecasts")
@@ -121,7 +124,6 @@ public class NavigationBar extends AbstractBasePage {
         clickElementOfHomeTab(chatterTab);
         return new ChatterHome();
     }
-
 
     public ForecastsHome goToForesCastsHome() {
         clickElementOfHomeTab(forecastsTab);

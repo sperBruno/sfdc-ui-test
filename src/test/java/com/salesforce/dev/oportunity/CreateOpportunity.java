@@ -32,7 +32,7 @@ public class CreateOpportunity {
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-        oppEnum = JSONMapper.getOpportunity("json/CreateOpportunity.json");
+        oppEnum = JSONMapper.getOpportunity("CreateOpportunity.json");
     }
 
     @Test(groups = {"Acceptance"})
