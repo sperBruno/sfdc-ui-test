@@ -101,5 +101,4 @@ task runTestNGTestCases(type: Test) {
     if (browser != "Firefox") {
         downloadDrivers.execute()
     }
-
 }
