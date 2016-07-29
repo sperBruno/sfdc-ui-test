@@ -22,6 +22,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JSON;
+
 public class DataDrivenManager {
     private JSONParser parser;
     private static final Logger LOGGER = Logger.getLogger(DataDrivenManager.class.getName());
@@ -29,12 +31,13 @@ public class DataDrivenManager {
     public DataDrivenManager(){
     }
 
-    public Iterator<Account[]> getAccountsDD(){
+    public Iterator<Account[]> getAccountsDD(String nameJson){
 
         Collection<Account[]> accountsArray =new ArrayList<Account[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src/test/resources/AccountsBaseDD.json"));
+            final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson) ;
+            Object jsonObject = parser.parse(new FileReader(pathFileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
             ObjectMapper objectMapper = new ObjectMapper();
@@ -63,7 +66,7 @@ public class DataDrivenManager {
         Collection<ViewSalesForce[]> viewSalesForcesArray =new ArrayList<ViewSalesForce[]>();
         try {
             parser = new JSONParser();
-            String pathFileJson = "src/test/resources/" + fileJson;
+            final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
             Object jsonObject = parser.parse(new FileReader(pathFileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
 
@@ -93,11 +96,10 @@ public class DataDrivenManager {
         Collection<Campaign[]> campaignsArray = new ArrayList<Campaign[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src/test/resources/json/" + fileJson));
+            final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(fileJson);
+            Object jsonObject = parser.parse(new FileReader(pathFileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
-
             ObjectMapper objectMapper = new ObjectMapper();
-
             List<Campaign> navigation = objectMapper.readValue(jsonArray.toJSONString(),
                     objectMapper.getTypeFactory().constructCollectionType(
                             List.class, Campaign.class));
@@ -126,7 +128,8 @@ public class DataDrivenManager {
         Collection<Chatter[]> chattersArray = new ArrayList<Chatter[]>();
         try {
             parser = new JSONParser();
-            Object jsonObject = parser.parse(new FileReader("src/test/resources/" + fileJson));
+            final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(fileJson);
+            Object jsonObject = parser.parse(new FileReader(pathFileJson));
             JSONArray jsonArray = (JSONArray) jsonObject;
             ObjectMapper objectMapper = new ObjectMapper();
             List<Chatter> navigation = objectMapper.readValue(jsonArray.toJSONString(),
