@@ -32,7 +32,7 @@ public class CreateOpportunityViewFiltersFieldsAdded {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateOpportunityViewFiltersFieldAdded.json");
+        return dataDrivenManager.getDataView("CreateOpportunityViewFiltersFieldAdded.json");
     }
 
     @BeforeMethod(groups = {"BVT"})

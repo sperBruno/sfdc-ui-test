@@ -25,8 +25,8 @@ public class EditLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup() {
-        lead = JSONMapper.getLead("json/CreateLeadBase.json");
-        leadEditEnum = JSONMapper.getLead("json/EditLead.json");
+        lead = JSONMapper.getLead("CreateLeadBase.json");
+        leadEditEnum = JSONMapper.getLead("EditLead.json");
 
         //Creating a lead
         ObjectGenie.createLead(lead);
