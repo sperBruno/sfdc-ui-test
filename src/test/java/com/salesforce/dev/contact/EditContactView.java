@@ -35,12 +35,12 @@ public class EditContactView {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/EditContactView.json");
+        return dataDrivenManager.getDataView("EditContactView.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("json/CreateContactView.json");
+        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateContactView.json");
         nameView = viewSalesForce.getViewName();
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();

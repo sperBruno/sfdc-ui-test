@@ -27,8 +27,8 @@ public class EditOpportunity {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = JSONMapper.getOpportunity("json/CreateOpportunityBase.json");
-        oppEditEnum = JSONMapper.getOpportunity("json/EditOpportunity.json");
+        oppEnum = JSONMapper.getOpportunity("CreateOpportunityBase.json");
+        oppEditEnum = JSONMapper.getOpportunity("EditOpportunity.json");
 
         // creating the opportunity base
         ObjectGenie.createOpportunity(oppEnum);

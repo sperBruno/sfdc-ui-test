@@ -124,7 +124,7 @@ public class LeadForm extends FormBase {
     @CacheLookup
     private WebElement currentGenerators;
 
-    @FindBy(id = "00N50000006d6vQ")
+    @FindBy(xpath = "//td[contains(.,'Primary')]/following::select")
     @CacheLookup
     private WebElement primary;
 

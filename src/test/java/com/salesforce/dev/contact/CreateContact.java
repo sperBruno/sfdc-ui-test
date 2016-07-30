@@ -1,5 +1,7 @@
 package com.salesforce.dev.contact;
 
+import java.util.Calendar;
+
 import com.salesforce.dev.framework.dto.Contact;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -83,9 +85,10 @@ public class CreateContact {
         searchLookup.searchText(contact.getReportsTo());
         contactForm = searchLookup.goToContactForm();
 
+        final int year = 2015;
         contactForm.setLeadSource(contact.getLeadSource())
                 .setPhone(contact.getPhone())
-                .setBirthDate(6, 6, 2015)
+                .setBirthDate(Calendar.JUNE, Calendar.SATURDAY, year)
                 .setHomePhone(contact.getHomePhone())
                 .setMobile(contact.getMobile())
                 .setOtherPhone(contact.getOtherPhone())
