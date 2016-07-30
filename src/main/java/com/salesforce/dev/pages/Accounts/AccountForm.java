@@ -130,7 +130,7 @@ public class AccountForm extends FormBase {
     @FindBy(xpath = "//label[contains(.,'Number of Locations')]/following::input")
     private WebElement accountNumberLocationsFld;
 
-    @FindBy(id = "00N50000006a5Xj")
+    @FindBy(xpath = "//label[contains(.,'Active')]/following::select")
     private WebElement accountActiveFld;
 
     @FindBy(xpath = "//label[contains(.,'SLA')]/following::select")
