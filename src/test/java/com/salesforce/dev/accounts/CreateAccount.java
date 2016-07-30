@@ -26,7 +26,7 @@ public class CreateAccount {
     private AccountDetail accountDetail;
     private Map<AccountSteps, Object> mapAccount;
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mapAccount = JSONMapper.getAccountBase().convertToMap();
         mainPage = LoginPage.loginAsPrimaryUser();
