@@ -120,8 +120,8 @@ public class AccountDetail extends DetailsBase {
     }
 
     @Override
-    public AccountsHome clickDeleteBtn(boolean confirmDeletion) {
-        clickDeletedAccButton(true);
+    public AccountsHome clickDeleteBtn(boolean value) {
+        clickDeletedAccButton(value);
         return new AccountsHome();
 
     }
@@ -205,8 +205,8 @@ public class AccountDetail extends DetailsBase {
     }
 
     public String validateAccountEmployeesFld() {
-        String realValue = accountEmployeesFld.getText().replaceAll("[-+.^:,]", "");
-        return realValue;
+        return accountEmployeesFld.getText().replaceAll("[-+.^:,]", "");
+
     }
 
     public String validateAccountSICCodeFld() {

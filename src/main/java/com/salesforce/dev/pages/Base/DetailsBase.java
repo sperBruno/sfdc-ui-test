@@ -16,7 +16,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
  * @author: Jimmy Vargas
  * @since: 6/13/2015
  */
-public abstract class DetailsBase extends AbstractBasePage {
+public abstract class DetailsBase extends com.salesforce.dev.pages.base.AbstractBasePage {
 
     private static final Logger LOGGER = Logger.getLogger(DetailsBase.class.getName());
 

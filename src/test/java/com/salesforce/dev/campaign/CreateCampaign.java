@@ -69,10 +69,10 @@ public class CreateCampaign {
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
         campaignDetail = campaignForm.clickSaveBtn();
-        Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
-        Map<CampaignSteps, Object> mapExpected = campaignDetail.getAssertionMap();
-        mapCampaign.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
+        Map<CampaignSteps, Object> mapExpected = campaign.convertToMap();
+        Map<CampaignSteps, Object> mapActual = campaignDetail.getAssertionMap();
+        mapExpected.keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step)));
         });
     }
 

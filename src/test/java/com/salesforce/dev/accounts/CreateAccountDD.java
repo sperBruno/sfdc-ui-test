@@ -40,7 +40,6 @@ public class CreateAccountDD {
         navigationBar = mainPage.gotoNavBar();
     }
 
-
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateAccount(Account account) {
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
@@ -48,10 +47,10 @@ public class CreateAccountDD {
                 .setAccountNameFld(account.getAccountName())
                 .setAccountDescriptionFld(account.getAccountDesc());
         accountDetail = accountForm.clickSaveBtn();
-        Map<AccountSteps, Object> mapAccount =account.convertToMap();
-        Map<AccountSteps, Object> mapExpected = accountDetail.getAssertionMap();
-        mapAccount.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
+        Map<AccountSteps, Object> mapExpected =account.convertToMap();
+        Map<AccountSteps, Object> mapActual = accountDetail.getAssertionMap();
+        mapExpected.keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step)));
         });
     }
 

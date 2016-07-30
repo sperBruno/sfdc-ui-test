@@ -24,10 +24,11 @@ public class CreateAccount {
 
     private MainPage mainPage;
     private AccountDetail accountDetail;
-    private Account account = JSONMapper.getAccountBase();
+    private Map<AccountSteps, Object> mapAccount;
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {
+        mapAccount = JSONMapper.getAccountBase().convertToMap();
         mainPage = LoginPage.loginAsPrimaryUser();
     }
 
@@ -36,7 +37,6 @@ public class CreateAccount {
         NavigationBar navigationBar = mainPage.gotoNavBar();
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn();
-        Map<AccountSteps, Object> mapAccount =account.convertToMap();
         mapAccount.keySet().stream().forEach((step) -> {
             accountForm.getStrategyStepMap(mapAccount).get(step).executeStep();
         });
