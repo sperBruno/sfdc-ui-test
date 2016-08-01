@@ -15,7 +15,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Veronica Prado on 9/3/2015.
+ * @author Veronica Prado on 9/3/2015.
+ * @author Bruno Barrios
  */
 public class EditPostChatter {
     private MainPage mainPage;
@@ -26,8 +27,7 @@ public class EditPostChatter {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("json/Chatter.json");
-        createChatter = chattersData.next()[0];
+        createChatter = getChatter("Chatter.json");
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();
@@ -38,12 +38,16 @@ public class EditPostChatter {
 
     @Test(groups = {"Acceptance"})
     public void CreatePostAndComment() {
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("json/EditChatter.json");
-        Chatter chatter = chattersData.next()[0];
+        Chatter chatter = getChatter("EditChatter.json");
         EditPost editPost = chatterHome.editPost(createChatter.getPost());
         editPost.setEditTextBox(chatter.getPost());
         chatterHome = editPost.clickSaveEditBtn();
-        Assert.assertTrue(chatterHome.VerifyPostCreated(chatter.getPost()), "Post has been not Updated");
+        Assert.assertTrue(chatterHome.VerifyPostCreated(chatter.getPost()), "Post has not been Updated");
+    }
+
+    private Chatter getChatter(String fileJson) {
+        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter(fileJson);
+        return chattersData.next()[0];
     }
 
     @AfterMethod(groups = {"Acceptance"})

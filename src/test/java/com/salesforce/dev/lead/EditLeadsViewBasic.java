@@ -33,12 +33,12 @@ public class EditLeadsViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/EditLeadsViewBasic.json");
+        return dataDrivenManager.getDataView("EditLeadsViewBasic.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        ViewSalesForce viewSalesForce = LeadGenie.getLeadsView("json/CreateLeadsViewBasic.json");
+        ViewSalesForce viewSalesForce = LeadGenie.getLeadsView("CreateLeadsViewBasic.json");
         viewName = viewSalesForce.getViewName();
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
@@ -60,12 +60,10 @@ public class EditLeadsViewBasic {
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
         Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
-        LOGGER.info("leads View has been updated");
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         leadViewDetail.clickDeleteLnk(true);
-        LOGGER.info("leads View was deleted");
     }
 }

@@ -21,14 +21,14 @@ public class ContactsHome extends HomeBase {
     @Override
     public ContactView clickNewViewLnk() {
         clickNewViewLink();
-        return new ContactView(this.driver);
+        return new ContactView();
 
     }
 
     @Override
     public ContactView clickEditViewLnk(String value) {
         editViewLnk(value);
-        return new ContactView(this.driver);
+        return new ContactView();
     }
 
     public ContactDetail selectRecentItem(String opportunity) {

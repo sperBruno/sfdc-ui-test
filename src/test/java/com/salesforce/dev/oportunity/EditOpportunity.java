@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by jimmy vargas on 6/20/2015.
+ * @author Jimmy Vargas on 6/20/2015.
  */
 public class EditOpportunity {
 
@@ -27,8 +27,8 @@ public class EditOpportunity {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = JSONMapper.getOpportunity("json/CreateOpportunityBase.json");
-        oppEditEnum = JSONMapper.getOpportunity("json/EditOpportunity.json");
+        oppEnum = JSONMapper.getOpportunity("CreateOpportunityBase.json");
+        oppEditEnum = JSONMapper.getOpportunity("EditOpportunity.json");
 
         // creating the opportunity base
         ObjectGenie.createOpportunity(oppEnum);
@@ -62,7 +62,5 @@ public class EditOpportunity {
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
         OpportunityDetail opDetail = opHome.openOpportunity(oppEditEnum.opportunityName);
         opDetail.deleteOpportunity();
-
     }
-
 }

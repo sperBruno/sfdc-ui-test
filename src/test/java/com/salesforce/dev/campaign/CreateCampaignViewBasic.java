@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Veronica Prado on 8/22/2015.
+ * @author Veronica Prado on 8/22/2015.
  */
 public class CreateCampaignViewBasic {
     private CampaignsHome campaignsHome;
@@ -33,7 +33,7 @@ public class CreateCampaignViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateCampaignViewBasic.json");
+        return dataDrivenManager.getDataView("CreateCampaignViewBasic.json");
     }
 
 

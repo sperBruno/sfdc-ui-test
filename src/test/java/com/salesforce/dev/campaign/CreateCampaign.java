@@ -22,7 +22,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Created by Marcelo.Vargas on 6/15/2015.
+ * @author Marcelo Vargas on 6/15/2015.
  */
 public class CreateCampaign {
 

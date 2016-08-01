@@ -19,7 +19,7 @@ import com.salesforce.dev.pages.base.NavigationBar;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Created by Walter on 13/06/2015.
+ * @author Walter on 13/06/2015.
  */
 public class CreateAccount {
 

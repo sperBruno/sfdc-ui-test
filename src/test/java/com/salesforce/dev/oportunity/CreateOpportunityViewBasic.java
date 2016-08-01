@@ -30,7 +30,7 @@ public class CreateOpportunityViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateOpportunityViewBasic.json");
+        return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
     }
 
     @BeforeMethod(groups = {"BVT"})
@@ -48,13 +48,11 @@ public class CreateOpportunityViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         opportunityViewDetail = opportunityView.clickSaveBtn();
-        LOGGER.info("Opportunity was created");
         assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         opportunityViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Opportunity View was deleted");
     }
 }

@@ -36,7 +36,7 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 /**
- * Created by Walter on 10/06/2015.
+ * @author Walter on 10/06/2015.
  */
 public class AccountForm extends FormBase {
 
@@ -130,7 +130,7 @@ public class AccountForm extends FormBase {
     @FindBy(xpath = "//label[contains(.,'Number of Locations')]/following::input")
     private WebElement accountNumberLocationsFld;
 
-    @FindBy(id = "00N50000006a5Xj")
+    @FindBy(xpath = "//label[contains(.,'Active')]/following::select")
     private WebElement accountActiveFld;
 
     @FindBy(xpath = "//label[contains(.,'SLA')]/following::select")

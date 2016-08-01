@@ -23,10 +23,12 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Created by Marcelo.Vargas on 6/21/2015.
+ * @author Marcelo Vargas on 6/21/2015.
  */
 public class EditCampaign {
+
     private static final Logger LOGGER = Logger.getLogger(EditCampaign.class.getName());
+
     private String campaignNameToUpdated;
     private String campaignParentName;
     private CampaignsHome campaignsHome;
@@ -92,12 +94,10 @@ public class EditCampaign {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignDetail.clickDeleteBtn(true);
-        LOGGER.info("Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignDetail = campaignsHome.selectRecentItem(campaignParentName);
         campaignDetail.clickDeleteBtn(true);
-        LOGGER.info("Campaign Parent was deleted");
     }
 }

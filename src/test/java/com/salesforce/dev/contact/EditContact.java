@@ -19,7 +19,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Marcelo.Vargas on 6/21/2015.
+ * @author Marcelo Vargas on 6/21/2015.
  */
 
 public class EditContact {
@@ -109,12 +109,10 @@ public class EditContact {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactDetail.clickDeleteBtn(true);
-        LOGGER.info("Contact was deleted");
         mainPage = accountDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(contact.getAccountName());
         accountDetail.clickDeleteBtn(true);
-        LOGGER.info("Account was deleted");
     }
 }

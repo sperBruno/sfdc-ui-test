@@ -1,5 +1,7 @@
 package com.salesforce.dev.contact;
 
+import java.util.Calendar;
+
 import com.salesforce.dev.framework.dto.Contact;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -20,7 +22,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Marcelo.Vargas on 6/12/2015.
+ * @author Marcelo Vargas on 6/12/2015.
  */
 
 public class CreateContact {
@@ -83,9 +85,10 @@ public class CreateContact {
         searchLookup.searchText(contact.getReportsTo());
         contactForm = searchLookup.goToContactForm();
 
+        final int year = 2015;
         contactForm.setLeadSource(contact.getLeadSource())
                 .setPhone(contact.getPhone())
-                .setBirthDate(6, 6, 2015)
+                .setBirthDate(Calendar.JUNE, Calendar.SATURDAY, year)
                 .setHomePhone(contact.getHomePhone())
                 .setMobile(contact.getMobile())
                 .setOtherPhone(contact.getOtherPhone())
@@ -106,10 +109,7 @@ public class CreateContact {
                 .setLanguages(contact.getLanguages())
                 .setLevel(contact.getLevel())
                 .setDescription(contact.getDescription());
-
         contactDetail = contactForm.clickSaveBtn();
-
-        LOGGER.info("Contact was created");
         Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
     }
 
@@ -121,6 +121,5 @@ public class CreateContact {
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountDetail.clickDeleteBtn(true);
-        LOGGER.info("Contact was deleted");
     }
 }

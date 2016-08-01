@@ -19,7 +19,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Created by Veronica Prado on 8/22/2015.
+ * @author Veronica Prado on 8/22/2015.
  */
 public class EditCampaignViewBasic {
     private static final Logger LOGGER = Logger.getLogger(EditCampaignViewBasic.class.getName());
@@ -33,12 +33,12 @@ public class EditCampaignViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/EditCampaignViewBasic.json");
+        return dataDrivenManager.getDataView("EditCampaignViewBasic.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("json/CreateCampaignViewBasic.json");
+        ViewSalesForce viewSalesForce = CampaignGenie.getCampaignView("CreateCampaignViewBasic.json");
         nameView = viewSalesForce.getViewName();
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
@@ -66,6 +66,5 @@ public class EditCampaignViewBasic {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Campaign View was deleted");
     }
 }

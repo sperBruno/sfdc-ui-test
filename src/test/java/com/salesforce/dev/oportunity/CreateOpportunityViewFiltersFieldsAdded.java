@@ -25,14 +25,13 @@ import static org.junit.Assert.assertTrue;
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
-    private static final Logger LOGGER = Logger.getLogger(CreateOpportunityViewFiltersFieldsAdded.class.getName());
     private NavigationBar navigationBar;
     private OpportunityViewDetail opportunityViewDetail;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateOpportunityViewFiltersFieldAdded.json");
+        return dataDrivenManager.getDataView("CreateOpportunityViewFiltersFieldAdded.json");
     }
 
     @BeforeMethod(groups = {"BVT"})
@@ -69,6 +68,5 @@ public class CreateOpportunityViewFiltersFieldsAdded {
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
         opportunityViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Opportunity View was deleted");
     }
 }

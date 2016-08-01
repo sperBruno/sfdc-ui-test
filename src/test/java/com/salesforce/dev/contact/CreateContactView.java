@@ -31,8 +31,6 @@ import static org.testng.Assert.assertFalse;
  */
 public class CreateContactView {
 
-    private static final Logger LOGGER = Logger.getLogger(CreateContactView.class.getName());
-
     private ContactsHome contactHome;
 
     private ContactView contactView;
@@ -54,7 +52,7 @@ public class CreateContactView {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateContactView.json");
+        return dataDrivenManager.getDataView("CreateContactView.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})
@@ -90,15 +88,12 @@ public class CreateContactView {
         List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
         for (FieldToDisplayView fields : fieldToDisplayViews)
             contactView = contactView.addNewFieldToDisplay(fields.getFieldToDisplay());
-
         contactViewDetail = contactView.clickSaveBtn();
-        LOGGER.info("Contact was created");
         assertFalse(contactViewDetail.validateNameView("AnyName"));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Contact View was deleted");
     }
 }

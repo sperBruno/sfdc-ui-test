@@ -21,7 +21,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Jimmy Vargas on 6/15/2015.
+ * @author Jimmy Vargas on 6/15/2015.
  */
 public class CreateLead {
 

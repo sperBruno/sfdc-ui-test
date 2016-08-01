@@ -11,5 +11,11 @@ public class Constants {
 
     public static final String SRC_TEST_RESOURCES_JSON = "src/test/resources/json/";
 
+    public static final int TEN_SECONDS = 10;
+
+    public static final int FIFTEEN_SECONDS = 15;
+
+    public static final String SALESFORCE_URL = "https://www.salesforce.com";
+
     private Constants(){}
 }

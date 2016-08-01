@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created by Carlos Gonzales on 6/8/2015.
+ * @author Carlos Gonzales on 6/8/2015.
  */
 public class Environment {
 

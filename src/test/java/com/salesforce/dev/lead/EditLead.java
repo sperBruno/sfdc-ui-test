@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by jimmy vargas on 6/21/2015.
+ * @author Jimmy Vargas on 6/21/2015.
  */
 public class EditLead {
     private static final Logger LOGGER = Logger.getLogger(EditLead.class.getName());
@@ -25,8 +25,8 @@ public class EditLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup() {
-        lead = JSONMapper.getLead("json/CreateLeadBase.json");
-        leadEditEnum = JSONMapper.getLead("json/EditLead.json");
+        lead = JSONMapper.getLead("CreateLeadBase.json");
+        leadEditEnum = JSONMapper.getLead("EditLead.json");
 
         //Creating a lead
         ObjectGenie.createLead(lead);
@@ -68,6 +68,5 @@ public class EditLead {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.lastName);
         leadDetail.deleteLead();
-        LOGGER.info("Lead was deleted");
     }
 }

@@ -1,7 +1,7 @@
 package com.salesforce.dev.framework.utils;
 
 /**
- * Created by Walter Mercado on 6/22/2015.
+ * @author Walter Mercado on 6/22/2015.
  */
 
 import java.io.FileNotFoundException;

@@ -19,8 +19,10 @@ import org.testng.annotations.Test;
 
 import java.util.Iterator;
 
+import static org.testng.Assert.assertTrue;
+
 /**
- * Created by Ariel Mattos on 06/09/2015.
+ * @author Ariel Mattos on 06/09/2015.
  */
 public class CreateLeadsViewBasic {
 
@@ -59,14 +61,13 @@ public class CreateLeadsViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
-        LOGGER.info("Basic leads View was created");
-        Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForce.getViewName()),
+
+        assertTrue(leadViewDetail.validateNameView(viewSalesForce.getViewName()),
                 "View name does not match " + viewSalesForce.getViewName());
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         leadViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Lead View was deleted");
     }
 }
