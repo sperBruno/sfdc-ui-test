@@ -2,18 +2,19 @@ package com.salesforce.dev.accounts;
 
 import java.util.Map;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import com.salesforce.dev.framework.dto.Account;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.MainPage;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
@@ -26,7 +27,7 @@ public class CreateAccount {
     private AccountDetail accountDetail;
     private Account account = JSONMapper.getAccountBase();
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"connection"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
     }

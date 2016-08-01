@@ -2,6 +2,10 @@ package com.salesforce.dev.accounts;
 
 import java.util.Map;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import com.salesforce.dev.framework.dto.Account;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -11,9 +15,6 @@ import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
@@ -26,22 +27,24 @@ public class EditAccount {
     private NavigationBar navigationBar;
     private AccountsHome accountsHome;
     private AccountForm accountForm;
-    private Account account = JSONMapper.getAccountBase();
-    private String accountName = "AccountName";
+    private Account account;
+    private String accountName;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = "connection")
     public void setUp() {
+        account = JSONMapper.getAccountBase();
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
+        accountName = "AccountName";
         accountForm.setAccountNameFld(accountName);
         accountDetail = accountForm.clickSaveBtn();
         mainPage = accountDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = "Acceptance")
     public void testEditAccount() {
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
@@ -57,7 +60,7 @@ public class EditAccount {
         });
     }
 
-    @AfterMethod(groups = {"Acceptance"})
+    @AfterMethod(dependsOnGroups = {"connection","Acceptance"})
     public void tearDown() {
         accountDetail.clickDeleteBtn(true);
     }

@@ -2,21 +2,20 @@ package com.salesforce.dev.accounts;
 
 import java.util.Iterator;
 
-import com.salesforce.dev.framework.utils.DataDrivenManager;
-import com.salesforce.dev.framework.dto.ViewSalesForce;
-import com.salesforce.dev.framework.utils.RandomGenerator;
-import com.salesforce.dev.pages.accounts.AccountView;
-import com.salesforce.dev.pages.accounts.AccountViewDetail;
-import com.salesforce.dev.pages.accounts.AccountsHome;
-import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.HomePage;
-import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.MainPage;
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.accounts.AccountView;
+import com.salesforce.dev.pages.accounts.AccountViewDetail;
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.NavigationBar;
 
 import static org.testng.Assert.assertTrue;
 
@@ -35,12 +34,12 @@ public class CreateAccountViewBasic {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
         return dataDrivenManager.getDataView("CreateAccountsViewBasic.json");
     }
-    @BeforeMethod(groups = {"BVT"})
+
+    @BeforeMethod(groups = {"connection"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
-
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
