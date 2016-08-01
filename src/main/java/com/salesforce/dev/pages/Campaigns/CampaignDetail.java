@@ -1,16 +1,31 @@
 package com.salesforce.dev.pages.campaigns;
 
-import com.salesforce.dev.pages.base.DetailsBase;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.DetailsBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.getTextWebElement;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.ACTUAL_COST;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.BUDGETED_COST;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_NAME;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_STATUS;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_TYPE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.END_DATE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.EXPECTED_RESPONSE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.EXPECTED_REVENUE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.NUM_SENT;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.PARENT_CAMPAIGN;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.START_DATE;
+
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
  */
-public class CampaignDetail extends DetailsBase{
+public class CampaignDetail extends DetailsBase {
 
     @FindBy(id = "cpn1_ileinner")
     private WebElement campaignName;
@@ -46,64 +61,96 @@ public class CampaignDetail extends DetailsBase{
     private WebElement campaignParent;
 
     @Override
-    public CampaignForm clickEditBtn(){
+    public CampaignForm clickEditBtn() {
         clickEditButton();
         return new CampaignForm();
     }
 
     @Override
-    public CampaignsHome clickDeleteBtn(boolean confirmDeletion){
+    public CampaignsHome clickDeleteBtn(boolean confirmDeletion) {
         clickDeleteButton(confirmDeletion);
         return new CampaignsHome();
     }
 
-    public MainPage gotoMainPage(){
+    public MainPage gotoMainPage() {
         return new MainPage();
     }
 
-    public Boolean validateCampaignNameFld(String value) {
-        String realValue = getTextWebElement(campaignName).substring(0, campaignName.getText().length() - 17);
-        return realValue.equals(value);
+    public String validateCampaignNameFld() {
+        return getTextWebElement(campaignName).substring(0, campaignName.getText().length() - 17);
     }
 
-    public Boolean validateCampaignType(String value) {
-        return getTextWebElement(campaignType).equals(value);
+    public String validateCampaignType() {
+        return getTextWebElement(campaignType);
     }
 
-    public Boolean validateCampaignStatus(String value) {
-        return getTextWebElement(campaignStatus).equals(value);
+    public String validateCampaignStatus() {
+        return getTextWebElement(campaignStatus);
     }
 
-    public Boolean validateCampaignStartDate(String value) {
-        return getTextWebElement(campaignStartDate).equals(value);
+    public String validateCampaignStartDate() {
+        return getTextWebElement(campaignStartDate);
     }
 
-    public Boolean validateCampaignEndDate(String value) {
-        return getTextWebElement(campaignEndDate).equals(value);
+    public String validateCampaignEndDate() {
+        return getTextWebElement(campaignEndDate);
     }
 
-    public Boolean validateCampaignExpectedRevenue(String value) {
-        return getTextWebElement(campaignExpectedRevenue).equals("¤" + value);
+    public String validateCampaignExpectedRevenue() {
+        return getTextWebElement(campaignExpectedRevenue);
+        //equals("¤" + value);
     }
 
-    public Boolean validateCampaignBudgetedCost(String value) {
-        return getTextWebElement(campaignBudgetedCost).equals("¤" + value);
+    public String validateCampaignBudgetedCost() {
+        return getTextWebElement(campaignBudgetedCost);
     }
 
-    public Boolean validateCampaignActualCost(String value) {
+    public String validateCampaignActualCost() {
 
-        return getTextWebElement(campaignActualCost).equals("¤" + value);
+        return getTextWebElement(campaignActualCost);
     }
 
-    public Boolean validateCampaignExpectedResponse(String value) {
-        return getTextWebElement(campaignExpectedResponse).equals(value);
+    public String validateCampaignExpectedResponse() {
+        return getTextWebElement(campaignExpectedResponse);
     }
 
-    public Boolean validateCampaignNumSent(String value) {
-        return getTextWebElement(campaignNumSent).equals(value);
+    public String validateCampaignNumSent() {
+        return getTextWebElement(campaignNumSent);
     }
 
-    public Boolean validateCampaignParent(String value) {
-        return getTextWebElement(campaignParent).equals(value);
+    public String validateCampaignParent() {
+        return getTextWebElement(campaignParent);
+    }
+
+    public Map<CampaignSteps, Object> getAssertionMap() {
+        Map<CampaignSteps, Object> assertionMap = new HashMap<>();
+        assertionMap.put(CAMPAIGN_NAME, validateCampaignNameFld());
+        assertionMap.put(CAMPAIGN_STATUS, validateCampaignStatus());
+        assertionMap.put(CAMPAIGN_TYPE, validateCampaignType());
+        assertionMap.put(START_DATE, validateCampaignStartDate());
+        assertionMap.put(END_DATE, validateCampaignEndDate());
+        assertionMap.put(PARENT_CAMPAIGN, validateCampaignParent());
+        //assertionMap.put(BUDGETED_COST, validateCampaignBudgetedCost());
+        //   assertionMap.put(ACTUAL_COST, validateCampaignActualCost() );
+        //  assertionMap.put(EXPECTED_RESPONSE, validateCampaignExpectedResponse());
+        //     assertionMap.put(NUM_SENT, validateCampaignNumSent());
+        //   assertionMap.put(EXPECTED_REVENUE, validateCampaignExpectedRevenue());
+        return assertionMap;
+    }
+
+    public Map<CampaignSteps, Object> getAssertionEditMap() {
+        Map<CampaignSteps, Object> assertionMap = new HashMap<>();
+        assertionMap.put(CAMPAIGN_NAME, validateCampaignNameFld());
+        assertionMap.put(CAMPAIGN_STATUS, validateCampaignStatus());
+        assertionMap.put(CAMPAIGN_TYPE, validateCampaignType());
+        assertionMap.put(START_DATE, validateCampaignStartDate());
+        assertionMap.put(END_DATE, validateCampaignEndDate());
+        assertionMap.put(PARENT_CAMPAIGN, validateCampaignParent());
+        assertionMap.put(BUDGETED_COST, validateCampaignBudgetedCost());
+        assertionMap.put(ACTUAL_COST, validateCampaignActualCost());
+        assertionMap.put(EXPECTED_RESPONSE, validateCampaignExpectedResponse());
+        assertionMap.put(NUM_SENT, validateCampaignNumSent());
+        assertionMap.put(EXPECTED_REVENUE, validateCampaignExpectedRevenue());
+        return assertionMap;
     }
 }

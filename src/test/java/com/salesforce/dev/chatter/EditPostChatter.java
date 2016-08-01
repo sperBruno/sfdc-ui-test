@@ -1,57 +1,53 @@
 package com.salesforce.dev.chatter;
 
-import com.salesforce.dev.framework.utils.DataDrivenManager;
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.dto.Chatter;
-import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.chatter.ChatterHome;
-import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.chatter.ChatterHome;
+import com.salesforce.dev.pages.chatter.EditPost;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
 
 /**
  * Created by Veronica Prado on 9/3/2015.
  */
 public class EditPostChatter {
-    HomePage homePage;
-    MainPage mainPage;
-    NavigationBar navigationBar;
-    ChatterHome chatterHome;
+    private MainPage mainPage;
+    private NavigationBar navigationBar;
+    private ChatterHome chatterHome;
+    private Chatter createChatter;
+    private DataDrivenManager dataDrivenManager = new DataDrivenManager();
 
     @BeforeMethod(groups = {"Acceptance"})
-    public void setUp(){
-        //create
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("json/Chatter.json");
-        Chatter createChatter = chattersData.next()[0];
+    public void setUp() {
+        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("Chatter.json");
+        createChatter = chattersData.next()[0];
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();
-//        chatterHome.clickPost();
-        chatterHome.setPost(createChatter.getPost());
-        chatterHome.clickShareBtn();
-    }
-    @DataProvider(name = "dataDriven")
-    public Iterator<Chatter[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getChatter("json/EditChatter.json");
+        chatterHome.clickPost()
+                .setPost(createChatter.getPost())
+                .clickShareBtn();
     }
 
-    @Test(groups = {"Acceptance"}, dataProvider ="dataDriven")
-    public void CreatePostAndComment(Chatter chatter){
-        System.out.println("va*erk:");
-        chatterHome.editPost(chatter.getPost());
+    @Test(groups = {"Acceptance"})
+    public void CreatePostAndComment() {
+        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("EditChatter.json");
+        Chatter chatter = chattersData.next()[0];
+        EditPost editPost = chatterHome.editPost(createChatter.getPost());
+        editPost.setEditTextBox(chatter.getPost());
+        chatterHome = editPost.clickSaveEditBtn();
         Assert.assertTrue(chatterHome.VerifyPostCreated(chatter.getPost()), "Post has been not Updated");
     }
 
     @AfterMethod(groups = {"Acceptance"})
-    public void tearDown(){
+    public void tearDown() {
         chatterHome.DeletePost();
     }
 }

@@ -54,7 +54,7 @@ public class CreateContactView {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateContactView.json");
+        return dataDrivenManager.getDataView("CreateContactView.json");
     }
 
     @BeforeMethod(groups = {"Acceptance"})

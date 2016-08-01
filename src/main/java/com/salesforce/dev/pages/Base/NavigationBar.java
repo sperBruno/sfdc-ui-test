@@ -14,6 +14,7 @@ import com.salesforce.dev.pages.orders.OrdersHome;
 import com.salesforce.dev.pages.product.ProductsHome;
 import com.salesforce.dev.pages.reports.ReportsHome;
 import com.salesforce.dev.pages.solutions.SolutionsHome;
+
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,53 +27,54 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  */
 public class NavigationBar extends AbstractBasePage {
 
-    @FindBy(linkText = "orders")
+    @FindBy(linkText = "Orders")
     private WebElement ordersTab;
 
-    @FindBy(linkText = "campaigns")
+    @FindBy(id = "Campaign_Tab")
     private WebElement campaignsTab;
 
-    @FindBy(linkText = "leads")
+    @FindBy(id = "Lead_Tab")
     private WebElement leadsTab;
 
-    @FindBy(id = "Account_Tab")
+    @FindBy(linkText = "Accounts")
     private WebElement accountsTab;
 
-    @FindBy(linkText = "contacts")
+    @FindBy(id = "Contact_Tab")
     private WebElement contactsTab;
 
-    @FindBy(linkText = "opportunities")
+    @FindBy(id = "Opportunity_Tab")
     private WebElement opportunitiesTab;
 
     @FindBy(linkText = "Products")
+    //Product2_Tab
     private WebElement productsTab;
 
-    @FindBy(linkText = "chatter")
+    @FindBy(id = "Chatter_Tab")
     private WebElement chatterTab;
 
-    @FindBy(linkText = "forecasts")
+    @FindBy(linkText = "Forecasts")
     private WebElement forecastsTab;
 
-    @FindBy(linkText = "contracts")
+    @FindBy(linkText = "Contracts")
     private WebElement contractsTab;
 
-    @FindBy(linkText = "cases")
+    @FindBy(linkText = "Cases")
     private WebElement casesTab;
 
-    @FindBy(linkText = "solutions")
+    @FindBy(linkText = "Solutions")
     private WebElement solutionsTab;
 
-    @FindBy(linkText = "reports")
+    @FindBy(linkText = "Reports")
     private WebElement reportsTab;
 
-    @FindBy(linkText = "dashboards")
+    @FindBy(linkText = "Dashboards")
     private WebElement dashboardTab;
 
     @FindBy(id = "MoreTabs_Tab")
     private WebElement moreTabsComboBox;
 
     public CampaignsHome goToCampaignsHome() {
-        clickWebElement(campaignsTab);
+        clickElementOfHomeTab(campaignsTab);
         return new CampaignsHome();
     }
 
@@ -82,12 +84,12 @@ public class NavigationBar extends AbstractBasePage {
     }
 
     public AccountsHome goToAccountsHome() {
-        clickWebElement(accountsTab);
+        clickElementOfHomeTab(accountsTab);
         return new AccountsHome();
     }
 
     public ContactsHome goToContactsHome() {
-        clickWebElement(contactsTab);
+        clickElementOfHomeTab(contactsTab);
         return new ContactsHome();
     }
 
@@ -99,12 +101,12 @@ public class NavigationBar extends AbstractBasePage {
      * @since: 6/10/2015
      */
     public OpportunitiesHome goToOpportunitiesHome() {
-        clickWebElement(opportunitiesTab);
+        clickElementOfHomeTab(opportunitiesTab);
         return new OpportunitiesHome();
     }
 
     public ProductsHome goToProductsHome() {
-        clickWebElement(productsTab);
+        clickElementOfHomeTab(productsTab);
         return new ProductsHome();
     }
 
@@ -119,48 +121,51 @@ public class NavigationBar extends AbstractBasePage {
 
 
     public ChatterHome goToChatterHome() {
-        clickWebElement(chatterTab);
+        clickElementOfHomeTab(chatterTab);
         return new ChatterHome();
     }
 
-
-    public ForecastsHome goToForescastsHome() {
-        clickWebElement(forecastsTab);
+    public ForecastsHome goToForesCastsHome() {
+        clickElementOfHomeTab(forecastsTab);
         return new ForecastsHome();
     }
 
     public ContractsHome goToContractsHome() {
-        clickWebElement(contractsTab);
+        clickElementOfHomeTab(contractsTab);
         return new ContractsHome();
     }
 
     public OrdersHome goToOrdersHome() {
-        clickWebElement(ordersTab);
+        clickElementOfHomeTab(ordersTab);
         return new OrdersHome();
     }
 
     public CasesHome goToCasesHome() {
-        clickWebElement(casesTab);
+        clickElementOfHomeTab(casesTab);
         return new CasesHome();
     }
 
     public SolutionsHome goToSolutionsHome() {
-        clickWebElement(solutionsTab);
+        clickElementOfHomeTab(solutionsTab);
         return new SolutionsHome();
     }
 
     public ReportsHome goToReportsHome() {
-        clickWebElement(reportsTab);
+        clickElementOfHomeTab(reportsTab);
         return new ReportsHome();
     }
 
     public DashboardsHome goToDashboardsHome() {
-        if((isElementPresent(dashboardTab) == false) && (isElementPresent(moreTabsComboBox)== true)) {
-            clickWebElement(moreTabsComboBox);
-            clickWebElement(dashboardTab);
-        }else{
-            clickWebElement(dashboardTab);
-        }
+        clickElementOfHomeTab(dashboardTab);
         return new DashboardsHome();
+    }
+
+    private void clickElementOfHomeTab(WebElement webElement) {
+        if ((!isElementPresent(webElement)) && (isElementPresent(moreTabsComboBox))) {
+            clickWebElement(moreTabsComboBox);
+            clickWebElement(webElement);
+        } else {
+            clickWebElement(webElement);
+        }
     }
 }

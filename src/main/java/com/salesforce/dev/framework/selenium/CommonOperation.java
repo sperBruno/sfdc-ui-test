@@ -31,7 +31,6 @@ public class CommonOperation {
 
     public static void setWebElement(WebElement webElement, String text) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
-        webElement.clear();
         webElement.sendKeys(text);
     }
 
@@ -79,6 +78,12 @@ public class CommonOperation {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollLeft+=arguments[1];", webElement, horizontal);
+    }
+
+    public static String getFirstSelectOption(WebElement webElement) {
+        WAIT.until(ExpectedConditions.visibilityOf(webElement));
+        Select select = new Select(webElement);
+        return  select.getFirstSelectedOption().getText();
     }
 
 }

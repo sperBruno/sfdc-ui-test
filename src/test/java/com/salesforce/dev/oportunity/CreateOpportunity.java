@@ -1,17 +1,16 @@
 package com.salesforce.dev.oportunity;
 
-import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.framework.dto.Opportunity;
-import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.HomePage;
+import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityBuilder;
 import com.salesforce.dev.pages.opportunities.OpportunityDetail;
 import com.salesforce.dev.pages.opportunities.OpportunityForm;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -33,7 +32,7 @@ public class CreateOpportunity {
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-        oppEnum = JSONMapper.getOpportunity("json/CreateOpportunity.json");
+        oppEnum = JSONMapper.getOpportunity("CreateOpportunity.json");
     }
 
     @Test(groups = {"Acceptance"})
@@ -56,23 +55,8 @@ public class CreateOpportunity {
 
                 .build();
         OpportunityDetail opportunityDetails = opForm.clickSaveBtn();
+        opportunityDetails.validateFields(oppEnum);
 
-        //Assertions
-        Assert.assertEquals(opportunityDetails.getOpName(), oppEnum.opportunityName, "The name is not equal");
-        Assert.assertEquals(opportunityDetails.getCloseDate(), oppEnum.closeDate, "The close date is not equal");
-        Assert.assertEquals(opportunityDetails.getStage(), oppEnum.stage, "The stage is not equal");
-        Assert.assertEquals(opportunityDetails.isPrivate(), oppEnum.privateChk, "The private check is not equal");
-        Assert.assertEquals(opportunityDetails.getType(), oppEnum.type, "The type is not equal");
-        Assert.assertEquals(opportunityDetails.getLeadSource(), oppEnum.leadSource, "The lead source is not equal");
-        Assert.assertEquals(opportunityDetails.getNextStep(), oppEnum.nextStep, "The next step is not equal");
-        Assert.assertTrue(opportunityDetails.getAmount().contains(oppEnum.amount), "The amount is not equal");
-        Assert.assertEquals(opportunityDetails.getProbability(), oppEnum.probability + "%", "The probability is not equal");
-        Assert.assertEquals(opportunityDetails.getOrderNumber(), oppEnum.orderNumber, "The order number is not equal");
-        Assert.assertEquals(opportunityDetails.getTrackingNumber(), oppEnum.trackingNumber, "The tracking number is not equal");
-        Assert.assertEquals(opportunityDetails.getLeadSource(), oppEnum.leadSource, "The lead source is not equal");
-        Assert.assertEquals(opportunityDetails.getMainCompetitors(), oppEnum.mainCompetitors, "The main competitors is not equal");
-        Assert.assertEquals(opportunityDetails.getDeliveryInstallationStatus(), oppEnum.deliveryStatus, "The delivery status is not equal");
-        Assert.assertEquals(opportunityDetails.getOpDescription(), oppEnum.description, "The description is not equal");
     }
 
     @AfterMethod(groups = {"Acceptance"})
