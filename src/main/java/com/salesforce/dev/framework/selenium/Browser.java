@@ -8,7 +8,7 @@ package com.salesforce.dev.framework.selenium;
 public enum Browser {
     FIREFOX,
     CHROME,
-    REMOTE,
     IE,
     SAFARY,
+    SALESFORCE
 }
