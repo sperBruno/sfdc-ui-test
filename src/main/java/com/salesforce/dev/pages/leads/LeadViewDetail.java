@@ -1,18 +1,21 @@
-package com.salesforce.dev.pages.campaigns;
+package com.salesforce.dev.pages.leads;
 
 import java.util.concurrent.TimeUnit;
 
 import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewDetailBase;
-import org.openqa.selenium.WebDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by veronica on 8/21/2015.
+ * @author Ariel Mattos on 06/09/2015.
  */
-public class CampaignViewDetail extends ViewDetailBase {
-    public CampaignViewDetail() {
+public class LeadViewDetail extends ViewDetailBase {
+
+    private static final Logger LOGGER = Logger.getLogger(LeadViewDetail.class.getName());
+
+    public LeadViewDetail() {
         try {
             wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
@@ -22,17 +25,16 @@ public class CampaignViewDetail extends ViewDetailBase {
             wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
+
     @Override
-    protected CampaignView clickEditLnk() {
+    protected LeadView clickEditLnk() {
         clickEditLink();
-        return new CampaignView();
+        return new LeadView();
     }
 
     @Override
-    public CampaignViewDetail clickDeleteLnk() {
+    public LeadViewDetail clickDeleteLnk() {
         clickDeleteLink();
         return this;
     }
-
-
 }

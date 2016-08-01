@@ -24,7 +24,7 @@ import org.testng.annotations.Test;
 /**
  * Create a account with view
  *
- * @author Carlos Orellana on 8/22/2015.
+ * @author Carlos Orellana
  * @author Mijhail Villarroel
  */
 

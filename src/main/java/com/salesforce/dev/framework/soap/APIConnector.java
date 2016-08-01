@@ -7,8 +7,8 @@ import com.sforce.ws.ConnectorConfig;
 import org.apache.log4j.Logger;
 
 /**
- * Created by Veronica Prado on 8/25/2015.
  * class to connect by API to sales force
+ * @author Veronica Prado on 8/25/2015.
  */
 public class APIConnector {
 

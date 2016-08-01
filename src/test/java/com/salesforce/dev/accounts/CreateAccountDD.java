@@ -24,7 +24,7 @@ import static org.testng.Assert.assertEquals;
 /**
  * Create a new account
  *
- * @author Walter on 13/06/2015.
+ * @author Walter on
  * @author Mijhail Villarroel
  */
 public class CreateAccountDD {

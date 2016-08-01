@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * @author Carlos Orellana on 8/22/2015.
+ * @author Carlos Orellana
  * @author Mijhail Villarroel
  */
 public class CreateAccountViewBasic {

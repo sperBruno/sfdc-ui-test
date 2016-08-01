@@ -48,7 +48,6 @@ public class CreateOpportunityViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         opportunityViewDetail = opportunityView.clickSaveBtn();
-        LOGGER.info("Opportunity was created");
         assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 

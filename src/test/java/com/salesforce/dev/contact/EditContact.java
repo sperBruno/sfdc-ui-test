@@ -20,7 +20,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Marcelo.Vargas on 6/21/2015.
+ * @author Marcelo Vargas on 6/21/2015.
  */
 
 public class EditContact {

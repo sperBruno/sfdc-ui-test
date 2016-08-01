@@ -4,7 +4,7 @@ import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.NavigationBar;
 
 /**
- * Created by Jimmy Vargas on 6/4/2015.
+ * @author Jimmy Vargas on 6/4/2015.
  */
 public class MainPage extends AbstractBasePage {
 
@@ -23,8 +23,6 @@ public class MainPage extends AbstractBasePage {
 
     /**
      * Returns the navigation bar where all the HOMEs are located
-     *
-     * @author: Jimmy Vargas
      */
     public NavigationBar gotoNavBar() {
         return this.navBar;

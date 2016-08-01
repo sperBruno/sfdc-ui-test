@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 
 /**
- * Created by alex on 06/09/2015.
+ * @author alex on 06/09/2015.
  */
 public class RandomGenerator {
     String randomValue;
@@ -19,7 +19,9 @@ public class RandomGenerator {
 
     private void initializer() {
         random = new SecureRandom();
-        randomValue = new BigInteger(12, random).toString(32);
+        int numBits = 12;
+        int radix = 32;
+        randomValue = new BigInteger(numBits, random).toString(radix);
 
     }
 

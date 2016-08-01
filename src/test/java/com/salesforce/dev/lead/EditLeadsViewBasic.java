@@ -60,7 +60,6 @@ public class EditLeadsViewBasic {
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
         Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
-        LOGGER.info("leads View has been updated");
     }
 
     @AfterMethod(groups = {"Acceptance"})

@@ -23,7 +23,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Marcelo.Vargas on 6/12/2015.
+ * @author Marcelo Vargas on 6/12/2015.
  */
 
 public class CreateContact {
@@ -110,10 +110,7 @@ public class CreateContact {
                 .setLanguages(contact.getLanguages())
                 .setLevel(contact.getLevel())
                 .setDescription(contact.getDescription());
-
         contactDetail = contactForm.clickSaveBtn();
-
-        LOGGER.info("Contact was created");
         Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
     }
 

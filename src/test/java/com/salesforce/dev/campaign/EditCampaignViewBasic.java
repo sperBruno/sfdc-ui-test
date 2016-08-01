@@ -20,7 +20,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Created by Veronica Prado on 8/22/2015.
+ * @author Veronica Prado on 8/22/2015.
  */
 public class EditCampaignViewBasic {
     private static final Logger LOGGER = Logger.getLogger(EditCampaignViewBasic.class.getName());

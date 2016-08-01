@@ -17,7 +17,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Jimmy Vargas on 6/10/2015.
+ * @author Jimmy Vargas on 6/10/2015.
  */
 public class CreateOpportunity {
 

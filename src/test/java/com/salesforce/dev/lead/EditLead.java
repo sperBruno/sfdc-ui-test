@@ -15,7 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by jimmy vargas on 6/21/2015.
+ * @author Jimmy Vargas on 6/21/2015.
  */
 public class EditLead {
     private static final Logger LOGGER = Logger.getLogger(EditLead.class.getName());

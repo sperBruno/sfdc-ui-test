@@ -25,7 +25,6 @@ import static org.junit.Assert.assertTrue;
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
-    private static final Logger LOGGER = Logger.getLogger(CreateOpportunityViewFiltersFieldsAdded.class.getName());
     private NavigationBar navigationBar;
     private OpportunityViewDetail opportunityViewDetail;
 

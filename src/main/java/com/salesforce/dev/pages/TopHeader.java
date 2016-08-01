@@ -1,18 +1,24 @@
 package com.salesforce.dev.pages;
 
-import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.salesforce.dev.pages.base.AbstractBasePage;
+
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
+import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
 import static com.salesforce.dev.framework.utils.Constants.WEB_ELEMENT_COULD_NOT_BE_FOUNT;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
- * Created by Jimmy Vargas on 6/5/2015.
+ * This class will be used to get Salesforce coockie.
+ *
+ * @author Jimmy Vargas on 6/5/2015.
+ * @author Bruno Barrios
  */
 public class TopHeader extends AbstractBasePage {
 
@@ -30,27 +36,25 @@ public class TopHeader extends AbstractBasePage {
     @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
     private WebElement logoutMenuOption;
 
-
-
     public void clickUserNameMenu() {
         try {
             clickWebElement(userMenu);
         } catch (WebDriverException e) {
-            e = new WebDriverException(e);
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
+            throw new WebDriverException(e);
         }
     }
 
     public String getUserName() {
         String userLogged = "";
         try {
-            driver.manage().timeouts().implicitlyWait(10, SECONDS);
+            driver.manage().timeouts().implicitlyWait(TEN_SECONDS, SECONDS);
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {
             e = new WebDriverException(e);
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
         }finally {
-            driver.manage().timeouts().implicitlyWait(15, SECONDS);
+            driver.manage().timeouts().implicitlyWait(FIFTEEN_SECONDS, SECONDS);
         }
         return userLogged;
     }
@@ -58,15 +62,19 @@ public class TopHeader extends AbstractBasePage {
     public LoginPage clickLogoutOption() {
         try {
             clickWebElement(logoutMenuOption);
+            LOGGER.info("Logout from SalesForce");
         } catch (WebDriverException e) {
-            e = new WebDriverException(e);
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
+            throw  new WebDriverException(e);
         }
         return new LoginPage();
     }
 
     public boolean checkIfCookieIsPresent() {
+        String cookieName = "com.salesforce.LocaleInfo";
+        String coockieDomain = ".salesforce.com";
+        LOGGER.info("Verifying Cookies");
         wait.until(ExpectedConditions.visibilityOf(userMenu));
-        return this.driver.manage().getCookieNamed("com.salesforce.LocaleInfo").getDomain().equals(".salesforce.com");
+        return this.driver.manage().getCookieNamed(cookieName).getDomain().equals(coockieDomain);
     }
 }

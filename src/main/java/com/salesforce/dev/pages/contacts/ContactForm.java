@@ -2,15 +2,18 @@ package com.salesforce.dev.pages.contacts;
 
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 
 /**
- * Created by Marcelo.Vargas on 6/12/2015.
+ * @author Marcelo.Vargas on 6/12/2015.
  */
 public class ContactForm extends FormBase {
+
+    private static final Logger LOGGER =Logger.getLogger(ContactForm.class.getName());
 
     //Contact Information
 
@@ -135,6 +138,7 @@ public class ContactForm extends FormBase {
     @Override
     public ContactDetail clickSaveBtn() {
         clickSaveButton();
+        LOGGER.info("Contact was created");
         return new ContactDetail();
     }
 

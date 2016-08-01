@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.base.ViewBase;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -15,10 +16,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class ContactView extends ViewBase {
 
+    private static final Logger LOGGER = Logger.getLogger(ContactView.class.getName());
+
     @FindBy(id = "fentityvalue2")
     protected WebElement filterByCampaign;
 
-    public ContactView(WebDriver driver) {
+    public ContactView() {
 
         try {
             wait.withTimeout(10, TimeUnit.SECONDS)
@@ -90,6 +93,7 @@ public class ContactView extends ViewBase {
     @Override
     public ContactViewDetail clickSaveBtn() {
         clickSaveButton();
-        return new ContactViewDetail(driver);
+        LOGGER.info("Contact was created");
+        return new ContactViewDetail();
     }
 }

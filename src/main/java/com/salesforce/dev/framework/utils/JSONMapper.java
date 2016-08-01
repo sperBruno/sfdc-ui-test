@@ -13,7 +13,7 @@ import com.salesforce.dev.framework.dto.Opportunity;
 import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JSON;
 
 /**
- * Created by jimmy vargas on 6/22/2015.
+ * @author jimmy vargas on 6/22/2015.
  */
 public class JSONMapper {
 

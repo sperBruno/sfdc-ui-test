@@ -5,12 +5,15 @@ import java.util.Map;
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.HomeBase;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 /**
  * Created by Marcelo.Vargas on 6/12/2015.
  */
 public class ContactDetail extends DetailsBase {
+
+    private static final Logger LOGGER = Logger.getLogger(ContactDetail.class.getName());
 
     @FindBy(id = "con2_ileinner")
     private WebElement contactName;

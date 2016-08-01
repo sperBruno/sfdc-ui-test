@@ -1,12 +1,12 @@
 package com.salesforce.dev.pages.campaigns;
 
-import java.util.concurrent.TimeUnit;
-
 import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewBase;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by veronica on 8/20/2015.
@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  */
 public class CampaignView extends ViewBase {
 
+    private static final Logger LOGGER = Logger.getLogger(CampaignView.class.getName());
     public CampaignView() {
 
         try {

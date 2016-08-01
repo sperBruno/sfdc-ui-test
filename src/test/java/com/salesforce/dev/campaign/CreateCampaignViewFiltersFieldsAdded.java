@@ -26,7 +26,7 @@ import java.util.List;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by veronica on 8/21/2015.
+ * @author veronica on 8/21/2015.
  */
 public class CreateCampaignViewFiltersFieldsAdded {
 
@@ -79,7 +79,6 @@ public class CreateCampaignViewFiltersFieldsAdded {
             campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
         }
         campaignViewDetail = campaignView.clickSaveBtn();
-        LOGGER.info("Campaign view was created");
         assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
         for (FieldToDisplayView fields : fieldToDisplayViews) {
