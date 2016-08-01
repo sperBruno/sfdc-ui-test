@@ -34,7 +34,7 @@ public class CreateAccountDD {
         return dataDrivenManager.getAccountsDD("AccountsBaseDD.json");
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();

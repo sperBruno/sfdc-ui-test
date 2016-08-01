@@ -33,7 +33,7 @@ public class CreateCampaignViewBasic {
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
         DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("json/CreateCampaignViewBasic.json");
+        return dataDrivenManager.getDataView("CreateCampaignViewBasic.json");
     }
 
 

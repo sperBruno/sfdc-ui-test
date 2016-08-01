@@ -26,7 +26,7 @@ public class EditPostChatter {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("json/Chatter.json");
+        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("Chatter.json");
         createChatter = chattersData.next()[0];
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
@@ -38,7 +38,7 @@ public class EditPostChatter {
 
     @Test(groups = {"Acceptance"})
     public void CreatePostAndComment() {
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("json/EditChatter.json");
+        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("EditChatter.json");
         Chatter chatter = chattersData.next()[0];
         EditPost editPost = chatterHome.editPost(createChatter.getPost());
         editPost.setEditTextBox(chatter.getPost());
