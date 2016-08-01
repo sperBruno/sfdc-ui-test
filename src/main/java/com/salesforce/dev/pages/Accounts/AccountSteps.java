@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages.accounts;
 
 /**
- * Created by mijhailvillarroel on 7/28/2016.
+ * @author mijhailvillarroel on 7/28/2016.
  */
 public enum AccountSteps {
 

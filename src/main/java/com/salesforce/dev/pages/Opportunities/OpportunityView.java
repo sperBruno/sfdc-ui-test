@@ -2,17 +2,19 @@ package com.salesforce.dev.pages.opportunities;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.pages.base.ViewBase;
-import org.openqa.selenium.WebDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.salesforce.dev.pages.base.ViewBase;
 /**
- * Created by Carlos Orellana on 9/2/2015.
+ * @author Carlos Orellana on 9/2/2015.
  */
 public class OpportunityView extends ViewBase {
 
-    public OpportunityView(WebDriver driver) {
+    private static final Logger LOGGER = Logger.getLogger(OpportunityView.class.getName());
+
+    public OpportunityView() {
         try {
             wait.withTimeout(10, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
@@ -82,6 +84,7 @@ public class OpportunityView extends ViewBase {
     @Override
     public OpportunityViewDetail clickSaveBtn() {
         clickSaveButton();
-        return new OpportunityViewDetail(driver);
+        LOGGER.info("Opportunity was created");
+        return new OpportunityViewDetail();
     }
 }

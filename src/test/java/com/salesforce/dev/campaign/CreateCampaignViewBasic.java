@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Veronica Prado on 8/22/2015.
+ * @author Veronica Prado on 8/22/2015.
  */
 public class CreateCampaignViewBasic {
     private CampaignsHome campaignsHome;

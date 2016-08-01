@@ -11,7 +11,7 @@ import com.salesforce.dev.pages.opportunities.OpportunityForm;
 import com.salesforce.dev.pages.base.NavigationBar;
 
 /**
- * Created by jimmy vargas on 6/23/2015.
+ * @author Jimmy Vargas on 6/23/2015.
  */
 public class ObjectGenie {
 

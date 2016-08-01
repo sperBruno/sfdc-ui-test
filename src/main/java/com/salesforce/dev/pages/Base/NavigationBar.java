@@ -14,8 +14,6 @@ import com.salesforce.dev.pages.orders.OrdersHome;
 import com.salesforce.dev.pages.product.ProductsHome;
 import com.salesforce.dev.pages.reports.ReportsHome;
 import com.salesforce.dev.pages.solutions.SolutionsHome;
-
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -23,11 +21,13 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
 import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
- * Created by Monica Pardo on 6/5/2015.
+ * @author Monica Pardo on 6/5/2015.
+ * @author Jimmy Vargas
+ * @author Bruno Barrios
  */
 public class NavigationBar extends AbstractBasePage {
 
-    @FindBy(linkText = "Orders")
+    @FindBy(id = "Order_Tab")
     private WebElement ordersTab;
 
     @FindBy(id = "Campaign_Tab")
@@ -45,29 +45,28 @@ public class NavigationBar extends AbstractBasePage {
     @FindBy(id = "Opportunity_Tab")
     private WebElement opportunitiesTab;
 
-    @FindBy(linkText = "Products")
-    //Product2_Tab
+    @FindBy(id = "Product2_Tab")
     private WebElement productsTab;
 
     @FindBy(id = "Chatter_Tab")
     private WebElement chatterTab;
 
-    @FindBy(linkText = "Forecasts")
+    @FindBy(id = "Forecasting3_Tab")
     private WebElement forecastsTab;
 
-    @FindBy(linkText = "Contracts")
+    @FindBy(id = "Contract_Tab")
     private WebElement contractsTab;
 
-    @FindBy(linkText = "Cases")
+    @FindBy(id = "Case_Tab")
     private WebElement casesTab;
 
-    @FindBy(linkText = "Solutions")
+    @FindBy(id = "Solution_Tab")
     private WebElement solutionsTab;
 
-    @FindBy(linkText = "Reports")
+    @FindBy(id = "report_Tab")
     private WebElement reportsTab;
 
-    @FindBy(linkText = "Dashboards")
+    @FindBy(id = "Dashboard_Tab")
     private WebElement dashboardTab;
 
     @FindBy(id = "MoreTabs_Tab")
@@ -95,10 +94,6 @@ public class NavigationBar extends AbstractBasePage {
 
     /**
      * This method returns an instance from OpportunitiesTab
-     *
-     * @author: Jimmy Vargas
-     * @version: 1.0
-     * @since: 6/10/2015
      */
     public OpportunitiesHome goToOpportunitiesHome() {
         clickElementOfHomeTab(opportunitiesTab);
@@ -109,16 +104,6 @@ public class NavigationBar extends AbstractBasePage {
         clickElementOfHomeTab(productsTab);
         return new ProductsHome();
     }
-
-    public boolean IsElementPresent(WebElement webElement) {
-        try {
-            webElement.getTagName();
-            return true;
-        } catch (WebDriverException e) {
-            return false;
-        }
-    }
-
 
     public ChatterHome goToChatterHome() {
         clickElementOfHomeTab(chatterTab);

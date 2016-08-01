@@ -10,10 +10,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Marcelo.Vargas on 6/24/2015.
+ * @author Marcelo Vargas on 6/24/2015.
+ * @author Bruno Barrios
  */
 public class TestCookies {
-    private static final Logger LOGGER = Logger.getLogger(TestCookies.class.getName());
 
     private MainPage mainPage;
 
@@ -25,7 +25,6 @@ public class TestCookies {
     @Test(groups = {"BVT"})
     public void testCookies() {
         TopHeader topHeader = mainPage.gotoTopHeader();
-        LOGGER.info("Verifying Cookies");
-        assertTrue(topHeader.checkIfCookieIsPresent());
+        assertTrue(topHeader.checkIfCookieIsPresent(),"Cookies not found");
     }
 }

@@ -21,7 +21,7 @@ import org.testng.Reporter;
 
 
 /**
- * Created by Marcelo.Vargas on 6/22/2015.
+ * @author Marcelo.Vargas on 6/22/2015.
  */
 public class TestListener implements ITestListener {
     private static final Logger LOGGER=Logger.getLogger(TestListener.class.getName());

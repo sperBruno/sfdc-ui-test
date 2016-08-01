@@ -12,8 +12,11 @@ import org.apache.log4j.Logger;
  * @author Bruno Barrios on 7/28/2016.
  */
 public class UserInformation {
-    public static final String TOKEN_NOT_FOUND = "Token not found";
+
     private static final Logger LOGGER = Logger.getLogger(UserInformation.class.getName());
+
+    public static final String TOKEN_NOT_FOUND = "Token not found";
+
     private static final String CONNECTION_TO_API_FAILED = "Connection to api failed";
 
     /**

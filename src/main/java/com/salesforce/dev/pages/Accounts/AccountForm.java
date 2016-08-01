@@ -36,7 +36,7 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 /**
- * Created by Walter on 10/06/2015.
+ * @author Walter on 10/06/2015.
  */
 public class AccountForm extends FormBase {
 

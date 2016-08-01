@@ -21,7 +21,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Created by Carlos Orellana on 8/22/2015.
+ * @author Carlos Orellana on 8/22/2015.
  */
 public class CreateAccountViewFiltersFieldsAdded {
     private AccountsHome accountsHome;

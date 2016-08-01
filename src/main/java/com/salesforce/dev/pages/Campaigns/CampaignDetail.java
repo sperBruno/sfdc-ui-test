@@ -1,31 +1,24 @@
 package com.salesforce.dev.pages.campaigns;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.DetailsBase;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.salesforce.dev.framework.selenium.CommonOperation.getTextWebElement;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.ACTUAL_COST;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.BUDGETED_COST;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_NAME;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_STATUS;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.CAMPAIGN_TYPE;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.END_DATE;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.EXPECTED_RESPONSE;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.EXPECTED_REVENUE;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.NUM_SENT;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.PARENT_CAMPAIGN;
-import static com.salesforce.dev.pages.campaigns.CampaignSteps.START_DATE;
+import static com.salesforce.dev.pages.campaigns.CampaignSteps.*;
 
 
 /**
  * Created by Marcelo.Vargas on 13-06-15.
  */
 public class CampaignDetail extends DetailsBase {
+
+    private static final Logger LOGGER =Logger.getLogger(CampaignDetail.class.getName());
 
     @FindBy(id = "cpn1_ileinner")
     private WebElement campaignName;
@@ -69,6 +62,7 @@ public class CampaignDetail extends DetailsBase {
     @Override
     public CampaignsHome clickDeleteBtn(boolean confirmDeletion) {
         clickDeleteButton(confirmDeletion);
+        LOGGER.info("Campaign Parent was deleted");
         return new CampaignsHome();
     }
 
