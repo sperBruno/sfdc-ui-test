@@ -24,6 +24,7 @@ import org.json.simple.parser.ParseException;
 
 import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JSON;
 
+
 public class DataDrivenManager {
     private JSONParser parser;
     private static final Logger LOGGER = Logger.getLogger(DataDrivenManager.class.getName());
@@ -148,4 +149,25 @@ public class DataDrivenManager {
         }
         return chattersArray.iterator();
     }
-}
+
+    public Iterator<Object[]> getObjects(String nameJson, Class<?> elementClass) {
+        Collection<Object[]> objectsArray = new ArrayList<>();
+
+        try {
+            final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson);
+            Object jsonObject = new JSONParser().parse(new FileReader(pathFileJson));
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            List<Object> objectList = objectMapper.readValue(((JSONArray) jsonObject).toJSONString(),
+                    objectMapper.getTypeFactory().constructCollectionType(List.class, elementClass));
+
+            for (Object object : objectList) {
+                objectsArray.add(new Object[]{object});
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return objectsArray.iterator();
+    }
+
+    }

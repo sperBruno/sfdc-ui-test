@@ -14,7 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 /**
- * Created by Jimmy Vargas on 6/15/2015.
+ * @author Jimmy Vargas on 6/15/2015.
  */
 public class LeadDetail extends DetailsBase {
 

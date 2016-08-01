@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Ariel Mattos on 06/09/2015.
+ * @author Ariel Mattos on 06/09/2015.
  */
 public class LeadViewDetail extends ViewDetailBase {
     public LeadViewDetail() {

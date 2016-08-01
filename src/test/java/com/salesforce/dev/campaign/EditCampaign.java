@@ -23,7 +23,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Created by Marcelo.Vargas on 6/21/2015.
+ * @author Marcelo.Vargas on 6/21/2015.
  */
 public class EditCampaign {
     private static final Logger LOGGER = Logger.getLogger(EditCampaign.class.getName());

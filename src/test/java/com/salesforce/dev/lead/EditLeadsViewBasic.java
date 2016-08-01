@@ -19,7 +19,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Created by Ariel Mattos on 07/09/2015.
+ * @author Ariel Mattos on 07/09/2015.
  */
 public class EditLeadsViewBasic {
     private static final Logger LOGGER = Logger.getLogger(EditLeadsViewBasic.class.getName());

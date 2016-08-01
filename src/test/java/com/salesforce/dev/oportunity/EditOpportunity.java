@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by jimmy vargas on 6/20/2015.
+ * @author jimmy vargas on 6/20/2015.
  */
 public class EditOpportunity {
 

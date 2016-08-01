@@ -19,7 +19,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Created by alex on 06/09/2015.
+ * @author alex on 06/09/2015.
  */
 
 public class EditContactView {

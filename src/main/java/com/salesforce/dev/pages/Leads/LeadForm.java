@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 
 /**
- * Created by Jimmy Vargas on 6/15/2015.
+ * @author Jimmy Vargas on 6/15/2015.
  */
 public class LeadForm extends FormBase {
 
@@ -252,6 +252,7 @@ public class LeadForm extends FormBase {
     public void setPhone (String phone) {
         if (phone != null) {
             fillTextBox (this.phone, phone);
+
         }
     }
 
