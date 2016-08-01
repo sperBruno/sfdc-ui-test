@@ -10,6 +10,7 @@ import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -51,7 +52,7 @@ public class EditAccount {
             accountForm.getStrategyStepMap(mapAccount).get(step).executeStep();
         });
         accountDetail = accountForm.clickSaveBtn();
-        Map<AccountSteps, Object> mapExpected = accountDetail.getAssertionMap();
+        Map<Enum, Object> mapExpected = accountDetail.getAssertionMap();
         mapAccount.keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
         });
@@ -59,6 +60,6 @@ public class EditAccount {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        accountDetail.clickDeleteBtn(true);
+        accountDetail.clickDeleteButton();
     }
 }

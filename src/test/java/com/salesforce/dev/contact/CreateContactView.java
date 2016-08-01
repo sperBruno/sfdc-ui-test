@@ -98,7 +98,7 @@ public class CreateContactView {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        contactViewDetail.clickDeleteLnk(true);
+        contactViewDetail.clickDeleteLnk();
         LOGGER.info("Contact View was deleted");
     }
 }

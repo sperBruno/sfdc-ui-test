@@ -33,8 +33,8 @@ public class ContactViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public ContactViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
+    public ContactViewDetail clickDeleteLnk() {
+        clickDeleteLink();
         return this;
     }
     public MainPage gotoMainPage(){

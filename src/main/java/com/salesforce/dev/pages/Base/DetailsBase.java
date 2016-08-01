@@ -1,11 +1,16 @@
 package com.salesforce.dev.pages.base;
 
+import java.util.Map;
+
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickConfirmAlert;
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 
 /**
@@ -50,53 +55,16 @@ public abstract class DetailsBase extends com.salesforce.dev.pages.base.Abstract
     /**
      * Clicks delete button
      *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
-     */
-    protected void clickDeleteButton(boolean confirmDeletion) {
-        clickWebElement(deleteBtn);
-        deleteAlert(confirmDeletion);
-    }
-
-    /**
-     * Clicks delete button
-     *
      * @author: Walter
+     * @author: Mijhail
      */
-    protected void clickDeletedAccButton(boolean confirmDeletion) {
+    protected void clickDeletedButton() {
         clickWebElement(deleteAccBtn);
-        deleteAlert(confirmDeletion);
+        clickConfirmAlert();
     }
 
-    private void deleteAlert(boolean confirmDeletion) {
-        Alert alert;
-        try {
-            alert = driver.switchTo().alert();
-
-            if (confirmDeletion) {
-                alert.accept();
-            }
-            alert.dismiss();
-            LOGGER.info("Delete Button was clicked");
-        } catch (WebDriverException e) {
-            LOGGER.fatal("The Delete button couldn't be found", e);
-        }
-    }
-
-    /**
-     * Clicks clone button
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
-     */
-    protected void clickCloneButton() {
-        try {
-            clickWebElement(cloneBtn);
-            LOGGER.info("Clone Button was clicked");
-        } catch (WebDriverException e) {
-            LOGGER.fatal("The Clone button couldn't be found",
-                    e);
-        }
+    public MainPage gotoMainPage() {
+        return new MainPage();
     }
 
     /**
@@ -105,13 +73,20 @@ public abstract class DetailsBase extends com.salesforce.dev.pages.base.Abstract
      * @author: Jimmy Vargas
      * @since: 6/13/2015
      */
-    protected abstract Object clickEditBtn();
+    protected abstract FormBase clickEditBtn();
+
 
     /**
-     * Returns to the Details when the confirmation is false and return to home when the confirmation is true
+     * Return Home page when do click delete button
      *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
+     * @author: Mijhail Villarroel
      */
-    protected abstract Object clickDeleteBtn(boolean confirmDeletion);
+    public abstract HomeBase clickDeleteButton();
+
+    /**
+     * Return Map the assertions
+     *
+     * @author: Mijhail Villarroel
+     */
+    public abstract Map<Enum, Object> getAssertionMap();
 }

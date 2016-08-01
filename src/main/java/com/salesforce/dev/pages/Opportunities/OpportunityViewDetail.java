@@ -30,8 +30,8 @@ public class OpportunityViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public OpportunityViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
+    public OpportunityViewDetail clickDeleteLnk() {
+        clickDeleteLink();
         return this;
     }
 }

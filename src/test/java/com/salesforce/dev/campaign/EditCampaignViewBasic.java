@@ -5,6 +5,7 @@ import java.util.Iterator;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.campaigns.CampaignView;
 import com.salesforce.dev.pages.campaigns.CampaignViewDetail;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
@@ -28,7 +29,7 @@ public class EditCampaignViewBasic {
     private NavigationBar navigationBar;
     private CampaignView campaignView;
     private String nameView;
-    private CampaignViewDetail campaignViewDetail;
+    private ViewDetailBase campaignViewDetail;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -65,7 +66,7 @@ public class EditCampaignViewBasic {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        campaignViewDetail.clickDeleteLnk(true);
+        campaignViewDetail.clickDeleteLnk();
         LOGGER.info("Campaign View was deleted");
     }
 }

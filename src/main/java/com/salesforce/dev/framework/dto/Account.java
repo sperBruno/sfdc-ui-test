@@ -281,11 +281,9 @@ public class Account {
         mapAccount.put(ACCOUNT_UPSELL_OPPORTUNITY, upSellOpportunity );
         mapAccount.put(ACCOUNT_DESCRIPTION, accountDesc );
         Map<AccountSteps, Object> newAccountMap = new HashMap<>();
-        mapAccount.entrySet().stream().forEach((step) -> {
-            if (!(step.getValue() == null)) {
-                newAccountMap.put(step.getKey(),step.getValue());
-            }
-        });
+        mapAccount.entrySet().stream()
+                .filter(step -> step.getValue() != null)
+                .forEach(step -> newAccountMap.put(step.getKey(),step.getValue()));
         return newAccountMap;
     }
 }

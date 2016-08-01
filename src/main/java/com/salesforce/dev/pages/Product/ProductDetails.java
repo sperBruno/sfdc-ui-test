@@ -1,26 +1,37 @@
 package com.salesforce.dev.pages.product;
 
+import java.util.Map;
+
 import com.salesforce.dev.pages.base.DetailsBase;
+import com.salesforce.dev.pages.base.FormBase;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Monica on 6/11/2015.
  */
-public class    ProductDetails extends DetailsBase {
+public class ProductDetails extends DetailsBase {
 
 
     @FindBy(id = "Name_ileinner")
     WebElement productNameReg;
 
-    public Object clickEditBtn() {
+    public FormBase clickEditBtn() {
         super.clickEditButton();
-        return new ProductDetails();
+        return new ProductForm();
     }
 
-    public ProductsHome clickDeleteBtn(boolean confirmDeletion) {
-        super.clickDeleteButton(confirmDeletion);
+
+    @Override
+    public HomeBase clickDeleteButton() {
+        clickDeletedButton();
         return new ProductsHome();
+    }
+
+    @Override
+    public Map<Enum, Object> getAssertionMap() {
+        return null;
     }
 
 

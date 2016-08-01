@@ -51,7 +51,7 @@ public abstract class ViewBase extends AbstractBasePage {
 
     private Select availableFieldsMultiSelect;
 
-    protected abstract Object clickSaveBtn();
+    protected abstract ViewDetailBase clickSaveBtn();
 
     protected abstract Object clickCancelBtn();
 

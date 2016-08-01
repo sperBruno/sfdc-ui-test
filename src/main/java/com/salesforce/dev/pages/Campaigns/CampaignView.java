@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewBase;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -81,8 +82,8 @@ public class CampaignView extends ViewBase {
     }
 
     @Override
-    public CampaignViewDetail clickSaveBtn() {
+    public ViewDetailBase clickSaveBtn() {
         clickSaveButton();
-        return new CampaignViewDetail(driver);
+        return new CampaignViewDetail();
     }
 }

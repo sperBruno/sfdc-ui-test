@@ -9,6 +9,7 @@ import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.contacts.ContactDetail;
@@ -37,7 +38,7 @@ public class CreateContact {
 
     private MainPage mainPage;
 
-    private AccountDetail accountDetail;
+    private DetailsBase accountDetail;
 
     private NavigationBar navigationBar;
 
@@ -118,12 +119,12 @@ public class CreateContact {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        contactDetail.clickDeleteBtn(true);
+        contactDetail.clickDeleteButton();
         mainPage = contactDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
-        accountDetail.clickDeleteBtn(true);
+        accountDetail.clickDeleteButton();
         LOGGER.info("Contact was deleted");
     }
 }

@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.ObjectGenie;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityDetail;
@@ -60,8 +61,8 @@ public class EditOpportunity {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
-        OpportunityDetail opDetail = opHome.openOpportunity(oppEditEnum.opportunityName);
-        opDetail.deleteOpportunity();
+        DetailsBase opDetail = opHome.openOpportunity(oppEditEnum.opportunityName);
+        opDetail.clickDeleteButton();
 
     }
 

@@ -68,7 +68,7 @@ public class EditContactView {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        contactViewDetail.clickDeleteLnk(true);
+        contactViewDetail.clickDeleteLnk();
         LOGGER.info("Contact was deleted");
         mainPage = contactViewDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();

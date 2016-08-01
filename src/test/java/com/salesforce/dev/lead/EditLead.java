@@ -67,7 +67,7 @@ public class EditLead {
     public void tearDown() {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.lastName);
-        leadDetail.deleteLead();
+        leadDetail.clickDeleteButton();
         LOGGER.info("Lead was deleted");
     }
 }

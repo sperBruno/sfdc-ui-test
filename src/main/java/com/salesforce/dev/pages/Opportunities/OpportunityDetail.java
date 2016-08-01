@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import com.salesforce.dev.framework.dto.Opportunity;
 import com.salesforce.dev.pages.base.DetailsBase;
+import com.salesforce.dev.pages.base.HomeBase;
 import com.salesforce.dev.pages.leads.LeadSteps;
 
 import org.openqa.selenium.WebElement;
@@ -122,10 +123,17 @@ public class OpportunityDetail extends DetailsBase {
      * @author: Jimmy Vargas
      * @since: 06/13/2015
      */
+
+
     @Override
-    protected OpportunitiesHome clickDeleteBtn(boolean confirmDeletion) {
-        super.clickDeleteButton(confirmDeletion);
+    public HomeBase clickDeleteButton() {
+        clickDeletedButton();
         return new OpportunitiesHome();
+    }
+
+    @Override
+    public Map<Enum, Object> getAssertionMap() {
+        return null;
     }
 
     /**
@@ -134,10 +142,7 @@ public class OpportunityDetail extends DetailsBase {
      * @author: Jimmy Vargas
      * @since: 06/13/2015
      */
-    public OpportunitiesHome deleteOpportunity() {
-        return clickDeleteBtn(true);
-    }
-
+   
     public String getOpOwner() {
         return opOwner.getText();
     }

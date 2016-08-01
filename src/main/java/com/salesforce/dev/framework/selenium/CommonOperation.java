@@ -1,5 +1,8 @@
 package com.salesforce.dev.framework.selenium;
 
+import com.salesforce.dev.pages.base.DetailsBase;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -16,6 +19,8 @@ public class CommonOperation {
     private static final WebDriverWait WAIT = DriverManager.getInstance().getWait();
 
     private static final WebDriver DRIVER =DriverManager.getInstance().getDriver();
+
+    private static final Logger LOGGER = Logger.getLogger(DetailsBase.class.getName());
 
     private CommonOperation() {
     }
@@ -84,6 +89,17 @@ public class CommonOperation {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         Select select = new Select(webElement);
         return  select.getFirstSelectedOption().getText();
+    }
+
+    public static void clickConfirmAlert() {
+        Alert alert;
+        try {
+            alert = DRIVER.switchTo().alert();
+                            alert.accept();
+            LOGGER.info("Delete Button was clicked");
+        } catch (WebDriverException e) {
+            LOGGER.fatal("The Delete button couldn't be found", e);
+        }
     }
 
 }

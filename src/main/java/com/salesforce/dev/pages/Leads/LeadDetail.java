@@ -7,6 +7,7 @@ import java.util.Map;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.pages.base.DetailsBase;
 
+import com.salesforce.dev.pages.base.HomeBase;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -234,16 +235,15 @@ public class LeadDetail extends DetailsBase {
         return new LeadForm();
     }
 
-
-    public LeadsHome deleteLead() {
-        return clickDeleteBtn(true);
-
+    @Override
+    public HomeBase clickDeleteButton() {
+        clickDeletedButton();
+        return new LeadsHome();
     }
 
     @Override
-    protected LeadsHome clickDeleteBtn(boolean confirmDeletion) {
-        super.clickDeleteButton(true);
-        return new LeadsHome();
+    public Map<Enum, Object> getAssertionMap() {
+        return null;
     }
 
     public void validateFields(Lead lead) {

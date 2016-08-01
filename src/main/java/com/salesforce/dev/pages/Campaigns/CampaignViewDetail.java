@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Created by veronica on 8/21/2015.
  */
 public class CampaignViewDetail extends ViewDetailBase {
-    public CampaignViewDetail(WebDriver driver) {
+    public CampaignViewDetail() {
         try {
             wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
@@ -29,8 +29,8 @@ public class CampaignViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public CampaignViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
+    public CampaignViewDetail clickDeleteLnk() {
+        clickDeleteLink();
         return this;
     }
 

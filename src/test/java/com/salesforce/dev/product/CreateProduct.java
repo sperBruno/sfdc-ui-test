@@ -50,7 +50,7 @@ public class CreateProduct {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        productDetails.clickDeleteBtn(true);
+        productDetails.clickDeleteButton();
     }
 
     @DataProvider
