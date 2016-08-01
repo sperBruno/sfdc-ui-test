@@ -26,8 +26,9 @@ public class EditPostChatter {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("Chatter.json");
-        createChatter = chattersData.next()[0];
+//        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("Chatter.json");
+        Iterator<Object[]> chattersData = dataDrivenManager.getObjects ("Chatter.json", Chatter.class);
+        createChatter = (Chatter)chattersData.next()[0];
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();

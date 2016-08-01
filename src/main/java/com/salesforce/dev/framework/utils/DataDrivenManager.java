@@ -151,7 +151,7 @@ public class DataDrivenManager {
     }
 
     public Iterator<Object[]> getObjects(String nameJson, Class<?> elementClass) {
-        Collection<Object[]> objectsArray = new ArrayList<>();
+        List<Object[]> objectsArray = new ArrayList<>();
 
         try {
             final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson);
@@ -166,7 +166,7 @@ public class DataDrivenManager {
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
-        }
+    }
         return objectsArray.iterator();
     }
 
