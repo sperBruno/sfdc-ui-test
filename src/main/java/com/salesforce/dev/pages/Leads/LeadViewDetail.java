@@ -4,15 +4,18 @@ import java.util.concurrent.TimeUnit;
 
 import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewDetailBase;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Ariel Mattos on 06/09/2015.
+ * @author Ariel Mattos on 06/09/2015.
  */
 public class LeadViewDetail extends ViewDetailBase {
-    public LeadViewDetail() {
 
+    private static final Logger LOGGER = Logger.getLogger(LeadViewDetail.class.getName());
+
+    public LeadViewDetail() {
         try {
             wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
@@ -32,6 +35,7 @@ public class LeadViewDetail extends ViewDetailBase {
     @Override
     public LeadViewDetail clickDeleteLnk(boolean confirmDeletion) {
         clickDeleteLink(confirmDeletion);
+        LOGGER.info("leads View was deleted");
         return this;
     }
 }

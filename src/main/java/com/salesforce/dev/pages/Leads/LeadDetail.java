@@ -236,6 +236,7 @@ public class LeadDetail extends DetailsBase {
 
 
     public LeadsHome deleteLead() {
+        LOGGER.info("Lead was deleted");
         return clickDeleteBtn(true);
 
     }

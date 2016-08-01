@@ -1,25 +1,30 @@
 package com.salesforce.dev.pages.opportunities;
 
-import java.util.concurrent.TimeUnit;
-
 import com.salesforce.dev.pages.base.ViewDetailBase;
-import org.openqa.selenium.WebDriver;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.concurrent.TimeUnit;
+
+import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
+import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
 
 /**
  * Created by Carlos Orellana on 9/2/2015.
  */
 public class OpportunityViewDetail extends ViewDetailBase {
-    public OpportunityViewDetail(WebDriver driver) {
 
+    private static final Logger LOGGER = Logger.getLogger(OpportunityViewDetail.class.getName());
+
+    public OpportunityViewDetail() {
         try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
+            wait.withTimeout(TEN_SECONDS, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(FIFTEEN_SECONDS, TimeUnit.SECONDS);
         }
     }
 
@@ -32,6 +37,7 @@ public class OpportunityViewDetail extends ViewDetailBase {
     @Override
     public OpportunityViewDetail clickDeleteLnk(boolean confirmDeletion) {
         clickDeleteLink(confirmDeletion);
+        LOGGER.info("Opportunity View was deleted");
         return this;
     }
 }

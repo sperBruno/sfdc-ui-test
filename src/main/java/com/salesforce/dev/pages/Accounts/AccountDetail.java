@@ -6,6 +6,7 @@ import java.util.HashMap;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -37,9 +38,11 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 /**
- * Created by Walter on 10/06/2015.
+ * @author Walter on 10/06/2015.
  */
 public class AccountDetail extends DetailsBase {
+
+    private static final Logger LOGGER = Logger.getLogger(AccountDetail.class.getName());
 
     @FindBy(id = "acc2_ilecell")
     private WebElement accountNameFld;
@@ -121,7 +124,8 @@ public class AccountDetail extends DetailsBase {
 
     @Override
     public AccountsHome clickDeleteBtn(boolean confirmDeletion) {
-        clickDeletedAccButton(true);
+        clickDeletedAccButton(confirmDeletion);
+        LOGGER.info("Account was deleted");
         return new AccountsHome();
 
     }

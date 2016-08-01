@@ -1,9 +1,5 @@
 package com.salesforce.dev.login;
 
-/**
- * Created by Luffy on 22/06/2015.
- */
-
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
@@ -14,11 +10,11 @@ import org.testng.annotations.Test;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by Walter on 13/06/2015.
+ * @author Walter on 13/06/2015.
+ * @author Luffy on 22/06/2015.
+ * @author Bruno Barrios.
  */
 public class LogoutTest {
-
-    private static final Logger LOGGER = Logger.getLogger(LogoutTest.class.getName());
 
     private MainPage mainPage;
 
@@ -33,15 +29,5 @@ public class LogoutTest {
         topHeader.clickUserNameMenu();
         LoginPage loginPage = topHeader.clickLogoutOption();
         assertTrue(loginPage.isLoginButtonPresent());
-        LOGGER.info("Logout from SalesForce");
-    }
-
-    @Test(groups = {"BVT"})
-    public void testLogout2() {
-        TopHeader topHeader = mainPage.gotoTopHeader();
-        topHeader.clickUserNameMenu();
-        LoginPage loginPage = topHeader.clickLogoutOption();
-        assertTrue(loginPage.isLoginButtonPresent());
-        LOGGER.info("Logout from SalesForce");
     }
 }

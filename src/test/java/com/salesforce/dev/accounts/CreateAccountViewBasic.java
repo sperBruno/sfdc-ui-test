@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Carlos Orellana on 8/22/2015.
+ * @author Carlos Orellana on 8/22/2015.
  */
 public class CreateAccountViewBasic {
     private AccountsHome accountsHome;

@@ -18,12 +18,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertFalse;
+
 /**
  * Created by alex on 06/09/2015.
  */
 
 public class EditContactView {
-    private static final Logger LOGGER = Logger.getLogger(EditContactView.class.getName());
     private ContactsHome contactsHome;
     private ContactViewDetail contactViewDetail;
     private MainPage mainPage;
@@ -63,13 +64,12 @@ public class EditContactView {
                 .checkFilterByOwnerMy()
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
         contactViewDetail = contactView.clickSaveBtn();
-        Assert.assertFalse(contactViewDetail.validateNameView(NAME_TEST));
+        assertFalse(contactViewDetail.validateNameView(NAME_TEST));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Contact was deleted");
         mainPage = contactViewDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();

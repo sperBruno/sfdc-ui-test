@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import com.salesforce.dev.framework.utils.Constants;
 import com.salesforce.dev.framework.utils.Environment;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -17,6 +18,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.salesforce.dev.framework.utils.Constants.SALESFORCE_URL;
 
 /**
  * Created by Jimmy Vargas on 6/4/2015.
@@ -78,7 +81,7 @@ public class DriverManager {
         driver.manage().timeouts().implicitlyWait(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver,TIMEOUT_NORMAL);
 
-        driver.get("https://www.salesforce.com");
+        driver.get(SALESFORCE_URL);
 
         driver.manage().window().maximize();
 
@@ -109,7 +112,7 @@ public class DriverManager {
             driver.quit();
         }
         catch(WebDriverException e){
-            System.out.println(e.getMessage());
+            LOGGER.error("Quit request can't be performed",e);
         }
     }
 
@@ -118,7 +121,7 @@ public class DriverManager {
             driver.close();
         }
         catch(WebDriverException e){
-            System.out.println(e.getMessage());
+            LOGGER.error("Close request can't be performed",e);
         }
     }
 }
