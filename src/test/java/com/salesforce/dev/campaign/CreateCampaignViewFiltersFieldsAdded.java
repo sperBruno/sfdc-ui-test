@@ -51,32 +51,21 @@ public class CreateCampaignViewFiltersFieldsAdded {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Regression"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
-        mainPage = LoginPage.loginAsPrimaryUser();
-        navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignView = campaignsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
-        List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
-        int count = 1;
-        for (FilterView addFilter : additionalField) {
-            campaignView = campaignView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
-            count++;
-        }
-        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for (FieldToDisplayView fields : fieldToDisplayViews) {
-            campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
-        }
+        campaignView.addAdditionalFilters(viewSalesForce);
+        List<FieldToDisplayView> fieldToDisplayViews=campaignView.selectFieldsToDisplay(viewSalesForce);
+
         campaignViewDetail = campaignView.clickSaveBtn();
         assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded
