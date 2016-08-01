@@ -40,7 +40,7 @@ public abstract class FormBase extends AbstractBasePage {
      */
     protected abstract DetailsBase clickSaveBtn();
 
-    protected abstract Object clickSaveNewBtn();
+    protected abstract AbstractBasePage clickSaveNewBtn();
 
     protected abstract Object clickCancelBtn();
 
