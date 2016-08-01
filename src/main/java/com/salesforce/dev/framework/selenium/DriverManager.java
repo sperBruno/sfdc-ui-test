@@ -1,22 +1,19 @@
 package com.salesforce.dev.framework.selenium;
 
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
-
 import com.salesforce.dev.framework.utils.Environment;
+
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Jimmy Vargas on 6/4/2015.
@@ -29,6 +26,7 @@ public class DriverManager {
     private WebDriverWait wait;
 
     private static DriverManager instance = null;
+
     private String browser = Environment.getInstance().getBrowser();
     private String mode = Environment.getInstance().getMode();
     private String username =Environment.getInstance().getUserName();
@@ -47,17 +45,7 @@ public class DriverManager {
 
     private void initializer(){
         if (mode.equalsIgnoreCase("Local")) {
-            if (browser.equalsIgnoreCase("Firefox")) {
-                driver = new FirefoxDriver();
-            } else if (browser.equalsIgnoreCase("Chrome")) {
-                System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
-                driver = new ChromeDriver();
-            } else if (browser.equalsIgnoreCase("IE")) {
-                System.setProperty("webdriver.ie.driver", "drivers/IEDriverServer.exe");
-                driver = new InternetExplorerDriver();
-            } else if (browser.equalsIgnoreCase("Safari")) {
-                driver = new SafariDriver();
-            }
+            driver=FactoryDriver.getDriver(Environment.getInstance().getBrowser()).initDriver();
         }else if (mode.equalsIgnoreCase("Remote")){
             DesiredCapabilities caps;
             if(browserRemote.equals("Chrome"))
