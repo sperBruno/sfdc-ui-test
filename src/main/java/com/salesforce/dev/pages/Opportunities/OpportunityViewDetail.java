@@ -1,11 +1,12 @@
 package com.salesforce.dev.pages.opportunities;
 
+import java.util.concurrent.TimeUnit;
+
 import com.salesforce.dev.pages.base.ViewDetailBase;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.concurrent.TimeUnit;
 
 import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
 import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
@@ -31,7 +32,7 @@ public class OpportunityViewDetail extends ViewDetailBase {
     @Override
     protected OpportunityView clickEditLnk() {
         clickEditLink();
-        return new OpportunityView(driver);
+        return new OpportunityView();
     }
 
     @Override

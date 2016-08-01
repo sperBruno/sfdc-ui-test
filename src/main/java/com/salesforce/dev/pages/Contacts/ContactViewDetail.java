@@ -1,14 +1,15 @@
 package com.salesforce.dev.pages.contacts;
 
+import java.util.concurrent.TimeUnit;
+
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.ViewDetailBase;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.concurrent.TimeUnit;
 
 import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
 import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
@@ -37,7 +38,7 @@ public class ContactViewDetail extends ViewDetailBase {
     @Override
     protected ContactView clickEditLnk() {
         clickEditLink();
-        return new ContactView(driver);
+        return new ContactView();
     }
 
     @Override
