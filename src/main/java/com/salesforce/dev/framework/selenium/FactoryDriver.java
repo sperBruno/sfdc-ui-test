@@ -21,6 +21,8 @@ public final class FactoryDriver {
             return  new Safary();
         }else if(Browser.IE.equals(currentBrowser)){
             return  new InternetExplorer();
+        }else if(Browser.SAUCELAB.equals(currentBrowser)){
+            return  new SauceLab();
         }else {
             throw new WebDriverException("Browser not found : " + browser);
         }

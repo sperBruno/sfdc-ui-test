@@ -10,5 +10,5 @@ public enum Browser {
     CHROME,
     IE,
     SAFARY,
-    SALESFORCE
+    SAUCELAB
 }

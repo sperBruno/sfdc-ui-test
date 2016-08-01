@@ -25,13 +25,13 @@ public class OpportunitiesHome extends HomeBase {
     @Override
     public OpportunityView clickNewViewLnk() {
         clickNewViewLink();
-        return new OpportunityView(this.driver);
+        return new OpportunityView();
     }
 
     @Override
     public OpportunityView clickEditViewLnk(String value) {
         editViewLnk(value);
-        return new OpportunityView(this.driver);
+        return new OpportunityView();
     }
 
     public OpportunityDetail selectRecentItem(String opportunity) {

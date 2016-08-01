@@ -2,44 +2,56 @@ package com.salesforce.dev.pages.contacts;
 
 import java.util.concurrent.TimeUnit;
 
-import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.MainPage;
-import org.openqa.selenium.WebDriver;
+import com.salesforce.dev.pages.base.ViewDetailBase;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
+import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
+
 /**
- * Created by veronica on 8/21/2015.
+ * @author veronica on 8/21/2015.
  */
 public class ContactViewDetail extends ViewDetailBase {
+
+    private static final Logger LOGGER = Logger.getLogger(ContactViewDetail.class.getName());
+
     @FindBy(id = "con2_ileinner")
     WebElement contactViewName;
-    public ContactViewDetail(WebDriver driver) {
+
+    public ContactViewDetail() {
         try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
+            wait.withTimeout(TEN_SECONDS, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(viewSelected));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
+            wait.withTimeout(FIFTEEN_SECONDS, TimeUnit.SECONDS);
         }
     }
+
     @Override
     protected ContactView clickEditLnk() {
         clickEditLink();
-        return new ContactView(driver);
+        return new ContactView();
     }
 
     @Override
     public ContactViewDetail clickDeleteLnk(boolean confirmDeletion) {
         clickDeleteLink(confirmDeletion);
+        LOGGER.info("Contact was deleted");
         return this;
     }
-    public MainPage gotoMainPage(){
+
+    public MainPage gotoMainPage() {
         return new MainPage();
     }
+
     public Boolean validateContactName(String value) {
         return contactViewName.getText().equals(value);
     }

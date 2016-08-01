@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Carlos Orellana on 9/2/2015.
+ * @author Carlos Orellana on 9/2/2015.
  */
 public class AccountViewDetail extends ViewDetailBase {
     public AccountViewDetail(WebDriver driver) {

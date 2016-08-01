@@ -48,13 +48,11 @@ public class CreateOpportunityViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         opportunityViewDetail = opportunityView.clickSaveBtn();
-        LOGGER.info("Opportunity was created");
         assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         opportunityViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Opportunity View was deleted");
     }
 }
