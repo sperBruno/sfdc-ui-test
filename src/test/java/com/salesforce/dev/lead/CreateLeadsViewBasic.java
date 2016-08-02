@@ -61,13 +61,14 @@ public class CreateLeadsViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
-
-        assertTrue(leadViewDetail.validateNameView(viewSalesForce.getViewName()),
+        LOGGER.info("Basic leads View was created");
+        Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForce.getViewName()),
                 "View name does not match " + viewSalesForce.getViewName());
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        leadViewDetail.clickDeleteLnk(true);
+        leadViewDetail.clickDeleteLnk();
+        LOGGER.info("Lead View was deleted");
     }
 }

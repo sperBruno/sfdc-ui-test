@@ -53,6 +53,7 @@ public class CreateOpportunityViewBasic {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        opportunityViewDetail.clickDeleteLnk(true);
+        opportunityViewDetail.clickDeleteLnk();
+        LOGGER.info("Opportunity View was deleted");
     }
 }

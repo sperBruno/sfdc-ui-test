@@ -19,14 +19,17 @@ import org.testng.annotations.Test;
  */
 public class EditLead {
     private static final Logger LOGGER = Logger.getLogger(EditLead.class.getName());
+
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
     private MainPage mainPage;
 
     private Lead lead, leadEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup() {
-        lead = JSONMapper.getLead("CreateLeadBase.json");
-        leadEditEnum = JSONMapper.getLead("EditLead.json");
+        lead = lead = (Lead) JSON_MAPPER_INSTANCE.getGeneric(new Lead(),"CreateLeadBase.json");
+        leadEditEnum = (Lead) JSON_MAPPER_INSTANCE.getGeneric(new Lead(),"EditLead.json");
 
         //Creating a lead
         ObjectGenie.createLead(lead);
@@ -67,6 +70,7 @@ public class EditLead {
     public void tearDown() {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.lastName);
-        leadDetail.deleteLead();
+        leadDetail.clickDeleteButton();
+        LOGGER.info("Lead was deleted");
     }
 }

@@ -1,7 +1,10 @@
 package com.salesforce.dev.pages.contacts;
 
+import java.util.Map;
+
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,10 +23,15 @@ public class ContactDetail extends DetailsBase {
         return new ContactForm();
     }
 
-    public ContactsHome clickDeleteBtn(boolean confirmDeletion){
-        clickDeleteButton(confirmDeletion);
-        LOGGER.info("Contact was deleted");
+    @Override
+    public HomeBase clickDeleteButton() {
+        clickDeletedButton();
         return new ContactsHome();
+    }
+
+    @Override
+    public Map<Enum, Object> getAssertionMap() {
+        return null;
     }
 
     public MainPage gotoMainPage(){

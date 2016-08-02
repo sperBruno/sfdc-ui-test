@@ -14,6 +14,7 @@ import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -21,14 +22,23 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * @author Carlos Orellana on 8/22/2015.
+ * Create a account with view
+ *
+ * @author Carlos Orellana
+ * @author Mijhail Villarroel
  */
+
 public class CreateAccountViewFiltersFieldsAdded {
+
     private AccountsHome accountsHome;
+
     private AccountView accountView;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
-    private AccountViewDetail accountViewDetail;
+
+    private ViewDetailBase accountViewDetail;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -58,6 +68,6 @@ public class CreateAccountViewFiltersFieldsAdded {
 
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
-        accountViewDetail.clickDeleteLnk(true);
+        accountViewDetail.clickDeleteLnk();
     }
 }

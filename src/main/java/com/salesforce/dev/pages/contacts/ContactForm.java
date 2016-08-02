@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.contacts;
 
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import org.apache.log4j.Logger;
@@ -125,21 +126,17 @@ public class ContactForm extends FormBase {
     @CacheLookup
     private WebElement saveBtn;
 
-    @Override
-    public Object clickSaveNewBtn() {
-        return null;
-    }
-
-    @Override
-    public Object clickCancelBtn() {
-        return null;
-    }
 
     @Override
     public ContactDetail clickSaveBtn() {
         clickSaveButton();
         LOGGER.info("Contact was created");
         return new ContactDetail();
+    }
+
+    @Override
+    protected AbstractBasePage clickCancelBtn() {
+        return null;
     }
 
     public SearchLookupBase clickLookupAccount() {

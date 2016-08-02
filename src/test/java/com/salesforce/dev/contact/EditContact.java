@@ -1,5 +1,6 @@
 package com.salesforce.dev.contact;
 
+import com.salesforce.dev.framework.dto.Account;
 import com.salesforce.dev.framework.dto.Contact;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -7,6 +8,7 @@ import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.contacts.ContactDetail;
@@ -24,21 +26,33 @@ import org.testng.annotations.Test;
 
 public class EditContact {
     private static final Logger LOGGER = Logger.getLogger(EditContact.class.getName());
-    private Contact contact = JSONMapper.getContactToUpdate();
+
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
+    private Contact contact ;
+
     private ContactsHome contactsHome;
+
     private ContactDetail contactDetail;
+
     private ContactForm contactForm;
+
     private MainPage mainPage;
-    private AccountDetail accountDetail;
+
+    private DetailsBase accountDetail;
+
     private NavigationBar navigationBar;
+
     private AccountsHome accountsHome;
+
     private AccountForm accountForm;
+
     private SearchLookupBase searchLookup;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
-
+        contact = (Contact) JSON_MAPPER_INSTANCE.getGeneric(new Contact(),"EditContact.json");
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
@@ -108,11 +122,13 @@ public class EditContact {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        contactDetail.clickDeleteBtn(true);
+        contactDetail.clickDeleteButton();
+        LOGGER.info("Contact was deleted");
         mainPage = accountDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(contact.getAccountName());
-        accountDetail.clickDeleteBtn(true);
+        accountDetail.clickDeleteButton();
+        LOGGER.info("Account was deleted");
     }
 }

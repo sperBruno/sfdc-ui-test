@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.product;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,29 +16,29 @@ public class ProductsHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Products:')]")
     private WebElement productsSection;
 
+    @Override
+    protected AbstractBasePage clickNewViewLnk() {
+        return null;
+    }
+
+    @Override
+    protected AbstractBasePage clickEditViewLnk(String value) {
+        return null;
+    }
+
+    @Override
+    protected AbstractBasePage selectRecentViewItem(String value) {
+        return null;
+    }
+
     public ProductForm clickNewBtn() {
         CommonOperation.clickWebElement(newBtn);
         return new ProductForm();
     }
 
-    @Override
-    protected Object clickNewViewLnk() {
-        return null;
-    }
-
-    @Override
-    protected Object clickEditViewLnk(String value) {
-        return null;
-    }
-
     public ProductDetails selectRecentItem(String value) {
         clickRecentItem(value);
         return new ProductDetails();
-    }
-
-    @Override
-    protected Object selectRecentViewItem(String value) {
-        return null;
     }
 
     public ProductDetails OpenProduct(String nameProduct) {

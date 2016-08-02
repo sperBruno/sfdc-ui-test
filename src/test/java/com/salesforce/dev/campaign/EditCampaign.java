@@ -85,7 +85,7 @@ public class EditCampaign {
         campaignParentName = campaign.getParentCampaign();
 
         Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
-        Map<CampaignSteps, Object> mapExpected = campaignDetail.getAssertionEditMap();
+        Map<Enum, Object> mapExpected = campaignDetail.getAssertionMap();
         mapCampaign.keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
         });
@@ -93,11 +93,13 @@ public class EditCampaign {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
+        LOGGER.info("Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignDetail = campaignsHome.selectRecentItem(campaignParentName);
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
+        LOGGER.info("Campaign Parent was deleted");
     }
 }

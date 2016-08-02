@@ -13,7 +13,6 @@ import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityView;
 import com.salesforce.dev.pages.opportunities.OpportunityViewDetail;
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -26,6 +25,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
     private NavigationBar navigationBar;
+
     private OpportunityViewDetail opportunityViewDetail;
 
     @DataProvider(name = "dataDriven")
@@ -67,6 +67,6 @@ public class CreateOpportunityViewFiltersFieldsAdded {
 
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
-        opportunityViewDetail.clickDeleteLnk(true);
+        opportunityViewDetail.clickDeleteLnk();
     }
 }

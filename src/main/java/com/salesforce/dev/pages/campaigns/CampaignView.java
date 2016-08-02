@@ -2,11 +2,12 @@ package com.salesforce.dev.pages.campaigns;
 
 import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewBase;
-import org.apache.log4j.Logger;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  * Created by veronica on 8/20/2015.
@@ -83,9 +84,8 @@ public class CampaignView extends ViewBase {
     }
 
     @Override
-    public CampaignViewDetail clickSaveBtn() {
+    public ViewDetailBase clickSaveBtn() {
         clickSaveButton();
-        LOGGER.info("Campaign view was created");
         return new CampaignViewDetail();
     }
 }
