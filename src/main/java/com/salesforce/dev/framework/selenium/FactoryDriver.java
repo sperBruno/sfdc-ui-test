@@ -23,6 +23,8 @@ public final class FactoryDriver {
             return  new InternetExplorer();
         }else if(Browser.SAUCELAB.equals(currentBrowser)){
             return  new SauceLab();
+        }else if(Browser.BROWSERSTACK.equals(currentBrowser)){
+            return  new BrowserStack();
         }else {
             throw new WebDriverException("Browser not found : " + browser);
         }

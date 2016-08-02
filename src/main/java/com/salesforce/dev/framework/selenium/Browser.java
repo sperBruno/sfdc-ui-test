@@ -10,5 +10,6 @@ public enum Browser {
     CHROME,
     IE,
     SAFARY,
-    SAUCELAB
+    SAUCELAB,
+    BROWSERSTACK
 }

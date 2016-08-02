@@ -1,21 +1,27 @@
 package com.salesforce.dev.pages.campaigns;
 
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import com.salesforce.dev.framework.dto.FieldToDisplayView;
+import com.salesforce.dev.framework.dto.FilterView;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewBase;
 import com.salesforce.dev.pages.base.ViewDetailBase;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
-
 /**
  * Created by veronica on 8/20/2015.
- *
  */
 public class CampaignView extends ViewBase {
+    private List<FieldToDisplayView> fieldToDisplayViews;
 
     private static final Logger LOGGER = Logger.getLogger(CampaignView.class.getName());
+
     public CampaignView() {
 
         try {
@@ -27,6 +33,7 @@ public class CampaignView extends ViewBase {
             wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
         }
     }
+
     @Override
     public Object clickCancelBtn() {
         return null;
@@ -45,7 +52,7 @@ public class CampaignView extends ViewBase {
     }
 
     @Override
-   public CampaignView checkFilterByOwnerAll() {
+    public CampaignView checkFilterByOwnerAll() {
         checkFilterOwnerAll();
         return this;
     }
@@ -58,7 +65,7 @@ public class CampaignView extends ViewBase {
 
     @Override
     public CampaignView checkFilterByOwner(String filter) {
-        if(filter.compareToIgnoreCase("All campaigns") == 0)
+        if (filter.compareToIgnoreCase("All campaigns") == 0)
             checkFilterOwnerAll();
         else
             checkFilterOwnerMy();
@@ -87,5 +94,23 @@ public class CampaignView extends ViewBase {
     public ViewDetailBase clickSaveBtn() {
         clickSaveButton();
         return new CampaignViewDetail();
+    }
+
+    public void addAdditionalFilters(ViewSalesForce viewSalesForce) {
+        List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
+        int count = 1;
+        for (FilterView addFilter : additionalField) {
+            addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
+                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
+            count++;
+        }
+    }
+
+    public List<FieldToDisplayView> selectFieldsToDisplay(ViewSalesForce viewSalesForce) {
+        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
+        for (FieldToDisplayView fields : fieldToDisplayViews) {
+            addNewFieldToDisplay(fields.getFieldToDisplay());
+        }
+        return fieldToDisplayViews;
     }
 }
