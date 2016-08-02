@@ -3,6 +3,7 @@ package com.salesforce.dev.campaign;
 import java.util.Iterator;
 import java.util.Map;
 
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.campaigns.CampaignDetail;
@@ -22,13 +23,16 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Marcelo Vargas on 6/15/2015.
+ * Create a new campaign
+ *
+ * @author  Marcelo.Vargas on 6/15/2015.
+ * @author  Mijhail Villarroel
  */
 public class CreateCampaign {
 
     private String parentCampaign = "CampaignParent";
     private CampaignsHome campaignsHome;
-    private CampaignDetail campaignDetail;
+    private DetailsBase campaignDetail;
     private CampaignForm campaignForm;
     private MainPage mainPage;
     private NavigationBar navigationBar;
@@ -69,15 +73,15 @@ public class CreateCampaign {
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
         campaignDetail = campaignForm.clickSaveBtn();
-        Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
-        Map<CampaignSteps, Object> mapExpected = campaignDetail.getAssertionMap();
-        mapCampaign.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
+        Map<CampaignSteps, Object> mapExpected = campaign.convertToMap();
+        Map<Enum, Object> mapActual = campaignDetail.getAssertionMap();
+        mapExpected.keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step)));
         });
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
     }
 }

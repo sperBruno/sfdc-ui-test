@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.dto.FieldToDisplayView;
 import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.campaigns.CampaignView;
 import com.salesforce.dev.pages.campaigns.CampaignViewDetail;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
@@ -41,7 +42,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
 
     private NavigationBar navigationBar;
 
-    private CampaignViewDetail campaignViewDetail;
+    private ViewDetailBase campaignViewDetail;
 
     @DataProvider(name = "dataDriven")
     public Iterator<ViewSalesForce[]> getValues() {
@@ -87,6 +88,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
 
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
-        campaignViewDetail.clickDeleteLnk(true);
+        campaignViewDetail.clickDeleteLnk();
+        LOGGER.info("Campaign View was deleted");
     }
 }

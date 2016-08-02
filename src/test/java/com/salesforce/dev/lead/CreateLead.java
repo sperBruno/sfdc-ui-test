@@ -6,6 +6,7 @@ import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
@@ -96,11 +97,11 @@ public class CreateLead {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail = leadsHome.openLead(lead.lastName + ", " + lead.firstName);
-        leadDetail.deleteLead();
+        DetailsBase leadDetail = leadsHome.openLead(lead.lastName + ", " + lead.firstName);
+        leadDetail.clickDeleteButton();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignDetail = campaignsHome.selectRecentItem(parentCampaign);
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
     }
 }

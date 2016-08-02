@@ -55,7 +55,7 @@ public class EditProduct {
 
     @AfterMethod
     public void tearDown() {
-        productDetails.clickDeleteBtn(true);
+        productDetails.clickDeleteButton();
 
     }
 

@@ -2,7 +2,7 @@ package com.salesforce.dev.pages.campaigns;
 
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.DetailsBase;
-import org.apache.log4j.Logger;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -59,10 +59,10 @@ public class CampaignDetail extends DetailsBase {
         return new CampaignForm();
     }
 
+
     @Override
-    public CampaignsHome clickDeleteBtn(boolean confirmDeletion) {
-        clickDeleteButton(confirmDeletion);
-        LOGGER.info("Campaign Parent was deleted");
+    public HomeBase clickDeleteButton() {
+        clickDeletedButton();
         return new CampaignsHome();
     }
 
@@ -116,8 +116,8 @@ public class CampaignDetail extends DetailsBase {
         return getTextWebElement(campaignParent);
     }
 
-    public Map<CampaignSteps, Object> getAssertionMap() {
-        Map<CampaignSteps, Object> assertionMap = new HashMap<>();
+    public Map<Enum, Object> getAssertionMap() {
+        Map<Enum, Object> assertionMap = new HashMap<>();
         assertionMap.put(CAMPAIGN_NAME, validateCampaignNameFld());
         assertionMap.put(CAMPAIGN_STATUS, validateCampaignStatus());
         assertionMap.put(CAMPAIGN_TYPE, validateCampaignType());

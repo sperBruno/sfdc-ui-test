@@ -81,7 +81,7 @@ task runTestNGTestCases(type: Test) {
 
         if (browser == "Chrome") {
             download {
-                src 'http://chromedriver.storage.googleapis.com/2.15/chromedriver_win32.zip'
+                url 'http://chromedriver.storage.googleapis.com/2.15/chromedriver_win32.zip'
                 dest drivers
                 onlyIfNewer true
             }

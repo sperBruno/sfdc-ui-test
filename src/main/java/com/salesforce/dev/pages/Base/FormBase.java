@@ -38,9 +38,9 @@ public abstract class FormBase extends AbstractBasePage {
      *
      * @author: Walter
      */
-    protected abstract Object clickSaveBtn();
+    protected abstract DetailsBase clickSaveBtn();
 
-    protected abstract Object clickSaveNewBtn();
+    protected abstract AbstractBasePage clickSaveNewBtn();
 
     protected abstract Object clickCancelBtn();
 

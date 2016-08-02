@@ -29,8 +29,8 @@ public class AccountViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public AccountViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
+    public ViewDetailBase clickDeleteLnk() {
+        clickDeleteLink();
         return this;
     }
 }

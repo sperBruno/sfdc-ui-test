@@ -17,7 +17,7 @@ import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JS
  */
 public class JSONMapper {
 
-    public static Opportunity getOpportunity(String fileJson){
+    public static Opportunity getOpportunity(String fileJson) {
         Opportunity opportunity = new Opportunity();
         final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
         try {
@@ -29,7 +29,7 @@ public class JSONMapper {
         return opportunity;
     }
 
-    public static Lead getLead(String fileJson){
+    public static Lead getLead(String fileJson) {
         Lead lead = new Lead();
         final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
         try {
@@ -41,7 +41,7 @@ public class JSONMapper {
         return lead;
     }
 
-    public static Account getAccountBase(){
+    public static Account getAccountBase() {
         Account account = new Account();
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -51,7 +51,8 @@ public class JSONMapper {
         }
         return account;
     }
-    public static Contact getContact(){
+
+    public static Contact getContact() {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -61,7 +62,8 @@ public class JSONMapper {
         }
         return contact;
     }
-    public static Contact getContactToUpdate(){
+
+    public static Contact getContactToUpdate() {
         Contact contact = new Contact();
         try {
             ObjectMapper mapper = new ObjectMapper();
@@ -71,6 +73,4 @@ public class JSONMapper {
         }
         return contact;
     }
-
-
 }

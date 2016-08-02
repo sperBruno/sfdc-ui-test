@@ -3,8 +3,8 @@ package com.salesforce.dev.pages.accounts;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.base.DetailsBase;
+import com.salesforce.dev.pages.base.HomeBase;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
@@ -32,13 +32,12 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLASERIAL_N
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA_EXPIRATION_DATE;
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_THICKER;
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_TYPE;
-import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_UPSELL_OPPORTUNITY;
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 
 /**
- * @author Walter on 10/06/2015.
+ * @author Walter
  */
 public class AccountDetail extends DetailsBase {
 
@@ -122,16 +121,11 @@ public class AccountDetail extends DetailsBase {
         return new AccountForm();
     }
 
+
     @Override
-    public AccountsHome clickDeleteBtn(boolean confirmDeletion) {
-        clickDeletedAccButton(confirmDeletion);
-        LOGGER.info("Account was deleted");
+    public HomeBase clickDeleteButton() {
+        clickDeletedButton();
         return new AccountsHome();
-
-    }
-
-    public MainPage gotoMainPage() {
-        return new MainPage();
     }
 
     public String validateAccountNameFld() {
@@ -209,8 +203,8 @@ public class AccountDetail extends DetailsBase {
     }
 
     public String validateAccountEmployeesFld() {
-        String realValue = accountEmployeesFld.getText().replaceAll("[-+.^:,]", "");
-        return realValue;
+        return accountEmployeesFld.getText().replaceAll("[-+.^:,]", "");
+
     }
 
     public String validateAccountSICCodeFld() {
@@ -232,9 +226,9 @@ public class AccountDetail extends DetailsBase {
     public String validateAccountUpSellOpportunityFld() {
         return accountUpSellOpportunityFld.getText();
     }
-
-    public Map<AccountSteps, Object> getAssertionMap() {
-        Map<AccountSteps, Object> assertionMap = new HashMap<>();
+    @Override
+    public Map<Enum, Object> getAssertionMap() {
+        Map<Enum, Object> assertionMap = new HashMap<>();
         assertionMap.put(ACCOUNT_NAME, validateAccountNameFld());
         assertionMap.put(ACCOUNT_RATING, validateAccountRatingFld());
         assertionMap.put(ACCOUNT_OWNER_SHIP, validateAccountOwnershipFld());

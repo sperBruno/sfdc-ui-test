@@ -13,9 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Created by veronica on 8/21/2015.
  */
 public class CampaignViewDetail extends ViewDetailBase {
-
-    private static final Logger LOGGER = Logger.getLogger(CampaignViewDetail.class.getName());
-
     public CampaignViewDetail() {
         try {
             wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
@@ -33,9 +30,8 @@ public class CampaignViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public CampaignViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
-        LOGGER.info("Campaign View was deleted");
+    public CampaignViewDetail clickDeleteLnk() {
+        clickDeleteLink();
         return this;
     }
 

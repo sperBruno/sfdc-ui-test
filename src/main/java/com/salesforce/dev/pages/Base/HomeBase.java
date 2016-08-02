@@ -36,7 +36,7 @@ public abstract class HomeBase extends AbstractBasePage {
      *
      * @author: Jimmy
      */
-    protected abstract Object clickNewBtn();
+    protected abstract FormBase clickNewBtn();
 
     /**
      * Method clicks the New Link in the home page for each different category

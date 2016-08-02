@@ -67,6 +67,7 @@ public class CreateOpportunityViewFiltersFieldsAdded {
 
     @AfterMethod(groups = {"Regression"})
     public void tearDown() {
-        opportunityViewDetail.clickDeleteLnk(true);
+        opportunityViewDetail.clickDeleteLnk();
+        LOGGER.info("Opportunity View was deleted");
     }
 }

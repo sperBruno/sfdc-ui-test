@@ -93,11 +93,13 @@ public class EditCampaign {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
+        LOGGER.info("Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignDetail = campaignsHome.selectRecentItem(campaignParentName);
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
+        LOGGER.info("Campaign Parent was deleted");
     }
 }
