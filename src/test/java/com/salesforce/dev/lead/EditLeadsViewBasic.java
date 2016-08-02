@@ -64,6 +64,7 @@ public class EditLeadsViewBasic {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        leadViewDetail.clickDeleteLnk(true);
+        leadViewDetail.clickDeleteLnk();
+        LOGGER.info("leads View was deleted");
     }
 }

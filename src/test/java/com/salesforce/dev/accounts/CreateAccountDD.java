@@ -1,31 +1,38 @@
 package com.salesforce.dev.accounts;
 
-/**
- * Created by Walter Mercado on 6/22/2015.
- */
-import java.util.*;
+import java.util.Iterator;
+import java.util.Map;
 
-import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.dto.Account;
-import com.salesforce.dev.pages.accounts.AccountDetail;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.framework.utils.DataDrivenManager;
-import org.testng.annotations.*;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 
 /**
- * @author Walter on 13/06/2015.
+ * Create a new account
+ *
+ * @author Walter
+ * @author Mijhail Villarroel
  */
 public class CreateAccountDD {
 
     private MainPage mainPage;
-    private AccountDetail accountDetail;
+
+    private DetailsBase accountDetail;
+
     private NavigationBar navigationBar;
 
     @DataProvider(name = "dataDriven")
@@ -34,30 +41,29 @@ public class CreateAccountDD {
         return dataDrivenManager.getAccountsDD("AccountsBaseDD.json");
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-
-    @Test(groups = {"Regression"}, dataProvider = "dataDriven")
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateAccount(Account account) {
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn()
                 .setAccountNameFld(account.getAccountName())
                 .setAccountDescriptionFld(account.getAccountDesc());
         accountDetail = accountForm.clickSaveBtn();
-        Map<AccountSteps, Object> mapAccount =account.convertToMap();
-        Map<AccountSteps, Object> mapExpected = accountDetail.getAssertionMap();
-        mapAccount.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
+        Map<AccountSteps, Object> mapExpected =account.convertToMap();
+        Map<Enum, Object> mapActual = accountDetail.getAssertionMap();
+        mapExpected.keySet().stream().forEach((step) -> {
+            assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step)));
         });
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        AccountsHome accountsHome= accountDetail.clickDeleteBtn(true);
+        accountDetail.clickDeleteButton();
 
     }
 }

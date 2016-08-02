@@ -33,7 +33,7 @@ public class CreateOpportunityViewBasic {
         return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
@@ -53,6 +53,7 @@ public class CreateOpportunityViewBasic {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        opportunityViewDetail.clickDeleteLnk(true);
+        opportunityViewDetail.clickDeleteLnk();
+        LOGGER.info("Opportunity View was deleted");
     }
 }

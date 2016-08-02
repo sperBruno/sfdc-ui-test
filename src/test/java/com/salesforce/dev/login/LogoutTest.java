@@ -18,12 +18,12 @@ public class LogoutTest {
 
     private MainPage mainPage;
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
     }
 
-    @Test(groups = {"BVT"})
+    @Test(groups = {"Acceptance"})
     public void testLogout() {
         TopHeader topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();

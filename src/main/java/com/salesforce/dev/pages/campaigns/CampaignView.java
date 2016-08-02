@@ -8,6 +8,7 @@ import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewBase;
+import com.salesforce.dev.pages.base.ViewDetailBase;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
@@ -90,9 +91,8 @@ public class CampaignView extends ViewBase {
     }
 
     @Override
-    public CampaignViewDetail clickSaveBtn() {
+    public ViewDetailBase clickSaveBtn() {
         clickSaveButton();
-        LOGGER.info("Campaign view was created");
         return new CampaignViewDetail();
     }
 

@@ -33,9 +33,8 @@ public class LeadViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public LeadViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
-        LOGGER.info("leads View was deleted");
+    public LeadViewDetail clickDeleteLnk() {
+        clickDeleteLink();
         return this;
     }
 }

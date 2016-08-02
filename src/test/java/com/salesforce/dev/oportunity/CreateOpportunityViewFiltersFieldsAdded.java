@@ -13,7 +13,6 @@ import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityView;
 import com.salesforce.dev.pages.opportunities.OpportunityViewDetail;
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -26,6 +25,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
     private NavigationBar navigationBar;
+
     private OpportunityViewDetail opportunityViewDetail;
 
     @DataProvider(name = "dataDriven")
@@ -34,13 +34,13 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         return dataDrivenManager.getDataView("CreateOpportunityViewFiltersFieldAdded.json");
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Regression"}, dataProvider = "dataDriven")
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateOpportunityViewWithFilters(ViewSalesForce viewSalesForce) {
         OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
         OpportunityView opportunityView = opportunitiesHome.clickNewViewLnk()
@@ -65,8 +65,8 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        opportunityViewDetail.clickDeleteLnk(true);
+        opportunityViewDetail.clickDeleteLnk();
     }
 }

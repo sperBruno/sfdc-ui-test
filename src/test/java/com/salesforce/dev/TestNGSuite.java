@@ -13,11 +13,11 @@ import static com.salesforce.dev.framework.selenium.DriverManager.getInstance;
  */
 public class TestNGSuite {
 
-    @BeforeSuite(groups = {"BVT", "Acceptance"})
+    @BeforeSuite(groups = {"Acceptance"})
     public void beforeSuite() {
     }
 
-    @AfterSuite(groups = {"BVT", "Acceptance"})
+    @AfterSuite(groups = {"Acceptance"})
     public void afterSuite() {
              getInstance().quit();
     }

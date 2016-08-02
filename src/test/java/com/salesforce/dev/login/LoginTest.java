@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
  */
 public class LoginTest {
 
-    @Test(groups = {"BVT"})
+    @Test(groups = {"Acceptance"})
     public void testLogin1() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         TopHeader topHeader = mainPage.gotoTopHeader();

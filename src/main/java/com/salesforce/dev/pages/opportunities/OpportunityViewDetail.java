@@ -36,9 +36,8 @@ public class OpportunityViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public OpportunityViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
-        LOGGER.info("Opportunity View was deleted");
+    public OpportunityViewDetail clickDeleteLnk() {
+        clickDeleteLink();
         return this;
     }
 }

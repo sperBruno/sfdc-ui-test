@@ -280,12 +280,10 @@ public class Account {
         mapAccount.put(ACCOUNT_SLASERIAL_NUMBER, slaSerialNumber );
         mapAccount.put(ACCOUNT_UPSELL_OPPORTUNITY, upSellOpportunity );
         mapAccount.put(ACCOUNT_DESCRIPTION, accountDesc );
-        Map<AccountSteps, Object> mapAccount2 = new HashMap<>();
-        mapAccount.entrySet().stream().forEach((step) -> {
-            if (!(step.getValue() == null)) {
-                mapAccount2.put(step.getKey(),step.getValue());
-            }
-        });
-        return mapAccount2;
+        Map<AccountSteps, Object> newAccountMap = new HashMap<>();
+        mapAccount.entrySet().stream()
+                .filter(step -> step.getValue() != null)
+                .forEach(step -> newAccountMap.put(step.getKey(),step.getValue()));
+        return newAccountMap;
     }
 }

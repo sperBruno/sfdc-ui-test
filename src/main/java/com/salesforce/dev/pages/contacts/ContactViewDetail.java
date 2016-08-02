@@ -42,10 +42,9 @@ public class ContactViewDetail extends ViewDetailBase {
     }
 
     @Override
-    public ContactViewDetail clickDeleteLnk(boolean confirmDeletion) {
-        clickDeleteLink(confirmDeletion);
-        LOGGER.info("Contact was deleted");
-        return this;
+    public ContactViewDetail clickDeleteLnk() {
+        clickDeleteLink();
+       return this;
     }
 
     public MainPage gotoMainPage() {
