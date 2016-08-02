@@ -33,7 +33,7 @@ public class CreateOpportunityViewBasic {
         return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();

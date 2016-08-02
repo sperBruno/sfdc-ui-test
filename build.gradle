@@ -46,7 +46,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.4'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.4'
     compile 'com.github.detro:phantomjsdriver:1.2.0'
-    compile ("org.uncommons:reportng:1.1.4")
+    compile("org.uncommons:reportng:1.1.4")
             { exclude group: "org.testng", module: "testng" }
     compile 'com.google.inject:guice:3.0'
     compile 'log4j:log4j:1.2.17'
@@ -78,36 +78,31 @@ task runTestNGTestCases(type: Test) {
     systemProperties.put('primaryUsePasswordToken', primaryUsePasswordToken)
     systemProperties.put('excludeGroup', excludeGroup)
 
-
-    task downloadDrivers(type: Copy) {
+    setProperty('http.proxyHost', proxyHost)
+    setProperty('http.proxyPort', proxyPort)
+    
     File drivers = new File('./drivers')
     drivers.mkdirs()
 
     task downloadChromeDriver(type: Download) {
-        setProperty('http.proxyHost', '172.20.240.5')
-        setProperty('http.proxyPort', '8080')
-        src([
-                'http://chromedriver.storage.googleapis.com/2.15/chromedriver_win32.zip'
-        ])
-        dest buildDir
+        
+        src(['http://chromedriver.storage.googleapis.com/2.15/chromedriver_win32.zip'])
+        dest drivers
         overwrite true
     }
 
     task downloadIEDriver(type: Download) {
-        src([
-                'http://selenium.googlecode.com/files/IEDriverServer_x64_2.28.0.zip'
-        ])
-        dest buildDir
+        setProperty('http.proxyHost', '172.20.240.5')
+        setProperty('http.proxyPort', '8080')
+        src(['http://selenium.googlecode.com/files/IEDriverServer_x64_2.28.0.zip'])
+        dest drivers
         overwrite true
     }
 
     task downloadDrivers(type: Copy) {
-
         if (browser == "Chrome") {
             downloadChromeDriver.execute()
-
         } else if (browser == "IE") {
-
             downloadIEDriver.execute()
         }
 
@@ -123,5 +118,4 @@ task runTestNGTestCases(type: Test) {
     if (browser != "Firefox") {
         downloadDrivers.execute()
     }
-
 }

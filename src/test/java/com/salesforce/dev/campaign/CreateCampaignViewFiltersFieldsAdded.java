@@ -57,7 +57,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Regression"}, dataProvider = "dataDriven")
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
@@ -86,7 +86,7 @@ public class CreateCampaignViewFiltersFieldsAdded {
         }
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignViewDetail.clickDeleteLnk();
         LOGGER.info("Campaign View was deleted");

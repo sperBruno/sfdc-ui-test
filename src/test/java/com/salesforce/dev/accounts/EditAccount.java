@@ -10,7 +10,6 @@ import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.accounts.AccountsHome;
-import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -33,16 +32,15 @@ public class EditAccount {
 
     private AccountForm accountForm;
 
-    private Account account ;
+    private Account account;
 
     private String accountName = "AccountName";
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        account = JSONMapper.getAccountBase();
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
-        account =(Account) JSON_MAPPER_INSTANCE.getGeneric(new Account(),"CreateContact.json");
-
+        account = (Account) JSON_MAPPER_INSTANCE.getGeneric(new Account(), "CreateAccountBase.json");
+        
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
