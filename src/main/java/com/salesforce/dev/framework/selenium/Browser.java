@@ -1,14 +1,14 @@
 package com.salesforce.dev.framework.selenium;
 
 /**
- * @author Henrry Salinas
- *
  * This enum class store the browser names supported for  driver manager class
+ *
+ * @author Henrry Salinas
  */
 public enum Browser {
     FIREFOX,
     CHROME,
     IE,
-    SAFARY,
-    SAUCELAB
+    SAFARI,
+    SAUCELABS
 }

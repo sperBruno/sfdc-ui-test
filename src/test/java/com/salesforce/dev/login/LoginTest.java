@@ -3,7 +3,7 @@ package com.salesforce.dev.login;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
-import com.salesforce.dev.pages.objects.UserInformation;
+import com.salesforce.dev.framework.soap.UserInformation;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

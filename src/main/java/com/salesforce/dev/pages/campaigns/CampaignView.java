@@ -1,13 +1,14 @@
 package com.salesforce.dev.pages.campaigns;
 
-import com.salesforce.dev.framework.selenium.DriverManager;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+
 import com.salesforce.dev.pages.base.ViewBase;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+import static com.salesforce.dev.framework.selenium.DriverManager.TIMEOUT_NORMAL;
 
 /**
  * Created by veronica on 8/20/2015.
@@ -19,12 +20,12 @@ public class CampaignView extends ViewBase {
     public CampaignView() {
 
         try {
-            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
+            wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
+            wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         }
     }
     @Override

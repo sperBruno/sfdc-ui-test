@@ -19,3 +19,5 @@ build/
 logs/
 *.puml
 /classes/
+/reports/
+/nbproject/private/
