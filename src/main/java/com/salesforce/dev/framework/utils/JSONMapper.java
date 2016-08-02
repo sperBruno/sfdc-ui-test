@@ -15,62 +15,70 @@ import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JS
 /**
  * @author jimmy vargas on 6/22/2015.
  */
-public class JSONMapper {
+public class JSONMapper<T> {
 
-    public static Opportunity getOpportunity(String fileJson) {
-        Opportunity opportunity = new Opportunity();
-        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
+    private static JSONMapper instance;
+
+
+    private JSONMapper () {
+    }
+
+    public static  JSONMapper getInstance() {
+        if(instance == null){
+            instance = new JSONMapper();
+        }
+        return instance;
+    }
+
+//    public static Opportunity getOpportunity(String fileJson) {
+//        Opportunity opportunity = new Opportunity();
+//        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
+//        try {
+//            ObjectMapper mapper = new ObjectMapper();
+//            opportunity = mapper.readValue(new File(pathFileJson), Opportunity.class);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return opportunity;
+//    }
+
+//    public static Lead getLead(String fileJson) {
+//        Lead lead = new Lead();
+//        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
+//        try {
+//            ObjectMapper mapper = new ObjectMapper();
+//            lead = mapper.readValue(new File(pathFileJson), Lead.class);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return lead;
+//    }
+
+//    public static Account getAccountBase() {
+//        Account account = new Account();
+//        try {
+//            ObjectMapper mapper = new ObjectMapper();
+//            account = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "CreateAccountBase.json"), Account.class);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return account;
+//    }
+
+
+
+
+    public  T getGeneric(T elementClass, String nameJson) {
+        final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson) ;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            opportunity = mapper.readValue(new File(pathFileJson), Opportunity.class);
+            elementClass = mapper.readValue(new File(pathFileJson), (Class<T>) elementClass.getClass());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return opportunity;
+        return elementClass;
     }
 
-    public static Lead getLead(String fileJson) {
-        Lead lead = new Lead();
-        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            lead = mapper.readValue(new File(pathFileJson), Lead.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return lead;
-    }
 
-    public static Account getAccountBase() {
-        Account account = new Account();
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            account = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "CreateAccountBase.json"), Account.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return account;
-    }
 
-    public static Contact getContact() {
-        Contact contact = new Contact();
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "CreateContact.json"), Contact.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return contact;
-    }
-
-    public static Contact getContactToUpdate() {
-        Contact contact = new Contact();
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            contact = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "EditContact.json"), Contact.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return contact;
-    }
 }

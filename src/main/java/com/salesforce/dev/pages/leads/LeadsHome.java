@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.leads;
 
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -41,7 +42,7 @@ public class LeadsHome extends HomeBase {
     }
 
     @Override
-    public Object selectRecentViewItem(String value) {
+    public AbstractBasePage selectRecentViewItem(String value) {
         return null;
     }
 

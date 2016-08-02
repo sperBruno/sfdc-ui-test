@@ -29,10 +29,15 @@ import org.testng.annotations.Test;
  */
 
 public class CreateAccountViewFiltersFieldsAdded {
+
     private AccountsHome accountsHome;
+
     private AccountView accountView;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
+
     private ViewDetailBase accountViewDetail;
 
     @DataProvider(name = "dataDriven")

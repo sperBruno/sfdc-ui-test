@@ -6,6 +6,7 @@ import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
@@ -95,6 +96,5 @@ public class CreateContactView {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactViewDetail.clickDeleteLnk();
-        LOGGER.info("Contact View was deleted");
     }
 }

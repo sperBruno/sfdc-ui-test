@@ -43,14 +43,14 @@ public abstract class HomeBase extends AbstractBasePage {
      *
      * @author: veronica
      */
-    protected abstract Object clickNewViewLnk();
+    protected abstract AbstractBasePage clickNewViewLnk();
 
     /**
      * Method clicks the NEdit view in the home page for each different category
      *
      * @author: veronica
      */
-    protected abstract Object clickEditViewLnk(String value);
+    protected abstract AbstractBasePage clickEditViewLnk(String value);
 
     /**
      * Method that encapsulates the the operations waiting for the elemeent and the action
@@ -93,7 +93,7 @@ public abstract class HomeBase extends AbstractBasePage {
         }
     }
 
-    protected abstract Object selectRecentViewItem(String value);
+    protected abstract AbstractBasePage selectRecentViewItem(String value);
 
     protected void selectRecentView(String value) {
         setWebElement(viewCombobox, value);

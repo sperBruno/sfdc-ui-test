@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.contacts;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +27,11 @@ public class ContactsHome extends HomeBase {
     }
 
     @Override
+    protected AbstractBasePage selectRecentViewItem(String value) {
+        return null;
+    }
+
+    @Override
     public ContactView clickEditViewLnk(String value) {
         editViewLnk(value);
         return new ContactView();
@@ -38,10 +44,5 @@ public class ContactsHome extends HomeBase {
 
     public boolean IsUserInContactsTab() {
         return CommonOperation.isWebElementVisible(contactSection);
-    }
-
-    @Override
-    protected Object selectRecentViewItem(String value) {
-        return null;
     }
 }

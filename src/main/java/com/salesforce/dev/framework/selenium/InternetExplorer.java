@@ -9,7 +9,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 public class InternetExplorer implements IDriver {
     private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.ie.driver";
 
-    private static final String DRIVER_PATH = "lib/IEDriverServer.exe";
+    private static final String DRIVER_PATH = "drivers/IEDriverServer.exe";
 
     @Override
     public WebDriver initDriver() {

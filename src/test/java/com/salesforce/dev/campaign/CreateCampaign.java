@@ -30,11 +30,16 @@ import static org.testng.Assert.assertEquals;
  */
 public class CreateCampaign {
 
-    private String parentCampaign = "CampaignParent";
+    private String parentCampaign;
+
     private CampaignsHome campaignsHome;
+
     private DetailsBase campaignDetail;
+
     private CampaignForm campaignForm;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
 
 

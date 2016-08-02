@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.getTextWebElement;
 import static com.salesforce.dev.pages.campaigns.CampaignSteps.*;
@@ -18,7 +19,7 @@ import static com.salesforce.dev.pages.campaigns.CampaignSteps.*;
  */
 public class CampaignDetail extends DetailsBase {
 
-    private static final Logger LOGGER =Logger.getLogger(CampaignDetail.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(CampaignDetail.class.getName());
 
     @FindBy(id = "cpn1_ileinner")
     private WebElement campaignName;
@@ -118,22 +119,6 @@ public class CampaignDetail extends DetailsBase {
 
     public Map<Enum, Object> getAssertionMap() {
         Map<Enum, Object> assertionMap = new HashMap<>();
-        assertionMap.put(CAMPAIGN_NAME, validateCampaignNameFld());
-        assertionMap.put(CAMPAIGN_STATUS, validateCampaignStatus());
-        assertionMap.put(CAMPAIGN_TYPE, validateCampaignType());
-        assertionMap.put(START_DATE, validateCampaignStartDate());
-        assertionMap.put(END_DATE, validateCampaignEndDate());
-        assertionMap.put(PARENT_CAMPAIGN, validateCampaignParent());
-        //assertionMap.put(BUDGETED_COST, validateCampaignBudgetedCost());
-        //   assertionMap.put(ACTUAL_COST, validateCampaignActualCost() );
-        //  assertionMap.put(EXPECTED_RESPONSE, validateCampaignExpectedResponse());
-        //     assertionMap.put(NUM_SENT, validateCampaignNumSent());
-        //   assertionMap.put(EXPECTED_REVENUE, validateCampaignExpectedRevenue());
-        return assertionMap;
-    }
-
-    public Map<CampaignSteps, Object> getAssertionEditMap() {
-        Map<CampaignSteps, Object> assertionMap = new HashMap<>();
         assertionMap.put(CAMPAIGN_NAME, validateCampaignNameFld());
         assertionMap.put(CAMPAIGN_STATUS, validateCampaignStatus());
         assertionMap.put(CAMPAIGN_TYPE, validateCampaignType());

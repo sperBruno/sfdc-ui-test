@@ -85,7 +85,7 @@ public class EditCampaign {
         campaignParentName = campaign.getParentCampaign();
 
         Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
-        Map<CampaignSteps, Object> mapExpected = campaignDetail.getAssertionEditMap();
+        Map<Enum, Object> mapExpected = campaignDetail.getAssertionMap();
         mapCampaign.keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
         });

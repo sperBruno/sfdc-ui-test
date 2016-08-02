@@ -25,10 +25,15 @@ import static org.testng.Assert.assertTrue;
  * @author  Mijhail Villarroel
  */
 public class CreateCampaignViewBasic {
+
     private CampaignsHome campaignsHome;
+
     private CampaignView campaignView;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
+
     private ViewDetailBase campaignViewDetail;
 
     @DataProvider(name = "dataDriven")
