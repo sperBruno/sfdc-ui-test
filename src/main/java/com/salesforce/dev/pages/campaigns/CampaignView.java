@@ -14,6 +14,8 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.salesforce.dev.framework.selenium.DriverManager.TIMEOUT_NORMAL;
+
 /**
  * Created by veronica on 8/20/2015.
  */
@@ -25,12 +27,12 @@ public class CampaignView extends ViewBase {
     public CampaignView() {
 
         try {
-            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS)
+            wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS)
                     .until(ExpectedConditions.visibilityOf(saveBtn));
         } catch (WebDriverException e) {
             throw new WebDriverException(e);
         } finally {
-            wait.withTimeout(DriverManager.getInstance().getTimeoutNormal(), TimeUnit.SECONDS);
+            wait.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         }
     }
 

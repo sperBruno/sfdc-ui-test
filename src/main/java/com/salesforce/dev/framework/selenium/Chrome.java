@@ -14,8 +14,6 @@ public class Chrome implements IDriver {
 
     private static final String DRIVER_PATH = "drivers/chromedriver.exe";
 
-    private static final String WEBDRIVER_CHROME_PROPERTY = "webdriver.chrome.driver";
-
     /**
      * {@inheritDoc}
      */

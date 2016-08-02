@@ -13,7 +13,7 @@ import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignSteps;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
-import com.salesforce.dev.pages.objects.CampaignGenie;
+import com.salesforce.dev.framework.soap.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

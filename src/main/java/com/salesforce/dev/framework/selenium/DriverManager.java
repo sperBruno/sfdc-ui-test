@@ -1,6 +1,5 @@
 package com.salesforce.dev.framework.selenium;
 
-
 import java.util.concurrent.TimeUnit;
 
 import com.salesforce.dev.framework.utils.Environment;
@@ -16,26 +15,23 @@ import static com.salesforce.dev.framework.utils.Constants.SALESFORCE_URL;
 /**
  * @author Jimmy Vargas
  * @author Henrry Salinas
- * @since 8/1/2016
  */
 public class DriverManager {
 
+    public static final int TIMEOUT_NORMAL = 30;
+
     private static final Logger LOGGER = Logger.getLogger(DriverManager.class.getSimpleName());
 
-    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
+    private static final String LOG4J_PROPERTIES_FILE = "src/main/resources/log4j.properties";
+
+    private static DriverManager instance;
 
     private WebDriver driver;
 
     private WebDriverWait wait;
 
-    private static DriverManager instance;
-
-    private static final int TIMEOUT_NORMAL = 30;
-
-    private int timeoutNormal = TIMEOUT_NORMAL;
-
     private DriverManager() {
-        PropertyConfigurator.configure(SRC_MAIN_RESOURCES_LOG4J_PROPERTIES);
+        PropertyConfigurator.configure(LOG4J_PROPERTIES_FILE);
         this.initializer();
     }
 
@@ -56,10 +52,6 @@ public class DriverManager {
 
     public WebDriverWait getWait() {
         return this.wait;
-    }
-
-    public int getTimeoutNormal() {
-        return timeoutNormal;
     }
 
     public WebDriver getDriver() {
