@@ -23,16 +23,25 @@ import static org.testng.Assert.assertEquals;
  */
 public class EditAccount {
 
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
     private AccountDetail accountDetail;
+
     private NavigationBar navigationBar;
+
     private AccountsHome accountsHome;
+
     private AccountForm accountForm;
-    private Account account = JSONMapper.getAccountBase();
+
+    private Account account ;
+
     private String accountName = "AccountName";
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
+        account =(Account) JSON_MAPPER_INSTANCE.getGeneric(new Account(),"CreateContact.json");
+
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();

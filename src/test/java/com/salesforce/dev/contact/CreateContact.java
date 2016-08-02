@@ -30,6 +30,8 @@ public class CreateContact {
 
     private static final Logger LOGGER = Logger.getLogger(CreateContact.class.getName());
 
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
     private ContactsHome contactsHome;
 
     private ContactDetail contactDetail;
@@ -67,9 +69,7 @@ public class CreateContact {
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();
-
-        Contact contact = JSONMapper.getContact();
-
+        Contact contact = (Contact) JSON_MAPPER_INSTANCE.getGeneric(new Contact(),"CreateAccountBase.json");
         contactForm.setFirstNameRole(contact.getcontactRole())
                 .setFirstName(contact.getcontactRole())
                 .setFirstName(contact.getFirstName())

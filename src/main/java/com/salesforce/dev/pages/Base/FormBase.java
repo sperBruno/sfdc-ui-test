@@ -15,6 +15,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
 public abstract class FormBase extends AbstractBasePage {
 
 
+    public static final int TIME_SLEEP_MILLIS = 200;
     @FindBy(name = "save")
     protected WebElement saveBtn;
 
@@ -31,8 +32,6 @@ public abstract class FormBase extends AbstractBasePage {
     @FindBy(id = "calYearPicker")
     protected WebElement yearPicker;
 
-    protected String[] months;
-
     /**
      * Method clicks the New button in the home page for each different category
      *
@@ -40,9 +39,8 @@ public abstract class FormBase extends AbstractBasePage {
      */
     protected abstract DetailsBase clickSaveBtn();
 
-    protected abstract AbstractBasePage clickSaveNewBtn();
 
-    protected abstract Object clickCancelBtn();
+    protected abstract AbstractBasePage clickCancelBtn();
 
     /**
      * Methods that encapsulates the the operations waiting for the element and the action
@@ -62,8 +60,7 @@ public abstract class FormBase extends AbstractBasePage {
     }
 
     protected void selectDatePicker(Integer month, Integer day, Integer year) {
-        months = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        this.selectItemComboBox(monthPicker, months[month - 1]);
+        this.selectItemComboBox(monthPicker, month.toString());
         this.selectItemComboBox(yearPicker, year.toString());
         WebElement selectDate = driver.findElement(
                 By.xpath("//div[@class='calBody']/descendant::td[contains(.,'" + day + "')]"));
@@ -90,7 +87,7 @@ public abstract class FormBase extends AbstractBasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         try {
-            Thread.sleep(200);
+            Thread.sleep(TIME_SLEEP_MILLIS);
         } catch (Exception e) {
         }
 

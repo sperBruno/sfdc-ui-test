@@ -21,7 +21,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
  * @author: Jimmy Vargas
  * @since: 6/13/2015
  */
-public abstract class DetailsBase extends com.salesforce.dev.pages.base.AbstractBasePage {
+public abstract class DetailsBase extends AbstractBasePage {
 
     private static final Logger LOGGER = Logger.getLogger(DetailsBase.class.getName());
 
@@ -73,7 +73,7 @@ public abstract class DetailsBase extends com.salesforce.dev.pages.base.Abstract
      * @author: Jimmy Vargas
      * @since: 6/13/2015
      */
-    protected abstract FormBase clickEditBtn();
+    protected abstract AbstractBasePage clickEditBtn();
 
 
     /**
@@ -81,7 +81,7 @@ public abstract class DetailsBase extends com.salesforce.dev.pages.base.Abstract
      *
      * @author: Mijhail Villarroel
      */
-    public abstract HomeBase clickDeleteButton();
+    public abstract AbstractBasePage clickDeleteButton();
 
     /**
      * Return Map the assertions

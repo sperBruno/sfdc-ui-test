@@ -24,10 +24,15 @@ import static org.testng.Assert.assertTrue;
  * @author Mijhail Villarroel
  */
 public class CreateAccountViewBasic {
+
     private AccountsHome accountsHome;
+
     private AccountView accountView;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
+
     private ViewDetailBase accountViewDetail;
 
     @DataProvider(name = "dataDriven")

@@ -1,6 +1,7 @@
 package com.salesforce.dev.pages.product;
 
 
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,16 +41,6 @@ public class ProductForm extends FormBase {
 
     }
 
-    public Object clickSaveNewBtn() {
-        return null;
-    }
-
-
-    public Object clickCancelBtn() {
-        return null;
-    }
-
-
     public ProductDetails saveProduct() {
         if (prodName != null) {
             setProductName(prodName);
@@ -72,10 +63,10 @@ public class ProductForm extends FormBase {
         return new ProductDetails();
     }
 
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
+    @Override
+    protected AbstractBasePage clickCancelBtn() {
+        return null;
     }
-
 
     public void setProductName(String name) {
         wait.until(ExpectedConditions.visibilityOf(productNameField));

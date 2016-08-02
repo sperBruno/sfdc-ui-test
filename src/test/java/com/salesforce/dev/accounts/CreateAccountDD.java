@@ -24,13 +24,15 @@ import static org.testng.Assert.assertEquals;
 /**
  * Create a new account
  *
- * @author Walter on
+ * @author Walter
  * @author Mijhail Villarroel
  */
 public class CreateAccountDD {
 
     private MainPage mainPage;
+
     private DetailsBase accountDetail;
+
     private NavigationBar navigationBar;
 
     @DataProvider(name = "dataDriven")

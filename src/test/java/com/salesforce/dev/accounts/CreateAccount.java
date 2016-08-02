@@ -5,7 +5,6 @@ import java.util.Map;
 import com.salesforce.dev.framework.dto.Account;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.accounts.AccountsHome;
@@ -26,13 +25,18 @@ import static org.testng.Assert.assertEquals;
  */
 public class CreateAccount {
 
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
     private MainPage mainPage;
+
     private DetailsBase accountDetail;
+
     private Map<AccountSteps, Object> mapAccount;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        mapAccount = JSONMapper.getAccountBase().convertToMap();
+        Account account = (Account) JSON_MAPPER_INSTANCE.getGeneric(new Account(),"CreateAccountBase.json");
+        mapAccount =account.convertToMap();
         mainPage = LoginPage.loginAsPrimaryUser();
     }
 

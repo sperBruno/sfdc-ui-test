@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.campaigns;
 
 import java.util.concurrent.TimeUnit;
 
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import org.apache.log4j.Logger;
@@ -76,6 +77,9 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement descriptionFld;
 
+    @FindBy(className = "detailList")
+    private WebElement panel;
+
     public CampaignForm() {
 
         try {
@@ -87,13 +91,9 @@ public class CampaignForm extends FormBase {
             wait.withTimeout(15, TimeUnit.SECONDS);
         }
     }
-    @Override
-    public Object clickSaveNewBtn() {
-        return null;
-    }
 
     @Override
-    public Object clickCancelBtn() {
+    public AbstractBasePage clickCancelBtn() {
         return null;
     }
 
@@ -171,8 +171,6 @@ public class CampaignForm extends FormBase {
         return this;
     }
 
-    @FindBy(className = "detailList")
-    private WebElement panel;
     public CampaignForm clickPanel() {
         clickWebElement(panel);
         return this;
