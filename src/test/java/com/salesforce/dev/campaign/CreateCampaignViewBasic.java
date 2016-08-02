@@ -31,11 +31,9 @@ public class CreateCampaignViewBasic {
     private CampaignViewDetail campaignViewDetail;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<ViewSalesForce[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateCampaignViewBasic.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("CreateCampaignViewBasic.json", ViewSalesForce.class);
     }
-
 
     @BeforeMethod(groups = {"BVT"})
     public void setUp() {

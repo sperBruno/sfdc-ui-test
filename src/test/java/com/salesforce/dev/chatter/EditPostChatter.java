@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import com.salesforce.dev.framework.dto.Chatter;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
@@ -22,13 +23,11 @@ public class EditPostChatter {
     private NavigationBar navigationBar;
     private ChatterHome chatterHome;
     private Chatter createChatter;
-    private DataDrivenManager dataDrivenManager = new DataDrivenManager();
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-//        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("Chatter.json");
-        Iterator<Object[]> chattersData = dataDrivenManager.getObjects ("Chatter.json", Chatter.class);
-        createChatter = (Chatter)chattersData.next()[0];
+        Iterator<Object[]> chattersData = DataDrivenManager.getObjects ("Chatter.json", Chatter.class);
+        createChatter = (Chatter) chattersData.next()[0];
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();
@@ -39,8 +38,8 @@ public class EditPostChatter {
 
     @Test(groups = {"Acceptance"})
     public void CreatePostAndComment() {
-        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter("EditChatter.json");
-        Chatter chatter = chattersData.next()[0];
+        Iterator<Object[]> chattersData = DataDrivenManager.getObjects("EditChatter.json", Chatter.class);
+        Chatter chatter = (Chatter) chattersData.next()[0];
         EditPost editPost = chatterHome.editPost(createChatter.getPost());
         editPost.setEditTextBox(chatter.getPost());
         chatterHome = editPost.clickSaveEditBtn();

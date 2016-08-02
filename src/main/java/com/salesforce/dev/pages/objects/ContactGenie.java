@@ -16,15 +16,12 @@ import java.util.List;
 public class ContactGenie {
     public static ViewSalesForce getContactView() {
         PartnerConnection connection = APIConnector.getInstance().getConnection();
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<ViewSalesForce[]> iteratorViewData = dataDrivenManager.getDataView("CreateContactView.json");
+        Iterator<Object[]> iteratorViewData = DataDrivenManager.getObjects("CreateContactView.json", ViewSalesForce.class);
         List<ViewSalesForce[]> listData = new ArrayList<ViewSalesForce[]>();
         while (iteratorViewData.hasNext()) {
-            listData.add(iteratorViewData.next());
+            listData.add((ViewSalesForce[])iteratorViewData.next());
         }
-        ViewSalesForce viewSalesForce = listData.get(0)[0];
-        SObject account = new SObject();
-        return viewSalesForce;
+        return listData.get(0)[0];
     }
 
 }

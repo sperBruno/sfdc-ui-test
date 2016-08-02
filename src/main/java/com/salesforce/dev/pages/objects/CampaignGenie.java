@@ -21,58 +21,21 @@ public class CampaignGenie {
     private static final Logger LOGGER = Logger.getLogger(CampaignGenie.class.getName());
 
     public static ViewSalesForce getCampaignView(String jsonFile) {
-        PartnerConnection connection = APIConnector.getInstance().getConnection();
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<ViewSalesForce[]> iteratorViewData = dataDrivenManager.getDataView(jsonFile);
+        Iterator<Object[]> iteratorViewData = DataDrivenManager.getObjects(jsonFile, ViewSalesForce.class);
         List<ViewSalesForce[]> listData = new ArrayList<ViewSalesForce[]>();
         while (iteratorViewData.hasNext()) {
-            listData.add(iteratorViewData.next());
+            listData.add((ViewSalesForce[])iteratorViewData.next());
         }
-        ViewSalesForce viewSalesForce = listData.get(0)[0];
-        SObject account = new SObject();
-        return viewSalesForce;
+        return listData.get(0)[0];
     }
 
     public static Campaign getCampaign() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<Campaign[]> iteratorCampaignData = dataDrivenManager.getCampaign("CreateCampaign.json");
+        Iterator<Object[]> iteratorCampaignData = DataDrivenManager.getObjects("CreateCampaign.json", Campaign.class);
         List<Campaign[]> listData = new ArrayList<Campaign[]>();
         while (iteratorCampaignData.hasNext()) {
-            listData.add(iteratorCampaignData.next());
+            listData.add((Campaign[]) iteratorCampaignData.next());
         }
-        Campaign campaign = listData.get(0)[0];
-        return campaign;
-    }
-
-    public static void createCampaign(Campaign campaign) {
-        PartnerConnection connection = APIConnector.getInstance().getConnection();
-        //get parentCampaignId
-        ConnectorSalesForceDB query = new ConnectorSalesForceDB();
-        String parentId = null;
-        SObject[] records = query.executeQuery("SELECT id from Campaign where name='" + campaign.getParentCampaign() + "'");
-        if (records != null) {
-            parentId = records[0].getField("Id").toString();
-        }
-
-        SObject objectSales = new SObject();
-        objectSales.setType("Campaign");
-        objectSales.setField("Name", campaign.getCampaignName());
-        objectSales.setField("IsActive", true);
-        objectSales.setField("Type", campaign.getCampaignType());
-        objectSales.setField("Status", campaign.getCampaignStatus());
-        objectSales.setField("StartDate", campaign.getStartDate());
-        objectSales.setField("EndDate", campaign.getEndDate());
-        objectSales.setField("ExpectedRevenue", campaign.getExpectedRevenue());
-        objectSales.setField("BudgetedCost", campaign.getBudgetedCost());
-        objectSales.setField("ActualCost", campaign.getActualCost());
-        objectSales.setField("ExpectedResponse", campaign.getExpectedResponse());
-        objectSales.setField("NumberSent", campaign.getNumSent());
-        objectSales.setField("ParentId", parentId);
-        try {
-            connection.create(new SObject[]{objectSales});
-        } catch (ConnectionException e) {
-            LOGGER.error("Error on Create campaign by Api :", e);
-        }
+        return listData.get(0)[0];
     }
 
     public static void createParentCampaign(String nameCampaign) {

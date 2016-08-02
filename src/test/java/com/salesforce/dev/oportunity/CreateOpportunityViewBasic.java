@@ -28,9 +28,8 @@ public class CreateOpportunityViewBasic {
     private OpportunityViewDetail opportunityViewDetail;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<ViewSalesForce[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("CreateOpportunityViewBasic.json", ViewSalesForce.class);
     }
 
     @BeforeMethod(groups = {"BVT"})

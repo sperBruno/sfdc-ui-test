@@ -16,15 +16,12 @@ import com.sforce.soap.partner.sobject.SObject;
 public class LeadGenie {
     public static ViewSalesForce getLeadsView(String jsonFile) {
         PartnerConnection connection = APIConnector.getInstance().getConnection();
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<ViewSalesForce[]> iteratorViewData = dataDrivenManager.getDataView(jsonFile);
+        Iterator<Object[]> iteratorViewData = DataDrivenManager.getObjects(jsonFile, ViewSalesForce.class);
         List<ViewSalesForce[]> listData = new ArrayList<ViewSalesForce[]>();
         while (iteratorViewData.hasNext()) {
-            listData.add(iteratorViewData.next());
+            listData.add((ViewSalesForce[]) iteratorViewData.next());
         }
-        ViewSalesForce viewSalesForce = listData.get(0)[0];
-        SObject account = new SObject();
-        return viewSalesForce;
+        return listData.get(0)[0];
     }
 
 }

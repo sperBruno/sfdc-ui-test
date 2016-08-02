@@ -37,9 +37,8 @@ public class CreateCampaign {
     private SearchLookupBase searchLookup;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<Campaign[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getCampaign("CreateCampaign.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("CreateCampaign.json", Campaign.class);
     }
 
     @BeforeMethod(groups = {"Acceptance"})

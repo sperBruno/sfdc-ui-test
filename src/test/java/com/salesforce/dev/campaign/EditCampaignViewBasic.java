@@ -31,9 +31,8 @@ public class EditCampaignViewBasic {
     private CampaignViewDetail campaignViewDetail;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<ViewSalesForce[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("EditCampaignViewBasic.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("EditCampaignViewBasic.json", ViewSalesForce.class);
     }
 
     @BeforeMethod(groups = {"Acceptance"})
