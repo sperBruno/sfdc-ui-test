@@ -34,13 +34,13 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         return dataDrivenManager.getDataView("CreateOpportunityViewFiltersFieldAdded.json");
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Regression"}, dataProvider = "dataDriven")
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateOpportunityViewWithFilters(ViewSalesForce viewSalesForce) {
         OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
         OpportunityView opportunityView = opportunitiesHome.clickNewViewLnk()
@@ -65,7 +65,7 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         opportunityViewDetail.clickDeleteLnk();
     }

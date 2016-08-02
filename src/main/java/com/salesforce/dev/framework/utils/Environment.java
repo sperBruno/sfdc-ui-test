@@ -130,7 +130,11 @@ public class Environment {
         return getEnv(VERSION_REMOTE);
     }
 
-    public String getProxyHost(){return getEnv (PROXY_HOST);}
+    public String getProxyHost() {
+        return getEnv(PROXY_HOST);
+    }
 
-    public int getProxyPort(){return Integer.valueOf (getEnv (PROXY_PORT));}
+    public String getProxyPort() {
+        return getEnv(PROXY_PORT);
+    }
 }

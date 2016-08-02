@@ -41,13 +41,13 @@ public class CreateAccountDD {
         return dataDrivenManager.getAccountsDD("AccountsBaseDD.json");
     }
 
-    @BeforeMethod(groups = {"Regression"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Regression"}, dataProvider = "dataDriven")
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateAccount(Account account) {
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
         AccountForm accountForm = accountsHome.clickNewBtn()
@@ -61,7 +61,7 @@ public class CreateAccountDD {
         });
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         accountDetail.clickDeleteButton();
 

@@ -4,7 +4,10 @@ import java.util.Iterator;
 
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.utils.RandomGenerator;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountView;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
@@ -46,7 +49,6 @@ public class CreateAccountViewBasic {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
-
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
