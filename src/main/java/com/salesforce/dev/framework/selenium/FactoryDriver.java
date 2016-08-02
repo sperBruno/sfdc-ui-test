@@ -24,6 +24,8 @@ public final class FactoryDriver {
                 return new InternetExplorer();
             case SAUCELABS:
                 return new SauceLab();
+            case BROWSERSTACK:
+                return new BrowserStack();
             default:
                 throw new WebDriverException("Browser not found : " + browser);
         }
