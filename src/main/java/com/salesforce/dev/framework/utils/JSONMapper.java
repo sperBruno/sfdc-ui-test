@@ -14,6 +14,7 @@ import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JS
 
 /**
  * @author jimmy vargas on 6/22/2015.
+ * @author Mijhail Villarroel
  */
 public class JSONMapper<T> {
 
@@ -30,44 +31,13 @@ public class JSONMapper<T> {
         return instance;
     }
 
-//    public static Opportunity getOpportunity(String fileJson) {
-//        Opportunity opportunity = new Opportunity();
-//        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
-//        try {
-//            ObjectMapper mapper = new ObjectMapper();
-//            opportunity = mapper.readValue(new File(pathFileJson), Opportunity.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return opportunity;
-//    }
-
-//    public static Lead getLead(String fileJson) {
-//        Lead lead = new Lead();
-//        final String pathFileJson = SRC_TEST_RESOURCES_JSON + fileJson;
-//        try {
-//            ObjectMapper mapper = new ObjectMapper();
-//            lead = mapper.readValue(new File(pathFileJson), Lead.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return lead;
-//    }
-
-//    public static Account getAccountBase() {
-//        Account account = new Account();
-//        try {
-//            ObjectMapper mapper = new ObjectMapper();
-//            account = mapper.readValue(new File(SRC_TEST_RESOURCES_JSON + "CreateAccountBase.json"), Account.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return account;
-//    }
-
-
-
-
+    /**
+     * Return T generic any class
+     *
+     * @param elementClass
+     * @param nameJson Path of a json.
+     * @return
+     */
     public  T getGeneric(T elementClass, String nameJson) {
         final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson) ;
         try {
