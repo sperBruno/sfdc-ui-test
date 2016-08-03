@@ -50,6 +50,7 @@ dependencies {
             { exclude group: "org.testng", module: "testng" }
     compile 'com.google.inject:guice:3.0'
     compile 'log4j:log4j:1.2.17'
+    compile 'org.apache.maven.doxia:doxia-module-markdown:1.7'
 }
 
 task runTestNGTestCases(type: Test) {
