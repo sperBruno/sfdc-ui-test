@@ -1,5 +1,6 @@
 package com.salesforce.dev.lead;
 
+import org.testng.Assert;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;

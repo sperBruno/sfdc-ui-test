@@ -9,6 +9,7 @@ import com.salesforce.dev.framework.dto.ViewSalesForce;
 /**
  * @author Ariel Mattos
  * @since 07/09/2015.
+ * @author DanielGonzales
  */
 public class LeadGenie {
     public static ViewSalesForce getLeadsView(String jsonFile) {
