@@ -14,8 +14,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * @author Monica Pardo on 6/10/2015.
- * @author Bruno Barrios
+ * This class will be used  to test the edition of a product.
+ *
+ * @author Monica Pardo.
+ * @author Bruno Barrios.
+ * @since 6/10/2015.
  */
 
 

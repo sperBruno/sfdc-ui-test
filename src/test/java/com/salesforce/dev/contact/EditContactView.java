@@ -1,8 +1,7 @@
 package com.salesforce.dev.contact;
 
-import java.util.Iterator;
-
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.soap.CampaignGenie;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
@@ -10,16 +9,20 @@ import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.contacts.ContactView;
 import com.salesforce.dev.pages.contacts.ContactViewDetail;
 import com.salesforce.dev.pages.contacts.ContactsHome;
-import com.salesforce.dev.framework.soap.CampaignGenie;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
 import static org.testng.Assert.assertFalse;
 
 /**
- * Created by alex on 06/09/2015.
+ * This class will be used to test the view of the edition of a contact.
+ *
+ * @author alex
+ * @since 06/09/2015.
  */
 
 public class EditContactView {

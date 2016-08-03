@@ -1,7 +1,10 @@
 package com.salesforce.dev.framework.utils;
 
 /**
- * Created by brunobarrios on 7/26/2016.
+ * This class will be used to access and use to common constants.
+ *
+ * @author brunobarrios
+ * @since 7/26/2016.
  */
 public class Constants {
 

@@ -1,7 +1,10 @@
 package com.salesforce.dev.pages.product;
 
 /**
- * Created by Monica on 6/11/2015.
+ * This class will be used to build a Product.
+ *
+ * @author Monica
+ * @since 6/11/2015.
  */
 public class ProductBuilder {
 

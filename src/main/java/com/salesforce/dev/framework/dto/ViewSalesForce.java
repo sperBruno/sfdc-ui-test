@@ -3,7 +3,8 @@ package com.salesforce.dev.framework.dto;
 import java.util.List;
 
 /**
- * Created by veronicaon 8/21/2015.
+ * @author veronica
+ * @since 8/21/2015.
  */
 public class ViewSalesForce {
     private String viewName;

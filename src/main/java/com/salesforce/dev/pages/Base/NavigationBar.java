@@ -21,6 +21,8 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
 import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
+ * This class represents the navigation tab of Salesforce.
+ *
  * @author Monica Pardo on 6/5/2015.
  * @author Jimmy Vargas
  * @author Bruno Barrios
@@ -145,6 +147,10 @@ public class NavigationBar extends AbstractBasePage {
         return new DashboardsHome();
     }
 
+    /**
+     * This method verifies if the tab is visible then clicks on the tab once it is visible.
+     * @param webElement
+     */
     private void clickElementOfHomeTab(WebElement webElement) {
         if ((!isElementPresent(webElement)) && (isElementPresent(moreTabsComboBox))) {
             clickWebElement(moreTabsComboBox);

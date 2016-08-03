@@ -8,9 +8,13 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
 import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
 
 /**
- * Created by brunobarrios on 7/29/2016.
+ * This class will be used to represent edit post.
+ *
+ * @author brunobarrios
+ * @since 7/29/2016.
  */
 public class EditPost extends AbstractBasePage {
+
     @FindBy(css = ".cke_wysiwyg_frame.cke_reset")
     private WebElement text;
 

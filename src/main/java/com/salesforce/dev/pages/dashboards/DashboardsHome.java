@@ -8,14 +8,19 @@ import org.openqa.selenium.support.FindBy;
 import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 /**
- * Created by Monica Pardo on 6/24/2015.
+ * This class will be used to represent Dashboard web page and its options.
+ *
+ * @author Monica Pardo
+ * @since 6/24/2015.
  */
 public class DashboardsHome extends AbstractBasePage{
 
     @FindBy(id = "ext-gen3")
-    WebElement dashboardSection;
+    private WebElement dashboardSection;
 
-
+    /**
+     * {@inheritDoc CommonOperation.isWebElementVisible}
+     */
     public boolean IsUserInDashboardsTab(){
        return isWebElementVisible(dashboardSection);
     }

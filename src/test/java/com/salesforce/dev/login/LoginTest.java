@@ -1,16 +1,20 @@
 package com.salesforce.dev.login;
 
+import org.testng.annotations.Test;
+
+import com.salesforce.dev.framework.soap.UserInformation;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
-import com.salesforce.dev.framework.soap.UserInformation;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author monica on 6/22/2015.
- * @author Bruno Barrios
+ * This class will be used to test the login into SalesForce web application.
+ *
+ * @author Monica.
+ * @author Bruno Barrios.
+ * @since 6/22/2015
  */
 public class LoginTest {
 
@@ -22,6 +26,4 @@ public class LoginTest {
         String actualUser = topHeader.getUserName();
         assertEquals(expectedUser, actualUser, actualUser + "is logged");
     }
-
-
 }
