@@ -1,8 +1,5 @@
 package com.salesforce.dev.framework.selenium;
 
-
-import java.util.concurrent.TimeUnit;
-
 import com.salesforce.dev.framework.utils.Environment;
 
 import org.apache.log4j.Logger;
@@ -11,32 +8,38 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.salesforce.dev.framework.utils.Constants.SALESFORCE_URL;
 
 /**
  * @author Jimmy Vargas
  * @author Henrry Salinas
- * @since 8/1/2016
  */
 public class DriverManager {
 
+    public static final int TIMEOUT_NORMAL = 30;
+
     private static final Logger LOGGER = Logger.getLogger(DriverManager.class.getSimpleName());
 
-    private static final String SRC_MAIN_RESOURCES_LOG4J_PROPERTIES = "src/main/resources/log4j.properties";
+    private static final String LOG4J_PROPERTIES_FILE = "src/main/resources/log4j.properties";
+
+    private static DriverManager instance;
 
     private WebDriver driver;
 
     private WebDriverWait wait;
 
-    private static DriverManager instance;
-
-    private static final int TIMEOUT_NORMAL = 30;
-
-    private int timeoutNormal = TIMEOUT_NORMAL;
-
     private DriverManager() {
-        PropertyConfigurator.configure(SRC_MAIN_RESOURCES_LOG4J_PROPERTIES);
+        PropertyConfigurator.configure(LOG4J_PROPERTIES_FILE);
         this.initializer();
+    }
+
+    public static DriverManager getInstance() {
+        if (instance == null) {
+            instance = new DriverManager();
+        }
+        return instance;
     }
 
     private void initializer() {
@@ -47,19 +50,8 @@ public class DriverManager {
         wait = new WebDriverWait(driver, TIMEOUT_NORMAL);
     }
 
-    public static DriverManager getInstance() {
-        if (instance == null) {
-            instance = new DriverManager();
-        }
-        return instance;
-    }
-
     public WebDriverWait getWait() {
         return this.wait;
-    }
-
-    public int getTimeoutNormal() {
-        return timeoutNormal;
     }
 
     public WebDriver getDriver() {

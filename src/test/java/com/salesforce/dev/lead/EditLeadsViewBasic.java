@@ -10,7 +10,7 @@ import com.salesforce.dev.pages.leads.LeadView;
 import com.salesforce.dev.pages.leads.LeadViewDetail;
 import com.salesforce.dev.pages.leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.objects.LeadGenie;
+import com.salesforce.dev.framework.utils.LeadGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

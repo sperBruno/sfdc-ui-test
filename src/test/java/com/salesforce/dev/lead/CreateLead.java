@@ -14,7 +14,7 @@ import com.salesforce.dev.pages.leads.LeadBuilder;
 import com.salesforce.dev.pages.leads.LeadDetail;
 import com.salesforce.dev.pages.leads.LeadForm;
 import com.salesforce.dev.pages.leads.LeadsHome;
-import com.salesforce.dev.pages.objects.CampaignGenie;
+import com.salesforce.dev.framework.soap.CampaignGenie;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;

@@ -23,25 +23,26 @@ public class Environment {
 
     private static final String MODE = "mode";
 
-    private static final String USER_NAME = "userName";
+    private static final String USER_NAME = "remoteUserName";
 
-    private static final String KEY = "key";
+    private static final String KEY = "remoteKey";
 
     private static final String PRIMARY_USE_PASSWORD_TOKEN = "primaryUsePasswordToken";
 
     private static final String URL_API = "urlApi";
 
-    private static final String BROWSER_REMOTE = "browserRemote";
+    private static final String BROWSER_REMOTE = "remoteBrowser";
 
-    private static final String PLATFORM_REMOTE = "platformRemote";
+    private static final String PLATFORM_REMOTE = "remotePlatform";
 
-    private static final String VERSION_REMOTE = "versionRemote";
+    private static final String VERSION_REMOTE = "remoteBrowserVersion";
 
     private static final String PROXY_HOST = "proxyHost";
 
     private static final String PROXY_PORT = "proxyPort";
 
     private static Environment environment;
+
     private Properties properties;
 
     private Environment() {
@@ -102,14 +103,6 @@ public class Environment {
         return getEnv(MODE);
     }
 
-    public String getUserName() {
-        return getEnv(USER_NAME);
-    }
-
-    public String getKey() {
-        return getEnv(KEY);
-    }
-
     public String getPrimaryUserPasswordToken() {
         return getEnv(PRIMARY_USE_PASSWORD_TOKEN);
     }
@@ -118,19 +111,32 @@ public class Environment {
         return getEnv(URL_API);
     }
 
-    public String getBrowserRemote() {
-        return getEnv(BROWSER_REMOTE);
+    public String getRemoteUserName() {
+        return getEnv(USER_NAME);
     }
 
-    public String getPlatformRemote() {
+    public String getRemotePlatform() {
         return getEnv(PLATFORM_REMOTE);
     }
 
-    public String getVersionRemote() {
+    public String getRemoteBrowser() {
+        return getEnv(BROWSER_REMOTE);
+    }
+
+    public String getRemoteKey() {
+        return getEnv(KEY);
+    }
+
+    public String getRemoteBrowserVersion() {
         return getEnv(VERSION_REMOTE);
     }
 
-    public String getProxyHost(){return getEnv (PROXY_HOST);}
+    public String getProxyHost() {
+        return getEnv(PROXY_HOST);
+    }
 
-    public int getProxyPort(){return Integer.valueOf (getEnv (PROXY_PORT));}
+    public String getProxyPort() {
+        return getEnv(PROXY_PORT);
+    }
+
 }

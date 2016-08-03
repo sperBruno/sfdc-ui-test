@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
-import com.salesforce.dev.pages.objects.UserInformation;
+import com.salesforce.dev.framework.soap.UserInformation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

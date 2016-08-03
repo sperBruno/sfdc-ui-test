@@ -46,7 +46,7 @@ public class CreateAccountViewFiltersFieldsAdded {
         return dataDrivenManager.getDataView("CreateAccountsViewFiltersFieldAdded.json");
     }
 
-    @Test(groups = {"Regression"}, dataProvider = "dataDriven")
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
@@ -66,7 +66,7 @@ public class CreateAccountViewFiltersFieldsAdded {
         }
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         accountViewDetail.clickDeleteLnk();
     }
