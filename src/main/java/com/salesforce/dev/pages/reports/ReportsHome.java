@@ -7,12 +7,15 @@ import org.openqa.selenium.support.FindBy;
 import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 /**
- * Created by Monica Pardo on 6/24/2015.
+ * This class will be used to represent Reports page and its options.
+ *
+ * @author Monica Pardo
+ * @since 6/24/2015.
  */
 public class ReportsHome extends AbstractBasePage {
 
     @FindBy(id = "ext-gen3")
-    WebElement reportSection;
+    private WebElement reportSection;
 
     public boolean IsUserInReportsTab() {
         return isWebElementVisible(reportSection);

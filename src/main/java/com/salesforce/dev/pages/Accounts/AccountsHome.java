@@ -8,7 +8,10 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElement
 
 
 /**
- * @author Walter on 10/06/2015.
+ * This class will be used to represent Account home page and its options.
+ *
+ * @author Walter.
+ * @since 10/06/2015.
  */
 public class AccountsHome extends HomeBase {
 
@@ -24,13 +27,13 @@ public class AccountsHome extends HomeBase {
     @Override
     public AccountView clickNewViewLnk() {
         clickNewViewLink();
-        return new AccountView(this.driver);
+        return new AccountView();
     }
 
     @Override
     public AccountView clickEditViewLnk(String value) {
         editViewLnk(value);
-        return new AccountView(this.driver);
+        return new AccountView();
     }
 
     @Override

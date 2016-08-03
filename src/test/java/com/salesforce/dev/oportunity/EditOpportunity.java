@@ -15,7 +15,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * @author Jimmy Vargas on 6/20/2015.
+ * This class is used to test the edition of an Opportunity.
+ *
+ * @author Jimmy Vargas
+ * @since 6/20/2015.
  */
 public class EditOpportunity {
 
@@ -32,36 +35,36 @@ public class EditOpportunity {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"CreateOpportunityBase.json");
-        oppEditEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"EditOpportunity.json");
+        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(), "CreateOpportunityBase.json");
+        oppEditEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(), "EditOpportunity.json");
 
-        // creating the opportunity base
         ObjectGenie.createOpportunity(oppEnum);
     }
 
     @Test(groups = {"Acceptance"})
     public void testEditOpportunity() {
-        OpportunitiesHome opTab = navBar.goToOpportunitiesHome ();
-        OpportunityDetail opDetail = opTab.openOpportunity (oppEnum.opportunityName);
-        OpportunityForm opForm = opDetail.clickEditBtn ();
-        opForm.setOpportunityName (oppEditEnum.opportunityName);
-        opForm.setCloseDate (oppEditEnum.closeDate);
-        opForm.selectStageByVisibleText (oppEditEnum.stage);
-        opForm.setPrivateCheckBox (oppEditEnum.privateChk);
-        opForm.selectTypeByVisibleText (oppEditEnum.type);
-        opForm.selectLeadSourceByVisibleText (oppEditEnum.leadSource);
-        opForm.setNextStep (oppEditEnum.nextStep);
-        opForm.setAmount (oppEditEnum.amount);
-        opForm.setProbability (oppEditEnum.probability);
-        opForm.setOrderNumber (oppEditEnum.orderNumber);
-        opForm.setTrackingNumber (oppEditEnum.trackingNumber);
-        opForm.setMainCompetitors (oppEditEnum.mainCompetitors);
-        opForm.selectDeliveryStatusByVisibleText (oppEditEnum.deliveryStatus);
-        opForm.setDescription (oppEditEnum.description);
-        OpportunityDetail oppDetail = opForm.clickSaveBtn ();
+        OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
+        OpportunityDetail opDetail = opTab.openOpportunity(oppEnum.opportunityName);
+        OpportunityForm opForm = opDetail.clickEditBtn();
+        opForm.setOpportunityName(oppEditEnum.opportunityName);
+        opForm.setCloseDate(oppEditEnum.closeDate);
+        opForm.selectStageByVisibleText(oppEditEnum.stage);
+        opForm.setPrivateCheckBox(oppEditEnum.privateChk);
+        opForm.selectTypeByVisibleText(oppEditEnum.type);
+        opForm.selectLeadSourceByVisibleText(oppEditEnum.leadSource);
+        opForm.setNextStep(oppEditEnum.nextStep);
+        opForm.setAmount(oppEditEnum.amount);
+        opForm.setProbability(oppEditEnum.probability);
+        opForm.setOrderNumber(oppEditEnum.orderNumber);
+        opForm.setTrackingNumber(oppEditEnum.trackingNumber);
+        opForm.setMainCompetitors(oppEditEnum.mainCompetitors);
+        opForm.selectDeliveryStatusByVisibleText(oppEditEnum.deliveryStatus);
+        opForm.setDescription(oppEditEnum.description);
+        OpportunityDetail oppDetail = opForm.clickSaveBtn();
 
-        oppDetail.validateFields (oppEditEnum);
+        oppDetail.validateFields(oppEditEnum);
     }
+
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();

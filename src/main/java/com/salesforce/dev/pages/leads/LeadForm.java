@@ -9,7 +9,10 @@ import org.openqa.selenium.support.FindBy;
 
 
 /**
- * Created by Jimmy Vargas on 6/15/2015.
+ * This class will be used to represent Lead form.
+ *
+ * @author Jimmy Vargas
+ * @since 6/15/2015.
  */
 public class LeadForm extends FormBase {
 

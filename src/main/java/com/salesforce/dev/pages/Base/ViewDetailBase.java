@@ -15,7 +15,10 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.getFirstSele
 import static com.salesforce.dev.framework.selenium.CommonOperation.moveHorizontalWebElementScroll;
 
 /**
- * Created by Administrator on 8/20/2015.
+ * This class will be used to represent the BaseView of all detail views
+ *
+ * @author Administrator
+ * @since 8/20/2015.
  */
 
 public abstract class ViewDetailBase extends AbstractBasePage {
@@ -44,6 +47,9 @@ public abstract class ViewDetailBase extends AbstractBasePage {
         }
     }
 
+    /**
+     * {@inheritDoc CommonOperation.clickWebElement,CommonOperation.clickConfirmAlert}
+     */
     protected void clickDeleteLink() {
         clickWebElement(deleteLnk);
         clickConfirmAlert();
@@ -56,11 +62,17 @@ public abstract class ViewDetailBase extends AbstractBasePage {
      */
     public abstract ViewDetailBase clickDeleteLnk();
 
+    /**
+     * {@inheritDoc CommonOperation.getFirstSelectOption}
+     */
     public String getViewSelected() {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
         return getFirstSelectOption(viewSelected);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getFirstSelectOption}
+     */
     public boolean validateNameView(String nameView) {
         return getFirstSelectOption(viewSelected).equals(nameView);
     }

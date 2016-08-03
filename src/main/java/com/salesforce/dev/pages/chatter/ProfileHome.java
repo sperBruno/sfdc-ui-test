@@ -7,19 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by marcelo on 6/22/2015.
+ * This class will be used to
+ *
+ * @author marcelo
+ * @since 6/22/2015.
  */
 public class ProfileHome {
+
     private WebDriver driver;
-    private WebDriverWait wait;
-
-
-
-    public ProfileHome(WebDriver driver) {
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-    }
 
     public void VerifyUserEmail(String email){
         driver.findElement(By.xpath("//a[contains(.,'" + email + "')]")).click();

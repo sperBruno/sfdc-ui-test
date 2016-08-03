@@ -13,43 +13,46 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
 import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
 
 /**
- * Created by Monica Pardo on 6/13/2015.
- * *
+ * This class will be used to represent Chatter home page and its options.
+ *
+ * @author Monica Pardo
+ * @since 6/13/2015.
  */
 public class ChatterHome extends AbstractBasePage {
 
     @FindBy(id = "publisherAttachTextPost")
-    WebElement postLink;
+    private WebElement postLink;
 
     @FindBy(css = ".chatterPublisherRTE.cke_editable.cke_editable_themed.cke_contents_ltr.cke_show_borders.placeholder")
-    WebElement postDescField;
+    private WebElement postDescField;
 
     @FindBy(id = "publishersharebutton")
-    WebElement shareBtn;
+    private WebElement shareBtn;
 
     @FindBy(xpath = "//textarea[@title='Write a comment...']")
-    WebElement commentField;
+    private WebElement commentField;
 
     @FindBy(xpath = "//input[@title='Comment']")
-    WebElement commentBtn;
+    private WebElement commentBtn;
 
     @FindBy(xpath = "//a[@title='More Actions']")
-    WebElement postMenu;
+    private WebElement postMenu;
 
     @FindBy(xpath = "//a[@title='Delete this post']")
-    WebElement deletePostOption;
+    private WebElement deletePostOption;
 
     @FindBy(xpath = "//a[@title='Edit this post']")
-    WebElement editPostOption;
+    private WebElement editPostOption;
 
     @FindBy(className = "publisherattachtext ")
-    WebElement postSection;
+    private WebElement postSection;
 
     @FindBy(id = "quickActionFeedBodyInput")
-    WebElement editPostTextArea;
+    private WebElement editPostTextArea;
 
     @FindBy(name = "quickActionSubmitButton")
-    WebElement saveEditBtn;
+    private WebElement saveEditBtn;
+
     @FindBy(id = "quickActionContainer")
     private WebElement editContainer;
     @FindBy(className = "cke_wysiwyg_frame cke_reset")

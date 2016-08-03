@@ -1,7 +1,5 @@
 package com.salesforce.dev.accounts;
 
-import java.util.Map;
-
 import com.salesforce.dev.framework.dto.Account;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -15,14 +13,19 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Map;
+
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Walter on 13/06/2015.
+ * This class will be used to test the edition of an account.
+ *
+ * @author Walter.
+ * @since 13/06/2015.
  */
 public class EditAccount {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+    private static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
 
     private AccountDetail accountDetail;
 
@@ -40,7 +43,7 @@ public class EditAccount {
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         account = (Account) JSON_MAPPER_INSTANCE.getGeneric(new Account(), "CreateAccountBase.json");
-        
+
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();

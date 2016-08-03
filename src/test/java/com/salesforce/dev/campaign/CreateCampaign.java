@@ -6,7 +6,6 @@ import java.util.Map;
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.SearchLookupBase;
-import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignSteps;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
@@ -14,7 +13,7 @@ import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.objects.CampaignGenie;
+import com.salesforce.dev.framework.soap.CampaignGenie;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -23,27 +22,19 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Create a new campaign
+ * This class will be used to test the creation of a new Campaign.
  *
- * @author  Marcelo.Vargas on 6/15/2015.
- * @author  Mijhail Villarroel
+ * @author  Marcelo.Vargas.
+ * @author  Mijhail Villarroel.
+ * @since 6/15/2015.
  */
 public class CreateCampaign {
 
     private String parentCampaign;
 
-    private CampaignsHome campaignsHome;
-
     private DetailsBase campaignDetail;
 
-    private CampaignForm campaignForm;
-
-    private MainPage mainPage;
-
     private NavigationBar navigationBar;
-
-
-    private SearchLookupBase searchLookup;
 
     @DataProvider(name = "dataDriven")
     public Iterator<Campaign[]> getValues() {
@@ -55,14 +46,14 @@ public class CreateCampaign {
     public void setUp() {
         parentCampaign = CampaignGenie.getCampaign().getParentCampaign();
         CampaignGenie.createParentCampaign(parentCampaign);
-        mainPage = LoginPage.loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaign(Campaign campaign) {
-        campaignsHome = navigationBar.goToCampaignsHome();
-        campaignForm = campaignsHome.clickNewBtn()
+        CampaignsHome campaignsHome = navigationBar.goToCampaignsHome();
+        CampaignForm campaignForm = campaignsHome.clickNewBtn()
                 .setEndDate(campaign.getEndDate())
                 .setStartDate(campaign.getStartDate())
                 .setCampaignName(campaign.getCampaignName())
@@ -74,7 +65,7 @@ public class CreateCampaign {
                 .setActualCost(campaign.getActualCost())
                 .setExpectedResponse(campaign.getExpectedResponse())
                 .setNumSent(campaign.getNumSent());
-        searchLookup = campaignForm.clickLookupParentCampaign();
+        SearchLookupBase searchLookup = campaignForm.clickLookupParentCampaign();
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
         campaignDetail = campaignForm.clickSaveBtn();

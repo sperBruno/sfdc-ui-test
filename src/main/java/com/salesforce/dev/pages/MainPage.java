@@ -4,7 +4,10 @@ import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.NavigationBar;
 
 /**
- * @author Jimmy Vargas on 6/4/2015.
+ * This class represents the main page of Salesforce.
+ *
+ * @author Jimmy Vargas.
+ * @since 6/4/2015.
  */
 public class MainPage extends AbstractBasePage {
 
@@ -17,6 +20,11 @@ public class MainPage extends AbstractBasePage {
         navBar = new NavigationBar();
     }
 
+    /**
+     * This method sends to the top header.
+     *
+     * @return TopHeader.
+     */
     public TopHeader gotoTopHeader() {
         return this.topHeader;
     }

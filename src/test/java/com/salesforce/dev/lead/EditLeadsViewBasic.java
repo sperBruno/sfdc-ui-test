@@ -10,7 +10,7 @@ import com.salesforce.dev.pages.leads.LeadView;
 import com.salesforce.dev.pages.leads.LeadViewDetail;
 import com.salesforce.dev.pages.leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.objects.LeadGenie;
+import com.salesforce.dev.framework.utils.LeadGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -19,10 +19,12 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Created by Ariel Mattos on 07/09/2015.
+ * This class will be used to test the basic view of the edition of a lead.
+ *
+ * @author Ariel Mattos.
+ * @since 07/09/2015.
  */
 public class EditLeadsViewBasic {
-    private static final Logger LOGGER = Logger.getLogger(EditLeadsViewBasic.class.getName());
     private LeadsHome leadsHome;
     private MainPage mainPage;
     private NavigationBar navigationBar;
@@ -65,6 +67,5 @@ public class EditLeadsViewBasic {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         leadViewDetail.clickDeleteLnk();
-        LOGGER.info("leads View was deleted");
     }
 }

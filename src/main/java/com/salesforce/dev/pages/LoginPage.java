@@ -1,19 +1,21 @@
 package com.salesforce.dev.pages;
 
+import com.salesforce.dev.framework.soap.UserInformation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
-import com.salesforce.dev.pages.objects.UserInformation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-;
-import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
-import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
-import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.*;
 import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
 
+;
+
 /**
- * @author Monica Pardo on 6/4/2015.
- * @author Bruno Barrios
+ * This class represents the login page of salesforce.
+ *
+ * @author Monica Pardo.
+ * @author Bruno Barrios.
+ * @since 6/4/2015.
  */
 public class LoginPage extends AbstractBasePage {
 
@@ -43,13 +45,18 @@ public class LoginPage extends AbstractBasePage {
     }
 
     /**
-     * This class is used to login into Salesforce.
+     * This method is used to login into Salesforce.
+     *
      * @return the username that is already logged in.
      */
     public static MainPage loginAsPrimaryUser() {
         return loginAs(ENVIRONMENT.getPrimaryUser(), ENVIRONMENT.getPrimaryPassword());
     }
 
+    /**
+     * This method click the login btn.
+     * @return MainPage
+     */
     public MainPage clickLoginBtn() {
         clickWebElement(loginBtn);
         return new MainPage();

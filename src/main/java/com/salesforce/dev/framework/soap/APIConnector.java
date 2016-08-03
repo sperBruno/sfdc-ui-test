@@ -7,8 +7,9 @@ import com.sforce.ws.ConnectorConfig;
 import org.apache.log4j.Logger;
 
 /**
- * class to connect by API to sales force
- * @author Veronica Prado on 8/25/2015.
+ * class to connect by API to sales force.
+ *
+ * @author Veronica Prado
  */
 public class APIConnector {
 
@@ -50,9 +51,7 @@ public class APIConnector {
         try {
             connection = com.sforce.soap.partner.Connector.newConnection(config);
         } catch (ConnectionException e) {
-
             LOGGER.error("Error on Connect to Api :", e);
-
         }
     }
 

@@ -1,7 +1,8 @@
 package com.salesforce.dev.framework.dto;
 
 /**
- * Created by Veronica Prado on 8/22/2015.
+ * @author Veronica Prado
+ * @since 8/22/2015.
  */
 public class FieldToDisplayView {
     private String fieldToDisplay;

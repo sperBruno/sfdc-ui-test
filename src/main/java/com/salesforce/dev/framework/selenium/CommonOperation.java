@@ -1,6 +1,7 @@
 package com.salesforce.dev.framework.selenium;
 
 import com.salesforce.dev.pages.base.DetailsBase;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
@@ -11,14 +12,21 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
+import static com.salesforce.dev.framework.selenium.DriverManager.TIMEOUT_NORMAL;
+
 /**
- * Created by dante on 6/14/2016.
+ *This class will be used to perform some common operation through pages.
+ *
+ * @author dante
+ * @since 6/14/2016.
  */
 public class CommonOperation {
     
     private static final WebDriverWait WAIT = DriverManager.getInstance().getWait();
 
-    private static final WebDriver DRIVER =DriverManager.getInstance().getDriver();
+    private static final WebDriver DRIVER = DriverManager.getInstance().getDriver();
 
     private static final Logger LOGGER = Logger.getLogger(DetailsBase.class.getName());
 
@@ -34,11 +42,20 @@ public class CommonOperation {
         }
     }
 
+    /**
+     * this method sets a webelement textbox.
+     * @param webElement
+     * @param text
+     */
     public static void setWebElement(WebElement webElement, String text) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(text);
     }
 
+    /**
+     * This method click on a web element.
+     * @param webElement
+     */
     public static void clickWebElement(WebElement webElement) {
         WAIT.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
@@ -62,7 +79,11 @@ public class CommonOperation {
         comboBox.selectByVisibleText(value);
     }
 
-
+    /**
+     * this method verifies whether a webelement is visible.
+     * @param webElement
+     * @return true if so and false if not
+     */
     public static boolean isWebElementVisible(WebElement webElement) {
         try {
 
@@ -73,33 +94,64 @@ public class CommonOperation {
         }
     }
 
+    /**
+     * This mehod wait for a web element
+     * @param webElement
+     */
+    public static void waitForWebElement(WebElement webElement) {
+        try {
+            WAIT.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS)
+                    .until(ExpectedConditions.visibilityOf(webElement));
+        } catch (WebDriverException e) {
+            throw new WebDriverException(e);
+        } finally {
+            WAIT.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
+        }
+    }
+    /**
+     * This method gets the text of a web element.
+     * @param webElement
+     * @return the text of a web element.
+     */
     public static String getTextWebElement(WebElement webElement) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
-
     }
 
+    /**
+     * This method moves the scroll of the web browser.
+     * @param driver
+     * @param webElement
+     * @param horizontal
+     */
     public static void moveHorizontalWebElementScroll(WebDriver driver, WebElement webElement, int horizontal) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollLeft+=arguments[1];", webElement, horizontal);
     }
 
+    /**
+     * this method get the first option of a combo box
+     * @param webElement
+     * @return
+     */
     public static String getFirstSelectOption(WebElement webElement) {
         WAIT.until(ExpectedConditions.visibilityOf(webElement));
         Select select = new Select(webElement);
-        return  select.getFirstSelectedOption().getText();
+        return select.getFirstSelectedOption().getText();
     }
 
+    /**
+     * This method confirms an alert option.
+     */
     public static void clickConfirmAlert() {
         Alert alert;
         try {
             alert = DRIVER.switchTo().alert();
-                            alert.accept();
+            alert.accept();
             LOGGER.info("Delete Button was clicked");
         } catch (WebDriverException e) {
             LOGGER.fatal("The Delete button couldn't be found", e);
         }
     }
-
 }

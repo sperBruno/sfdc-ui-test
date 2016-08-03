@@ -11,7 +11,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 /**
- * Created by Jimmy Vargas on 6/5/2015.
+ * This class will be used to represent Lead home and its options.
+ *
+ * @author Jimmy Vargas
+ * @since 6/5/2015.
  */
 public class LeadsHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Leads:')]")

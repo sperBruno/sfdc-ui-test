@@ -1,6 +1,5 @@
-package com.salesforce.dev.pages.objects;
+package com.salesforce.dev.framework.soap;
 
-import com.salesforce.dev.framework.soap.APIConnector;
 import com.sforce.soap.partner.GetUserInfoResult;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.ws.ConnectionException;
@@ -15,7 +14,7 @@ public class UserInformation {
 
     private static final Logger LOGGER = Logger.getLogger(UserInformation.class.getName());
 
-    public static final String TOKEN_NOT_FOUND = "Token not found";
+    private static final String TOKEN_NOT_FOUND = "Token not found";
 
     private static final String CONNECTION_TO_API_FAILED = "Connection to api failed";
 

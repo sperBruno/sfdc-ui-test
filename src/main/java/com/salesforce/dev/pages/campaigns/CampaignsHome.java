@@ -7,7 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 /**
- * Created by Marcelo.Vargas on 13-06-15.
+ * This class will be used to represents Campaing Home page
+ *
+ * @author Marcelo.Vargas
+ * @since 13-06-15.
  */
 public class CampaignsHome extends HomeBase {
 
@@ -44,6 +47,9 @@ public class CampaignsHome extends HomeBase {
         return this;
     }
 
+    /**
+     * {@inheritDoc CommonOperation.isWebElementVisible}
+     */
     public boolean IsUserInCampaignsTab(){
         return isWebElementVisible(campaignSection);
     }

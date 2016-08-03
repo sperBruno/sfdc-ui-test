@@ -37,11 +37,10 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 /**
+ * This class will be used to represent Account details.
  * @author Walter
  */
 public class AccountDetail extends DetailsBase {
-
-    private static final Logger LOGGER = Logger.getLogger(AccountDetail.class.getName());
 
     @FindBy(id = "acc2_ilecell")
     private WebElement accountNameFld;

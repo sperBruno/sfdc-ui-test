@@ -11,7 +11,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * @author  Monica Pardo on 6/13/2015.
+ * This class wil be used to test the creation of a post.
+ *
+ * @author  Monica Pardo.
+ * @since 6/13/2015.
  */
 public class CreatePost {
 

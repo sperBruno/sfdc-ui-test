@@ -7,13 +7,19 @@ import org.openqa.selenium.support.FindBy;
 import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 /**
- * Created by marcelo on 6/22/2015.
+ * This class will be used to represent Forecast page and its options.
+ *
+ * @author Marcelo
+ * @since 6/22/2015.
  */
 public class ForecastsHome extends AbstractBasePage {
     @FindBy(xpath = "//h1[contains(.,'Introducing Forecasts')]")
-    WebElement forecastSection;
+    private WebElement forecastSection;
 
-
+    /**
+     * {@inheritDoc}
+     * @return
+     */
     public boolean IsUserInForecastsTab() {
         return isWebElementVisible(forecastSection);
     }

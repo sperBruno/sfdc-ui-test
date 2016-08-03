@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class Firefox implements IDriver {
 
     /**
-     *{@inheritDoc}
+     * {@inheritDoc}
      */
     @Override
     public WebDriver initDriver() {

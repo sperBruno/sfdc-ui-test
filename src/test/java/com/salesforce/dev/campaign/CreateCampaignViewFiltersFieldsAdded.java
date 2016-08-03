@@ -1,18 +1,15 @@
 package com.salesforce.dev.campaign;
 
-import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.FieldToDisplayView;
-import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
-import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.base.ViewDetailBase;
-import com.salesforce.dev.pages.campaigns.CampaignView;
-import com.salesforce.dev.pages.campaigns.CampaignViewDetail;
-import com.salesforce.dev.pages.campaigns.CampaignsHome;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-
+import com.salesforce.dev.pages.base.NavigationBar;
+import com.salesforce.dev.pages.base.ViewDetailBase;
+import com.salesforce.dev.pages.campaigns.CampaignView;
+import com.salesforce.dev.pages.campaigns.CampaignsHome;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -26,7 +23,10 @@ import java.util.List;
 import static org.testng.Assert.assertTrue;
 
 /**
- * @author veronica on 8/21/2015.
+ * This class will be used to test the creation of a Campaing with filters view.
+ *
+ * @author Veronica.
+ * @since 8/21/2015.
  */
 public class CreateCampaignViewFiltersFieldsAdded {
 
@@ -52,32 +52,21 @@ public class CreateCampaignViewFiltersFieldsAdded {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignViewWithFilters(ViewSalesForce viewSalesForce) {
-        mainPage = LoginPage.loginAsPrimaryUser();
-        navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignView = campaignsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
-        List<FilterView> additionalField = viewSalesForce.getAdditionalFields();
-        int count = 1;
-        for (FilterView addFilter : additionalField) {
-            campaignView = campaignView.addAdditionalFiltersByField(count, addFilter.getFieldFilter(),
-                    addFilter.getOperatorFilter(), addFilter.getValueFilter());
-            count++;
-        }
-        List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
-        for (FieldToDisplayView fields : fieldToDisplayViews) {
-            campaignView = campaignView.addNewFieldToDisplay(fields.getFieldToDisplay());
-        }
+        campaignView.addAdditionalFilters(viewSalesForce);
+        List<FieldToDisplayView> fieldToDisplayViews = campaignView.selectFieldsToDisplay(viewSalesForce);
+
         campaignViewDetail = campaignView.clickSaveBtn();
         assertTrue(campaignViewDetail.validateNameView(viewSalesForce.getViewName()));
         //validateFieldsAdded

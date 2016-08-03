@@ -1,9 +1,7 @@
 package com.salesforce.dev.campaign;
 
-import java.util.Iterator;
-import java.util.Map;
-
 import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.framework.soap.CampaignGenie;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
@@ -13,17 +11,22 @@ import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignSteps;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
-import com.salesforce.dev.pages.objects.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Marcelo Vargas on 6/21/2015.
+ * This class will be used to test the edition of a Campaing.
+ *
+ * @author Marcelo Vargas.
+ * @since 6/21/2015.
  */
 public class EditCampaign {
 
