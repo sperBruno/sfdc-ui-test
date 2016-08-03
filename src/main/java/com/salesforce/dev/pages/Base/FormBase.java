@@ -10,12 +10,15 @@ import org.openqa.selenium.support.ui.Select;
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 
 /**
- * Created by Walter on 13/06/2015.
+ * This class will be used to represent base form.
+ *
+ * @author Walter
+ * @since 13/06/2015.
  */
 public abstract class FormBase extends AbstractBasePage {
 
-
     public static final int TIME_SLEEP_MILLIS = 200;
+
     @FindBy(name = "save")
     protected WebElement saveBtn;
 
@@ -34,8 +37,6 @@ public abstract class FormBase extends AbstractBasePage {
 
     /**
      * Method clicks the New button in the home page for each different category
-     *
-     * @author: Walter
      */
     protected abstract DetailsBase clickSaveBtn();
 
@@ -44,8 +45,6 @@ public abstract class FormBase extends AbstractBasePage {
 
     /**
      * Methods that encapsulates the the operations waiting for the element and the action
-     *
-     * @author: Walter
      */
     protected void clickSaveButton() {
         clickWebElement(saveBtn);

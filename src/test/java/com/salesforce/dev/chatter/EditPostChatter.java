@@ -1,7 +1,5 @@
 package com.salesforce.dev.chatter;
 
-import java.util.Iterator;
-
 import com.salesforce.dev.framework.dto.Chatter;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.pages.LoginPage;
@@ -14,21 +12,24 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
 /**
- * @author Veronica Prado on 9/3/2015.
- * @author Bruno Barrios
+ * This class will be used to test the edition of a post chatter.
+ *
+ * @author Veronica Prado.
+ * @author Bruno Barrios.
+ * @since 9/3/2015
  */
 public class EditPostChatter {
-    private MainPage mainPage;
-    private NavigationBar navigationBar;
     private ChatterHome chatterHome;
     private Chatter createChatter;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         createChatter = getChatter("Chatter.json");
-        mainPage = LoginPage.loginAsPrimaryUser();
-        navigationBar = mainPage.gotoNavBar();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
+        NavigationBar navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();
         chatterHome.clickPost()
                 .setPost(createChatter.getPost())

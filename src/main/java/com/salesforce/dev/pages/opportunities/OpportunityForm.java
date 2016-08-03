@@ -8,15 +8,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Jimmy Vargas on 6/10/2015.
- * <p>
- * Todo: still need to complet the class with the remaining fields
+ * This class will be used to represent Opportunity form.
+ *
+ * @author Jimmy Vargas
+ * @since 6/10/2015.
  */
 public class OpportunityForm extends FormBase {
 
     @FindBy(id = "opp7")
     @CacheLookup
-    WebElement amountField;
+    private WebElement amountField;
     /*Opportunity Information*/
     @FindBy(id = "opp2")
     @CacheLookup
@@ -157,9 +158,6 @@ public class OpportunityForm extends FormBase {
 
     /**
      * Sets the stage for the opportunity
-     *
-     * @author: Jimmy Vargas
-     * @version: 1.0
      */
     public void selectStageByVisibleText(String stage) {
         if (stage != null) {

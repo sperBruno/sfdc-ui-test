@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.campaigns;
 
 import java.util.concurrent.TimeUnit;
 
+import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;
@@ -12,10 +13,14 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.salesforce.dev.framework.selenium.CommonOperation.*;
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 
 /**
- * Created by Marcelo.Vargas on 13-06-15.
+ * This class will be used to represent Campaing form.
+ *
+ * @author Marcelo.Vargas
+ * @since 13-06-15.
  */
 public class CampaignForm extends FormBase {
 
@@ -80,16 +85,11 @@ public class CampaignForm extends FormBase {
     @FindBy(className = "detailList")
     private WebElement panel;
 
+    /**
+     * {@inheritDoc CommonOperation.waitForWebElement}
+     */
     public CampaignForm() {
-
-        try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
-                    .until(ExpectedConditions.visibilityOf(saveBtn));
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
-        }
+        waitForWebElement(saveBtn);
     }
 
     @Override

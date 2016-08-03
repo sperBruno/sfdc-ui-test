@@ -9,7 +9,10 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 /**
- * Created by Marcelo.Vargas on 6/12/2015.
+ * This class will be used to represent Contact page and its options.
+ *
+ * @author Marcelo.Vargas
+ * @since 6/12/2015.
  */
 public class ContactDetail extends DetailsBase {
 
@@ -26,6 +29,7 @@ public class ContactDetail extends DetailsBase {
     @Override
     public HomeBase clickDeleteButton() {
         clickDeletedButton();
+        LOGGER.info("Contact was deleted");
         return new ContactsHome();
     }
 

@@ -22,7 +22,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * Create a account with view
+ * This class will be used to test the filters view of the creation of an account.
  *
  * @author Carlos Orellana
  * @author Mijhail Villarroel

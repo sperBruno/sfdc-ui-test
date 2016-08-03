@@ -1,28 +1,29 @@
 package com.salesforce.dev.pages.opportunities;
 
-import java.util.concurrent.TimeUnit;
-
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.base.ViewBase;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.salesforce.dev.pages.base.ViewBase;
+import java.util.concurrent.TimeUnit;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.waitForWebElement;
+import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
+import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
+
 /**
- * @author Carlos Orellana on 9/2/2015.
+ * This class represents opportunity view.
+ *
+ * @author Carlos Orellana.
+ * @since 9/2/2015.
  */
 public class OpportunityView extends ViewBase {
 
     private static final Logger LOGGER = Logger.getLogger(OpportunityView.class.getName());
 
     public OpportunityView() {
-        try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
-                    .until(ExpectedConditions.visibilityOf(saveBtn));
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
-        }
+        waitForWebElement(saveBtn);
     }
 
     @Override

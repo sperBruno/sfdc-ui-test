@@ -11,6 +11,7 @@ import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,14 +19,16 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Create a new account
+ * This class will be used to the creation of a new account
  *
  * @author Walter
  * @author Mijhail Villarroel
  */
 public class CreateAccount {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+    private static final Logger LOGGER = Logger.getLogger(CreateAccount.class.getName());
+
+    private static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
 
     private MainPage mainPage;
 
@@ -54,5 +57,6 @@ public class CreateAccount {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         accountDetail.clickDeleteButton();
+
     }
 }

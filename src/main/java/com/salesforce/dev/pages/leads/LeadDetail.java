@@ -15,7 +15,10 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 /**
- * @author Jimmy Vargas on 6/15/2015.
+ * This class will be used to represents Lead details page.
+ *
+ * @author Jimmy Vargas
+ * @since 6/15/2015.
  */
 public class LeadDetail extends DetailsBase {
 
@@ -238,6 +241,7 @@ public class LeadDetail extends DetailsBase {
     @Override
     public HomeBase clickDeleteButton() {
         clickDeletedButton();
+        LOGGER.info("Lead was deleted");
         return new LeadsHome();
     }
 

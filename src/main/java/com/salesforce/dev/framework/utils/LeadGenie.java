@@ -7,7 +7,8 @@ import java.util.List;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 
 /**
- * Created by Ariel Mattos on 07/09/2015.
+ * @author Ariel Mattos
+ * @since 07/09/2015.
  */
 public class LeadGenie {
     public static ViewSalesForce getLeadsView(String jsonFile) {

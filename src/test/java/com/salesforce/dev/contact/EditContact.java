@@ -22,8 +22,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertTrue;
+
 /**
- * @author Marcelo Vargas on 6/21/2015.
+ * This class will be used to test the edition of a contact.
+ *
+ * @author Marcelo Vargas.
+ * @since 6/21/2015.
  */
 
 public class EditContact {
@@ -120,18 +125,16 @@ public class EditContact {
         .setDescription(contact.getDescription());
         contactDetail = contactForm.clickSaveBtn();
 
-        Assert.assertTrue(contactDetail.validateContactName(String.format("%s %s %s", contact.getcontactRole(), contact.getFirstName(), contact.getLastNameastName())));
+        assertTrue(contactDetail.validateContactName(String.format("%s %s %s", contact.getcontactRole(), contact.getFirstName(), contact.getLastNameastName())));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactDetail.clickDeleteButton();
-        LOGGER.info("Contact was deleted");
         mainPage = accountDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(contact.getAccountName());
         accountDetail.clickDeleteButton();
-        LOGGER.info("Account was deleted");
     }
 }

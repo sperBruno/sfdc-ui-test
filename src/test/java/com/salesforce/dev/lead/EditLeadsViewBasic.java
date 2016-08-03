@@ -19,10 +19,12 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
- * @author Ariel Mattos on 07/09/2015.
+ * This class will be used to test the basic view of the edition of a lead.
+ *
+ * @author Ariel Mattos.
+ * @since 07/09/2015.
  */
 public class EditLeadsViewBasic {
-    private static final Logger LOGGER = Logger.getLogger(EditLeadsViewBasic.class.getName());
     private LeadsHome leadsHome;
     private MainPage mainPage;
     private NavigationBar navigationBar;
@@ -64,6 +66,5 @@ public class EditLeadsViewBasic {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         leadViewDetail.clickDeleteLnk();
-        LOGGER.info("leads View was deleted");
     }
 }

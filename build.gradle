@@ -1,4 +1,5 @@
 import de.undercouch.gradle.tasks.download.Download
+import groovy.transform.Field
 
 import static java.lang.System.setProperty
 
@@ -9,22 +10,30 @@ import static java.lang.System.setProperty
  * This generated file contains a sample Java project to get you started.
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at http://gradle.org/docs/2.4/userguide/tutorial_java_projects.html
+ *
+ * modified by 'Henrry Salinas' at 08/03/206
+ *
+ * Adding support for  allure test report for more details about how works take a look at GitHub Allure wiki
+ * available at https://github.com/allure-framework/allure-core/wiki/Upgrading-to-1.4
  */
 buildscript {
     repositories {
         jcenter()
         maven {
-            url "http://repo.bodar.com"
+            url 'http://repo.bodar.com'
         }
     }
     dependencies {
         classpath 'de.undercouch:gradle-download-task:1.2'
+        classpath 'ru.d10xa:gradle-allure-plugin:0.5.2'
     }
 }
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'idea'
+// Apply the java plugin to add support for Allure reports
+apply plugin: 'ru.d10xa.allure'
 
 //handling the download drivers
 apply plugin: 'de.undercouch.download'
@@ -36,56 +45,82 @@ repositories {
     jcenter()
 }
 
-// In this section you declare the dependencies for your production and test code
+configurations {
+    agent
+}
+
+/*
+* Allure Settings.
+* visit https://github.com/d10xa/gradle-allure-plugin for details.
+*/
+allure {
+    aspectjweaver = true
+    junit = false
+    testNG = true
+    spock = false
+    geb = false
+    clean = true
+    allureResultsDir = '$buildDir/allure-results'
+    allureReportDir = '$buildDir/allure-report'
+    aspectjVersion = '1.8.9'
+    allureVersion = '1.4.24.RC2'
+    allureSpockGebExtensionVersion = '0.2.1'
+    allureJunitAspectjAdaptorVersion = '0.1.0'
+}
+
 dependencies {
-    compile 'org.seleniumhq.selenium:selenium-java:2.46.0'
+    compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
     compile 'com.force.api:force-wsc:35.0.0'
     compile 'com.force.api:force-partner-api:35.0.0'
     compile 'org.testng:testng:6.9.12'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.4'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.4'
-    compile 'com.github.detro:phantomjsdriver:1.2.0'
-    compile("org.uncommons:reportng:1.1.4")
-            { exclude group: "org.testng", module: "testng" }
-    compile 'com.google.inject:guice:3.0'
     compile 'log4j:log4j:1.2.17'
+    agent 'org.aspectj:aspectjweaver:$aspectjVersion'
+    testCompile 'ru.yandex.qatools.allure:allure-testng-adaptor:$allureVersion'
 }
+
 
 task runTestNGTestCases(type: Test) {
     ignoreFailures = true
-    useTestNG() {
-        suites "src/test/resources/suites/TestNGSuite.xml"
-    }
+    useTestNG()
+
     testLogging {
-        events "started", "passed", "failed", "skipped"
+        events 'started', 'passed', 'failed', 'skipped'
+        showStandardStreams = true
     }
 
     options {
         suites(suites)
         includeGroups(groups)
         excludeGroups(excludeGroup)
-        listeners << 'org.uncommons.reportng.HTMLReporter'
-        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
         listeners << 'com.salesforce.dev.framework.testng.TestListener'
     }
 
     systemProperties.put('primaryUserName', primaryUserName)
     systemProperties.put('primaryUserPassword', primaryUserPassword)
-    systemProperties.put('browser', browser)
-    systemProperties.put('mode', mode)
-    systemProperties.put('groups', groups)
     systemProperties.put('primaryUsePasswordToken', primaryUsePasswordToken)
+    systemProperties.put('browser', browser)
+
+    systemProperties.put('groups', groups)
     systemProperties.put('excludeGroup', excludeGroup)
+
+    systemProperties.put('remoteUserName', remoteUserName)
+    systemProperties.put('remoteKey', remoteKey)
+    systemProperties.put('remoteBrowser', remoteBrowser)
+    systemProperties.put('remotePlatform', remoteBrowser)
+    systemProperties.put('remoteBrowserVersion', remoteBrowser)
+
 
     setProperty('http.proxyHost', proxyHost)
     setProperty('http.proxyPort', proxyPort)
-    
+
     File drivers = new File('./drivers')
     drivers.mkdirs()
 
     task downloadChromeDriver(type: Download) {
-        
+
         src(['http://chromedriver.storage.googleapis.com/2.15/chromedriver_win32.zip'])
         dest drivers
         overwrite true
@@ -100,9 +135,9 @@ task runTestNGTestCases(type: Test) {
     }
 
     task downloadDrivers(type: Copy) {
-        if (browser == "Chrome") {
+        if (browser == 'Chrome') {
             downloadChromeDriver.execute()
-        } else if (browser == "IE") {
+        } else if (browser == 'IE') {
             downloadIEDriver.execute()
         }
 
@@ -115,7 +150,20 @@ task runTestNGTestCases(type: Test) {
         }
     }
 
-    if (browser != "Firefox") {
+    if (browser != 'Firefox') {
         downloadDrivers.execute()
     }
 }
+
+task generateAllureReport(type: ru.d10xa.allure.AllureReportTask) {
+    dependsOn runTestNGTestCases
+    from '$buildDir/allure-results'
+    to '$buildDir/nice-report'
+}
+
+runTestNGTestCases.finalizedBy generateAllureReport
+
+@Field
+def aspectjVersion
+@Field
+def allureVersion

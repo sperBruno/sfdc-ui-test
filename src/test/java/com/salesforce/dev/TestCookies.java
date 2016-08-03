@@ -9,8 +9,11 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * @author Marcelo Vargas on 6/24/2015.
- * @author Bruno Barrios
+ * This class will be used to test cookies from Salesforce web application.
+ *
+ * @author Marcelo Vargas.
+ * @author Bruno Barrios.
+ * @since 6/24/2015.
  */
 public class TestCookies {
 

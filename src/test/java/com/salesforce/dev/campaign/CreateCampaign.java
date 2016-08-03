@@ -22,27 +22,19 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Create a new campaign
+ * This class will be used to test the creation of a new Campaign.
  *
- * @author  Marcelo.Vargas on 6/15/2015.
- * @author  Mijhail Villarroel
+ * @author  Marcelo.Vargas.
+ * @author  Mijhail Villarroel.
+ * @since 6/15/2015.
  */
 public class CreateCampaign {
 
     private String parentCampaign;
 
-    private CampaignsHome campaignsHome;
-
     private DetailsBase campaignDetail;
 
-    private CampaignForm campaignForm;
-
-    private MainPage mainPage;
-
     private NavigationBar navigationBar;
-
-
-    private SearchLookupBase searchLookup;
 
     @DataProvider(name = "dataDriven")
     public Iterator<Object[]> getValues() {
@@ -53,14 +45,14 @@ public class CreateCampaign {
     public void setUp() {
         parentCampaign = CampaignGenie.getCampaign().getParentCampaign();
         CampaignGenie.createParentCampaign(parentCampaign);
-        mainPage = LoginPage.loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaign(Campaign campaign) {
-        campaignsHome = navigationBar.goToCampaignsHome();
-        campaignForm = campaignsHome.clickNewBtn()
+        CampaignsHome campaignsHome = navigationBar.goToCampaignsHome();
+        CampaignForm campaignForm = campaignsHome.clickNewBtn()
                 .setEndDate(campaign.getEndDate())
                 .setStartDate(campaign.getStartDate())
                 .setCampaignName(campaign.getCampaignName())
@@ -72,7 +64,7 @@ public class CreateCampaign {
                 .setActualCost(campaign.getActualCost())
                 .setExpectedResponse(campaign.getExpectedResponse())
                 .setNumSent(campaign.getNumSent());
-        searchLookup = campaignForm.clickLookupParentCampaign();
+        SearchLookupBase searchLookup = campaignForm.clickLookupParentCampaign();
         searchLookup.searchText(parentCampaign);
         campaignForm = searchLookup.goToCampaignForm();
         campaignDetail = campaignForm.clickSaveBtn();

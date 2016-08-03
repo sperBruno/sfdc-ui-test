@@ -8,17 +8,20 @@ import com.salesforce.dev.pages.ObjectGenie;
 import com.salesforce.dev.pages.leads.LeadDetail;
 import com.salesforce.dev.pages.leads.LeadForm;
 import com.salesforce.dev.pages.leads.LeadsHome;
-import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 /**
- * @author Jimmy Vargas on 6/21/2015.
+ * This class will be used to test the edition of a lead.
+ *
+ * @author Jimmy Vargas.
+ * @since 6/21/2015.
  */
 public class EditLead {
-    private static final Logger LOGGER = Logger.getLogger(EditLead.class.getName());
 
     public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
 
@@ -63,6 +66,5 @@ public class EditLead {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
         LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.lastName);
         leadDetail.clickDeleteButton();
-        LOGGER.info("Lead was deleted");
     }
 }

@@ -3,7 +3,8 @@ package com.salesforce.dev.framework.dto;
 import com.salesforce.dev.framework.utils.JSONMapper;
 
 /**
- * Created by jimmy vargas on 6/22/2015.
+ * @author jimmy vargas
+ * @since 6/22/2015.
  */
 public class Opportunity {
     String file;

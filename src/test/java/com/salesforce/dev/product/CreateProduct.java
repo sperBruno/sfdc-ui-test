@@ -15,7 +15,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Monica Pardo on 6/13/2015.
+ * This class will be used to test the creation of a product and product's options.
+ *
+ * @author Monica Pardo.
+ * @since 6/13/2015
  */
 public class CreateProduct {
 

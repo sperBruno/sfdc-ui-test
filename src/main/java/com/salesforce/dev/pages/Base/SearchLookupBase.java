@@ -18,7 +18,10 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Created by Marcelo.Vargas on 17-06-15.
+ * This class will be used to represent searchlookup
+ *
+ * @author Marcelo.Vargas
+ * @since 17-06-15.
  */
 @SuppressWarnings("unchecked")
 public class SearchLookupBase extends AbstractBasePage{

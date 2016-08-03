@@ -1,16 +1,14 @@
 package com.salesforce.dev.campaign;
 
-import java.util.Iterator;
-
-import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.soap.CampaignGenie;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.campaigns.CampaignView;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
-import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.framework.soap.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -18,8 +16,15 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
+import static org.testng.Assert.assertTrue;
+
 /**
- * @author Veronica Prado on 8/22/2015.
+ * This class will be used to test the edition of a Campaing with a basic view
+ *
+ * @author Veronica Prado.
+ * @since 8/22/2015.
  */
 public class EditCampaignViewBasic {
     private static final Logger LOGGER = Logger.getLogger(EditCampaignViewBasic.class.getName());
@@ -58,13 +63,11 @@ public class EditCampaignViewBasic {
                 .checkFilterByOwner(viewSalesForceUpdate.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
         campaignViewDetail = campaignView.clickSaveBtn();
-        Assert.assertTrue(campaignViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
-        LOGGER.info("Campaign View has been updated");
+        assertTrue(campaignViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignViewDetail.clickDeleteLnk();
-        LOGGER.info("Campaign View was deleted");
     }
 }

@@ -10,7 +10,10 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
 import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
- * Created by Jimmy Vargas on 6/10/2015.
+ * This class will be used to represent Opportunities home page.
+ *
+ * @author Jimmy Vargas
+ * @since 6/10/2015.
  */
 public class OpportunitiesHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Opportunities:')]")
