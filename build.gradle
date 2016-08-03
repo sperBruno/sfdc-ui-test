@@ -13,7 +13,7 @@ import static java.lang.System.setProperty
  *
  * modified by 'Henrry Salinas' at 08/03/206
  *
- * Adding support for  allure test report for more details take a look at GitHub Allure wiki
+ * Adding support for  allure test report for more details about how works take a look at GitHub Allure wiki
  * available at https://github.com/allure-framework/allure-core/wiki/Upgrading-to-1.4
  */
 buildscript {
@@ -55,22 +55,17 @@ configurations {
 */
 allure {
     aspectjweaver = true
-
     junit = false
     testNG = true
     spock = false
-
     geb = false
-
+    clean = true
     allureResultsDir = "$buildDir/allure-results"
     allureReportDir = "$buildDir/allure-report"
-
     aspectjVersion = "1.8.9"
     allureVersion = "1.4.24.RC2"
     allureSpockGebExtensionVersion = "0.2.1"
     allureJunitAspectjAdaptorVersion = "0.1.0"
-
-    clean = true
 }
 
 dependencies {
