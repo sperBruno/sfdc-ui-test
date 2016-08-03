@@ -25,8 +25,6 @@ import static org.testng.Assert.assertEquals;
  */
 public class CreateAccount {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
-
     private MainPage mainPage;
 
     private DetailsBase accountDetail;
@@ -35,7 +33,7 @@ public class CreateAccount {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        Account account = (Account) JSON_MAPPER_INSTANCE.getGeneric(new Account(),"CreateAccountBase.json");
+        Account account = JSONMapper.getGeneric(Account.class,"CreateAccountBase.json");
         mapAccount =account.convertToMap();
         mainPage = LoginPage.loginAsPrimaryUser();
     }

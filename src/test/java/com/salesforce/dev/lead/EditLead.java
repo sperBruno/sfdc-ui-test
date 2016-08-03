@@ -20,7 +20,7 @@ import org.testng.annotations.Test;
 public class EditLead {
     private static final Logger LOGGER = Logger.getLogger(EditLead.class.getName());
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
 
     private MainPage mainPage;
 
@@ -28,8 +28,8 @@ public class EditLead {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup() {
-        lead = lead = (Lead) JSON_MAPPER_INSTANCE.getGeneric(new Lead(),"CreateLeadBase.json");
-        leadEditEnum = (Lead) JSON_MAPPER_INSTANCE.getGeneric(new Lead(),"EditLead.json");
+        lead = JSONMapper.getGeneric(Lead.class,"CreateLeadBase.json");
+        leadEditEnum = JSONMapper.getGeneric(Lead.class,"EditLead.json");
 
         //Creating a lead
         ObjectGenie.createLead(lead);

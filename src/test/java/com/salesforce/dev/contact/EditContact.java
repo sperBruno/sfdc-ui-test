@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
 public class EditContact {
     private static final Logger LOGGER = Logger.getLogger(EditContact.class.getName());
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
 
     private Contact contact ;
 
@@ -52,7 +52,7 @@ public class EditContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
-        contact = (Contact) JSON_MAPPER_INSTANCE.getGeneric(new Contact(),"EditContact.json");
+        contact = (Contact) JSONMapper.getGeneric(Contact.class,"EditContact.json");
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();

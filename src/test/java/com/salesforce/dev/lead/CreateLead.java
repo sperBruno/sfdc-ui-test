@@ -26,7 +26,7 @@ import org.testng.annotations.Test;
  */
 public class CreateLead {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
 
     private NavigationBar navBar;
 
@@ -48,7 +48,7 @@ public class CreateLead {
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-        lead = (Lead) JSON_MAPPER_INSTANCE.getGeneric(new Lead(),"CreateLead.json");
+        lead = JSONMapper.getGeneric(Lead.class,"CreateLead.json");
         Campaign campaign = CampaignGenie.getCampaign();
         CampaignGenie.createParentCampaign(campaign.getParentCampaign());
     }

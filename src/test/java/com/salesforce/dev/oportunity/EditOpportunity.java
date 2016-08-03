@@ -19,8 +19,6 @@ import org.testng.annotations.Test;
  */
 public class EditOpportunity {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
-
     private MainPage mainPage;
 
     private NavigationBar navBar;
@@ -32,8 +30,8 @@ public class EditOpportunity {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"CreateOpportunityBase.json");
-        oppEditEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"EditOpportunity.json");
+        oppEnum = JSONMapper.getGeneric(Opportunity.class,"CreateOpportunityBase.json");
+        oppEditEnum = JSONMapper.getGeneric(Opportunity.class,"EditOpportunity.json");
 
         // creating the opportunity base
         ObjectGenie.createOpportunity(oppEnum);
