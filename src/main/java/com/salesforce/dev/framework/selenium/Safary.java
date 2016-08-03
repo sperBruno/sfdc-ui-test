@@ -4,11 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 /**
- * This class initialize a Safary  Web Driver
+ * This class initialize a Safari Web Driver
  *
  * @author Henrry Salinas.
  */
-public class Safary implements IDriver{
+public class Safary implements IDriver {
 
     /**
      * {@inheritDoc}
