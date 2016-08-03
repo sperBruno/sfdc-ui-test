@@ -1,8 +1,5 @@
 package com.salesforce.dev.accounts;
 
-import java.util.Iterator;
-
-import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.utils.RandomGenerator;
@@ -11,18 +8,19 @@ import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountView;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
-import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.ViewDetailBase;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
 import static org.testng.Assert.assertTrue;
 
 /**
+ * This class will be used to test the basic view of the creation of ane account.
+ *
  * @author Carlos Orellana
  * @author Mijhail Villarroel
  */

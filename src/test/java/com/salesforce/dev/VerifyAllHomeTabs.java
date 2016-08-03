@@ -26,8 +26,9 @@ import static org.testng.Assert.assertTrue;
 /**
  * This class will test all tabs pages from Salesforce.
  *
- * @author Monica Pardo on 6/24/2015.
+ * @author Monica Pardo.
  * @author Bruno Barrios.
+ * @since 6/24/2015.
  */
 public class VerifyAllHomeTabs {
 

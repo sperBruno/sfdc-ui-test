@@ -1,7 +1,10 @@
 package com.salesforce.dev.pages.opportunities;
 
 /**
- * Created by Administrator on 7/29/2016.
+ * This class will be used as enum for Opportunity.
+ *
+ * @author Administrator
+ * @since 7/29/2016.
  */
 public enum OpportunitySteps {
     OPPORTUNITYNAME,
@@ -18,5 +21,4 @@ public enum OpportunitySteps {
     MAINCOMPETITORS,
     DELIVERYSTATUS,
     DESCRIPTION
-
 }

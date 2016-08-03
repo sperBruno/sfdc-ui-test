@@ -12,7 +12,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by veronica on 8/20/2015.
+ * This class will be used to represent Contact view and its options.
+ *
+ * @author veronica
+ * @since 8/20/2015.
  */
 public class ContactView extends ViewBase {
 

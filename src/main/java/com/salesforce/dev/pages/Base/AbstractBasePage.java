@@ -8,7 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by Dante Villarroel on 6/18/2016.
+ * This class will be used as Base page of all base pages.
+ *
+ * @author Dante Villarroel
+ * @since 6/18/2016.
  */
 public abstract class AbstractBasePage {
 

@@ -7,10 +7,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
- * Created by monica on 6/11/2015.
+ * This class will be used to represents product home page.
+ *
+ * @author monica
+ * @since 6/11/2015.
  */
 public class ProductsHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Products:')]")
@@ -32,7 +36,7 @@ public class ProductsHome extends HomeBase {
     }
 
     public ProductForm clickNewBtn() {
-        CommonOperation.clickWebElement(newBtn);
+        clickWebElement(newBtn);
         return new ProductForm();
     }
 

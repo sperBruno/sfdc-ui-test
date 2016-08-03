@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * @author Carlos Gonzales on 6/8/2015.
+ * This class will be used to access to the variable of Properties file
+ * @author Carlos Gonzales.
+ * @since 6/8/2015.
  */
 public class Environment {
 

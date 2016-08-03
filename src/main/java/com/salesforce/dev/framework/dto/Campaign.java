@@ -14,7 +14,8 @@ import static com.salesforce.dev.pages.campaigns.CampaignSteps.PARENT_CAMPAIGN;
 import static com.salesforce.dev.pages.campaigns.CampaignSteps.START_DATE;
 
 /**
- * Created by Veronica Prado on 8/27/2015.
+ * @author Veronica Prado
+ * @since 8/27/2015.
  */
 public class Campaign {
     private String campaignName;

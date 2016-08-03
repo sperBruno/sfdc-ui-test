@@ -1,7 +1,10 @@
 package com.salesforce.dev.pages.leads;
 
 /**
- * Created by Jimmy Vargas on 6/15/2015.
+ * This class will be used to build a Lead.
+ *
+ * @author Jimmy Vargas
+ * @since 6/15/2015.
  */
 public class LeadBuilder {
 

@@ -2,7 +2,6 @@ package com.salesforce.dev.oportunity;
 
 import com.salesforce.dev.framework.dto.Opportunity;
 import com.salesforce.dev.framework.utils.JSONMapper;
-import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.DetailsBase;
@@ -11,13 +10,15 @@ import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityBuilder;
 import com.salesforce.dev.pages.opportunities.OpportunityDetail;
 import com.salesforce.dev.pages.opportunities.OpportunityForm;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * @author Jimmy Vargas on 6/10/2015.
+ * This class will be used to test the creation of an Opportunity in Salesforce web application.
+ *
+ * @author Jimmy Vargas.
+ * @since 6/10/2015.
  */
 public class CreateOpportunity {
 

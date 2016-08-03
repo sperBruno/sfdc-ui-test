@@ -1,7 +1,10 @@
 package com.salesforce.dev.pages.opportunities;
 
 /**
- * Created by Jimmy Vargas on 6/14/2015.
+ * This class will be used to build an opportunity
+ *
+ * @author Jimmy Vargas
+ * @since 6/14/2015.
  */
 public class OpportunityBuilder {
 
@@ -9,7 +12,6 @@ public class OpportunityBuilder {
     protected boolean isPrivate;
     protected String leadSource, orderNumber, currentGenerator, trackingNumber;
     protected String opDescription,amount,expectedRevenue;
-    //This should be the format for the close data month/day/year e.g 12/25/2015
     protected String closeDate;
     protected String nextStep,stage,probability,primaryCampaignSource,mainCompetidors;
     protected String deliveryInstallationStatus;

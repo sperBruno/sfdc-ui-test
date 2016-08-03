@@ -1,25 +1,19 @@
 package com.salesforce.dev.pages.accounts;
 
-import java.util.concurrent.TimeUnit;
-
 import com.salesforce.dev.pages.base.ViewDetailBase;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.waitForWebElement;
 
 /**
- * @author Carlos Orellana on 9/2/2015.
+ * This class will be used to represent Account view details and its options.
+ *
+ * @author Carlos Orellana.
+ * @since 9/2/2015.
  */
 public class AccountViewDetail extends ViewDetailBase {
     public AccountViewDetail(WebDriver driver) {
-        try {
-            wait.withTimeout(10, TimeUnit.SECONDS)
-                    .until(ExpectedConditions.visibilityOf(viewSelected));
-        } catch (WebDriverException e) {
-            throw new WebDriverException(e);
-        } finally {
-            wait.withTimeout(15, TimeUnit.SECONDS);
-        }
+        waitForWebElement(viewSelected);
     }
 
     @Override

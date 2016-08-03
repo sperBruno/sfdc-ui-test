@@ -9,19 +9,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Created by Monica on 6/11/2015.
+ * This class will be used to represents all detail view of a product.
+ *
+ * @author Monica
+ * @since 6/11/2015.
  */
 public class ProductDetails extends DetailsBase {
 
-
     @FindBy(id = "Name_ileinner")
-    WebElement productNameReg;
+    private WebElement productNameReg;
 
     public FormBase clickEditBtn() {
         super.clickEditButton();
         return new ProductForm();
     }
-
 
     @Override
     public HomeBase clickDeleteButton() {

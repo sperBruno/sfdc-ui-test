@@ -1,24 +1,22 @@
 package com.salesforce.dev.pages;
 
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.salesforce.dev.pages.base.AbstractBasePage;
-
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
-import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
-import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
-import static com.salesforce.dev.framework.utils.Constants.WEB_ELEMENT_COULD_NOT_BE_FOUNT;
+import static com.salesforce.dev.framework.utils.Constants.*;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
- * This class will be used to get Salesforce coockie.
+ * This class will be used to get Salesforce cookies.
  *
- * @author Jimmy Vargas on 6/5/2015.
- * @author Bruno Barrios
+ * @author Jimmy Vargas.
+ * @author Bruno Barrios.
+ * @since 6/5/2015
  */
 public class TopHeader extends AbstractBasePage {
 
@@ -27,15 +25,12 @@ public class TopHeader extends AbstractBasePage {
     @FindBy(id = "userNavLabel")
     private WebElement userMenu;
 
-    @FindBy(id = "phHeaderLogoImage")
-    private WebElement salesforceLogo;
-
-    @FindBy(css = "a.menuButtonMenuLink.firstMenuItem")
-    private WebElement userMyProfileMenu;
-
     @FindBy(xpath = "//a[contains(@href, '/secur/logout.jsp')]")
     private WebElement logoutMenuOption;
 
+    /**
+     * This method click user menu options.
+     */
     public void clickUserNameMenu() {
         try {
             clickWebElement(userMenu);
@@ -45,6 +40,11 @@ public class TopHeader extends AbstractBasePage {
         }
     }
 
+    /**
+     * This method gets the user account name.
+     *
+     * @return the user account name.
+     */
     public String getUserName() {
         String userLogged = "";
         try {
@@ -53,23 +53,33 @@ public class TopHeader extends AbstractBasePage {
         } catch (WebDriverException e) {
             e = new WebDriverException(e);
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
-        }finally {
+        } finally {
             driver.manage().timeouts().implicitlyWait(FIFTEEN_SECONDS, SECONDS);
         }
         return userLogged;
     }
 
+    /**
+     * This method logs out a user from Sales force
+     *
+     * @return LoginPage
+     */
     public LoginPage clickLogoutOption() {
         try {
             clickWebElement(logoutMenuOption);
             LOGGER.info("Logout from SalesForce");
         } catch (WebDriverException e) {
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
-            throw  new WebDriverException(e);
+            throw new WebDriverException(e);
         }
         return new LoginPage();
     }
 
+    /**
+     * This method verifies whether a cookie is present.
+     *
+     * @return true if so and false if not.
+     */
     public boolean checkIfCookieIsPresent() {
         String cookieName = "com.salesforce.LocaleInfo";
         String coockieDomain = ".salesforce.com";

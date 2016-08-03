@@ -1,36 +1,30 @@
 package com.salesforce.dev.campaign;
 
-import java.util.Iterator;
-
-import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
+import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.campaigns.CampaignView;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
-import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.MainPage;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+
 import static org.testng.Assert.assertTrue;
 
 /**
- * Create a campaign with view basic
+ * This class will be used to test the creation of a campaign with basic view.
  *
- * @author  Veronica Prado on 8/22/2015.
- * @author  Mijhail Villarroel
+ * @author Veronica Prado.
+ * @author Mijhail Villarroel.
+ * @since 8/22/2015.
  */
 public class CreateCampaignViewBasic {
-
-    private CampaignsHome campaignsHome;
-
-    private CampaignView campaignView;
-
-    private MainPage mainPage;
 
     private NavigationBar navigationBar;
 
@@ -45,14 +39,14 @@ public class CreateCampaignViewBasic {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        mainPage = LoginPage.loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateCampaignView(ViewSalesForce viewSalesForce) {
-        campaignsHome = navigationBar.goToCampaignsHome();
-        campaignView = campaignsHome.clickNewViewLnk()
+        CampaignsHome campaignsHome = navigationBar.goToCampaignsHome();
+        CampaignView campaignView = campaignsHome.clickNewViewLnk()
                 .setViewName(viewSalesForce.getViewName())
                 .setUniqueViewName(viewSalesForce.getUniqueViewName())
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())

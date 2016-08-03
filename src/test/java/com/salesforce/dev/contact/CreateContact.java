@@ -23,7 +23,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * @author Marcelo Vargas on 6/12/2015.
+ * This clas will be used to test the creation of a contact.
+ *
+ * @author Marcelo Vargas.
+ * @since 6/12/2015.
  */
 
 public class CreateContact {
@@ -117,11 +120,12 @@ public class CreateContact {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         contactDetail.clickDeleteButton();
+        LOGGER.info("Contact was deleted");
         mainPage = contactDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountDetail.clickDeleteButton();
-        LOGGER.info("Contact was deleted");
+
     }
 }

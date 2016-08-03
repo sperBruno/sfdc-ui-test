@@ -1,7 +1,8 @@
 package com.salesforce.dev.framework.dto;
 
 /**
- * Created by alex on 23/08/2015.
+ * @author alex
+ * @since 23/08/2015.
  */
 public class Contact {
 

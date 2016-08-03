@@ -8,12 +8,20 @@ import org.openqa.selenium.support.FindBy;
 
 
 /**
- * Created by Marcelo Vargas on 11/06/2015.
+ * This class will be used to represent Contacts home page and its options.
+ *
+ * @author Marcelo Vargas
+ * @since 11/06/2015.
  */
 public class ContactsHome extends HomeBase {
     @FindBy(xpath = "//h1[contains(.,'Contacts:')]")
-    WebElement contactSection;
+    private WebElement contactSection;
 
+    /**
+     * this method clicks on new btn.
+     *
+     * @return ContactForm
+     */
     public ContactForm clickNewBtn() {
         clickNewButton();
         return new ContactForm();
