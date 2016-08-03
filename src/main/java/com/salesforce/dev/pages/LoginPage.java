@@ -1,23 +1,21 @@
 package com.salesforce.dev.pages;
 
-import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.AbstractBasePage;
-import com.salesforce.dev.pages.objects.UserInformation;
-import org.openqa.selenium.WebDriver;
+import com.salesforce.dev.framework.soap.UserInformation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+;
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
 import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
 
 /**
- * Created by Monica Pardo on 6/4/2015.
+ * @author Monica Pardo on 6/4/2015.
+ * @author Bruno Barrios
  */
 public class LoginPage extends AbstractBasePage {
-
-    private static final WebDriver DRIVER = DriverManager.getInstance().getDriver();
 
     @FindBy(id = "username")
     private WebElement userNameFld;
@@ -44,6 +42,10 @@ public class LoginPage extends AbstractBasePage {
         return mainPage;
     }
 
+    /**
+     * This class is used to login into Salesforce.
+     * @return the username that is already logged in.
+     */
     public static MainPage loginAsPrimaryUser() {
         return loginAs(ENVIRONMENT.getPrimaryUser(), ENVIRONMENT.getPrimaryPassword());
     }
@@ -54,7 +56,7 @@ public class LoginPage extends AbstractBasePage {
     }
 
     public boolean isLoginButtonPresent() {
-        wait.until(ExpectedConditions.visibilityOf(loginBtn));
+        isWebElementVisible(loginBtn);
         return loginBtn.isDisplayed();
     }
 

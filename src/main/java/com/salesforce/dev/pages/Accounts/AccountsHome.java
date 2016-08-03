@@ -8,7 +8,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElement
 
 
 /**
- * Created by Walter on 10/06/2015.
+ * @author Walter on 10/06/2015.
  */
 public class AccountsHome extends HomeBase {
 

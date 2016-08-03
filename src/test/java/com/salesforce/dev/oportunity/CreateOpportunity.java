@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityBuilder;
@@ -16,11 +17,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Jimmy Vargas on 6/10/2015.
+ * @author Jimmy Vargas on 6/10/2015.
  */
 public class CreateOpportunity {
 
-    private HomePage homePage;
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
 
     private MainPage mainPage;
 
@@ -32,7 +33,7 @@ public class CreateOpportunity {
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-        oppEnum = JSONMapper.getOpportunity("CreateOpportunity.json");
+        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"CreateOpportunityBase.json");
     }
 
     @Test(groups = {"Acceptance"})
@@ -62,7 +63,7 @@ public class CreateOpportunity {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         OpportunitiesHome opHome = navBar.goToOpportunitiesHome();
-        OpportunityDetail opDetail = opHome.openOpportunity(oppEnum.opportunityName);
-        opDetail.deleteOpportunity();
+        DetailsBase opDetail = opHome.openOpportunity(oppEnum.opportunityName);
+        opDetail.clickDeleteButton();
     }
 }

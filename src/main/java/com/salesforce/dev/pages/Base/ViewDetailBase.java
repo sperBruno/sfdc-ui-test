@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.base;
 
+import com.salesforce.dev.framework.selenium.CommonOperation;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickConfirmAlert;
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.selenium.CommonOperation.getFirstSelectOption;
 import static com.salesforce.dev.framework.selenium.CommonOperation.moveHorizontalWebElementScroll;
@@ -42,19 +44,9 @@ public abstract class ViewDetailBase extends AbstractBasePage {
         }
     }
 
-    protected void clickDeleteLink(boolean confirmDeletion) {
+    protected void clickDeleteLink() {
         clickWebElement(deleteLnk);
-        Alert alert;
-        try {
-            alert = driver.switchTo().alert();
-            if (confirmDeletion) {
-                alert.accept();
-            }
-            alert.dismiss();
-            LOGGER.info("Delete link was clicked");
-        } catch (WebDriverException e) {
-            LOGGER.fatal("The Delete link couldn't be found", e);
-        }
+        clickConfirmAlert();
     }
 
     protected abstract Object clickEditLnk();
@@ -62,7 +54,7 @@ public abstract class ViewDetailBase extends AbstractBasePage {
     /**
      * Returns next view
      */
-    protected abstract Object clickDeleteLnk(boolean confirmDeletion);
+    public abstract ViewDetailBase clickDeleteLnk();
 
     public String getViewSelected() {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));

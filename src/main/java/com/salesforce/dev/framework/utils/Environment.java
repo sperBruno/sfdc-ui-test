@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- * Created by Carlos Gonzales on 6/8/2015.
+ * @author Carlos Gonzales on 6/8/2015.
  */
 public class Environment {
 
@@ -40,6 +40,8 @@ public class Environment {
     private static final String PROXY_HOST = "proxyHost";
 
     private static final String PROXY_PORT = "proxyPort";
+
+    private static final String REMOTE_OS_VERSION="remoteOSVersion";
 
     private static Environment environment;
     private Properties properties;
@@ -130,7 +132,15 @@ public class Environment {
         return getEnv(VERSION_REMOTE);
     }
 
-    public String getProxyHost(){return getEnv (PROXY_HOST);}
+    public String getProxyHost() {
+        return getEnv(PROXY_HOST);
+    }
 
-    public int getProxyPort(){return Integer.valueOf (getEnv (PROXY_PORT));}
+    public String getProxyPort() {
+        return getEnv(PROXY_PORT);
+    }
+
+    public String getRemoteOSVersion() {
+        return getEnv(REMOTE_OS_VERSION);
+    }
 }

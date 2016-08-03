@@ -5,6 +5,7 @@ import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.ObjectGenie;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityDetail;
@@ -14,12 +15,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * @author jimmy vargas on 6/20/2015.
+ * @author Jimmy Vargas on 6/20/2015.
  */
 public class EditOpportunity {
 
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
     private MainPage mainPage;
+
     private NavigationBar navBar;
+
     private Opportunity oppEnum, oppEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
@@ -27,8 +32,8 @@ public class EditOpportunity {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = JSONMapper.getOpportunity("CreateOpportunityBase.json");
-        oppEditEnum = JSONMapper.getOpportunity("EditOpportunity.json");
+        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"CreateOpportunityBase.json");
+        oppEditEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"EditOpportunity.json");
 
         // creating the opportunity base
         ObjectGenie.createOpportunity(oppEnum);
@@ -60,9 +65,7 @@ public class EditOpportunity {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         OpportunitiesHome opHome = mainPage.gotoNavBar().goToOpportunitiesHome();
-        OpportunityDetail opDetail = opHome.openOpportunity(oppEditEnum.opportunityName);
-        opDetail.deleteOpportunity();
-
+        DetailsBase opDetail = opHome.openOpportunity(oppEditEnum.opportunityName);
+        opDetail.clickDeleteButton();
     }
-
 }

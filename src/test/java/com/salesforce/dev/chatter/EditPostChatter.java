@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 import com.salesforce.dev.framework.dto.Chatter;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
-import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
@@ -16,18 +15,19 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Veronica Prado on 9/3/2015.
+ * @author Veronica Prado on 9/3/2015.
+ * @author Bruno Barrios
  */
 public class EditPostChatter {
     private MainPage mainPage;
     private NavigationBar navigationBar;
     private ChatterHome chatterHome;
     private Chatter createChatter;
+    private DataDrivenManager dataDrivenManager = new DataDrivenManager();
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        Iterator<Object[]> chattersData = DataDrivenManager.getObjects ("Chatter.json", Chatter.class);
-        createChatter = (Chatter) chattersData.next()[0];
+        createChatter = getChatter("Chatter.json");
         mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
         chatterHome = navigationBar.goToChatterHome();
@@ -38,12 +38,16 @@ public class EditPostChatter {
 
     @Test(groups = {"Acceptance"})
     public void CreatePostAndComment() {
-        Iterator<Object[]> chattersData = DataDrivenManager.getObjects("EditChatter.json", Chatter.class);
-        Chatter chatter = (Chatter) chattersData.next()[0];
+        Chatter chatter = getChatter("EditChatter.json");
         EditPost editPost = chatterHome.editPost(createChatter.getPost());
         editPost.setEditTextBox(chatter.getPost());
         chatterHome = editPost.clickSaveEditBtn();
-        Assert.assertTrue(chatterHome.VerifyPostCreated(chatter.getPost()), "Post has been not Updated");
+        Assert.assertTrue(chatterHome.VerifyPostCreated(chatter.getPost()), "Post has not been Updated");
+    }
+
+    private Chatter getChatter(String fileJson) {
+        Iterator<Chatter[]> chattersData = dataDrivenManager.getChatter(fileJson);
+        return chattersData.next()[0];
     }
 
     @AfterMethod(groups = {"Acceptance"})

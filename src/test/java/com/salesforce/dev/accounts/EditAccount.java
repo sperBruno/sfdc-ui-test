@@ -18,23 +18,33 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * Created by Walter on 13/06/2015.
+ * @author Walter on 13/06/2015.
  */
 public class EditAccount {
 
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
     private AccountDetail accountDetail;
+
     private NavigationBar navigationBar;
+
     private AccountsHome accountsHome;
+
     private AccountForm accountForm;
-    private Account account = JSONMapper.getAccountBase();
+
+    private Account account;
+
     private String accountName = "AccountName";
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
+        account = (Account) JSON_MAPPER_INSTANCE.getGeneric(new Account(), "CreateAccountBase.json");
+        
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
+        accountName = "AccountName";
         accountForm.setAccountNameFld(accountName);
         accountDetail = accountForm.clickSaveBtn();
         mainPage = accountDetail.gotoMainPage();
@@ -51,7 +61,7 @@ public class EditAccount {
             accountForm.getStrategyStepMap(mapAccount).get(step).executeStep();
         });
         accountDetail = accountForm.clickSaveBtn();
-        Map<AccountSteps, Object> mapExpected = accountDetail.getAssertionMap();
+        Map<Enum, Object> mapExpected = accountDetail.getAssertionMap();
         mapAccount.keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
         });
@@ -59,6 +69,6 @@ public class EditAccount {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        accountDetail.clickDeleteBtn(true);
+        accountDetail.clickDeleteButton();
     }
 }

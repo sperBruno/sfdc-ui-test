@@ -32,7 +32,7 @@ public class CreateOpportunityViewBasic {
         return DataDrivenManager.getObjects("CreateOpportunityViewBasic.json", ViewSalesForce.class);
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
@@ -47,13 +47,12 @@ public class CreateOpportunityViewBasic {
                 .checkFilterByOwner(viewSalesForce.getFilterByOwner())
                 .selectRestrictVisibility(viewSalesForce.getRestrictVisibility());
         opportunityViewDetail = opportunityView.clickSaveBtn();
-        LOGGER.info("Opportunity was created");
         assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        opportunityViewDetail.clickDeleteLnk(true);
+        opportunityViewDetail.clickDeleteLnk();
         LOGGER.info("Opportunity View was deleted");
     }
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.salesforce.dev.framework.utils.IAutomationStep;
+import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,7 +37,7 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 /**
- * Created by Walter on 10/06/2015.
+ * @author Walter on 10/06/2015.
  */
 public class AccountForm extends FormBase {
 
@@ -147,14 +148,8 @@ public class AccountForm extends FormBase {
     @FindBy(name = "acc20")
     private WebElement accountDescriptionFld;
 
-
     @Override
-    public Object clickSaveNewBtn() {
-        return null;
-    }
-
-    @Override
-    public Object clickCancelBtn() {
+    public AbstractBasePage clickCancelBtn() {
         return null;
     }
 

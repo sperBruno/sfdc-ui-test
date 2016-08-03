@@ -1,6 +1,5 @@
 package com.salesforce.dev.product;
 
-import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
@@ -20,10 +19,7 @@ import static org.testng.Assert.assertTrue;
  */
 public class CreateProduct {
 
-    HomePage homePage;
-    MainPage mainPage;
-    NavigationBar navigationBar;
-    private ProductsHome productsHome;
+    private NavigationBar navigationBar;
     private ProductForm productForm;
     private ProductDetails productDetails;
 
@@ -31,12 +27,11 @@ public class CreateProduct {
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
-
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "getProductValues")
     public void testCreateProduct(String productName, String prodCode, String prodDesc) {
-        productsHome = navigationBar.goToProductsHome();
+        ProductsHome productsHome = navigationBar.goToProductsHome();
         productForm = productsHome.clickNewBtn();
         productForm = new ProductBuilder(productName)
                 .setProductName(productName)
@@ -45,12 +40,11 @@ public class CreateProduct {
                 .setProductActive(true).build();
         productDetails = productForm.saveProduct();
         assertTrue(productDetails.VerifyProduct(productName), "product Was not Created");
-
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        productDetails.clickDeleteBtn(true);
+        productDetails.clickDeleteButton();
     }
 
     @DataProvider

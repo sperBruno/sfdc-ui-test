@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Monica Pardo on 6/13/2015.
+ * @author  Monica Pardo on 6/13/2015.
  */
 public class CreatePost {
 

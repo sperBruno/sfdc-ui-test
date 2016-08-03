@@ -2,28 +2,25 @@ package com.salesforce.dev.login;
 
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.objects.UserInformation;
 import com.salesforce.dev.pages.TopHeader;
-import org.apache.log4j.Logger;
+import com.salesforce.dev.framework.soap.UserInformation;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 /**
- * Created by monica on 6/22/2015.
+ * @author monica on 6/22/2015.
+ * @author Bruno Barrios
  */
 public class LoginTest {
 
-    private static final Logger LOGGER = Logger.getLogger(LoginTest.class.getName());
-
-    private MainPage mainPage;
-
-    @Test(groups = {"BVT"})
+    @Test(groups = {"Acceptance"})
     public void testLogin1() {
-        mainPage = LoginPage.loginAsPrimaryUser();
+        MainPage mainPage = LoginPage.loginAsPrimaryUser();
         TopHeader topHeader = mainPage.gotoTopHeader();
-        assertEquals(topHeader.getUserName(), UserInformation.getUserFullName());
-        LOGGER.info("Login on Sales Force");
+        String expectedUser = UserInformation.getUserFullName();
+        String actualUser = topHeader.getUserName();
+        assertEquals(expectedUser, actualUser, actualUser + "is logged");
     }
 
 

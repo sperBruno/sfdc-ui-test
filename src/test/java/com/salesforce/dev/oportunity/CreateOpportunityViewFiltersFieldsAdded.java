@@ -13,7 +13,6 @@ import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityView;
 import com.salesforce.dev.pages.opportunities.OpportunityViewDetail;
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -25,8 +24,8 @@ import static org.junit.Assert.assertTrue;
  * Created by Carlos Orellana on 8/22/2015.
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
-    private static final Logger LOGGER = Logger.getLogger(CreateOpportunityViewFiltersFieldsAdded.class.getName());
     private NavigationBar navigationBar;
+
     private OpportunityViewDetail opportunityViewDetail;
 
     @DataProvider(name = "dataDriven")
@@ -34,13 +33,13 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         return DataDrivenManager.getObjects("CreateOpportunityViewFiltersFieldAdded.json", ViewSalesForce.class);
     }
 
-    @BeforeMethod(groups = {"BVT"})
+    @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Regression"}, dataProvider = "dataDriven")
+    @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")
     public void testCreateOpportunityViewWithFilters(ViewSalesForce viewSalesForce) {
         OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
         OpportunityView opportunityView = opportunitiesHome.clickNewViewLnk()
@@ -65,9 +64,8 @@ public class CreateOpportunityViewFiltersFieldsAdded {
         assertTrue(opportunityViewDetail.validateNameView(viewSalesForce.getViewName()));
     }
 
-    @AfterMethod(groups = {"Regression"})
+    @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        opportunityViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Opportunity View was deleted");
+        opportunityViewDetail.clickDeleteLnk();
     }
 }

@@ -3,9 +3,10 @@ package com.salesforce.dev.pages.accounts;
 import java.util.Map;
 import java.util.HashMap;
 
-import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.base.DetailsBase;
+import com.salesforce.dev.pages.base.HomeBase;
 import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -31,15 +32,16 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLASERIAL_N
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_SLA_EXPIRATION_DATE;
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_THICKER;
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_TYPE;
-import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_UPSELL_OPPORTUNITY;
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 
 
 /**
- * Created by Walter on 10/06/2015.
+ * @author Walter
  */
 public class AccountDetail extends DetailsBase {
+
+    private static final Logger LOGGER = Logger.getLogger(AccountDetail.class.getName());
 
     @FindBy(id = "acc2_ilecell")
     private WebElement accountNameFld;
@@ -119,141 +121,137 @@ public class AccountDetail extends DetailsBase {
         return new AccountForm();
     }
 
+
     @Override
-    public AccountsHome clickDeleteBtn(boolean confirmDeletion) {
-        clickDeletedAccButton(true);
+    public HomeBase clickDeleteButton() {
+        clickDeletedButton();
         return new AccountsHome();
-
     }
 
-    public MainPage gotoMainPage() {
-        return new MainPage();
-    }
-
-    public String validateAccountNameFld() {
+    public String getAccountNameFld() {
         String realValue = accountNameFld.getText().substring(0, accountNameFld.getText().length() - 17);
         return realValue;
     }
 
-    public String validateAccountNumberFld() {
+    public String getAccountNumberFld() {
         return accountNumberFld.getText();
     }
 
-    public String validateAccountSiteFld() {
+    public String getAccountSiteFld() {
         return accountSiteFld.getText();
     }
 
-    public String validateAccountTypeFld() {
+    public String getAccountTypeFld() {
         return accountTypeFld.getText();
     }
 
-    public String validateAccountIndustryFld() {
+    public String getAccountIndustryFld() {
         return accountIndustryFld.getText();
     }
 
-    public String validateAccountAnnualRevenueFld() {
+    public String getAccountAnnualRevenueFld() {
         String realValue = accountAnnualRevenueFld.getText().replaceAll("[-+.^:,]", "");
         return realValue.substring(1);
     }
 
-    public String validateAccountBillingAddressFld() {
+    public String getAccountBillingAddressFld() {
         return accountBillingAddressFld.getText();
     }
 
-    public String validateAccountCustomPriorityFld() {
+    public String getAccountCustomPriorityFld() {
         return accountCustomPriorityFld.getText();
     }
 
-    public String validateAccountSLAExpirationDateFld() {
+    public String getAccountSLAExpirationDateFld() {
         return accountSLAExpirationDateFld.getText();
     }
 
-    public String validateAccountNumberOfLocationsFld() {
+    public String getAccountNumberOfLocationsFld() {
         return accountNumberOfLocationsFld.getText();
     }
 
-    public String validateAccountActiveFld() {
+    public String getAccountActiveFld() {
         return accountActiveFld.getText();
     }
 
-    public String validateAccountDescriptionFld() {
+    public String getAccountDescriptionFld() {
         return accountDescriptionFld.getText();
     }
 
-    public String validateAccountRatingFld() {
+    public String getAccountRatingFld() {
         return accountRatingFld.getText();
     }
 
-    public String validateAccountPhoneFld() {
+    public String getAccountPhoneFld() {
         return accountPhoneFld.getText();
     }
 
-    public String validateAccountFaxFld() {
+    public String getAccountFaxFld() {
         return accountFaxFld.getText();
     }
 
-    public String validateAccountWebsiteFld() {
+    public String getAccountWebsiteFld() {
         return accountWebsiteFld.getText();
     }
 
-    public String validateAccountTickerSymbolFld() {
+    public String getAccountTickerSymbolFld() {
         return accountTickerSymbolFld.getText();
     }
 
-    public String validateAccountOwnershipFld() {
+    public String getAccountOwnershipFld() {
         return accountOwnershipFld.getText();
     }
 
-    public String validateAccountEmployeesFld() {
-        String realValue = accountEmployeesFld.getText().replaceAll("[-+.^:,]", "");
-        return realValue;
+    public String getAccountEmployeesFld() {
+        return accountEmployeesFld.getText().replaceAll("[-+.^:,]", "");
+
     }
 
-    public String validateAccountSICCodeFld() {
+    public String getAccountSICCodeFld() {
         return accountSICCodeFld.getText();
     }
 
-    public String validateAccountShippingAddressFld() {
+    public String getAccountShippingAddressFld() {
         return accountShippingAddressFld.getText();
     }
 
-    public String validateAccountSLAFld() {
+    public String getAccountSLAFld() {
         return accountSLAFld.getText();
     }
 
-    public String validateAccountSerialNumberFld() {
+    public String getAccountSerialNumberFld() {
         return accountSerialNumberFld.getText();
     }
 
-    public String validateAccountUpSellOpportunityFld() {
+    public String getAccountUpSellOpportunityFld() {
         return accountUpSellOpportunityFld.getText();
     }
-
-    public Map<AccountSteps, Object> getAssertionMap() {
-        Map<AccountSteps, Object> assertionMap = new HashMap<>();
-        assertionMap.put(ACCOUNT_NAME, validateAccountNameFld());
-        assertionMap.put(ACCOUNT_RATING, validateAccountRatingFld());
-        assertionMap.put(ACCOUNT_OWNER_SHIP, validateAccountOwnershipFld());
-        assertionMap.put(ACCOUNT_PHONE, validateAccountPhoneFld());
-        assertionMap.put(ACCOUNT_FAX, validateAccountFaxFld());
-        assertionMap.put(ACCOUNT_NUMBER, validateAccountNumberFld());
-        assertionMap.put(ACCOUNT_WEBSITE, validateAccountWebsiteFld());
-        assertionMap.put(ACCOUNT_SITE, validateAccountSiteFld());
-        assertionMap.put(ACCOUNT_THICKER, validateAccountTickerSymbolFld());
-        assertionMap.put(ACCOUNT_TYPE, validateAccountTypeFld());
-        assertionMap.put(ACCOUNT_INDUSTRY, validateAccountIndustryFld());
-        assertionMap.put(ACCOUNT_EMPLOYEES, validateAccountEmployeesFld());
-        assertionMap.put(ACCOUNT_ANNUAL_REVENUE, validateAccountAnnualRevenueFld());
-        assertionMap.put(ACCOUNT_SICCODE, validateAccountSICCodeFld());
-        assertionMap.put(ACCOUNT_BILLING_STREET, validateAccountBillingAddressFld());
-        assertionMap.put(ACCOUNT_SHIPPING_STREET, validateAccountShippingAddressFld());
-        assertionMap.put(ACCOUNT_CUSTOMER_PRIORITY, validateAccountCustomPriorityFld());
-        assertionMap.put(ACCOUNT_SLA, validateAccountSLAFld());
-        assertionMap.put(ACCOUNT_ACTIVE, validateAccountActiveFld());
-        assertionMap.put(ACCOUNT_SLA_EXPIRATION_DATE, validateAccountSLAExpirationDateFld());
-        assertionMap.put(ACCOUNT_SLASERIAL_NUMBER, validateAccountSerialNumberFld());
-        assertionMap.put(ACCOUNT_NUMBER_LOCATIONS, validateAccountNumberOfLocationsFld());
-        assertionMap.put(ACCOUNT_DESCRIPTION, validateAccountDescriptionFld());
+    @Override
+    public Map<Enum, Object> getAssertionMap() {
+        Map<Enum, Object> assertionMap = new HashMap<>();
+        assertionMap.put(ACCOUNT_NAME, getAccountNameFld());
+        assertionMap.put(ACCOUNT_RATING, getAccountRatingFld());
+        assertionMap.put(ACCOUNT_OWNER_SHIP, getAccountOwnershipFld());
+        assertionMap.put(ACCOUNT_PHONE, getAccountPhoneFld());
+        assertionMap.put(ACCOUNT_FAX, getAccountFaxFld());
+        assertionMap.put(ACCOUNT_NUMBER, getAccountNumberFld());
+        assertionMap.put(ACCOUNT_WEBSITE, getAccountWebsiteFld());
+        assertionMap.put(ACCOUNT_SITE, getAccountSiteFld());
+        assertionMap.put(ACCOUNT_THICKER, getAccountTickerSymbolFld());
+        assertionMap.put(ACCOUNT_TYPE, getAccountTypeFld());
+        assertionMap.put(ACCOUNT_INDUSTRY, getAccountIndustryFld());
+        assertionMap.put(ACCOUNT_EMPLOYEES, getAccountEmployeesFld());
+        assertionMap.put(ACCOUNT_ANNUAL_REVENUE, getAccountAnnualRevenueFld());
+        assertionMap.put(ACCOUNT_SICCODE, getAccountSICCodeFld());
+        assertionMap.put(ACCOUNT_BILLING_STREET, getAccountBillingAddressFld());
+        assertionMap.put(ACCOUNT_SHIPPING_STREET, getAccountShippingAddressFld());
+        assertionMap.put(ACCOUNT_CUSTOMER_PRIORITY, getAccountCustomPriorityFld());
+        assertionMap.put(ACCOUNT_SLA, getAccountSLAFld());
+        assertionMap.put(ACCOUNT_ACTIVE, getAccountActiveFld());
+        assertionMap.put(ACCOUNT_SLA_EXPIRATION_DATE, getAccountSLAExpirationDateFld());
+        assertionMap.put(ACCOUNT_SLASERIAL_NUMBER, getAccountSerialNumberFld());
+        assertionMap.put(ACCOUNT_NUMBER_LOCATIONS, getAccountNumberOfLocationsFld());
+        assertionMap.put(ACCOUNT_DESCRIPTION, getAccountDescriptionFld());
         return assertionMap;
     }
 }

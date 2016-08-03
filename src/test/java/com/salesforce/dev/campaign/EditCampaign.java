@@ -13,7 +13,7 @@ import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignSteps;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
-import com.salesforce.dev.pages.objects.CampaignGenie;
+import com.salesforce.dev.framework.soap.CampaignGenie;
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -23,10 +23,12 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 /**
- * @author Marcelo.Vargas on 6/21/2015.
+ * @author Marcelo Vargas on 6/21/2015.
  */
 public class EditCampaign {
+
     private static final Logger LOGGER = Logger.getLogger(EditCampaign.class.getName());
+
     private String campaignNameToUpdated;
     private String campaignParentName;
     private CampaignsHome campaignsHome;
@@ -82,7 +84,7 @@ public class EditCampaign {
         campaignParentName = campaign.getParentCampaign();
 
         Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
-        Map<CampaignSteps, Object> mapExpected = campaignDetail.getAssertionEditMap();
+        Map<Enum, Object> mapExpected = campaignDetail.getAssertionMap();
         mapCampaign.keySet().stream().forEach((step) -> {
             assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
         });
@@ -90,13 +92,13 @@ public class EditCampaign {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
         LOGGER.info("Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignDetail = campaignsHome.selectRecentItem(campaignParentName);
-        campaignDetail.clickDeleteBtn(true);
+        campaignDetail.clickDeleteButton();
         LOGGER.info("Campaign Parent was deleted");
     }
 }

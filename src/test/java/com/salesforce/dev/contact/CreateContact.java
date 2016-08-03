@@ -9,6 +9,7 @@ import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.contacts.ContactDetail;
@@ -22,12 +23,14 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
- * Created by Marcelo.Vargas on 6/12/2015.
+ * @author Marcelo Vargas on 6/12/2015.
  */
 
 public class CreateContact {
 
     private static final Logger LOGGER = Logger.getLogger(CreateContact.class.getName());
+
+    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
 
     private ContactsHome contactsHome;
 
@@ -37,7 +40,7 @@ public class CreateContact {
 
     private MainPage mainPage;
 
-    private AccountDetail accountDetail;
+    private DetailsBase accountDetail;
 
     private NavigationBar navigationBar;
 
@@ -66,9 +69,7 @@ public class CreateContact {
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();
-
-        Contact contact = JSONMapper.getContact();
-
+        Contact contact = (Contact) JSON_MAPPER_INSTANCE.getGeneric(new Contact(),"CreateAccountBase.json");
         contactForm.setFirstNameRole(contact.getcontactRole())
                 .setFirstName(contact.getcontactRole())
                 .setFirstName(contact.getFirstName())
@@ -109,21 +110,18 @@ public class CreateContact {
                 .setLanguages(contact.getLanguages())
                 .setLevel(contact.getLevel())
                 .setDescription(contact.getDescription());
-
         contactDetail = contactForm.clickSaveBtn();
-
-        LOGGER.info("Contact was created");
         Assert.assertTrue(contactDetail.validateContactName(contact.getcontactRole() + " " + contact.getFirstName() + " " + contact.getLastNameastName()));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        contactDetail.clickDeleteBtn(true);
+        contactDetail.clickDeleteButton();
         mainPage = contactDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
-        accountDetail.clickDeleteBtn(true);
+        accountDetail.clickDeleteButton();
         LOGGER.info("Contact was deleted");
     }
 }

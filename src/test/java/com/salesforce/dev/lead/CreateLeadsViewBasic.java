@@ -19,8 +19,10 @@ import org.testng.annotations.Test;
 
 import java.util.Iterator;
 
+import static org.testng.Assert.assertTrue;
+
 /**
- * Created by Ariel Mattos on 06/09/2015.
+ * @author Ariel Mattos on 06/09/2015.
  */
 public class CreateLeadsViewBasic {
 
@@ -65,7 +67,7 @@ public class CreateLeadsViewBasic {
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        leadViewDetail.clickDeleteLnk(true);
+        leadViewDetail.clickDeleteLnk();
         LOGGER.info("Lead View was deleted");
     }
 }

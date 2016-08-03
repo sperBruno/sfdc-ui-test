@@ -10,7 +10,7 @@ import com.salesforce.dev.pages.leads.LeadView;
 import com.salesforce.dev.pages.leads.LeadViewDetail;
 import com.salesforce.dev.pages.leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.objects.LeadGenie;
+import com.salesforce.dev.framework.utils.LeadGenie;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -59,12 +59,11 @@ public class EditLeadsViewBasic {
                 .selectRestrictVisibility(viewSalesForceUpdate.getRestrictVisibility());
         leadViewDetail = leadView.clickSaveBtn();
         Assert.assertTrue(leadViewDetail.validateNameView(viewSalesForceUpdate.getViewName()));
-        LOGGER.info("leads View has been updated");
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        leadViewDetail.clickDeleteLnk(true);
+        leadViewDetail.clickDeleteLnk();
         LOGGER.info("leads View was deleted");
     }
 }

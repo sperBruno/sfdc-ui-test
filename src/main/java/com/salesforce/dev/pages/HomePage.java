@@ -6,9 +6,11 @@ import org.openqa.selenium.support.FindBy;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
+import static com.salesforce.dev.framework.utils.Constants.SALESFORCE_URL;
 
 /**
- * Created by Monica Pardo on 6/12/2015.
+ * @author Monica Pardo on 6/12/2015.
+ * @author Bruno Barrios
  */
 
 public class HomePage extends AbstractBasePage {
@@ -24,7 +26,7 @@ public class HomePage extends AbstractBasePage {
 
     public LoginPage clickLoginBtn() {
         if (!isElementPresent(loginBtn)) {
-            driver.navigate().to("https://www.salesforce.com");
+            driver.navigate().to(SALESFORCE_URL);
             clickWebElement(homePageOptions);
             clickWebElement(loginOption);
         } else {

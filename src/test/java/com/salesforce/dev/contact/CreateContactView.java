@@ -6,6 +6,7 @@ import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
@@ -30,8 +31,6 @@ import static org.testng.Assert.assertFalse;
  * Created by Alexander Apaza on 6/12/2015.
  */
 public class CreateContactView {
-
-    private static final Logger LOGGER = Logger.getLogger(CreateContactView.class.getName());
 
     private ContactsHome contactHome;
 
@@ -89,15 +88,12 @@ public class CreateContactView {
         List<FieldToDisplayView> fieldToDisplayViews = viewSalesForce.getFieldsDisplay();
         for (FieldToDisplayView fields : fieldToDisplayViews)
             contactView = contactView.addNewFieldToDisplay(fields.getFieldToDisplay());
-
         contactViewDetail = contactView.clickSaveBtn();
-        LOGGER.info("Contact was created");
         assertFalse(contactViewDetail.validateNameView("AnyName"));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        contactViewDetail.clickDeleteLnk(true);
-        LOGGER.info("Contact View was deleted");
+        contactViewDetail.clickDeleteLnk();
     }
 }
