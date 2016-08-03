@@ -20,12 +20,12 @@ buildscript {
     repositories {
         jcenter()
         maven {
-            url "http://repo.bodar.com"
+            url 'http://repo.bodar.com'
         }
     }
     dependencies {
         classpath 'de.undercouch:gradle-download-task:1.2'
-        classpath "ru.d10xa:gradle-allure-plugin:0.5.2"
+        classpath 'ru.d10xa:gradle-allure-plugin:0.5.2'
     }
 }
 
@@ -60,16 +60,16 @@ allure {
     spock = false
     geb = false
     clean = true
-    allureResultsDir = "$buildDir/allure-results"
-    allureReportDir = "$buildDir/allure-report"
-    aspectjVersion = "1.8.9"
-    allureVersion = "1.4.24.RC2"
-    allureSpockGebExtensionVersion = "0.2.1"
-    allureJunitAspectjAdaptorVersion = "0.1.0"
+    allureResultsDir = '$buildDir/allure-results'
+    allureReportDir = '$buildDir/allure-report'
+    aspectjVersion = '1.8.9'
+    allureVersion = '1.4.24.RC2'
+    allureSpockGebExtensionVersion = '0.2.1'
+    allureJunitAspectjAdaptorVersion = '0.1.0'
 }
 
 dependencies {
-    compile 'org.seleniumhq.selenium:selenium-java:2.46.0'
+    compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
     compile 'com.force.api:force-wsc:35.0.0'
     compile 'com.force.api:force-partner-api:35.0.0'
     compile 'org.testng:testng:6.9.12'
@@ -77,8 +77,8 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-core:2.5.4'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.4'
     compile 'log4j:log4j:1.2.17'
-    agent "org.aspectj:aspectjweaver:$aspectjVersion"
-    testCompile "ru.yandex.qatools.allure:allure-testng-adaptor:$allureVersion"
+    agent 'org.aspectj:aspectjweaver:$aspectjVersion'
+    testCompile 'ru.yandex.qatools.allure:allure-testng-adaptor:$allureVersion'
 }
 
 
@@ -87,7 +87,7 @@ task runTestNGTestCases(type: Test) {
     useTestNG()
 
     testLogging {
-        events "started", "passed", "failed", "skipped"
+        events 'started', 'passed', 'failed', 'skipped'
         showStandardStreams = true
     }
 
@@ -115,12 +115,12 @@ task runTestNGTestCases(type: Test) {
 
     setProperty('http.proxyHost', proxyHost)
     setProperty('http.proxyPort', proxyPort)
-    
+
     File drivers = new File('./drivers')
     drivers.mkdirs()
 
     task downloadChromeDriver(type: Download) {
-        
+
         src(['http://chromedriver.storage.googleapis.com/2.15/chromedriver_win32.zip'])
         dest drivers
         overwrite true
@@ -135,9 +135,9 @@ task runTestNGTestCases(type: Test) {
     }
 
     task downloadDrivers(type: Copy) {
-        if (browser == "Chrome") {
+        if (browser == 'Chrome') {
             downloadChromeDriver.execute()
-        } else if (browser == "IE") {
+        } else if (browser == 'IE') {
             downloadIEDriver.execute()
         }
 
@@ -150,18 +150,15 @@ task runTestNGTestCases(type: Test) {
         }
     }
 
-    if (browser != "Firefox") {
+    if (browser != 'Firefox') {
         downloadDrivers.execute()
     }
 }
 
-task generateAllureReport(type: ru.d10xa.allure.AllureReportTask){
+task generateAllureReport(type: ru.d10xa.allure.AllureReportTask) {
     dependsOn runTestNGTestCases
-    from(
-            "$buildDir/allure-results",
-
-    )
-    to "$buildDir/nice-report"
+    from '$buildDir/allure-results'
+    to '$buildDir/nice-report'
 }
 
 runTestNGTestCases.finalizedBy generateAllureReport
