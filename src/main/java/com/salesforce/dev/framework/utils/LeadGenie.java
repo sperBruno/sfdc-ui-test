@@ -11,11 +11,10 @@ import com.salesforce.dev.framework.dto.ViewSalesForce;
  */
 public class LeadGenie {
     public static ViewSalesForce getLeadsView(String jsonFile) {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<ViewSalesForce[]> iteratorViewData = dataDrivenManager.getDataView(jsonFile);
+        Iterator<Object[]> iteratorViewData = DataDrivenManager.getObjects(jsonFile, ViewSalesForce.class);
         List<ViewSalesForce[]> listData = new ArrayList<ViewSalesForce[]>();
         while (iteratorViewData.hasNext()) {
-            listData.add(iteratorViewData.next());
+            listData.add((ViewSalesForce[]) iteratorViewData.next());
         }
         ViewSalesForce viewSalesForce = listData.get(0)[0];
         return viewSalesForce;
