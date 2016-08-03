@@ -34,13 +34,13 @@ public class VerifyAllHomeTabs {
 
     private NavigationBar navigationBar;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = {"Smoke"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = {"Smoke"})
     public void testVerifyAllHomeTabs() {
         ChatterHome chatterHome = navigationBar.goToChatterHome();
         assertTrue(chatterHome.IsUserInChatterTab(), "Chatter page not displayed");

@@ -21,12 +21,12 @@ public class LogoutTest {
 
     private MainPage mainPage;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = {"Smoke"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = {"Smoke"})
     public void testLogout() {
         TopHeader topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();
