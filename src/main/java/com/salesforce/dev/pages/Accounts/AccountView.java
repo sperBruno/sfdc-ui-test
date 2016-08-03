@@ -81,8 +81,7 @@ public class AccountView extends ViewBase {
     @Override
     public AccountViewDetail clickSaveBtn() {
         clickSaveButton();
-        return new AccountViewDetail(driver);
-
+        return new AccountViewDetail();
     }
 
     public void addFilter(List<FilterView> additionalField) {
