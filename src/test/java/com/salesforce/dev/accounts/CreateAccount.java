@@ -33,8 +33,7 @@ public class CreateAccount {
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
-        Account account = JSONMapper.getGeneric(Account.class,"CreateAccountBase.json");
-        mapAccount =account.convertToMap();
+       mapAccount =JSONMapper.getGeneric(Account.class,"CreateAccountBase.json").convertToMap();
         mainPage = LoginPage.loginAsPrimaryUser();
     }
 
