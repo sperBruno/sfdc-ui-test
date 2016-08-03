@@ -4,17 +4,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 /**
- * Created by HENRRY on 01/08/2016.
+ * This class initialize the Chrome Selenium Web Driver
+ *
+ * @author Henrry Salinas.
  */
 public class InternetExplorer implements IDriver {
 
-    private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.ie.driver";
+    private static final String WEBDRIVER_IE_DRIVER = "webdriver.ie.driver";
 
     private static final String DRIVER_PATH = "drivers/IEDriverServer.exe";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WebDriver initDriver() {
-        System.setProperty(WEBDRIVER_CHROME_DRIVER, DRIVER_PATH);
+        System.setProperty(WEBDRIVER_IE_DRIVER, DRIVER_PATH);
         return new InternetExplorerDriver();
     }
 }
