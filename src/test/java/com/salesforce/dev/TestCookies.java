@@ -1,10 +1,11 @@
 package com.salesforce.dev;
 
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
@@ -19,12 +20,12 @@ public class TestCookies {
 
     private MainPage mainPage;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = {"Smoke"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = {"Smoke"})
     public void testCookies() {
         TopHeader topHeader = mainPage.gotoTopHeader();
         assertTrue(topHeader.checkIfCookieIsPresent(),"Cookies not found");
