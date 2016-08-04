@@ -36,8 +36,6 @@ public class EditContact {
 
     private static final Integer MY_YEAR = 2015;
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
-
     private Contact contact ;
 
     private ContactsHome contactsHome;
@@ -61,7 +59,7 @@ public class EditContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
-        contact = (Contact) JSON_MAPPER_INSTANCE.getGeneric(new Contact(),"EditContact.json");
+        contact = (Contact) JSONMapper.getGeneric(Contact.class,"EditContact.json");
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
