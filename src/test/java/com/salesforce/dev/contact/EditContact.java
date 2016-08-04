@@ -36,8 +36,6 @@ public class EditContact {
 
     private static final Integer MY_YEAR = 2015;
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
-
     private Contact contact ;
 
     private ContactsHome contactsHome;

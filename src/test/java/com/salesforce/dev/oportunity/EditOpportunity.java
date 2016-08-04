@@ -1,5 +1,6 @@
 package com.salesforce.dev.oportunity;
 
+import com.google.gson.JsonElement;
 import com.salesforce.dev.framework.dto.Opportunity;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -33,8 +34,8 @@ public class EditOpportunity {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(), "CreateOpportunityBase.json");
-        oppEditEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(), "EditOpportunity.json");
+        oppEnum = JSONMapper.getGeneric(Opportunity.class, "CreateOpportunityBase.json");
+        oppEditEnum = JSONMapper.getGeneric(Opportunity.class, "EditOpportunity.json");
 
         ObjectGenie.createOpportunity(oppEnum);
     }
