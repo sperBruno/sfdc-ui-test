@@ -10,7 +10,11 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
 import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
 
 /**
- * Created by Jimmy Vargas on 6/11/2015.
+ * This class will be used to represent the HOme page of SalesForce.
+ *
+ * @author Jimmy Vargas
+ * @author veronica
+ * @since 6/11/2015.
  */
 public abstract class HomeBase extends AbstractBasePage {
     private static final Logger LOGGER = Logger.getLogger(HomeBase.class.getName());
@@ -33,29 +37,21 @@ public abstract class HomeBase extends AbstractBasePage {
 
     /**
      * Method clicks the New button in the home page for each different category
-     *
-     * @author: Jimmy
      */
     protected abstract FormBase clickNewBtn();
 
     /**
      * Method clicks the New Link in the home page for each different category
-     *
-     * @author: veronica
      */
     protected abstract AbstractBasePage clickNewViewLnk();
 
     /**
      * Method clicks the NEdit view in the home page for each different category
-     *
-     * @author: veronica
      */
     protected abstract AbstractBasePage clickEditViewLnk(String value);
 
     /**
      * Method that encapsulates the the operations waiting for the elemeent and the action
-     *
-     * @author: Jimmy
      */
     protected void clickNewButton() {
         try {
@@ -68,8 +64,6 @@ public abstract class HomeBase extends AbstractBasePage {
 
     /**
      * Method that encapsulates the the operations waiting for the elemeent and the action
-     *
-     * @author: veronica
      */
     protected void clickNewViewLink() {
         try {

@@ -19,7 +19,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by Carlos Orellana on 8/22/2015.
+ * This class will be used to test the basic view of the creation of an opportunity.
+ *
+ * @author Carlos Orellana
+ * @since 8/22/2015.
  */
 public class CreateOpportunityViewBasic {
 
@@ -28,9 +31,8 @@ public class CreateOpportunityViewBasic {
     private OpportunityViewDetail opportunityViewDetail;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<ViewSalesForce[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateOpportunityViewBasic.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("CreateOpportunityViewBasic.json", ViewSalesForce.class);
     }
 
     @BeforeMethod(groups = {"Acceptance"})

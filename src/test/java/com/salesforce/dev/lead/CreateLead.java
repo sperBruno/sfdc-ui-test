@@ -1,7 +1,13 @@
 package com.salesforce.dev.lead;
 
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.framework.dto.Lead;
+import com.salesforce.dev.framework.soap.CampaignGenie;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
@@ -14,20 +20,15 @@ import com.salesforce.dev.pages.leads.LeadBuilder;
 import com.salesforce.dev.pages.leads.LeadDetail;
 import com.salesforce.dev.pages.leads.LeadForm;
 import com.salesforce.dev.pages.leads.LeadsHome;
-import com.salesforce.dev.framework.soap.CampaignGenie;
-
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 /**
- * @author Jimmy Vargas on 6/15/2015.
+ * This class will be used to test the creation of a lead.
+ *
+ * @author Jimmy Vargas.
+ * @since 6/15/2015.
  */
 public class CreateLead {
-
-
-
+    
     private NavigationBar navBar;
 
     private Lead lead;
@@ -38,9 +39,7 @@ public class CreateLead {
 
     private String parentCampaign = "CampaignParent";
 
-    private HomePage homePage;
-
-    private MainPage mainPage;
+    private MainPage mainPage; 
 
     private NavigationBar navigationBar;
 

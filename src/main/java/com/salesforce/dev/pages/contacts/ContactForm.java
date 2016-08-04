@@ -10,7 +10,9 @@ import org.openqa.selenium.support.FindBy;
 
 
 /**
- * @author Marcelo.Vargas on 6/12/2015.
+ * This class will be used to represent Contact page and its options.
+ * @author Marcelo.Vargas.
+ * @since 6/12/2015.
  */
 public class ContactForm extends FormBase {
 
@@ -29,7 +31,7 @@ public class ContactForm extends FormBase {
 
     @FindBy(id = "con4_lkwgt")
     @CacheLookup
-    WebElement lookupAccountImg;
+    private WebElement lookupAccountImg;
 
     @FindBy(name = "con4") // lookup
     private WebElement accountNameFld;
@@ -45,7 +47,7 @@ public class ContactForm extends FormBase {
 
     @FindBy(id = "con8_lkwgt")
     @CacheLookup
-    WebElement lookupReportsToImg;
+    private WebElement lookupReportsToImg;
 
     @FindBy(id = "con8") //lookup
     private WebElement reportsToFld;

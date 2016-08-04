@@ -16,7 +16,10 @@ import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 /**
- * Created by Jimmy Vargas on 6/10/2015.
+ * This class will be used to represent Datail opportunity.
+ *
+ * @author Jimmy Vargas
+ * @since 6/10/2015.
  */
 public class OpportunityDetail extends DetailsBase {
 
@@ -108,9 +111,6 @@ public class OpportunityDetail extends DetailsBase {
 
     /**
      * Returns the Opportunity Form
-     *
-     * @author: Jimmy Vargas
-     * @since: 06/13/2015
      */
     public OpportunityForm clickEditBtn() {
         super.clickEditButton();
@@ -119,9 +119,6 @@ public class OpportunityDetail extends DetailsBase {
 
     /**
      * Deletes the Opportunity returning to the opportunities Home
-     *
-     * @author: Jimmy Vargas
-     * @since: 06/13/2015
      */
 
 
@@ -138,9 +135,6 @@ public class OpportunityDetail extends DetailsBase {
 
     /**
      * Deletes the opportunity from its own page
-     *
-     * @author: Jimmy Vargas
-     * @since: 06/13/2015
      */
    
     public String getOpOwner() {

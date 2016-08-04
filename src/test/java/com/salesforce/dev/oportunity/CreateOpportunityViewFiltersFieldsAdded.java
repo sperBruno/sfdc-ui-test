@@ -1,8 +1,5 @@
 package com.salesforce.dev.oportunity;
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.salesforce.dev.framework.dto.FieldToDisplayView;
 import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
@@ -18,10 +15,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Iterator;
+import java.util.List;
+
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by Carlos Orellana on 8/22/2015.
+ * This class will be used to test the filters view of the creation of an opportunity.
+ *
+ * @author Carlos Orellana
+ * @since 8/22/2015.
  */
 public class CreateOpportunityViewFiltersFieldsAdded {
     private NavigationBar navigationBar;
@@ -29,9 +32,8 @@ public class CreateOpportunityViewFiltersFieldsAdded {
     private OpportunityViewDetail opportunityViewDetail;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<ViewSalesForce[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateOpportunityViewFiltersFieldAdded.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("CreateOpportunityViewFiltersFieldAdded.json", ViewSalesForce.class);
     }
 
     @BeforeMethod(groups = {"Acceptance"})

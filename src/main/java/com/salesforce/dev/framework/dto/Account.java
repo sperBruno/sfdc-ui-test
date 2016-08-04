@@ -31,7 +31,8 @@ import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_UPSELL_OPPO
 import static com.salesforce.dev.pages.accounts.AccountSteps.ACCOUNT_WEBSITE;
 
 /**
- * Created by Walter Mercado on 6/24/2015.
+ * @author Walter Mercado
+ * @since 6/24/2015.
  */
 public class Account {
 

@@ -28,7 +28,10 @@ import java.util.List;
 import static org.testng.Assert.assertFalse;
 
 /**
- * Created by Alexander Apaza on 6/12/2015.
+ *This class will be used to test the view of the cretion of a contact.
+ *
+ * @author Alexander Apaza.
+ * @since 6/12/2015.
  */
 public class CreateContactView {
 
@@ -51,9 +54,8 @@ public class CreateContactView {
     private CampaignForm campaignForm;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<ViewSalesForce[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateContactView.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("CreateContactView.json", ViewSalesForce.class);
     }
 
     @BeforeMethod(groups = {"Acceptance"})

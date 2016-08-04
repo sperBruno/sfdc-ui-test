@@ -7,7 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 /**
- * Created by Administrator on 8/20/2015.
+ * This class will be used to represent all base views.
+ *
+ * @author Administrator
+ * @since 8/20/2015.
  */
 public abstract class ViewBase extends AbstractBasePage {
 

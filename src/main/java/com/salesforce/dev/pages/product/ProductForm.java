@@ -9,23 +9,26 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
- * Created by Monica Pardo on 6/10/2015.
+ * This class will be used to represent the form of Products.
+ *
+ * @author Monica Pardo
+ * @since 6/10/2015.
  */
 public class ProductForm extends FormBase {
     @FindBy(id = "Name")
-    WebElement productNameField;
+    private WebElement productNameField;
 
     @FindBy(id = "ProductCode")
-    WebElement productCodeField;
+    private WebElement productCodeField;
 
     @FindBy(id = "Description")
-    WebElement descField;
+    private WebElement descField;
 
     @FindBy(id = "IsActive")
-    WebElement activeOption;
+    private WebElement activeOption;
 
     @FindBy(xpath = "//input[@title='Save']")
-    WebElement saveBtn;
+    private WebElement saveBtn;
 
     private String prodName, prodCode, prodDesc;
     private boolean activeProduct;

@@ -1,7 +1,10 @@
 package com.salesforce.dev.pages.campaigns;
 
 /**
- * Created by mijhailvillarroel on 7/29/2016.
+ * This class will be used by Campaings
+ *
+ * @author mijhailvillarroel
+ * @since 7/29/2016.
  */
 public enum CampaignSteps {
     CAMPAIGN_NAME,

@@ -1,29 +1,32 @@
 package com.salesforce.dev.login;
 
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.TopHeader;
-import org.apache.log4j.Logger;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import static org.junit.Assert.assertTrue;
 
 /**
- * @author Walter on 13/06/2015.
- * @author Luffy on 22/06/2015.
+ * This class will be used to test the logout option of Salesforce web application
+ *
+ * @author Walter.
+ * @author Luffy.
  * @author Bruno Barrios.
+ * @since 13/06/2015.
  */
 public class LogoutTest {
 
     private MainPage mainPage;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = {"Smoke"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = {"Smoke"})
     public void testLogout() {
         TopHeader topHeader = mainPage.gotoTopHeader();
         topHeader.clickUserNameMenu();

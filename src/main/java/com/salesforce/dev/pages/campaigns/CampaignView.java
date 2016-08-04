@@ -95,6 +95,7 @@ public class CampaignView extends ViewBase {
     @Override
     public ViewDetailBase clickSaveBtn() {
         clickSaveButton();
+        LOGGER.info("Campaign View has been updated");
         return new CampaignViewDetail();
     }
 

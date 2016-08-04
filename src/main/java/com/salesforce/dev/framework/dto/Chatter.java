@@ -1,7 +1,8 @@
 package com.salesforce.dev.framework.dto;
 
 /**
- * Created by Veronica Prado on 9/5/2015.
+ * @author Veronica Prado
+ * @since 9/5/2015.
  */
 public class Chatter {
     private String post;

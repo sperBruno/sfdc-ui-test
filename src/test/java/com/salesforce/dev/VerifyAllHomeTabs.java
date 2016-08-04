@@ -26,20 +26,21 @@ import static org.testng.Assert.assertTrue;
 /**
  * This class will test all tabs pages from Salesforce.
  *
- * @author Monica Pardo on 6/24/2015.
+ * @author Monica Pardo.
  * @author Bruno Barrios.
+ * @since 6/24/2015.
  */
 public class VerifyAllHomeTabs {
 
     private NavigationBar navigationBar;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = {"Smoke"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = {"Smoke"})
     public void testVerifyAllHomeTabs() {
         ChatterHome chatterHome = navigationBar.goToChatterHome();
         assertTrue(chatterHome.IsUserInChatterTab(), "Chatter page not displayed");

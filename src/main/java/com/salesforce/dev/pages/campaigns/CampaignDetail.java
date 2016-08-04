@@ -15,11 +15,12 @@ import static com.salesforce.dev.pages.campaigns.CampaignSteps.*;
 
 
 /**
- * Created by Marcelo.Vargas on 13-06-15.
+ * This class will be used to represent Campaing detail page.
+ *
+ * @author Marcelo.Vargas
+ * @since 13-06-15.
  */
 public class CampaignDetail extends DetailsBase {
-
-    private static final Logger LOGGER = Logger.getLogger(CampaignDetail.class.getName());
 
     @FindBy(id = "cpn1_ileinner")
     private WebElement campaignName;
@@ -75,36 +76,60 @@ public class CampaignDetail extends DetailsBase {
         return getTextWebElement(campaignName).substring(0, campaignName.getText().length() - 17);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignType() {
         return getTextWebElement(campaignType);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignStatus() {
         return getTextWebElement(campaignStatus);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignStartDate() {
         return getTextWebElement(campaignStartDate);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignEndDate() {
         return getTextWebElement(campaignEndDate);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignExpectedRevenue() {
         return getTextWebElement(campaignExpectedRevenue);
         //equals("¤" + value);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignBudgetedCost() {
         return getTextWebElement(campaignBudgetedCost);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignActualCost() {
 
         return getTextWebElement(campaignActualCost);
     }
 
+    /**
+     * {@inheritDoc CommonOperation.getTextWebElement}
+     */
     public String validateCampaignExpectedResponse() {
         return getTextWebElement(campaignExpectedResponse);
     }

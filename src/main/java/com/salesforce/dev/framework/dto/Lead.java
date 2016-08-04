@@ -3,7 +3,8 @@ package com.salesforce.dev.framework.dto;
 import com.salesforce.dev.framework.utils.JSONMapper;
 
 /**
- * Created by jimmy vargas on 6/24/2015.
+ * @author jimmy vargas
+ * @since 6/24/2015.
  */
 public class Lead {
     String file;

@@ -14,12 +14,12 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickConfirm
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 
 /**
- * Created by Jimmy Vargas on 6/13/2015.
- * <p>
  * This class will contain the common objects for the Details pages
  *
- * @author: Jimmy Vargas
- * @since: 6/13/2015
+ * @author Jimmy Vargas
+ * @author Walter
+ * @author Mijhail
+ * @since 6/13/2015
  */
 public abstract class DetailsBase extends AbstractBasePage {
 
@@ -39,9 +39,6 @@ public abstract class DetailsBase extends AbstractBasePage {
 
     /**
      * Clicks the Edit button
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
      */
     protected void clickEditButton() {
         try {
@@ -54,9 +51,6 @@ public abstract class DetailsBase extends AbstractBasePage {
 
     /**
      * Clicks delete button
-     *
-     * @author: Walter
-     * @author: Mijhail
      */
     protected void clickDeletedButton() {
         clickWebElement(deleteAccBtn);
@@ -69,24 +63,17 @@ public abstract class DetailsBase extends AbstractBasePage {
 
     /**
      * Returns the corresponding form
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
      */
     protected abstract AbstractBasePage clickEditBtn();
 
 
     /**
      * Return Home page when do click delete button
-     *
-     * @author: Mijhail Villarroel
      */
     public abstract AbstractBasePage clickDeleteButton();
 
     /**
      * Return Map the assertions
-     *
-     * @author: Mijhail Villarroel
      */
     public abstract Map<Enum, Object> getAssertionMap();
 }
