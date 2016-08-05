@@ -1,6 +1,7 @@
 package com.salesforce.dev.framework.dto;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.salesforce.dev.pages.accounts.AccountSteps;
@@ -59,17 +60,29 @@ public class Account {
     private String type;
 
     private String industry;
+
     private Integer employees;
+
     private Integer annualRevenue;
+
     private String sicCode;
+
     private String billingAddress;
+
     private String shippingAddress;
+
     private String customerPriority;
+
     private String sla;
+
     private String upSellOpportunity;
+
     private String active;
+
     private String slaExpirationDate;
+
     private String slaSerialNumber;
+
     private Integer numberOfLocations;
 
     public String getAccountName() {
@@ -265,7 +278,7 @@ public class Account {
     }
 
     public Map<AccountSteps, Object> convertToMap() {
-        Map<AccountSteps, Object> mapAccount = new EnumMap<>(AccountSteps.class);
+        Map<AccountSteps, Object> mapAccount = new HashMap<>();
         mapAccount.put(ACCOUNT_NUMBER, number);
         mapAccount.put(ACCOUNT_SITE, accountSite);
         mapAccount.put(ACCOUNT_TYPE, type);

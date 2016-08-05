@@ -7,21 +7,25 @@ import java.util.List;
  * @since 8/21/2015.
  */
 public class ViewSalesForce {
+
     private String viewName;
+
     private String uniqueViewName;
+
     private String filterByOwner;
+
     private String filterByCampaign;
+
     private List<FilterView> additionalFields;
+
     private List<FieldToDisplayView> fieldsDisplay;
+
     private String restrictVisibility;
-
-
-
-    public ViewSalesForce(){}
 
     public void setViewName(String viewName) {
         this.viewName = viewName;
     }
+
     public void setFilterByOwner(String filterByOwner) {
         this.filterByOwner = filterByOwner;
     }

@@ -15,6 +15,8 @@ import org.testng.annotations.Test;
 
 import java.util.Iterator;
 
+import static com.salesforce.dev.framework.utils.JSONMapper.*;
+
 /**
  * This class will be used to test the edition of a post chatter.
  *
@@ -24,9 +26,8 @@ import java.util.Iterator;
  */
 public class EditPostChatter {
 
-    private static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
-
     private ChatterHome chatterHome;
+
     private Chatter createChatter;
 
     @BeforeMethod(groups = {"Acceptance"})
@@ -50,7 +51,7 @@ public class EditPostChatter {
     }
 
     private Chatter getChatter(String fileJson) {
-        Chatter chatter = (Chatter) JSON_MAPPER_INSTANCE.getGeneric(new Chatter(),fileJson);
+        Chatter chatter = getGeneric(Chatter.class,fileJson);
         return  chatter;
     }
 
