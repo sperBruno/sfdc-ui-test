@@ -22,6 +22,7 @@ public class ContactsHome extends HomeBase {
      *
      * @return ContactForm
      */
+    @Override
     public ContactForm clickNewBtn() {
         clickNewButton();
         return new ContactForm();
@@ -44,13 +45,14 @@ public class ContactsHome extends HomeBase {
         editViewLnk(value);
         return new ContactView();
     }
-
+    
+    @Override
     public ContactDetail selectRecentItem(String opportunity) {
         super.clickRecentItem(opportunity);
         return new ContactDetail();
     }
 
-    public boolean IsUserInContactsTab() {
+    public boolean isUserInContactsTab() {
         return CommonOperation.isWebElementVisible(contactSection);
     }
 }

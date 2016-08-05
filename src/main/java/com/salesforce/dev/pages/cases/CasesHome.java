@@ -21,7 +21,7 @@ public class CasesHome extends AbstractBasePage {
     /**
      * {@inheritDoc CommonOperation.isWebElementVisible}
      */
-    public boolean IsUserInCasesTab() {
+    public boolean isUserInCasesTab() {
         return isWebElementVisible(casesSection);
     }
 }

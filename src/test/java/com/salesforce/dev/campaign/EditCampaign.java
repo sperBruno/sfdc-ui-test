@@ -88,9 +88,7 @@ public class EditCampaign {
 
         Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
         Map<Enum, Object> mapExpected = campaignDetail.getAssertionMap();
-        mapCampaign.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
-        });
+        mapCampaign.keySet().stream().forEach(step -> assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step))));
     }
 
     @AfterMethod(groups = {"Acceptance"})

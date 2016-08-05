@@ -1,8 +1,6 @@
 package com.salesforce.dev.chatter;
 
 import com.salesforce.dev.framework.dto.Chatter;
-import com.salesforce.dev.framework.utils.DataDrivenManager;
-import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
@@ -12,8 +10,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
 
 import static com.salesforce.dev.framework.utils.JSONMapper.*;
 
@@ -42,21 +38,20 @@ public class EditPostChatter {
     }
 
     @Test(groups = {"Acceptance"})
-    public void CreatePostAndComment() {
+    public void createPostAndComment() {
         Chatter chatter = getChatter("EditChatter.json");
         EditPost editPost = chatterHome.editPost(createChatter.getPost());
         editPost.setEditTextBox(chatter.getPost());
         chatterHome = editPost.clickSaveEditBtn();
-        Assert.assertTrue(chatterHome.VerifyPostCreated(chatter.getPost()), "Post has not been Updated");
+        Assert.assertTrue(chatterHome.verifyPostCreated(chatter.getPost()), "Post has not been Updated");
     }
 
     private Chatter getChatter(String fileJson) {
-        Chatter chatter = getGeneric(Chatter.class,fileJson);
-        return  chatter;
+        return getGeneric(Chatter.class,fileJson);
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        chatterHome.DeletePost();
+        chatterHome.deletePost();
     }
 }

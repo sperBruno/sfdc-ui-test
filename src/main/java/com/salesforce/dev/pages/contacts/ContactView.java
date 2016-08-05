@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.base.ViewBase;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -43,13 +42,13 @@ public class ContactView extends ViewBase {
 
     @Override
     public ContactView setViewName(String viewName) {
-        setViewNameFld(viewName+ RandomGenerator.getInstance().getRandomString());
+        setViewNameFld(viewName + RandomGenerator.getInstance().getRandomString());
         return this;
     }
 
     @Override
     public ContactView setUniqueViewName(String uniqueViewName) {
-        setUniqueViewNameFld(uniqueViewName+ RandomGenerator.getInstance().getRandomString());
+        setUniqueViewNameFld(uniqueViewName + RandomGenerator.getInstance().getRandomString());
         return this;
     }
 

@@ -2,10 +2,8 @@ package com.salesforce.dev.pages.base;
 
 import java.util.Map;
 
-import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.MainPage;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

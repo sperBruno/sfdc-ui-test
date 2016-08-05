@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.salesforce.dev.framework.selenium.BrowserStack;
 import org.apache.log4j.Logger;
 
 
@@ -18,6 +17,9 @@ import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JS
 public class JSONMapper {
 
     private static final Logger LOGGER = Logger.getLogger(JSONMapper.class.getSimpleName());
+
+    private JSONMapper() {
+    }
 
     /**
      * Return T generic any class

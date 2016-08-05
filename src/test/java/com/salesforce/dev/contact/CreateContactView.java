@@ -6,7 +6,6 @@ import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.LoginPage;
-import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
@@ -16,7 +15,6 @@ import com.salesforce.dev.pages.contacts.ContactsHome;
 import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.MainPage;
 
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;

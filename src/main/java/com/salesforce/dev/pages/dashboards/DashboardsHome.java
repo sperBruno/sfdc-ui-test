@@ -1,7 +1,6 @@
 package com.salesforce.dev.pages.dashboards;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,7 +20,7 @@ public class DashboardsHome extends AbstractBasePage{
     /**
      * {@inheritDoc CommonOperation.isWebElementVisible}
      */
-    public boolean IsUserInDashboardsTab(){
+    public boolean isUserInDashboardsTab(){
        return isWebElementVisible(dashboardSection);
     }
 

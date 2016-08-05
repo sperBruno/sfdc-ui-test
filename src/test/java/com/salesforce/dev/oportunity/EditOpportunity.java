@@ -1,6 +1,5 @@
 package com.salesforce.dev.oportunity;
 
-import com.google.gson.JsonElement;
 import com.salesforce.dev.framework.dto.Opportunity;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -27,7 +26,9 @@ public class EditOpportunity {
 
     private NavigationBar navBar;
 
-    private Opportunity oppEnum, oppEditEnum;
+    private Opportunity oppEnum;
+
+    private Opportunity oppEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup() {
@@ -60,7 +61,6 @@ public class EditOpportunity {
         opForm.selectDeliveryStatusByVisibleText(oppEditEnum.deliveryStatus);
         opForm.setDescription(oppEditEnum.description);
         OpportunityDetail oppDetail = opForm.clickSaveBtn();
-
         oppDetail.validateFields(oppEditEnum);
     }
 

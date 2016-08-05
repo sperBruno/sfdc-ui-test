@@ -8,13 +8,42 @@ package com.salesforce.dev.pages.opportunities;
  */
 public class OpportunityBuilder {
 
-    protected String opName,accountName,type;
+    protected String opName;
+
+    protected String accountName;
+
+    protected String type;
+
     protected boolean isPrivate;
-    protected String leadSource, orderNumber, currentGenerator, trackingNumber;
-    protected String opDescription,amount,expectedRevenue;
+
+    protected String leadSource;
+
+    protected String orderNumber;
+
+    protected String currentGenerator;
+
+    protected String trackingNumber;
+
+    protected String opDescription;
+
+    protected String amount;
+
+    protected String expectedRevenue;
+
     protected String closeDate;
-    protected String nextStep,stage,probability,primaryCampaignSource,mainCompetidors;
+
+    protected String nextStep;
+
+    protected String stage;
+
+    protected String probability;
+
+    protected String primaryCampaignSource;
+
+    protected String mainCompetidors;
+
     protected String deliveryInstallationStatus;
+
 
 
     public OpportunityBuilder(String opportunityName, String closeDate,String stage){

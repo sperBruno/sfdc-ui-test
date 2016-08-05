@@ -3,7 +3,6 @@ package com.salesforce.dev.pages.product;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @since 6/10/2015.
  */
 public class ProductForm extends FormBase {
+
     @FindBy(id = "Name")
     private WebElement productNameField;
 
@@ -30,7 +30,12 @@ public class ProductForm extends FormBase {
     @FindBy(xpath = "//input[@title='Save']")
     private WebElement saveBtn;
 
-    private String prodName, prodCode, prodDesc;
+    private String prodName;
+
+    private String prodCode;
+
+    private String prodDesc;
+
     private boolean activeProduct;
 
     public ProductForm() {
@@ -54,13 +59,14 @@ public class ProductForm extends FormBase {
         if (prodDesc != null) {
             setProductDesc(prodDesc);
         }
-        if (activeProduct != true) {
+        if (!activeProduct) {
             setProductActive();
         }
 
         return clickSaveBtn();
     }
 
+    @Override
     public ProductDetails clickSaveBtn() {
         saveBtn.click();
         return new ProductDetails();
@@ -97,7 +103,7 @@ public class ProductForm extends FormBase {
 
     }
 
-    public ProductDetails SetProduct(String name, String code, String desc) {
+    public ProductDetails setProduct(String name, String code, String desc) {
         productNameField.sendKeys(name);
         productCodeField.sendKeys(code);
         descField.sendKeys(desc);

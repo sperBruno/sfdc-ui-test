@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 import com.salesforce.dev.framework.dto.FieldToDisplayView;
 import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
-import com.salesforce.dev.framework.selenium.DriverManager;
 import com.salesforce.dev.pages.base.ViewBase;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 
@@ -17,10 +16,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static com.salesforce.dev.framework.selenium.DriverManager.TIMEOUT_NORMAL;
 
 /**
- * Created by veronica on 8/20/2015.
+ * @author veronica on 8/20/2015.
  */
 public class CampaignView extends ViewBase {
-    private List<FieldToDisplayView> fieldToDisplayViews;
 
     private static final Logger LOGGER = Logger.getLogger(CampaignView.class.getName());
 
