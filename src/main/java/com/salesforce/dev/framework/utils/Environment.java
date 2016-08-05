@@ -1,6 +1,7 @@
 package com.salesforce.dev.framework.utils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -13,12 +14,12 @@ import org.apache.log4j.Logger;
  * @since 6/8/2015.
  */
 public class Environment {
-    
-    private static final Logger LOGGER = Logger.getLogger(Environment.class.getName());
-    
+
+    private static final Logger LOGGER = Logger.getLogger(Environment.class.getSimpleName());
+
     private static final String PRIMARY_USER_NAME = "primaryUserName";
 
-    private static final String PRIMARY_USER_PASSWORD = "primaryUserPassword";
+    private static final String PRIMARY_USER_PASS_SECURITY = "primaryUserPassword";
 
     private static final String BROWSER = "browser";
 
@@ -32,7 +33,7 @@ public class Environment {
 
     private static final String KEY = "remoteKey";
 
-    private static final String PRIMARY_USE_PASSWORD_TOKEN = "primaryUsePasswordToken";
+    private static final String PRIMARY_USE_SECURITY_TOKEN = "primaryUsePasswordToken";
 
     private static final String URL_API = "urlApi";
 
@@ -69,9 +70,11 @@ public class Environment {
             properties = new Properties();
             properties.load(fileReader);
             fileReader.close();
+        } catch (FileNotFoundException e) {
+            LOGGER.warn("The properties file couldn't be found", e);
         } catch (IOException e) {
-            LOGGER.warn("Not found the properties file", e);
-        } 
+            LOGGER.warn("A problem of type", e);
+        }
     }
 
     public String getEnv(String key) {
@@ -87,7 +90,7 @@ public class Environment {
     }
 
     public String getPrimaryPassword() {
-        return getEnv(PRIMARY_USER_PASSWORD);
+        return getEnv(PRIMARY_USER_PASS_SECURITY);
     }
 
     public String getBrowser() {
@@ -107,7 +110,7 @@ public class Environment {
     }
 
     public String getPrimaryUserPasswordToken() {
-        return getEnv(PRIMARY_USE_PASSWORD_TOKEN);
+        return getEnv(PRIMARY_USE_SECURITY_TOKEN);
     }
 
     public String getUrlApi() {
@@ -135,11 +138,11 @@ public class Environment {
     }
 
     public String getProxyHost() {
-        return getEnv(PROXY_HOST);
+        return !getEnv(PROXY_HOST).isEmpty()? getEnv(PROXY_HOST):null;
     }
 
     public String getProxyPort() {
-        return getEnv(PROXY_PORT);
+        return !getEnv(PROXY_PORT).isEmpty()? getEnv(PROXY_PORT):null;
     }
 
 }

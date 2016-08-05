@@ -17,7 +17,7 @@ public class ReportsHome extends AbstractBasePage {
     @FindBy(id = "ext-gen3")
     private WebElement reportSection;
 
-    public boolean IsUserInReportsTab() {
+    public boolean isUserInReportsTab() {
         return isWebElementVisible(reportSection);
     }
 

@@ -57,7 +57,7 @@ public class TestListener implements ITestListener {
             LOGGER.info("***Placed screen shot in " + filePath + " ***");
             reportLogScreenshot(myFile);
         } catch (IOException e) {
-            LOGGER.warn("___ catch exception", e);
+            LOGGER.warn("The properties file couldn't be found", e);
         }
     }
 

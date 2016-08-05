@@ -66,9 +66,11 @@ public class SearchLookupBase extends AbstractBasePage{
     public ContactForm goToContactForm() {
         return new ContactForm();
     }
+
     public CampaignForm goToCampaignForm() {
         return new CampaignForm();
     }
+
     public LeadForm goToLeadForm() {
         return new LeadForm();
     }

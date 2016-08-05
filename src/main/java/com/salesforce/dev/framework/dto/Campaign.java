@@ -137,7 +137,7 @@ public class Campaign {
         mapCampaign.put(END_DATE, endDate);
         mapCampaign.put(PARENT_CAMPAIGN, parentCampaign);
         Map<CampaignSteps, Object> mapCampaignWhitOutNull = new EnumMap<>(CampaignSteps.class);
-        mapCampaign.entrySet().stream().forEach((step) -> {
+        mapCampaign.entrySet().stream().forEach(step -> {
             if (!(step.getValue() == null)) {
                 mapCampaignWhitOutNull.put(step.getKey(),step.getValue());
             }

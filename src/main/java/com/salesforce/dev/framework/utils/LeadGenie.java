@@ -8,18 +8,21 @@ import com.salesforce.dev.framework.dto.ViewSalesForce;
 
 /**
  * @author Ariel Mattos
- * @since 07/09/2015.
  * @author DanielGonzales
+ * @since 07/09/2015.
  */
 public class LeadGenie {
+
+    private LeadGenie() {
+    }
+
     public static ViewSalesForce getLeadsView(String jsonFile) {
         Iterator<Object[]> iteratorViewData = DataDrivenManager.getObjects(jsonFile, ViewSalesForce.class);
-        List<ViewSalesForce[]> listData = new ArrayList<ViewSalesForce[]>();
+        List<ViewSalesForce[]> listData = new ArrayList<>();
         while (iteratorViewData.hasNext()) {
             listData.add((ViewSalesForce[]) iteratorViewData.next());
         }
-        ViewSalesForce viewSalesForce = listData.get(0)[0];
-        return viewSalesForce;
+        return listData.get(0)[0];
     }
 
 }

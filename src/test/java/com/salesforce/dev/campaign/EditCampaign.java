@@ -1,5 +1,8 @@
 package com.salesforce.dev.campaign;
 
+import java.util.Iterator;
+import java.util.Map;
+
 import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.framework.soap.CampaignGenie;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
@@ -11,14 +14,12 @@ import com.salesforce.dev.pages.campaigns.CampaignDetail;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignSteps;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
+
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
-import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 
@@ -33,11 +34,17 @@ public class EditCampaign {
     private static final Logger LOGGER = Logger.getLogger(EditCampaign.class.getName());
 
     private String campaignNameToUpdated;
+
     private String campaignParentName;
+
     private CampaignsHome campaignsHome;
+
     private CampaignDetail campaignDetail;
+
     private CampaignForm campaignForm;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
 
     @BeforeMethod(groups = {"Acceptance"})
@@ -88,20 +95,16 @@ public class EditCampaign {
 
         Map<CampaignSteps, Object> mapCampaign = campaign.convertToMap();
         Map<Enum, Object> mapExpected = campaignDetail.getAssertionMap();
-        mapCampaign.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step)));
-        });
+        mapCampaign.keySet().stream().forEach(step -> assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapCampaign.get(step))));
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignDetail.clickDeleteButton();
-        LOGGER.info("Campaign was deleted");
         mainPage = campaignDetail.gotoMainPage();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();
         campaignDetail = campaignsHome.selectRecentItem(campaignParentName);
         campaignDetail.clickDeleteButton();
-        LOGGER.info("Campaign Parent was deleted");
     }
 }

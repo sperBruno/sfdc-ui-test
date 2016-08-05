@@ -42,7 +42,7 @@ public class CreateProduct {
                 .setProductDesc(prodDesc)
                 .setProductActive(true).build();
         productDetails = productForm.saveProduct();
-        assertTrue(productDetails.VerifyProduct(productName), "product Was not Created");
+        assertTrue(productDetails.verifyProduct(productName), "product Was not Created");
     }
 
     @AfterMethod(groups = {"Acceptance"})

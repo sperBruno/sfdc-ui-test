@@ -50,7 +50,7 @@ public class CampaignsHome extends HomeBase {
     /**
      * {@inheritDoc CommonOperation.isWebElementVisible}
      */
-    public boolean IsUserInCampaignsTab(){
+    public boolean isUserInCampaignsTab(){
         return isWebElementVisible(campaignSection);
     }
 }

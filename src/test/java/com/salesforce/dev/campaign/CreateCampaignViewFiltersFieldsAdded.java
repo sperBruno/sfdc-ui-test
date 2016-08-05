@@ -1,24 +1,23 @@
 package com.salesforce.dev.campaign;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.salesforce.dev.framework.dto.FieldToDisplayView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
-import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.campaigns.CampaignView;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
-import org.apache.log4j.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
-import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
@@ -30,13 +29,9 @@ import static org.testng.Assert.assertTrue;
  */
 public class CreateCampaignViewFiltersFieldsAdded {
 
-    private static final Logger LOGGER = Logger.getLogger(CreateCampaignViewFiltersFieldsAdded.class.getName());
-
     private CampaignsHome campaignsHome;
 
     private CampaignView campaignView;
-
-    private HomePage homePage;
 
     private MainPage mainPage;
 
@@ -77,6 +72,5 @@ public class CreateCampaignViewFiltersFieldsAdded {
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         campaignViewDetail.clickDeleteLnk();
-        LOGGER.info("Campaign View was deleted");
     }
 }

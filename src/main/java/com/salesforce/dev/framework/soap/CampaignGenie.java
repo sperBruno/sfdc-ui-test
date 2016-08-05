@@ -26,6 +26,9 @@ public class CampaignGenie {
 
     }
 
+    private CampaignGenie(){
+    }
+
     public static ViewSalesForce getCampaignView(String jsonFile) {
         Iterator<Object[]> iteratorViewData = DataDrivenManager.getObjects(jsonFile, ViewSalesForce.class);
         List<ViewSalesForce[]> listData = new ArrayList<>();

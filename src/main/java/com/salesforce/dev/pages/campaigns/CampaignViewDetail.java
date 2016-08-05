@@ -1,6 +1,5 @@
 package com.salesforce.dev.pages.campaigns;
 
-import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.waitForWebElement;

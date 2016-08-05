@@ -1,17 +1,8 @@
 package com.salesforce.dev.pages.opportunities;
 
-import java.util.concurrent.TimeUnit;
-
-import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 
-import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import static com.salesforce.dev.framework.selenium.CommonOperation.waitForWebElement;
-import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
-import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
 
 /**
  * This class will be used to represent Opportunities view details.

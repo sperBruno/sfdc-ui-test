@@ -2,7 +2,6 @@ package com.salesforce.dev.framework.utils;
 
 /**
  * @author Walter Mercado on 6/22/2015.
- * @since 6/22/2015.
  * @author DanielGonzales
  * @since 7/26/2016.
  */
@@ -48,4 +47,4 @@ public final class DataDrivenManager {
         return objectsArray.iterator();
     }
 
-    }
+}

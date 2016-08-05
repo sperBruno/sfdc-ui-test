@@ -20,7 +20,7 @@ public class ContractsHome extends AbstractBasePage {
     /**
      * {@inheritDoc CommonOperation.isWebElementVisible}
      */
-    public boolean IsUserInContractsTab() {
+    public boolean isUserInContractsTab() {
         return isWebElementVisible(contractsSection);
     }
 

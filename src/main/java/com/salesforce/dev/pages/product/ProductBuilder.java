@@ -8,7 +8,12 @@ package com.salesforce.dev.pages.product;
  */
 public class ProductBuilder {
 
-    private String prodName,prodCode,prodDesc;
+    private String prodName;
+
+    private String prodCode;
+
+    private String prodDesc;
+
     private boolean activeProduct;
 
     public ProductBuilder(String prodName) {
