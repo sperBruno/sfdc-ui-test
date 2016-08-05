@@ -19,6 +19,7 @@ public class ProductDetails extends DetailsBase {
     @FindBy(id = "Name_ileinner")
     private WebElement productNameReg;
 
+    @Override
     public FormBase clickEditBtn() {
         super.clickEditButton();
         return new ProductForm();

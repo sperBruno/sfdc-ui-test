@@ -20,6 +20,7 @@ public class OpportunitiesHome extends HomeBase {
     @CacheLookup
     private WebElement opportunitiesSection;
 
+    @Override
     public OpportunityForm clickNewBtn() {
         clickWebElement(newBtn);
         return new OpportunityForm();
@@ -37,6 +38,7 @@ public class OpportunitiesHome extends HomeBase {
         return new OpportunityView();
     }
 
+    @Override
     public OpportunityDetail selectRecentItem(String opportunity) {
         super.clickRecentItem(opportunity);
         return new OpportunityDetail();
