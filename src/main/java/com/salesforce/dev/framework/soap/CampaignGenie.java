@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.salesforce.dev.framework.utils.DataDrivenManager;
-import com.salesforce.dev.framework.dto.Campaign;
-import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 import org.apache.log4j.Logger;
+
+import com.salesforce.dev.framework.dto.Campaign;
+import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
 
 /**
  * Class to get data related to Campaign
@@ -20,6 +21,10 @@ import org.apache.log4j.Logger;
 public class CampaignGenie {
 
     private static final Logger LOGGER = Logger.getLogger(CampaignGenie.class.getName());
+    
+    private CampaignGenie() {
+
+    }
 
     private CampaignGenie(){
     }

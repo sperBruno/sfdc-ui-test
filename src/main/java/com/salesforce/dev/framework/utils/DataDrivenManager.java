@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -42,10 +41,8 @@ public final class DataDrivenManager {
             for (Object object : objectList) {
                 objectsArray.add(new Object[]{object});
             }
-        } catch (ParseException e) {
-            LOGGER.warn("Parse error", e);
-        } catch (IOException e) {
-            LOGGER.warn("A problem of type", e);
+        } catch (IOException | ParseException e) {
+            LOGGER.warn("Json fails", e);
         }
         return objectsArray.iterator();
     }
