@@ -49,4 +49,132 @@ public class Lead {
     /*Others*/
     private String description;
     private String assignRule;
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getLeadStatus() {
+        return leadStatus;
+    }
+
+    public String getFile() {
+        return file;
+    }
+
+    public JSONMapper getJsonMapper() {
+        return jsonMapper;
+    }
+
+    public String getNameSalutation() {
+        return nameSalutation;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getLeadSource() {
+        return leadSource;
+    }
+
+    public String getCampaign() {
+        return campaign;
+    }
+
+    public String getCampaignLookup() {
+        return campaignLookup;
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public String getAnnualRevenue() {
+        return annualRevenue;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public String getNumEmployees() {
+        return numEmployees;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getStateProvince() {
+        return stateProvince;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getProductInterest() {
+        return productInterest;
+    }
+
+    public String getSICCode() {
+        return SICCode;
+    }
+
+    public String getNumberLocations() {
+        return numberLocations;
+    }
+
+    public String getCurrentGenerators() {
+        return currentGenerators;
+    }
+
+    public String getPrimary() {
+        return primary;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getAssignRule() {
+        return assignRule;
+    }
 }

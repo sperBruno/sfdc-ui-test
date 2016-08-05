@@ -48,7 +48,7 @@ public class ObjectGenie {
         LeadsHome leadsHome = navBar.gotToLeadsHome();
         leadsHome.clickNewBtn();
 
-        LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
+        LeadForm leadForm = new LeadBuilder(lead.getLastName(), lead.getCompany(), lead.getLeadStatus())
                 .build();
         leadForm.clickSaveBtn();
     }

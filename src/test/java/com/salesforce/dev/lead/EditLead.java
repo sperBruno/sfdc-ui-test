@@ -43,29 +43,29 @@ public class EditLead {
     public void testEditLead() {
         mainPage = LoginPage.loginAsPrimaryUser();
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail = leadsHome.openLead(lead.lastName);
+        LeadDetail leadDetail = leadsHome.openLead(lead.getLastName());
         LeadForm leadForm = leadDetail.clickEditBtn();
 
         //editing some fields
-        leadForm.setLastName(leadEditEnum.lastName);
-        leadForm.setPhone(leadEditEnum.phone);
-        leadForm.setWebsite(leadEditEnum.website);
-        leadForm.selectLeadStatusByVisibleText(leadEditEnum.leadStatus);
-        leadForm.setNumEmployees(leadEditEnum.numEmployees);
-        leadForm.selectProductInterestByVisibleText(leadEditEnum.productInterest);
-        leadForm.selectPrimaryByVisibleText(leadEditEnum.primary);
-        leadForm.setDescription(leadEditEnum.description);
+        leadForm.setLastName(leadEditEnum.getLastName());
+        leadForm.setPhone(leadEditEnum.getPhone());
+        leadForm.setWebsite(leadEditEnum.getWebsite());
+        leadForm.selectLeadStatusByVisibleText(leadEditEnum.getLeadStatus());
+        leadForm.setNumEmployees(leadEditEnum.getNumEmployees());
+        leadForm.selectProductInterestByVisibleText(leadEditEnum.getProductInterest());
+        leadForm.selectPrimaryByVisibleText(leadEditEnum.getPrimary());
+        leadForm.setDescription(leadEditEnum.getDescription());
         leadDetail = leadForm.clickSaveBtn();
 
         //assertions
-        Assert.assertEquals(leadDetail.getWebsite(), "http://" + leadEditEnum.website, "The website is not correct");
+        Assert.assertEquals(leadDetail.getWebsite(), "http://" + leadEditEnum.getWebsite(), "The website is not correct");
         leadDetail.validateFields(leadEditEnum);
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.lastName);
+        LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.getLastName());
         leadDetail.clickDeleteButton();
     }
 }
