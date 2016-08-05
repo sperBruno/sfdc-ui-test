@@ -278,7 +278,7 @@ public class Account {
     }
 
     public Map<AccountSteps, Object> convertToMap() {
-        Map<AccountSteps, Object> mapAccount = new HashMap<>();
+        Map<AccountSteps, Object> mapAccount = new EnumMap<>(AccountSteps.class);
         mapAccount.put(ACCOUNT_NUMBER, number);
         mapAccount.put(ACCOUNT_SITE, accountSite);
         mapAccount.put(ACCOUNT_TYPE, type);
