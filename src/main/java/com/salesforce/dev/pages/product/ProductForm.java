@@ -3,6 +3,7 @@ package com.salesforce.dev.pages.product;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,15 +39,15 @@ public class ProductForm extends FormBase {
 
     private boolean activeProduct;
 
-    public ProductForm() {
-    }
-
     public ProductForm(ProductBuilder builder) {
         this.prodName = builder.getProductName();
         this.prodCode = builder.getProductCode();
         this.prodDesc = builder.getProductDesc();
         this.activeProduct = builder.getProductActive();
 
+    }
+
+    public ProductForm() {
     }
 
     public ProductDetails saveProduct() {

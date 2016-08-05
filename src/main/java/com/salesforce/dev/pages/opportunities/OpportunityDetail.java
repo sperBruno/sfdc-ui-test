@@ -142,8 +142,7 @@ public class OpportunityDetail extends DetailsBase {
 
 
     public boolean isPrivate() {
-        String nameCheckBox ="Checked";
-        return nameCheckBox.equalsIgnoreCase(privateCheckBox.getAttribute("title"));
+        return "Checked".equalsIgnoreCase(privateCheckBox.getAttribute("title"));
     }
 
     public String getOpName() {
@@ -242,7 +241,7 @@ public class OpportunityDetail extends DetailsBase {
     }
 
     public Map<OpportunitySteps, Object> getAssertCreateOportunityMap() {
-        Map<OpportunitySteps, Object> assertionOpportunityMap = new EnumMap<>(OpportunitySteps.class);
+        EnumMap<OpportunitySteps, Object> assertionOpportunityMap = new EnumMap<>(OpportunitySteps.class);
         assertionOpportunityMap.put(OpportunitySteps.OPPORTUNITYNAME, getOpName());
         assertionOpportunityMap.put(OpportunitySteps.CLOSEDATE, getCloseDate());
         assertionOpportunityMap.put(OpportunitySteps.STAGE, getStage());

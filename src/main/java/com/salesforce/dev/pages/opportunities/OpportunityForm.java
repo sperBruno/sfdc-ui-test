@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.opportunities;
 
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -18,25 +19,32 @@ public class OpportunityForm extends FormBase {
     @FindBy(id = "opp7")
     @CacheLookup
     private WebElement amountField;
+
     /*Opportunity Information*/
     @FindBy(id = "opp2")
     @CacheLookup
     private WebElement privateCheckBox;
+
     @FindBy(id = "opp3")
     @CacheLookup
     private WebElement opportunityNameField;
+
     @FindBy(id = "opp4")
     @CacheLookup
     private WebElement accountName;
+
     @FindBy(xpath = "//img=[@alt='Account Name Lookup (New Window)']")
     @CacheLookup
     private WebElement accountNameLookup;
+
     @FindBy(id = "opp5")
     @CacheLookup
     private WebElement type;
+
     @FindBy(id = "opp6")
     @CacheLookup
     private WebElement leadSource;
+
     @FindBy(id = "opp9")
     @CacheLookup
     private WebElement closeDateField;
@@ -104,7 +112,6 @@ public class OpportunityForm extends FormBase {
 
         wait.until(ExpectedConditions.elementToBeClickable(saveNewBtn));
 
-        //setting the mandatoryFields for an Opportunity;
         this.setOpportunityName(builder.opName);
         this.setCloseDate(builder.closeDate);
         this.selectStageByVisibleText(builder.stage);
@@ -142,7 +149,7 @@ public class OpportunityForm extends FormBase {
      */
     public void setCloseDate(String closeDate) {
 
-        if (closeDate.equalsIgnoreCase("today")) {
+        if ("today".equalsIgnoreCase(closeDate)) {
             todayLink.click();
         } else {
             String[] date = closeDate.split("/");
@@ -280,12 +287,13 @@ public class OpportunityForm extends FormBase {
         }
     }
 
-
+    @Override
     public OpportunityDetail clickSaveBtn() {
         super.clickSaveButton();
         return new OpportunityDetail();
     }
 
+    @Override
     public OpportunitiesHome clickCancelBtn() {
         super.clickCancelButton();
         return new OpportunitiesHome();

@@ -2,6 +2,7 @@ package com.salesforce.dev.pages.product;
 
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.HomeBase;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,6 +17,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  * @since 6/11/2015.
  */
 public class ProductsHome extends HomeBase {
+
     @FindBy(xpath = "//h1[contains(.,'Products:')]")
     private WebElement productsSection;
 

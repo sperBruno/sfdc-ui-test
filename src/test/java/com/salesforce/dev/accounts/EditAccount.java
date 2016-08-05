@@ -1,5 +1,7 @@
 package com.salesforce.dev.accounts;
 
+import java.util.Map;
+
 import com.salesforce.dev.framework.dto.Account;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
@@ -8,13 +10,12 @@ import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountSteps;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Map;
-
-import static com.salesforce.dev.framework.utils.JSONMapper.*;
+import static com.salesforce.dev.framework.utils.JSONMapper.getGeneric;
 import static org.testng.Assert.assertEquals;
 
 /**
@@ -40,7 +41,7 @@ public class EditAccount {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
-        account = getGeneric(Account.class,"CreateContact.json");
+        account = getGeneric(Account.class, "CreateContact.json");
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();

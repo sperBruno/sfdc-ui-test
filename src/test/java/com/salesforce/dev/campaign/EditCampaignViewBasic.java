@@ -1,5 +1,7 @@
 package com.salesforce.dev.campaign;
 
+import java.util.Iterator;
+
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.soap.CampaignGenie;
 import com.salesforce.dev.framework.utils.DataDrivenManager;
@@ -10,13 +12,10 @@ import com.salesforce.dev.pages.base.ViewDetailBase;
 import com.salesforce.dev.pages.campaigns.CampaignView;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
 
-import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.Iterator;
 
 import static org.testng.Assert.assertTrue;
 
@@ -27,12 +26,17 @@ import static org.testng.Assert.assertTrue;
  * @since 8/22/2015.
  */
 public class EditCampaignViewBasic {
-    private static final Logger LOGGER = Logger.getLogger(EditCampaignViewBasic.class.getName());
+
     private CampaignsHome campaignsHome;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
+
     private CampaignView campaignView;
+
     private String nameView;
+
     private ViewDetailBase campaignViewDetail;
 
     @DataProvider(name = "dataDriven")

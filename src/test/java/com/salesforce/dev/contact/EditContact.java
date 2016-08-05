@@ -14,7 +14,7 @@ import com.salesforce.dev.pages.base.SearchLookupBase;
 import com.salesforce.dev.pages.contacts.ContactDetail;
 import com.salesforce.dev.pages.contacts.ContactForm;
 import com.salesforce.dev.pages.contacts.ContactsHome;
-import org.apache.log4j.Logger;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -32,7 +32,7 @@ public class EditContact {
 
     private static final Integer MY_YEAR = 2015;
 
-    private Contact contact ;
+    private Contact contact;
 
     private ContactsHome contactsHome;
 
@@ -55,7 +55,7 @@ public class EditContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
-        contact = JSONMapper.getGeneric(Contact.class,"EditContact.json");
+        contact = JSONMapper.getGeneric(Contact.class, "EditContact.json");
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();
@@ -80,43 +80,43 @@ public class EditContact {
         contactDetail = contactsHome.selectRecentItem(contact.getLastNameastName());
         contactForm = contactDetail.clickEditBtn();
         contactForm.setLastName(contact.getLastNameastName())
-        .setFirstNameRole(contact.getcontactRole())
-        .setFirstName(contact.getFirstName());
+                .setFirstNameRole(contact.getcontactRole())
+                .setFirstName(contact.getFirstName());
 
         searchLookup = contactForm.clickLookupAccount();
         searchLookup.searchText(contact.getAccountName());
         contactForm = searchLookup.goToContactForm();
 
         contactForm.setTitle(contact.getTitle())
-        .setDepartment(contact.getDepartment())
-        .setBirthDate(Calendar.MONTH, Calendar.DAY_OF_MONTH, MY_YEAR);
+                .setDepartment(contact.getDepartment())
+                .setBirthDate(Calendar.MONTH, Calendar.DAY_OF_MONTH, MY_YEAR);
 
         searchLookup = contactForm.clickLookupReportsTo();
         searchLookup.searchText(contact.getReportsTo());
         contactForm = searchLookup.goToContactForm();
 
         contactForm.setLeadSource(contact.getLeadSource())
-        .setPhone(contact.getPhone())
-        .setHomePhone(contact.getHomePhone())
-        .setMobile(contact.getMobile())
-        .setOtherPhone(contact.getOtherPhone())
-        .setFax(contact.getFax())
-        .setEmail(contact.getEmail())
-        .setAssistant(contact.getassistant())
-        .setAssistantPhone(contact.getAssistantPhone())
-        .setMailingStreet(contact.getMailingStreet())
-        .setMailingCity(contact.getMailingCity())
-        .setMailingState(contact.getMailingState())
-        .setMailingZip(contact.getMailingZip())
-        .setMailingCountry(contact.getMailingCountry())
-        .setOtherStreet(contact.getOtherStreet())
-        .setOtherCity(contact.getOtherCity())
-        .setOtherState(contact.getOtherState())
-        .setOtherZip(contact.getOtherZip())
-        .setOtherCountry(contact.getOtherCountry())
-        .setLanguages(contact.getLanguages())
-        .setLevel(contact.getLevel())
-        .setDescription(contact.getDescription());
+                .setPhone(contact.getPhone())
+                .setHomePhone(contact.getHomePhone())
+                .setMobile(contact.getMobile())
+                .setOtherPhone(contact.getOtherPhone())
+                .setFax(contact.getFax())
+                .setEmail(contact.getEmail())
+                .setAssistant(contact.getassistant())
+                .setAssistantPhone(contact.getAssistantPhone())
+                .setMailingStreet(contact.getMailingStreet())
+                .setMailingCity(contact.getMailingCity())
+                .setMailingState(contact.getMailingState())
+                .setMailingZip(contact.getMailingZip())
+                .setMailingCountry(contact.getMailingCountry())
+                .setOtherStreet(contact.getOtherStreet())
+                .setOtherCity(contact.getOtherCity())
+                .setOtherState(contact.getOtherState())
+                .setOtherZip(contact.getOtherZip())
+                .setOtherCountry(contact.getOtherCountry())
+                .setLanguages(contact.getLanguages())
+                .setLevel(contact.getLevel())
+                .setDescription(contact.getDescription());
         contactDetail = contactForm.clickSaveBtn();
 
         assertTrue(contactDetail.validateContactName(String.format("%s %s %s", contact.getcontactRole(), contact.getFirstName(), contact.getLastNameastName())));

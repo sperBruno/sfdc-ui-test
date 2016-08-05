@@ -1,32 +1,31 @@
 package com.salesforce.dev.contact;
 
-import com.salesforce.dev.framework.utils.DataDrivenManager;
+import java.util.Iterator;
+import java.util.List;
+
 import com.salesforce.dev.framework.dto.FieldToDisplayView;
 import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.LoginPage;
+import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.campaigns.CampaignForm;
 import com.salesforce.dev.pages.campaigns.CampaignsHome;
 import com.salesforce.dev.pages.contacts.ContactView;
 import com.salesforce.dev.pages.contacts.ContactViewDetail;
 import com.salesforce.dev.pages.contacts.ContactsHome;
-import com.salesforce.dev.pages.HomePage;
-import com.salesforce.dev.pages.MainPage;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Iterator;
-import java.util.List;
-
 import static org.testng.Assert.assertFalse;
 
 /**
- *This class will be used to test the view of the cretion of a contact.
+ * This class will be used to test the view of the cretion of a contact.
  *
  * @author Alexander Apaza.
  * @since 6/12/2015.
@@ -36,8 +35,6 @@ public class CreateContactView {
     private ContactsHome contactHome;
 
     private ContactView contactView;
-
-    private HomePage homePage;
 
     private ContactViewDetail contactViewDetail;
 
