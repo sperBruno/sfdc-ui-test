@@ -62,7 +62,6 @@ task runTestNGTestCases(type: Test) {
         excludeGroups(excludeGroup)
         listeners << 'org.uncommons.reportng.HTMLReporter'
         listeners << 'org.uncommons.reportng.JUnitXMLReporter'
-
     }
 
     systemProperties.put('primaryUserName', primaryUserName)
@@ -79,9 +78,8 @@ task runTestNGTestCases(type: Test) {
     systemProperties.put('remotePlatform', remoteBrowser)
     systemProperties.put('remoteBrowserVersion', remoteBrowser)
 
-
-    setProperty('http.proxyHost', proxyHost)
-    setProperty('http.proxyPort', proxyPort)
+    systemProperties.put('http.proxyHost', proxyHost)
+    systemProperties.put('http.proxyPort', proxyPort)
 
     File drivers = new File('./drivers')
     drivers.mkdirs()
