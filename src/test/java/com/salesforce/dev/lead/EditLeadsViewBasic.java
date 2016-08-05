@@ -11,7 +11,7 @@ import com.salesforce.dev.pages.leads.LeadViewDetail;
 import com.salesforce.dev.pages.leads.LeadsHome;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.framework.utils.LeadGenie;
-import org.apache.log4j.Logger;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,11 +25,17 @@ import org.testng.annotations.Test;
  * @since 07/09/2015.
  */
 public class EditLeadsViewBasic {
+
     private LeadsHome leadsHome;
+
     private MainPage mainPage;
+
     private NavigationBar navigationBar;
+
     private LeadView leadView;
+
     private String viewName;
+
     private LeadViewDetail leadViewDetail;
 
     @DataProvider(name = "dataDriven")

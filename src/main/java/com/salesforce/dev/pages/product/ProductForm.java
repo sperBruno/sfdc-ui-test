@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * @since 6/10/2015.
  */
 public class ProductForm extends FormBase {
+
     @FindBy(id = "Name")
     private WebElement productNameField;
 
@@ -30,7 +31,11 @@ public class ProductForm extends FormBase {
     @FindBy(xpath = "//input[@title='Save']")
     private WebElement saveBtn;
 
-    private String prodName, prodCode, prodDesc;
+    private String prodName;
+
+    private String prodCode;
+
+    private String prodDesc;
 
     private boolean activeProduct;
 
@@ -42,7 +47,8 @@ public class ProductForm extends FormBase {
 
     }
 
-    public ProductForm() {}
+    public ProductForm() {
+    }
 
     public ProductDetails saveProduct() {
         if (prodName != null) {
@@ -54,7 +60,7 @@ public class ProductForm extends FormBase {
         if (prodDesc != null) {
             setProductDesc(prodDesc);
         }
-        if (activeProduct != true) {
+        if (!activeProduct) {
             setProductActive();
         }
 
@@ -98,7 +104,7 @@ public class ProductForm extends FormBase {
 
     }
 
-    public ProductDetails SetProduct(String name, String code, String desc) {
+    public ProductDetails setProduct(String name, String code, String desc) {
         productNameField.sendKeys(name);
         productCodeField.sendKeys(code);
         descField.sendKeys(desc);

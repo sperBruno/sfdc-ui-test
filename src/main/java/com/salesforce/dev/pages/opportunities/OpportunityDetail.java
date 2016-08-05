@@ -121,8 +121,6 @@ public class OpportunityDetail extends DetailsBase {
     /**
      * Deletes the Opportunity returning to the opportunities Home
      */
-
-
     @Override
     public HomeBase clickDeleteButton() {
         clickDeletedButton();
@@ -236,9 +234,9 @@ public class OpportunityDetail extends DetailsBase {
                 }
             }
         } catch (IllegalArgumentException e) {
-            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e.getMessage()));
+            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e));
         } catch (IllegalAccessException e) {
-            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e.getMessage()));
+            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e));
         }
     }
 

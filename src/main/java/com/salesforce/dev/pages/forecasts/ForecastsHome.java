@@ -18,9 +18,10 @@ public class ForecastsHome extends AbstractBasePage {
 
     /**
      * {@inheritDoc}
+     *
      * @return
      */
-    public boolean IsUserInForecastsTab() {
+    public boolean isUserInForecastsTab() {
         return isWebElementVisible(forecastSection);
     }
 

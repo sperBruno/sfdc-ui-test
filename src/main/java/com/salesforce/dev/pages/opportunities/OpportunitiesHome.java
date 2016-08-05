@@ -57,7 +57,7 @@ public class OpportunitiesHome extends HomeBase {
     }
 
 
-    public boolean IsUserInOpportunitiesTab() {
+    public boolean isUserInOpportunitiesTab() {
         return isElementPresent(opportunitiesSection);
     }
 }

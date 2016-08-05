@@ -37,10 +37,10 @@ public class ProductDetails extends DetailsBase {
     }
 
 
-    public boolean VerifyProduct(String nameValue) {
-        String NameProductForm = productNameReg.getText();
+    public boolean verifyProduct(String nameValue) {
+        String nameProductForm = productNameReg.getText();
 
-        if (NameProductForm.equals(nameValue)) {
+        if (nameProductForm.equals(nameValue)) {
             return true;
         }
         return false;

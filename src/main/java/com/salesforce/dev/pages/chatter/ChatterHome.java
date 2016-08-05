@@ -2,6 +2,8 @@ package com.salesforce.dev.pages.chatter;
 
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -19,6 +21,8 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElemen
  * @since 6/13/2015.
  */
 public class ChatterHome extends AbstractBasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(ChatterHome.class.getName());
 
     @FindBy(id = "publisherAttachTextPost")
     private WebElement postLink;
@@ -84,8 +88,8 @@ public class ChatterHome extends AbstractBasePage {
         return this;
     }
 
-    public ChatterHome clickCommentForPost(String PostValue) {
-        driver.findElement(By.xpath("//div[@id='feedwrapper']/descendant::span[contains(.,'" + PostValue + "')]/following::a[contains(.,'Comment')]")).click();
+    public ChatterHome clickCommentForPost(String postValue) {
+        driver.findElement(By.xpath("//div[@id='feedwrapper']/descendant::span[contains(.,'" + postValue + "')]/following::a[contains(.,'Comment')]")).click();
         return this;
     }
 
@@ -101,7 +105,7 @@ public class ChatterHome extends AbstractBasePage {
         return this;
     }
 
-    public ChatterHome DeletePost() {
+    public ChatterHome deletePost() {
         postMenu.click();
         deletePostOption.click();
         Alert alert2 = driver.switchTo().alert();
@@ -109,29 +113,31 @@ public class ChatterHome extends AbstractBasePage {
         return this;
     }
 
-    public boolean VerifyPostCreated(String post) {
+    public boolean verifyPostCreated(String post) {
         try {
             WebElement postValuePage = driver.findElement(By.xpath("//div[@id='feedwrapper']/descendant::span[contains(.,'" + post + "')]"));
             wait.until(ExpectedConditions.visibilityOf(postValuePage));
             return true;
         } catch (WebDriverException e) {
+            LOGGER.error("Web element Verify Post Created not found", e);
             return false;
         }
 
     }
 
-    public boolean VerifyCommentCreated(String comment) {
+    public boolean verifyCommentCreated(String comment) {
         try {
 
             WebElement commentValuePage = driver.findElement(By.xpath("//div[@class='feeditemcommentbody']/descendant::span[contains(.,'" + comment + "')]"));
             wait.until(ExpectedConditions.visibilityOf(commentValuePage));
             return true;
         } catch (WebDriverException e) {
+            LOGGER.error("Web element Verify Comment Created not found", e);
             return false;
         }
     }
 
-    public boolean IsUserInChatterTab() {
+    public boolean isUserInChatterTab() {
         return CommonOperation.isWebElementVisible(postSection);
     }
 

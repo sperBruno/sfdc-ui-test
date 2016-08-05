@@ -5,8 +5,6 @@ import java.util.HashMap;
 
 import com.salesforce.dev.pages.base.DetailsBase;
 import com.salesforce.dev.pages.base.HomeBase;
-import com.salesforce.dev.pages.MainPage;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -128,8 +126,7 @@ public class AccountDetail extends DetailsBase {
     }
 
     public String getAccountNameFld() {
-        String realValue = accountNameFld.getText().substring(0, accountNameFld.getText().length() - 17);
-        return realValue;
+        return accountNameFld.getText().substring(0, accountNameFld.getText().length() - 17);
     }
 
     public String getAccountNumberFld() {

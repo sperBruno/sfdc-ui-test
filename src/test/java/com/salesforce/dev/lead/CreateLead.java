@@ -9,7 +9,6 @@ import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.framework.soap.CampaignGenie;
 import com.salesforce.dev.framework.utils.JSONMapper;
-import com.salesforce.dev.pages.HomePage;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.DetailsBase;
@@ -79,7 +78,7 @@ public class CreateLead {
                 .setZipPostalCode(lead.getZipCode())
                 .setCountry(lead.getCountry())
                 .setProductInterest(lead.getProductInterest())
-                .setSICcode(lead.getSICCode())
+                .setSicCode(lead.getSicCode())
                 .setNumberLocations(lead.getNumberLocations())
                 .setCurrentGenerators(lead.getCurrentGenerators())
                 .setPrimary(lead.getPrimary())

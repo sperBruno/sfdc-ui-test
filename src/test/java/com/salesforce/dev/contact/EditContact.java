@@ -55,7 +55,7 @@ public class EditContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
-        contact = (Contact) JSONMapper.getGeneric(Contact.class, "EditContact.json");
+        contact = JSONMapper.getGeneric(Contact.class, "EditContact.json");
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();

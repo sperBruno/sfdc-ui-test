@@ -1,5 +1,6 @@
 package com.salesforce.dev.pages.base;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElem
  */
 public abstract class FormBase extends AbstractBasePage {
 
+    private static final Logger LOGGER = Logger.getLogger(FormBase.class.getName());
     public static final int TIME_SLEEP_MILLIS = 200;
 
     @FindBy(name = "save")
@@ -67,7 +69,7 @@ public abstract class FormBase extends AbstractBasePage {
     }
 
     protected void selectItemComboBox(WebElement webElement, String value) {
-        if (value.equals(null)) {
+        if (value == null) {
             throw new IllegalArgumentException("The value cannot be null");
         }
         try {
@@ -75,21 +77,23 @@ public abstract class FormBase extends AbstractBasePage {
             Select comboBox = new Select(webElement);
             comboBox.selectByVisibleText(value);
         } catch (WebDriverException e) {
-            throw new WebDriverException("The value " + value + "couldn't be selected");
+            throw new WebDriverException("The value " + value + "couldn't be selected", e);
         }
     }
 
     protected void fillTextBox(WebElement webElement, String value) {
-        if (value.equals(null)) {
+        if (value == null) {
             throw new IllegalArgumentException("The value cannot be null.");
         }
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
+
         try {
             Thread.sleep(TIME_SLEEP_MILLIS);
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
+            LOGGER.warn("Interrupted!", e);
+            Thread.currentThread().interrupt();
         }
-
         webElement.sendKeys(value);
     }
 }

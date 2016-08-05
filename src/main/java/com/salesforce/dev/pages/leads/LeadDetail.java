@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages.leads;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import com.salesforce.dev.framework.dto.Lead;
@@ -97,7 +97,7 @@ public class LeadDetail extends DetailsBase {
 
     @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::div")
     @CacheLookup
-    private WebElement SICcode;
+    private WebElement sicCode;
 
     @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::div")
     @CacheLookup
@@ -200,8 +200,8 @@ public class LeadDetail extends DetailsBase {
         return productInterest.getText();
     }
 
-    public String getSICcode() {
-        return SICcode.getText();
+    public String getSicCode() {
+        return sicCode.getText();
     }
 
     public String getNumLocations() {
@@ -233,6 +233,7 @@ public class LeadDetail extends DetailsBase {
         return lastModifiedBy.getText();
     }
 
+    @Override
     public LeadForm clickEditBtn() {
         super.clickEditButton();
         return new LeadForm();
@@ -262,14 +263,14 @@ public class LeadDetail extends DetailsBase {
                 }
             }
         } catch (IllegalArgumentException e) {
-            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e.getMessage()));
+            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e));
         } catch (IllegalAccessException e) {
-            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e.getMessage()));
+            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e));
         }
     }
 
     public Map<LeadSteps, Object> getAssertCreateLeadMap() {
-        Map<LeadSteps, Object> assertionLeadMap = new HashMap<>();
+        Map<LeadSteps, Object> assertionLeadMap = new EnumMap<>(LeadSteps.class);
         assertionLeadMap.put(LeadSteps.LASTNAME, getName());
         assertionLeadMap.put(LeadSteps.COMPANY, getCompany());
         assertionLeadMap.put(LeadSteps.TITLE, getTitle());
@@ -283,7 +284,7 @@ public class LeadDetail extends DetailsBase {
         assertionLeadMap.put(LeadSteps.RATING, getRating());
         assertionLeadMap.put(LeadSteps.NUMEMPLOYEES, getNumEmployees());
         assertionLeadMap.put(LeadSteps.PRODUCTINTEREST, getProductInterest());
-        assertionLeadMap.put(LeadSteps.SICCODE, getSICcode());
+        assertionLeadMap.put(LeadSteps.SICCODE, getSicCode());
         assertionLeadMap.put(LeadSteps.NUMBERLOCATIONS, getNumLocations());
         assertionLeadMap.put(LeadSteps.DESCRIPTION, getDescription());
         assertionLeadMap.put(LeadSteps.CURRENTGENERATORS, getCurrentGenerators());

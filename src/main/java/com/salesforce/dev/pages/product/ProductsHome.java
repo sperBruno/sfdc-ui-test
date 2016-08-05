@@ -41,18 +41,19 @@ public class ProductsHome extends HomeBase {
         clickWebElement(newBtn);
         return new ProductForm();
     }
+
     @Override
     public ProductDetails selectRecentItem(String value) {
         clickRecentItem(value);
         return new ProductDetails();
     }
 
-    public ProductDetails OpenProduct(String nameProduct) {
+    public ProductDetails openProduct(String nameProduct) {
         super.driver.findElement(By.xpath("//a[contains(.,'" + nameProduct + "')]")).click();
         return new ProductDetails();
     }
 
-    public boolean IsUserInProductsTab() {
+    public boolean isUserInProductsTab() {
         return isElementPresent(productsSection);
     }
 

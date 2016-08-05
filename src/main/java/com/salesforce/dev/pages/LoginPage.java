@@ -67,12 +67,12 @@ public class LoginPage extends AbstractBasePage {
         return loginBtn.isDisplayed();
     }
 
-    public void setUserName(String Name) {
-        setWebElement(userNameFld, Name);
+    public void setUserName(String name) {
+        setWebElement(userNameFld, name);
     }
 
-    public void setPassword(String Password) {
-        setWebElement(passwordFld, Password);
+    public void setPassword(String password) {
+        setWebElement(passwordFld, password);
     }
 
 

@@ -15,14 +15,12 @@ import org.apache.log4j.Logger;
 public class APIConnector {
 
     private static final Logger LOGGER = Logger.getLogger(APIConnector.class.getName());
+
     private static APIConnector instance;
-    private ConnectorConfig config;
+
     private PartnerConnection connection;
-    private String primaryUserName = Environment.getInstance().getPrimaryUser();
-    private String primaryUserPasswordToken = Environment.getInstance().getPrimaryUserPasswordToken();
-    private String urlApi = Environment.getInstance().getUrlApi();
-    private String proxyHost = Environment.getInstance().getProxyHost();
-    private String proxyPort = Environment.getInstance().getProxyPort();
+
+    private final Environment environmentInstance = Environment.getInstance();
 
     private APIConnector() {
         this.initializer();
@@ -36,18 +34,13 @@ public class APIConnector {
     }
 
     private void initializer() {
-        config = new ConnectorConfig();
-        if (!(proxyHost.isEmpty() || (proxyHost.equals(null) && proxyPort.isEmpty()) || proxyPort.equals(null))) {
-            config.setUsername(primaryUserName);
-            config.setPassword(primaryUserPasswordToken);
-            config.setAuthEndpoint(urlApi);
-            config.setServiceEndpoint(urlApi);
-            config.setProxy(proxyHost, Integer.valueOf(proxyPort));
-        } else {
-            config.setUsername(primaryUserName);
-            config.setPassword(primaryUserPasswordToken);
-            config.setAuthEndpoint(urlApi);
-            config.setServiceEndpoint(urlApi);
+        ConnectorConfig config = new ConnectorConfig();
+        config.setUsername(environmentInstance.getPrimaryUser());
+        config.setPassword(environmentInstance.getPrimaryUserPasswordToken());
+        config.setAuthEndpoint(environmentInstance.getUrlApi());
+        config.setServiceEndpoint(environmentInstance.getUrlApi());
+        if (environmentInstance.getProxyHost() != null && environmentInstance.getProxyPort() != null) {
+            config.setProxy(environmentInstance.getProxyHost(), Integer.valueOf(environmentInstance.getProxyPort()));
         }
         try {
             connection = com.sforce.soap.partner.Connector.newConnection(config);
