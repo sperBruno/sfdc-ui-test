@@ -9,16 +9,60 @@ package com.salesforce.dev.pages.leads;
 public class LeadBuilder {
 
     /*attributes for the lead information*/
-    protected String salutation, firstName, lastName, company, title;
-    protected String leadSource, campaign, industry, annualRevenue;
-    protected String phone, mobile, fax, email, website, leadStatus, rating;
+    protected String salutation;
+
+    protected String firstName;
+
+    protected String lastName;
+
+    protected String company;
+
+    protected String title;
+
+    protected String leadSource;
+
+    protected String campaign;
+
+    protected String industry;
+
+    protected String annualRevenue;
+
+    protected String phone;
+
+    protected String mobile;
+
+    protected String fax;
+
+    protected String email;
+
+    protected String website;
+
+    protected String leadStatus;
+
+    protected String rating;
+
     protected String numEmployees;
 
     /*attributes for the address information*/
-    protected String street, city, stateProvince, zipPostalCode,country;
+    protected String street;
+
+    protected String city;
+
+    protected String stateProvince;
+
+    protected String zipPostalCode;
+
+    protected String country;
 
     /*attributes for the additional information*/
-    protected String productInterest, SICcode, currentGenerators,primary;
+    protected String productInterest;
+
+    protected String sicCode;
+
+    protected String currentGenerators;
+
+    protected String primary;
+
     protected String numberLocations;
 
     /*description information*/
@@ -135,8 +179,8 @@ public class LeadBuilder {
         return this;
     }
 
-    public LeadBuilder setSICcode(String SICcode){
-        this.SICcode = SICcode;
+    public LeadBuilder setSicCode(String sicCode){
+        this.sicCode = sicCode;
         return this;
     }
 

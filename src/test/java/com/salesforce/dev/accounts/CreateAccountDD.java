@@ -54,9 +54,7 @@ public class CreateAccountDD {
         accountDetail = accountForm.clickSaveBtn();
         Map<AccountSteps, Object> mapExpected = account.convertToMap();
         Map<Enum, Object> mapActual = accountDetail.getAssertionMap();
-        mapExpected.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step)));
-        });
+        mapExpected.keySet().stream().forEach(step -> assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step))));
     }
 
     @AfterMethod(groups = {"Acceptance"})

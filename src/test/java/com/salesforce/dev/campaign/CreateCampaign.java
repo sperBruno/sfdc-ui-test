@@ -70,9 +70,7 @@ public class CreateCampaign {
         campaignDetail = campaignForm.clickSaveBtn();
         Map<CampaignSteps, Object> mapExpected = campaign.convertToMap();
         Map<Enum, Object> mapActual = campaignDetail.getAssertionMap();
-        mapExpected.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step)));
-        });
+        mapExpected.keySet().stream().forEach(step -> assertEquals(String.valueOf(mapActual.get(step)), String.valueOf(mapExpected.get(step))));
     }
 
     @AfterMethod(groups = {"Acceptance"})

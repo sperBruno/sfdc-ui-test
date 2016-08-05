@@ -1,7 +1,7 @@
 package com.salesforce.dev.pages.opportunities;
 
 import java.lang.reflect.Field;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -112,6 +112,7 @@ public class OpportunityDetail extends DetailsBase {
     /**
      * Returns the Opportunity Form
      */
+    @Override
     public OpportunityForm clickEditBtn() {
         super.clickEditButton();
         return new OpportunityForm();
@@ -120,8 +121,6 @@ public class OpportunityDetail extends DetailsBase {
     /**
      * Deletes the Opportunity returning to the opportunities Home
      */
-
-
     @Override
     public HomeBase clickDeleteButton() {
         clickDeletedButton();
@@ -143,7 +142,8 @@ public class OpportunityDetail extends DetailsBase {
 
 
     public boolean isPrivate() {
-        return privateCheckBox.getAttribute("title").equalsIgnoreCase("Checked");
+        String nameCheckBox ="Checked";
+        return nameCheckBox.equalsIgnoreCase(privateCheckBox.getAttribute("title"));
     }
 
     public String getOpName() {
@@ -235,14 +235,14 @@ public class OpportunityDetail extends DetailsBase {
                 }
             }
         } catch (IllegalArgumentException e) {
-            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e.getMessage()));
+            LOGGER.info(String.format("Illegal argument exception on validate field method: %s", e));
         } catch (IllegalAccessException e) {
-            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e.getMessage()));
+            LOGGER.info(String.format("Illegal access exception on validate field method: %s", e));
         }
     }
 
     public Map<OpportunitySteps, Object> getAssertCreateOportunityMap() {
-        Map<OpportunitySteps, Object> assertionOpportunityMap = new HashMap<>();
+        Map<OpportunitySteps, Object> assertionOpportunityMap = new EnumMap<>(OpportunitySteps.class);
         assertionOpportunityMap.put(OpportunitySteps.OPPORTUNITYNAME, getOpName());
         assertionOpportunityMap.put(OpportunitySteps.CLOSEDATE, getCloseDate());
         assertionOpportunityMap.put(OpportunitySteps.STAGE, getStage());

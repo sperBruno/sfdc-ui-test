@@ -1,7 +1,6 @@
 package com.salesforce.dev.accounts;
 
 import com.salesforce.dev.framework.dto.Account;
-import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.accounts.AccountDetail;
@@ -58,14 +57,10 @@ public class EditAccount {
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountForm = accountDetail.clickEditBtn();
         Map<AccountSteps, Object> mapAccount = account.convertToMap();
-        mapAccount.keySet().stream().forEach((step) -> {
-            accountForm.getStrategyStepMap(mapAccount).get(step).executeStep();
-        });
+        mapAccount.keySet().stream().forEach(step -> accountForm.getStrategyStepMap(mapAccount).get(step).executeStep());
         accountDetail = accountForm.clickSaveBtn();
         Map<Enum, Object> mapExpected = accountDetail.getAssertionMap();
-        mapAccount.keySet().stream().forEach((step) -> {
-            assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step)));
-        });
+        mapAccount.keySet().stream().forEach(step -> assertEquals(String.valueOf(mapExpected.get(step)), String.valueOf(mapAccount.get(step))));
     }
 
     @AfterMethod(groups = {"Acceptance"})

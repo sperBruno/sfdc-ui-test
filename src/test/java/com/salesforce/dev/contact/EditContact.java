@@ -2,12 +2,10 @@ package com.salesforce.dev.contact;
 
 import java.util.Calendar;
 
-import com.salesforce.dev.framework.dto.Account;
 import com.salesforce.dev.framework.dto.Contact;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.DetailsBase;
@@ -17,7 +15,6 @@ import com.salesforce.dev.pages.contacts.ContactDetail;
 import com.salesforce.dev.pages.contacts.ContactForm;
 import com.salesforce.dev.pages.contacts.ContactsHome;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -32,7 +29,6 @@ import static org.testng.Assert.assertTrue;
  */
 
 public class EditContact {
-    private static final Logger LOGGER = Logger.getLogger(EditContact.class.getName());
 
     private static final Integer MY_YEAR = 2015;
 
@@ -59,7 +55,7 @@ public class EditContact {
     @BeforeMethod(groups = {"Acceptance"})
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
-        contact = (Contact) JSONMapper.getGeneric(Contact.class,"EditContact.json");
+        contact = JSONMapper.getGeneric(Contact.class,"EditContact.json");
         navigationBar = mainPage.gotoNavBar();
         accountsHome = navigationBar.goToAccountsHome();
         accountForm = accountsHome.clickNewBtn();

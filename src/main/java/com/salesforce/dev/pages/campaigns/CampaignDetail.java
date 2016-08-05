@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.getTextWebElement;
 import static com.salesforce.dev.pages.campaigns.CampaignSteps.*;
@@ -68,6 +67,7 @@ public class CampaignDetail extends DetailsBase {
         return new CampaignsHome();
     }
 
+    @Override
     public MainPage gotoMainPage() {
         return new MainPage();
     }
@@ -106,10 +106,10 @@ public class CampaignDetail extends DetailsBase {
 
     /**
      * {@inheritDoc CommonOperation.getTextWebElement}
+     * "¤"
      */
     public String validateCampaignExpectedRevenue() {
         return getTextWebElement(campaignExpectedRevenue);
-        //equals("¤" + value);
     }
 
     /**
@@ -142,6 +142,7 @@ public class CampaignDetail extends DetailsBase {
         return getTextWebElement(campaignParent);
     }
 
+    @Override
     public Map<Enum, Object> getAssertionMap() {
         Map<Enum, Object> assertionMap = new HashMap<>();
         assertionMap.put(CAMPAIGN_NAME, validateCampaignNameFld());

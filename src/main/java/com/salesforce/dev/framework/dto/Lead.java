@@ -41,7 +41,7 @@ public class Lead {
 
     /*additional information*/
     private String productInterest;
-    private String SICCode;
+    private String sicCode;
     private String numberLocations;
     private String currentGenerators;
     private String primary;
@@ -154,8 +154,8 @@ public class Lead {
         return productInterest;
     }
 
-    public String getSICCode() {
-        return SICCode;
+    public String getSicCode() {
+        return sicCode;
     }
 
     public String getNumberLocations() {

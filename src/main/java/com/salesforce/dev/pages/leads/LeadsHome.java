@@ -17,10 +17,12 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElement
  * @since 6/5/2015.
  */
 public class LeadsHome extends HomeBase {
+
     @FindBy(xpath = "//h1[contains(.,'Leads:')]")
     @CacheLookup
     private WebElement leadSection;
 
+    @Override
     public LeadForm clickNewBtn() {
         super.clickNewButton();
         return new LeadForm();
@@ -38,6 +40,7 @@ public class LeadsHome extends HomeBase {
         return new LeadView();
     }
 
+    @Override
     public Object selectRecentItem(String item) {
         super.clickRecentItem(item);
         return new LeadsHome();
@@ -57,7 +60,7 @@ public class LeadsHome extends HomeBase {
         return new LeadDetail();
     }
 
-    public boolean IsUserInLeadsTab() {
+    public boolean isUserInLeadsTab() {
         return isWebElementVisible(leadSection);
     }
 
