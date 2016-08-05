@@ -28,7 +28,7 @@ public class CreatePost {
     }
 
     @Test(groups = {"Acceptance"})
-    public void CreatePostAndComment() {
+    public void createPostAndComment() {
         final String post = "Post test";
         final String comment = "new comment";
         chatterHome = navigationBar.goToChatterHome()
@@ -38,12 +38,12 @@ public class CreatePost {
                 .clickCommentForPost(post)
                 .setComment(comment)
                 .clickCommentBtn();
-        assertTrue(chatterHome.VerifyPostCreated(post), "Post Was not Created");
-        assertTrue(chatterHome.VerifyCommentCreated(comment), "Comment Was not Created");
+        assertTrue(chatterHome.verifyPostCreated(post), "Post Was not Created");
+        assertTrue(chatterHome.verifyCommentCreated(comment), "Comment Was not Created");
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
-        chatterHome.DeletePost();
+        chatterHome.deletePost();
     }
 }

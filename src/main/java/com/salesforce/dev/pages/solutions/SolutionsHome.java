@@ -22,7 +22,7 @@ public class SolutionsHome extends AbstractBasePage {
      *
      * @return true if so and false if not.
      */
-    public boolean IsUserInSolutionsTab() {
+    public boolean isUserInSolutionsTab() {
         return isWebElementVisible(solutionSection);
     }
 

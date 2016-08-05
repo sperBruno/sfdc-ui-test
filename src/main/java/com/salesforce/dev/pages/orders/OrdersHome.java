@@ -16,7 +16,7 @@ public class OrdersHome extends AbstractBasePage {
     @FindBy(xpath = "//h1[contains(.,'Orders:')]")
     private WebElement ordersSection;
 
-    public boolean IsUserInOrdersTab() {
+    public boolean isUserInOrdersTab() {
         return CommonOperation.isWebElementVisible(ordersSection);
     }
 

@@ -51,7 +51,6 @@ public class TopHeader extends AbstractBasePage {
             driver.manage().timeouts().implicitlyWait(TEN_SECONDS, SECONDS);
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {
-            e = new WebDriverException(e);
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
         } finally {
             driver.manage().timeouts().implicitlyWait(FIFTEEN_SECONDS, SECONDS);

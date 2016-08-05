@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.Campaign;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
+import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -20,27 +21,27 @@ import org.apache.log4j.Logger;
 public class CampaignGenie {
 
     private static final Logger LOGGER = Logger.getLogger(CampaignGenie.class.getName());
+    
+    private CampaignGenie() {
+
+    }
 
     public static ViewSalesForce getCampaignView(String jsonFile) {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<ViewSalesForce[]> iteratorViewData = dataDrivenManager.getDataView(jsonFile);
+        Iterator<Object[]> iteratorViewData = DataDrivenManager.getObjects(jsonFile, ViewSalesForce.class);
         List<ViewSalesForce[]> listData = new ArrayList<>();
         while (iteratorViewData.hasNext()) {
-            listData.add(iteratorViewData.next());
+            listData.add((ViewSalesForce[]) iteratorViewData.next());
         }
-        ViewSalesForce viewSalesForce = listData.get(0)[0];
-        return viewSalesForce;
+        return listData.get(0)[0];
     }
 
     public static Campaign getCampaign() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        Iterator<Campaign[]> iteratorCampaignData = dataDrivenManager.getCampaign("CreateCampaign.json");
+        Iterator<Object[]> iteratorCampaignData = DataDrivenManager.getObjects("CreateCampaign.json", Campaign.class);
         List<Campaign[]> listData = new ArrayList<>();
         while (iteratorCampaignData.hasNext()) {
-            listData.add(iteratorCampaignData.next());
+            listData.add((Campaign[]) iteratorCampaignData.next());
         }
-        Campaign campaign = listData.get(0)[0];
-        return campaign;
+        return listData.get(0)[0];
     }
 
     public static void createParentCampaign(String nameCampaign) {

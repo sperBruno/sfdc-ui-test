@@ -48,7 +48,7 @@ public class AccountsHome extends HomeBase {
         return this;
     }
 
-    public boolean IsUserInAccountsTab() {
+    public boolean isUserInAccountsTab() {
         return isWebElementVisible(accountSection);
     }
 }

@@ -5,17 +5,14 @@ import java.util.List;
 
 import com.salesforce.dev.framework.utils.DataDrivenManager;
 import com.salesforce.dev.framework.dto.FieldToDisplayView;
-import com.salesforce.dev.framework.dto.FilterView;
 import com.salesforce.dev.framework.dto.ViewSalesForce;
 import com.salesforce.dev.framework.utils.RandomGenerator;
 import com.salesforce.dev.pages.accounts.AccountView;
-import com.salesforce.dev.pages.accounts.AccountViewDetail;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.NavigationBar;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.ViewDetailBase;
-import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
@@ -41,9 +38,8 @@ public class CreateAccountViewFiltersFieldsAdded {
     private ViewDetailBase accountViewDetail;
 
     @DataProvider(name = "dataDriven")
-    public Iterator<ViewSalesForce[]> getValues() {
-        DataDrivenManager dataDrivenManager = new DataDrivenManager();
-        return dataDrivenManager.getDataView("CreateAccountsViewFiltersFieldAdded.json");
+    public Iterator<Object[]> getValues() {
+        return DataDrivenManager.getObjects("CreateAccountsViewFiltersFieldAdded.json", ViewSalesForce.class);
     }
 
     @Test(groups = {"Acceptance"}, dataProvider = "dataDriven")

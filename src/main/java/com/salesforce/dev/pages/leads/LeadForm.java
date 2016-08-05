@@ -117,7 +117,7 @@ public class LeadForm extends FormBase {
 
     @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::input")
     @CacheLookup
-    private WebElement SICcode;
+    private WebElement sicCode;
 
     @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::input")
     @CacheLookup
@@ -141,7 +141,6 @@ public class LeadForm extends FormBase {
     private WebElement assignRule;
 
     public LeadForm() {
-
     }
 
     public LeadForm(LeadBuilder builder) {
@@ -179,7 +178,7 @@ public class LeadForm extends FormBase {
 
         //additional information
         this.selectProductInterestByVisibleText(builder.productInterest);
-        this.setSICcode(builder.SICcode);
+        this.setSicCode(builder.sicCode);
         this.setNumLocations(builder.numberLocations);
         this.setCurrentGenerators(builder.currentGenerators);
         this.selectPrimaryByVisibleText(builder.primary);
@@ -255,6 +254,7 @@ public class LeadForm extends FormBase {
     public void setPhone (String phone) {
         if (phone != null) {
             fillTextBox (this.phone, phone);
+
         }
     }
 
@@ -334,9 +334,9 @@ public class LeadForm extends FormBase {
         }
     }
 
-    public void setSICcode (String SICcode) {
-        if (SICcode != null) {
-            fillTextBox (this.SICcode, SICcode);
+    public void setSicCode(String sicCode) {
+        if (sicCode != null) {
+            fillTextBox (this.sicCode, sicCode);
         }
 
     }
@@ -383,6 +383,7 @@ public class LeadForm extends FormBase {
         selectItemComboBox(this.leadStatus, leadStatus);
     }
 
+    @Override
     public LeadDetail clickSaveBtn() {
         super.clickSaveButton();
         return new LeadDetail();
@@ -393,6 +394,7 @@ public class LeadForm extends FormBase {
         return new LeadForm();
     }
 
+    @Override
     public LeadsHome clickCancelBtn() {
         super.clickCancelButton();
         return new LeadsHome();

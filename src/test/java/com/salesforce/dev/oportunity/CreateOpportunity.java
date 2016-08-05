@@ -1,5 +1,9 @@
 package com.salesforce.dev.oportunity;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import com.salesforce.dev.framework.dto.Opportunity;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -10,9 +14,6 @@ import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
 import com.salesforce.dev.pages.opportunities.OpportunityBuilder;
 import com.salesforce.dev.pages.opportunities.OpportunityDetail;
 import com.salesforce.dev.pages.opportunities.OpportunityForm;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 /**
  * This class will be used to test the creation of an Opportunity in Salesforce web application.
@@ -22,7 +23,7 @@ import org.testng.annotations.Test;
  */
 public class CreateOpportunity {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
+
 
     private MainPage mainPage;
 
@@ -34,7 +35,7 @@ public class CreateOpportunity {
     public void setUp() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
-        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(),"CreateOpportunityBase.json");
+        oppEnum = JSONMapper.getGeneric(Opportunity.class,"CreateOpportunityBase.json");
     }
 
     @Test(groups = {"Acceptance"})

@@ -34,54 +34,54 @@ public class VerifyAllHomeTabs {
 
     private NavigationBar navigationBar;
 
-    @BeforeMethod(groups = {"Acceptance"})
+    @BeforeMethod(groups = {"Smoke"})
     public void setUp() {
         MainPage mainPage = LoginPage.loginAsPrimaryUser();
         navigationBar = mainPage.gotoNavBar();
     }
 
-    @Test(groups = {"Acceptance"})
+    @Test(groups = {"Smoke"})
     public void testVerifyAllHomeTabs() {
         ChatterHome chatterHome = navigationBar.goToChatterHome();
-        assertTrue(chatterHome.IsUserInChatterTab(), "Chatter page not displayed");
+        assertTrue(chatterHome.isUserInChatterTab(), "Chatter page not displayed");
 
         CampaignsHome campaignsHome = navigationBar.goToCampaignsHome();
-        assertTrue(campaignsHome.IsUserInCampaignsTab(), "Campaings page not displayed");
+        assertTrue(campaignsHome.isUserInCampaignsTab(), "Campaings page not displayed");
 
         LeadsHome leadsHome = navigationBar.gotToLeadsHome();
-        assertTrue(leadsHome.IsUserInLeadsTab(), "lead page not displayed");
+        assertTrue(leadsHome.isUserInLeadsTab(), "lead page not displayed");
 
         AccountsHome accountsHome = navigationBar.goToAccountsHome();
-        assertTrue(accountsHome.IsUserInAccountsTab(), "Accounts page not displayed");
+        assertTrue(accountsHome.isUserInAccountsTab(), "Accounts page not displayed");
 
         ContactsHome contactsHome = navigationBar.goToContactsHome();
-        assertTrue(contactsHome.IsUserInContactsTab(), "Contacts page not displayed");
+        assertTrue(contactsHome.isUserInContactsTab(), "Contacts page not displayed");
 
         OpportunitiesHome opportunitiesHome = navigationBar.goToOpportunitiesHome();
-        assertTrue(opportunitiesHome.IsUserInOpportunitiesTab(), "Opportunities page not displayed");
+        assertTrue(opportunitiesHome.isUserInOpportunitiesTab(), "Opportunities page not displayed");
 
         ForecastsHome forecastsHome = navigationBar.goToForesCastsHome();
-        assertTrue(forecastsHome.IsUserInForecastsTab(), "Forecasts page not displayed");
+        assertTrue(forecastsHome.isUserInForecastsTab(), "Forecasts page not displayed");
 
         ContractsHome contractsHome = navigationBar.goToContractsHome();
-        assertTrue(contractsHome.IsUserInContractsTab(), "Contracts page not displayed");
+        assertTrue(contractsHome.isUserInContractsTab(), "Contracts page not displayed");
 
         OrdersHome ordersHome = navigationBar.goToOrdersHome();
-        assertTrue(ordersHome.IsUserInOrdersTab(), "Orders page not displayed");
+        assertTrue(ordersHome.isUserInOrdersTab(), "Orders page not displayed");
 
         CasesHome casesHome = navigationBar.goToCasesHome();
-        assertTrue(casesHome.IsUserInCasesTab(), "Cases page not displayed");
+        assertTrue(casesHome.isUserInCasesTab(), "Cases page not displayed");
 
         SolutionsHome solutionsHome = navigationBar.goToSolutionsHome();
-        assertTrue(solutionsHome.IsUserInSolutionsTab(), "Solutions page not displayed");
+        assertTrue(solutionsHome.isUserInSolutionsTab(), "Solutions page not displayed");
 
         ProductsHome productsHome = navigationBar.goToProductsHome();
-        assertTrue(productsHome.IsUserInProductsTab(), "Products page not displayed");
+        assertTrue(productsHome.isUserInProductsTab(), "Products page not displayed");
 
         ReportsHome reportsHome = navigationBar.goToReportsHome();
-        assertTrue(reportsHome.IsUserInReportsTab(), "Reports page not displayed");
+        assertTrue(reportsHome.isUserInReportsTab(), "Reports page not displayed");
 
         DashboardsHome dashboardsHome = navigationBar.goToDashboardsHome();
-        assertTrue(dashboardsHome.IsUserInDashboardsTab(), "Dashboard page not displayed");
+        assertTrue(dashboardsHome.isUserInDashboardsTab(), "Dashboard page not displayed");
     }
 }

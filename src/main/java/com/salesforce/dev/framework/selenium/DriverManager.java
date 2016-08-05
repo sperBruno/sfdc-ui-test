@@ -1,14 +1,13 @@
 package com.salesforce.dev.framework.selenium;
 
-import com.salesforce.dev.framework.utils.Environment;
+import java.util.concurrent.TimeUnit;
 
+import com.salesforce.dev.framework.utils.Environment;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 import static com.salesforce.dev.framework.utils.Constants.SALESFORCE_URL;
 
@@ -18,7 +17,7 @@ import static com.salesforce.dev.framework.utils.Constants.SALESFORCE_URL;
  */
 public class DriverManager {
 
-    public static final int TIMEOUT_NORMAL = 30;
+    public static final int TIMEOUT_NORMAL = 15;
 
     private static final Logger LOGGER = Logger.getLogger(DriverManager.class.getSimpleName());
 

@@ -5,10 +5,8 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.salesforce.dev.framework.dto.Account;
-import com.salesforce.dev.framework.dto.Contact;
-import com.salesforce.dev.framework.dto.Lead;
-import com.salesforce.dev.framework.dto.Opportunity;
+import org.apache.log4j.Logger;
+
 
 import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JSON;
 
@@ -16,19 +14,11 @@ import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JS
  * @author jimmy vargas on 6/22/2015.
  * @author Mijhail Villarroel
  */
-public class JSONMapper<T> {
+public class JSONMapper {
 
-    private static JSONMapper instance;
+    private static final Logger LOGGER = Logger.getLogger(JSONMapper.class.getSimpleName());
 
-
-    private JSONMapper () {
-    }
-
-    public static  JSONMapper getInstance() {
-        if(instance == null){
-            instance = new JSONMapper();
-        }
-        return instance;
+    private JSONMapper() {
     }
 
     /**
@@ -38,15 +28,16 @@ public class JSONMapper<T> {
      * @param nameJson Path of a json.
      * @return
      */
-    public  T getGeneric(T elementClass, String nameJson) {
-        final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson) ;
+    public  static <T> T getGeneric(Class<T> elementClass, String nameJson) {
+        final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson);
+        Object result = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
-            elementClass = mapper.readValue(new File(pathFileJson), (Class<T>) elementClass.getClass());
+             result =mapper.readValue(new File(pathFileJson), elementClass);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.warn("File not found", e);
         }
-        return elementClass;
+        return (T)result;
     }
 
 

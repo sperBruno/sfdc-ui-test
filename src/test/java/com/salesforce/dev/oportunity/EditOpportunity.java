@@ -22,21 +22,21 @@ import org.testng.annotations.Test;
  */
 public class EditOpportunity {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
-
     private MainPage mainPage;
 
     private NavigationBar navBar;
 
-    private Opportunity oppEnum, oppEditEnum;
+    private Opportunity oppEnum;
+
+    private Opportunity oppEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup() {
         mainPage = LoginPage.loginAsPrimaryUser();
         navBar = mainPage.gotoNavBar();
 
-        oppEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(), "CreateOpportunityBase.json");
-        oppEditEnum = (Opportunity) JSON_MAPPER_INSTANCE.getGeneric(new Opportunity(), "EditOpportunity.json");
+        oppEnum = JSONMapper.getGeneric(Opportunity.class, "CreateOpportunityBase.json");
+        oppEditEnum = JSONMapper.getGeneric(Opportunity.class, "EditOpportunity.json");
 
         ObjectGenie.createOpportunity(oppEnum);
     }
@@ -61,7 +61,6 @@ public class EditOpportunity {
         opForm.selectDeliveryStatusByVisibleText(oppEditEnum.deliveryStatus);
         opForm.setDescription(oppEditEnum.description);
         OpportunityDetail oppDetail = opForm.clickSaveBtn();
-
         oppDetail.validateFields(oppEditEnum);
     }
 

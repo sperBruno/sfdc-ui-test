@@ -1,8 +1,8 @@
 package com.salesforce.dev.pages.product;
 
-import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.HomeBase;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +17,7 @@ import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPre
  * @since 6/11/2015.
  */
 public class ProductsHome extends HomeBase {
+
     @FindBy(xpath = "//h1[contains(.,'Products:')]")
     private WebElement productsSection;
 
@@ -35,22 +36,24 @@ public class ProductsHome extends HomeBase {
         return null;
     }
 
+    @Override
     public ProductForm clickNewBtn() {
         clickWebElement(newBtn);
         return new ProductForm();
     }
 
+    @Override
     public ProductDetails selectRecentItem(String value) {
         clickRecentItem(value);
         return new ProductDetails();
     }
 
-    public ProductDetails OpenProduct(String nameProduct) {
+    public ProductDetails openProduct(String nameProduct) {
         super.driver.findElement(By.xpath("//a[contains(.,'" + nameProduct + "')]")).click();
         return new ProductDetails();
     }
 
-    public boolean IsUserInProductsTab() {
+    public boolean isUserInProductsTab() {
         return isElementPresent(productsSection);
     }
 

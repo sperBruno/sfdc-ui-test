@@ -17,13 +17,13 @@ import java.util.concurrent.TimeUnit;
 import static com.salesforce.dev.framework.selenium.DriverManager.TIMEOUT_NORMAL;
 
 /**
- *This class will be used to perform some common operation through pages.
+ * This class will be used to perform some common operation through pages.
  *
  * @author dante
  * @since 6/14/2016.
  */
 public class CommonOperation {
-    
+
     private static final WebDriverWait WAIT = DriverManager.getInstance().getWait();
 
     private static final WebDriver DRIVER = DriverManager.getInstance().getDriver();
@@ -38,12 +38,14 @@ public class CommonOperation {
             webElement.getTagName();
             return true;
         } catch (WebDriverException e) {
+            LOGGER.info("Element not found", e);
             return false;
         }
     }
 
     /**
      * this method sets a webelement textbox.
+     *
      * @param webElement
      * @param text
      */
@@ -54,6 +56,7 @@ public class CommonOperation {
 
     /**
      * This method click on a web element.
+     *
      * @param webElement
      */
     public static void clickWebElement(WebElement webElement) {
@@ -81,6 +84,7 @@ public class CommonOperation {
 
     /**
      * this method verifies whether a webelement is visible.
+     *
      * @param webElement
      * @return true if so and false if not
      */
@@ -90,12 +94,14 @@ public class CommonOperation {
             WAIT.until(ExpectedConditions.visibilityOf(webElement));
             return true;
         } catch (WebDriverException e) {
+            LOGGER.info("Web element not visible", e);
             return false;
         }
     }
 
     /**
      * This mehod wait for a web element
+     *
      * @param webElement
      */
     public static void waitForWebElement(WebElement webElement) {
@@ -108,8 +114,10 @@ public class CommonOperation {
             WAIT.withTimeout(TIMEOUT_NORMAL, TimeUnit.SECONDS);
         }
     }
+
     /**
      * This method gets the text of a web element.
+     *
      * @param webElement
      * @return the text of a web element.
      */
@@ -120,6 +128,7 @@ public class CommonOperation {
 
     /**
      * This method moves the scroll of the web browser.
+     *
      * @param driver
      * @param webElement
      * @param horizontal
@@ -132,6 +141,7 @@ public class CommonOperation {
 
     /**
      * this method get the first option of a combo box
+     *
      * @param webElement
      * @return
      */

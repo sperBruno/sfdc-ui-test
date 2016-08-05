@@ -52,7 +52,7 @@ public class EditProduct {
                 .setProductDesc(prodNewDesc).build();
         productForm.setProductActive();
         productDetails = productForm.saveProduct();
-        Assert.assertTrue(productDetails.VerifyProduct(productNewName), "product Name was not updated");
+        Assert.assertTrue(productDetails.verifyProduct(productNewName), "product Name was not updated");
 
     }
 

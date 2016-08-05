@@ -1,5 +1,6 @@
 package com.salesforce.dev.lead;
 
+import org.testng.Assert;
 import com.salesforce.dev.framework.dto.Lead;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
@@ -12,9 +13,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 /**
  * This class will be used to test the edition of a lead.
  *
@@ -23,56 +21,48 @@ import static org.testng.Assert.assertTrue;
  */
 public class EditLead {
 
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
-
     private MainPage mainPage;
 
-    private Lead lead, leadEditEnum;
+    private Lead lead;
+
+    private Lead leadEditEnum;
 
     @BeforeMethod(groups = {"Acceptance"})
     public void setup() {
-        lead = lead = (Lead) JSON_MAPPER_INSTANCE.getGeneric(new Lead(),"CreateLeadBase.json");
-        leadEditEnum = (Lead) JSON_MAPPER_INSTANCE.getGeneric(new Lead(),"EditLead.json");
+        lead = JSONMapper.getGeneric(Lead.class,"CreateLeadBase.json");
+        leadEditEnum = JSONMapper.getGeneric(Lead.class,"EditLead.json");
 
         //Creating a lead
         ObjectGenie.createLead(lead);
-
     }
 
     @Test(groups = {"Acceptance"})
     public void testEditLead() {
         mainPage = LoginPage.loginAsPrimaryUser();
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail = leadsHome.openLead(lead.lastName);
+        LeadDetail leadDetail = leadsHome.openLead(lead.getLastName());
         LeadForm leadForm = leadDetail.clickEditBtn();
 
         //editing some fields
-        leadForm.setLastName(leadEditEnum.lastName);
-        leadForm.setPhone(leadEditEnum.phone);
-        leadForm.setWebsite(leadEditEnum.website);
-        leadForm.selectLeadStatusByVisibleText(leadEditEnum.leadStatus);
-        leadForm.setNumEmployees(leadEditEnum.numEmployees);
-        leadForm.selectProductInterestByVisibleText(leadEditEnum.productInterest);
-        leadForm.selectPrimaryByVisibleText(leadEditEnum.primary);
-        leadForm.setDescription(leadEditEnum.description);
+        leadForm.setLastName(leadEditEnum.getLastName());
+        leadForm.setPhone(leadEditEnum.getPhone());
+        leadForm.setWebsite(leadEditEnum.getWebsite());
+        leadForm.selectLeadStatusByVisibleText(leadEditEnum.getLeadStatus());
+        leadForm.setNumEmployees(leadEditEnum.getNumEmployees());
+        leadForm.selectProductInterestByVisibleText(leadEditEnum.getProductInterest());
+        leadForm.selectPrimaryByVisibleText(leadEditEnum.getPrimary());
+        leadForm.setDescription(leadEditEnum.getDescription());
         leadDetail = leadForm.clickSaveBtn();
 
         //assertions
-        assertTrue(leadDetail.getName().contains(leadEditEnum.lastName), "The actual name doesn't contain the lastname" + lead.lastName);
-        assertEquals(leadDetail.getCompany(), leadEditEnum.company, "The company is not equal");
-        assertEquals(leadDetail.getPhone(), leadEditEnum.phone, "The phone is not equal");
-        assertEquals(leadDetail.getWebsite(), "http://" + leadEditEnum.website, "The website is not equal");
-        assertEquals(leadDetail.getLeadStatus(), leadEditEnum.leadStatus, "The lead is not equal");
-        assertEquals(leadDetail.getNumEmployees(), leadEditEnum.numEmployees, "The number of employees is not equal");
-        assertEquals(leadDetail.getProductInterest(), leadEditEnum.productInterest, "The product interest is not equal");
-        assertEquals(leadDetail.getPrimary(), leadEditEnum.primary, "The primary is not equal");
-        assertEquals(leadDetail.getDescription(), leadEditEnum.description, "The description is not correct");
+        Assert.assertEquals(leadDetail.getWebsite(), "http://" + leadEditEnum.getWebsite(), "The website is not correct");
+        leadDetail.validateFields(leadEditEnum);
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.lastName);
+        LeadDetail leadDetail = leadsHome.openLead(leadEditEnum.getLastName());
         leadDetail.clickDeleteButton();
     }
 }

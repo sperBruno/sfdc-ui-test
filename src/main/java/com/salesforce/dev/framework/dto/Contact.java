@@ -39,7 +39,7 @@ public class Contact {
     private String languages ;
     private String level ; 
     private String description ;
-    public Contact(){}
+
     public String getcontactRole() {
         return contactRole;
     }

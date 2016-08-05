@@ -6,7 +6,6 @@ import com.salesforce.dev.framework.dto.Contact;
 import com.salesforce.dev.framework.utils.JSONMapper;
 import com.salesforce.dev.pages.LoginPage;
 import com.salesforce.dev.pages.MainPage;
-import com.salesforce.dev.pages.accounts.AccountDetail;
 import com.salesforce.dev.pages.accounts.AccountForm;
 import com.salesforce.dev.pages.accounts.AccountsHome;
 import com.salesforce.dev.pages.base.DetailsBase;
@@ -32,8 +31,6 @@ import org.testng.annotations.Test;
 public class CreateContact {
 
     private static final Logger LOGGER = Logger.getLogger(CreateContact.class.getName());
-
-    public static final JSONMapper JSON_MAPPER_INSTANCE = JSONMapper.getInstance();
 
     private ContactsHome contactsHome;
 
@@ -72,7 +69,7 @@ public class CreateContact {
         navigationBar = mainPage.gotoNavBar();
         contactsHome = navigationBar.goToContactsHome();
         contactForm = contactsHome.clickNewBtn();
-        Contact contact = (Contact) JSON_MAPPER_INSTANCE.getGeneric(new Contact(),"CreateAccountBase.json");
+        Contact contact = JSONMapper.getGeneric(Contact.class,"CreateAccountBase.json");
         contactForm.setFirstNameRole(contact.getcontactRole())
                 .setFirstName(contact.getcontactRole())
                 .setFirstName(contact.getFirstName())
@@ -126,6 +123,5 @@ public class CreateContact {
         accountsHome = navigationBar.goToAccountsHome();
         accountDetail = accountsHome.selectRecentItem(accountName);
         accountDetail.clickDeleteButton();
-
     }
 }

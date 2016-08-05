@@ -18,6 +18,8 @@ public class UserInformation {
 
     private static final String CONNECTION_TO_API_FAILED = "Connection to api failed";
 
+    private UserInformation(){
+    }
     /**
      * This method gets the user full name
      *

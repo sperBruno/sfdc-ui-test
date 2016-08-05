@@ -1,7 +1,6 @@
 package com.salesforce.dev.framework.dto;
 
-import java.text.DecimalFormat;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 import com.salesforce.dev.pages.campaigns.CampaignSteps;
@@ -18,18 +17,28 @@ import static com.salesforce.dev.pages.campaigns.CampaignSteps.START_DATE;
  * @since 8/27/2015.
  */
 public class Campaign {
+
     private String campaignName;
+
     private String campaignType;
+
     private String campaignStatus;
+
     private String startDate;
+
     private String endDate;
+
     private String expectedRevenue;
+
     private String budgetedCost;
+
     private String actualCost;
+
     private String expectedResponse;
+
     private String numSent;
+
     private String parentCampaign;
-    public Campaign(){}
 
     public void setCampaignName(String campaignName) {
         this.campaignName = campaignName;
@@ -120,21 +129,15 @@ public class Campaign {
     }
 
     public Map<CampaignSteps, Object> convertToMap() {
-        DecimalFormat decimalFormat = new DecimalFormat("¤#,###.###");
-        Map<CampaignSteps, Object> mapCampaign = new HashMap<>();
+        Map<CampaignSteps, Object> mapCampaign = new EnumMap<>(CampaignSteps.class);
         mapCampaign.put(CAMPAIGN_NAME,campaignName);
         mapCampaign.put(CAMPAIGN_STATUS, campaignStatus);
         mapCampaign.put(CAMPAIGN_TYPE, campaignType);
         mapCampaign.put(START_DATE, startDate);
         mapCampaign.put(END_DATE, endDate);
         mapCampaign.put(PARENT_CAMPAIGN, parentCampaign);
-        //mapCampaign.put(BUDGETED_COST, decimalFormat.format(Integer.valueOf(budgetedCost)));
-    //    mapCampaign.put(ACTUAL_COST, actualCost );
-     //   mapCampaign.put(EXPECTED_RESPONSE, expectedResponse);
-      //  mapCampaign.put(NUM_SENT, numSent);
-       // mapCampaign.put(EXPECTED_REVENUE, expectedRevenue);
-        Map<CampaignSteps, Object> mapCampaignWhitOutNull = new HashMap<>();
-        mapCampaign.entrySet().stream().forEach((step) -> {
+        Map<CampaignSteps, Object> mapCampaignWhitOutNull = new EnumMap<>(CampaignSteps.class);
+        mapCampaign.entrySet().stream().forEach(step -> {
             if (!(step.getValue() == null)) {
                 mapCampaignWhitOutNull.put(step.getKey(),step.getValue());
             }

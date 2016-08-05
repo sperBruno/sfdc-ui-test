@@ -1,17 +1,13 @@
 package com.salesforce.dev.pages.campaigns;
 
-import java.util.concurrent.TimeUnit;
-
 import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import com.salesforce.dev.pages.base.FormBase;
 import com.salesforce.dev.pages.base.SearchLookupBase;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.*;
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
