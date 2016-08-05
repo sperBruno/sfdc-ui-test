@@ -43,7 +43,7 @@ public class BrowserStack implements IDriver {
         try {
             url = new URL(sauceUrl);
         } catch (MalformedURLException e) {
-            LOGGER.warn("The url is not correct" + e);
+            LOGGER.warn("The url is not correct", e);
         }
         return new RemoteWebDriver(url, caps);
     }

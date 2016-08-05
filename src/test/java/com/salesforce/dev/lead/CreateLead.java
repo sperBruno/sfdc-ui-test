@@ -57,48 +57,48 @@ public class CreateLead {
         LeadsHome leadsHome = navBar.gotToLeadsHome();
         leadsHome.clickNewBtn();
 
-        LeadForm leadForm = new LeadBuilder(lead.lastName, lead.company, lead.leadStatus)
-                .setCampaign(lead.campaignLookup)
-                .setSalutation(lead.nameSalutation)
-                .setFirstName(lead.firstName)
-                .setTitle(lead.title)
-                .setLeadSource(lead.leadSource)
-                .setIndustry(lead.industry)
-                .setAnnualRevenue(lead.annualRevenue)
-                .setPhone(lead.phone)
-                .setMobile(lead.mobile)
-                .setFax(lead.fax)
-                .setEmail(lead.email)
-                .setWebsite(lead.website)
-                .setLeadStatus(lead.leadStatus)
-                .setRating(lead.rating)
-                .setNumEmployees(lead.numEmployees)
-                .setStreet(lead.street)
-                .setCity(lead.city)
-                .setStateProvince(lead.stateProvince)
-                .setZipPostalCode(lead.zipCode)
-                .setCountry(lead.country)
-                .setProductInterest(lead.productInterest)
-                .setSICcode(lead.SICCode)
-                .setNumberLocations(lead.numberLocations)
-                .setCurrentGenerators(lead.currentGenerators)
-                .setPrimary(lead.primary)
-                .setDescription(lead.description)
+        LeadForm leadForm = new LeadBuilder(lead.getLastName(), lead.getCompany(), lead.getLeadStatus())
+                .setCampaign(lead.getCampaignLookup())
+                .setSalutation(lead.getNameSalutation())
+                .setFirstName(lead.getFirstName())
+                .setTitle(lead.getTitle())
+                .setLeadSource(lead.getLeadSource())
+                .setIndustry(lead.getIndustry())
+                .setAnnualRevenue(lead.getAnnualRevenue())
+                .setPhone(lead.getPhone())
+                .setMobile(lead.getMobile())
+                .setFax(lead.getFax())
+                .setEmail(lead.getEmail())
+                .setWebsite(lead.getWebsite())
+                .setLeadStatus(lead.getLeadStatus())
+                .setRating(lead.getRating())
+                .setNumEmployees(lead.getNumEmployees())
+                .setStreet(lead.getStreet())
+                .setCity(lead.getCity())
+                .setStateProvince(lead.getStateProvince())
+                .setZipPostalCode(lead.getZipCode())
+                .setCountry(lead.getCountry())
+                .setProductInterest(lead.getProductInterest())
+                .setSICcode(lead.getSICCode())
+                .setNumberLocations(lead.getNumberLocations())
+                .setCurrentGenerators(lead.getCurrentGenerators())
+                .setPrimary(lead.getPrimary())
+                .setDescription(lead.getDescription())
                 .build();
         LeadDetail leadDetail = leadForm.clickSaveBtn();
-        Assert.assertEquals(leadDetail.getWebsite(), "http://" + lead.website, "The website is not correct");
-        Assert.assertEquals(leadDetail.getAddress(), lead.street + "\n" +
-                lead.city + ", " +
-                lead.stateProvince + " " +
-                lead.zipCode + "\n" +
-                lead.country, "The address is not correct");
+        Assert.assertEquals(leadDetail.getWebsite(), "http://" + lead.getWebsite(), "The website is not correct");
+        Assert.assertEquals(leadDetail.getAddress(), lead.getStreet() + "\n" +
+                lead.getCity() + ", " +
+                lead.getStateProvince ()+ " " +
+                lead.getZipCode() + "\n" +
+                lead.getCountry(), "The address is not correct");
         leadDetail.validateFields(lead);
     }
 
     @AfterMethod(groups = {"Acceptance"})
     public void tearDown() {
         LeadsHome leadsHome = mainPage.gotoNavBar().gotToLeadsHome();
-        DetailsBase leadDetail = leadsHome.openLead(lead.lastName + ", " + lead.firstName);
+        DetailsBase leadDetail = leadsHome.openLead(lead.getLastName() + ", " + lead.getFirstName());
         leadDetail.clickDeleteButton();
         navigationBar = mainPage.gotoNavBar();
         campaignsHome = navigationBar.goToCampaignsHome();

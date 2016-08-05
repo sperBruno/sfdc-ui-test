@@ -6,6 +6,7 @@ package com.salesforce.dev.framework.selenium;
  * @author Henrry Salinas
  */
 public enum Browser {
+
     FIREFOX,
     CHROME,
     IE,

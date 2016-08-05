@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
  *
  * @author Henrry Salinas.
  */
+@FunctionalInterface
 public interface IDriver {
 
     /**

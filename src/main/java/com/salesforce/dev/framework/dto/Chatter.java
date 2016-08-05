@@ -5,9 +5,10 @@ package com.salesforce.dev.framework.dto;
  * @since 9/5/2015.
  */
 public class Chatter {
+
     private String post;
+
     private String comment;
-    public Chatter(){}
 
     public String getComment() {
         return comment;

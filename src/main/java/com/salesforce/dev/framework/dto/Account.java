@@ -59,17 +59,29 @@ public class Account {
     private String type;
 
     private String industry;
+
     private Integer employees;
+
     private Integer annualRevenue;
+
     private String sicCode;
+
     private String billingAddress;
+
     private String shippingAddress;
+
     private String customerPriority;
+
     private String sla;
+
     private String upSellOpportunity;
+
     private String active;
+
     private String slaExpirationDate;
+
     private String slaSerialNumber;
+
     private Integer numberOfLocations;
 
     public String getAccountName() {

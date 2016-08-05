@@ -5,10 +5,12 @@ package com.salesforce.dev.framework.dto;
  * @since 8/21/2015.
  */
 public class FilterView {
+
     private String fieldFilter;
+
     private String operatorFilter;
+
     private String valueFilter;
-    public FilterView(){}
 
     public String getFieldFilter() {
         return fieldFilter;
