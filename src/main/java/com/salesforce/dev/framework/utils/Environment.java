@@ -1,10 +1,11 @@
 package com.salesforce.dev.framework.utils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
 
 /**
  * This class will be used to access to the variable of Properties file
@@ -12,7 +13,9 @@ import java.util.Properties;
  * @since 6/8/2015.
  */
 public class Environment {
-
+    
+    private static final Logger LOGGER = Logger.getLogger(Environment.class.getName());
+    
     private static final String PRIMARY_USER_NAME = "primaryUserName";
 
     private static final String PRIMARY_USER_PASSWORD = "primaryUserPassword";
@@ -66,11 +69,9 @@ public class Environment {
             properties = new Properties();
             properties.load(fileReader);
             fileReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        }
+            LOGGER.warn("Not found the properties file", e);
+        } 
     }
 
     public String getEnv(String key) {

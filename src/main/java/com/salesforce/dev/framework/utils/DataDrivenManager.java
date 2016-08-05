@@ -7,19 +7,13 @@ package com.salesforce.dev.framework.utils;
  * @since 7/26/2016.
  */
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.salesforce.dev.framework.dto.Account;
-import com.salesforce.dev.framework.dto.Campaign;
-import com.salesforce.dev.framework.dto.Chatter;
-import com.salesforce.dev.framework.dto.ViewSalesForce;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -49,7 +43,7 @@ public final class DataDrivenManager {
                 objectsArray.add(new Object[]{object});
             }
         } catch (IOException | ParseException e) {
-            e.printStackTrace();
+            LOGGER.warn("Json fails", e);
         }
         return objectsArray.iterator();
     }

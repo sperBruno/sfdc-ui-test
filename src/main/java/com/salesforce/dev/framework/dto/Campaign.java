@@ -1,8 +1,6 @@
 package com.salesforce.dev.framework.dto;
 
-import java.text.DecimalFormat;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
 
 import com.salesforce.dev.pages.campaigns.CampaignSteps;
@@ -138,11 +136,6 @@ public class Campaign {
         mapCampaign.put(START_DATE, startDate);
         mapCampaign.put(END_DATE, endDate);
         mapCampaign.put(PARENT_CAMPAIGN, parentCampaign);
-        //mapCampaign.put(BUDGETED_COST, decimalFormat.format(Integer.valueOf(budgetedCost)));
-    //    mapCampaign.put(ACTUAL_COST, actualCost );
-     //   mapCampaign.put(EXPECTED_RESPONSE, expectedResponse);
-      //  mapCampaign.put(NUM_SENT, numSent);
-       // mapCampaign.put(EXPECTED_REVENUE, expectedRevenue);
         Map<CampaignSteps, Object> mapCampaignWhitOutNull = new EnumMap<>(CampaignSteps.class);
         mapCampaign.entrySet().stream().forEach((step) -> {
             if (!(step.getValue() == null)) {

@@ -29,9 +29,9 @@ public class ObjectGenie {
         OpportunitiesHome opTab = navBar.goToOpportunitiesHome();
         opTab.clickNewBtn();
 
-        OpportunityForm opForm = new OpportunityBuilder(oppEnum.opportunityName, oppEnum.closeDate, oppEnum.stage)
-                .setOpDescription(oppEnum.description)
-                .setOrderNumber(oppEnum.orderNumber)
+        OpportunityForm opForm = new OpportunityBuilder(oppEnum.getOpportunityName(), oppEnum.getCloseDate(), oppEnum.getStage())
+                .setOpDescription(oppEnum.getDescription())
+                .setOrderNumber(oppEnum.getOrderNumber())
                 .build();
         opForm.clickSaveBtn();
     }
