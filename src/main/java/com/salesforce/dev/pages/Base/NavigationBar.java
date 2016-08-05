@@ -1,186 +1,162 @@
-package com.salesforce.dev.pages.Base;
-import com.salesforce.dev.pages.Accounts.AccountsHome;
-import com.salesforce.dev.pages.Campaigns.CampaignsHome;
-import com.salesforce.dev.pages.Cases.CasesHome;
-import com.salesforce.dev.pages.Chatter.ChatterHome;
-import com.salesforce.dev.pages.Contacts.ContactsHome;
-import com.salesforce.dev.pages.Contracts.ContractsHome;
-import com.salesforce.dev.pages.Dashboards.DashboardsHome;
-import com.salesforce.dev.pages.Forecasts.ForecastsHome;
-import com.salesforce.dev.pages.Leads.LeadsHome;
-import com.salesforce.dev.pages.Opportunities.OpportunitiesHome;
-import com.salesforce.dev.pages.Orders.OrdersHome;
-import com.salesforce.dev.pages.Product.ProductsHome;
-import com.salesforce.dev.pages.Reports.ReportsHome;
-import com.salesforce.dev.pages.Solutions.SolutionsHome;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
+package com.salesforce.dev.pages.base;
+
+import com.salesforce.dev.pages.accounts.AccountsHome;
+import com.salesforce.dev.pages.campaigns.CampaignsHome;
+import com.salesforce.dev.pages.cases.CasesHome;
+import com.salesforce.dev.pages.chatter.ChatterHome;
+import com.salesforce.dev.pages.contacts.ContactsHome;
+import com.salesforce.dev.pages.contracts.ContractsHome;
+import com.salesforce.dev.pages.dashboards.DashboardsHome;
+import com.salesforce.dev.pages.forecasts.ForecastsHome;
+import com.salesforce.dev.pages.leads.LeadsHome;
+import com.salesforce.dev.pages.opportunities.OpportunitiesHome;
+import com.salesforce.dev.pages.orders.OrdersHome;
+import com.salesforce.dev.pages.product.ProductsHome;
+import com.salesforce.dev.pages.reports.ReportsHome;
+import com.salesforce.dev.pages.solutions.SolutionsHome;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import com.salesforce.dev.framework.DriverManager;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isElementPresent;
 
 /**
- * Created by Monica Pardo on 6/5/2015.
+ * This class represents the navigation tab of Salesforce.
+ *
+ * @author Monica Pardo on 6/5/2015.
+ * @author Jimmy Vargas
+ * @author Bruno Barrios
  */
-public class NavigationBar {
+public class NavigationBar extends AbstractBasePage {
 
-    WebDriver driver;
-    WebDriverWait wait;
+    @FindBy(id = "Order_Tab")
+    private WebElement ordersTab;
 
-    @FindBy(linkText ="Campaigns")
-    WebElement campaignsTab;
+    @FindBy(id = "Campaign_Tab")
+    private WebElement campaignsTab;
 
-    @FindBy(linkText ="Leads")
-    WebElement leadsTab;
+    @FindBy(id = "Lead_Tab")
+    private WebElement leadsTab;
 
     @FindBy(linkText = "Accounts")
-    WebElement accountsTab;
+    private WebElement accountsTab;
 
-    @FindBy(linkText = "Contacts")
-    WebElement contactsTab;
+    @FindBy(id = "Contact_Tab")
+    private WebElement contactsTab;
 
-    @FindBy(linkText = "Opportunities")
-    WebElement opportunitiesTab;
+    @FindBy(id = "Opportunity_Tab")
+    private WebElement opportunitiesTab;
 
-    @FindBy(linkText = "Products")
-    WebElement productsTab;
+    @FindBy(id = "Product2_Tab")
+    private WebElement productsTab;
 
-    @FindBy(linkText = "Chatter")
-    WebElement chatterTab;
+    @FindBy(id = "Chatter_Tab")
+    private WebElement chatterTab;
 
-    @FindBy(linkText ="Forecasts")
-    WebElement forecastsTab;
+    @FindBy(id = "Forecasting3_Tab")
+    private WebElement forecastsTab;
 
-    @FindBy(linkText ="Contracts")
-    WebElement contractsTab;
+    @FindBy(id = "Contract_Tab")
+    private WebElement contractsTab;
 
-    @FindBy(linkText ="Orders")
-    WebElement ordersTab;
+    @FindBy(id = "Case_Tab")
+    private WebElement casesTab;
 
-    @FindBy(linkText ="Cases")
-    WebElement casesTab;
+    @FindBy(id = "Solution_Tab")
+    private WebElement solutionsTab;
 
-    @FindBy(linkText ="Solutions")
-    WebElement solutionsTab;
+    @FindBy(id = "report_Tab")
+    private WebElement reportsTab;
 
-    @FindBy(linkText ="Reports")
-    WebElement reportsTab;
+    @FindBy(id = "Dashboard_Tab")
+    private WebElement dashboardTab;
 
-    @FindBy(linkText ="Dashboards")
-    WebElement dashboardTab;
+    @FindBy(id = "MoreTabs_Tab")
+    private WebElement moreTabsComboBox;
 
-    public NavigationBar(WebDriver driver){
-        this.driver=driver;
-        this.wait= DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-
+    public CampaignsHome goToCampaignsHome() {
+        clickElementOfHomeTab(campaignsTab);
+        return new CampaignsHome();
     }
 
-    public CampaignsHome goToCampaignsHome(){
-        wait.until(ExpectedConditions.visibilityOf(campaignsTab));
-        campaignsTab.click();
-        return new CampaignsHome(driver);
+    public LeadsHome gotToLeadsHome() {
+        clickWebElement(leadsTab);
+        return new LeadsHome();
     }
 
-    public LeadsHome gotToLeadsHome(){
-        wait.until(ExpectedConditions.visibilityOf(leadsTab));
-        leadsTab.click();
-        return new LeadsHome(driver);
+    public AccountsHome goToAccountsHome() {
+        clickElementOfHomeTab(accountsTab);
+        return new AccountsHome();
     }
 
-    public AccountsHome goToAccountsHome(){
-        wait.until(ExpectedConditions.visibilityOf(accountsTab));
-        accountsTab.click();
-        return new AccountsHome(driver);
-    }
-
-    public ContactsHome goToContactsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(contactsTab));
-        contactsTab.click();
-        return new ContactsHome(this.driver);
+    public ContactsHome goToContactsHome() {
+        clickElementOfHomeTab(contactsTab);
+        return new ContactsHome();
     }
 
     /**
      * This method returns an instance from OpportunitiesTab
-     *
-     * @author: Jimmy Vargas
-     * @version: 1.0
-     * @since: 6/10/2015
-     * */
-    public OpportunitiesHome goToOpportunitiesHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(opportunitiesTab));
-        opportunitiesTab.click();
-
-        return new OpportunitiesHome(this.driver);
+     */
+    public OpportunitiesHome goToOpportunitiesHome() {
+        clickElementOfHomeTab(opportunitiesTab);
+        return new OpportunitiesHome();
     }
 
-    public ProductsHome goToProductsHome(){
-        wait.until(ExpectedConditions.visibilityOf(productsTab));
-        productsTab.click();
-        return new ProductsHome(driver);
+    public ProductsHome goToProductsHome() {
+        clickElementOfHomeTab(productsTab);
+        return new ProductsHome();
     }
 
-    public boolean IsElementPresent(WebElement webElement){
-        try {
-            webElement.getTagName();
-            return true;
-        } catch (WebDriverException e) {
-            return false;
+    public ChatterHome goToChatterHome() {
+        clickElementOfHomeTab(chatterTab);
+        return new ChatterHome();
+    }
+
+    public ForecastsHome goToForesCastsHome() {
+        clickElementOfHomeTab(forecastsTab);
+        return new ForecastsHome();
+    }
+
+    public ContractsHome goToContractsHome() {
+        clickElementOfHomeTab(contractsTab);
+        return new ContractsHome();
+    }
+
+    public OrdersHome goToOrdersHome() {
+        clickElementOfHomeTab(ordersTab);
+        return new OrdersHome();
+    }
+
+    public CasesHome goToCasesHome() {
+        clickElementOfHomeTab(casesTab);
+        return new CasesHome();
+    }
+
+    public SolutionsHome goToSolutionsHome() {
+        clickElementOfHomeTab(solutionsTab);
+        return new SolutionsHome();
+    }
+
+    public ReportsHome goToReportsHome() {
+        clickElementOfHomeTab(reportsTab);
+        return new ReportsHome();
+    }
+
+    public DashboardsHome goToDashboardsHome() {
+        clickElementOfHomeTab(dashboardTab);
+        return new DashboardsHome();
+    }
+
+    /**
+     * This method verifies if the tab is visible then clicks on the tab once it is visible.
+     * @param webElement
+     */
+    private void clickElementOfHomeTab(WebElement webElement) {
+        if ((!isElementPresent(webElement)) && (isElementPresent(moreTabsComboBox))) {
+            clickWebElement(moreTabsComboBox);
+            clickWebElement(webElement);
+        } else {
+            clickWebElement(webElement);
         }
     }
-
-    
-    public ChatterHome goToChatterHome(){
-        wait.until(ExpectedConditions.visibilityOf(chatterTab));
-        chatterTab.click();
-        return new ChatterHome(driver);
-    }
-
-
-    public ForecastsHome goToForescastsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(forecastsTab));
-        forecastsTab.click();
-        return new ForecastsHome(this.driver);
-    }
-
-    public ContractsHome goToContractsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(contractsTab));
-        contractsTab.click();
-        return new ContractsHome(this.driver);
-    }
-
-    public OrdersHome goToOrdersHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(ordersTab));
-        ordersTab.click();
-        return new OrdersHome(this.driver);
-    }
-
-    public CasesHome goToCasesHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(casesTab));
-        casesTab.click();
-        return new CasesHome(this.driver);
-    }
-
-    public SolutionsHome goToSolutionsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(solutionsTab));
-        solutionsTab.click();
-        return new SolutionsHome(this.driver);
-    }
-
-    public ReportsHome goToReportsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(reportsTab));
-        reportsTab.click();
-        return new ReportsHome(this.driver);
-    }
-
-    public DashboardsHome goToDashboardsHome(){
-        wait.until(ExpectedConditions.elementToBeClickable(dashboardTab));
-        dashboardTab.click();
-        return new DashboardsHome(this.driver);
-    }
-
 }
-

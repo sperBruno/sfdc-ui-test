@@ -1,68 +1,54 @@
-package com.salesforce.dev.pages.Accounts;
+package com.salesforce.dev.pages.accounts;
 
-import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.HomeBase;
-import com.salesforce.dev.pages.Campaigns.CampaignView;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
+import com.salesforce.dev.pages.base.HomeBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
 
 
 /**
- * Created by Walter on 10/06/2015.
+ * This class will be used to represent Account home page and its options.
+ *
+ * @author Walter.
+ * @since 10/06/2015.
  */
 public class AccountsHome extends HomeBase {
 
     @FindBy(xpath = "//h1[contains(.,'Accounts:')]")
-    WebElement accountSection;
-
-    public AccountsHome(WebDriver driver) {
-        super.driver = driver;
-        super.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
-    }
+    private WebElement accountSection;
 
     @Override
     public AccountForm clickNewBtn() {
         clickNewButton();
-        return new AccountForm(driver);
+        return new AccountForm();
     }
 
     @Override
     public AccountView clickNewViewLnk() {
         clickNewViewLink();
-        return new AccountView(this.driver);
+        return new AccountView();
     }
 
     @Override
     public AccountView clickEditViewLnk(String value) {
         editViewLnk(value);
-        return new AccountView(this.driver);
+        return new AccountView();
     }
 
     @Override
     public AccountDetail selectRecentItem(String value) {
         clickRecentItem(value);
-        return new AccountDetail(driver);
+        return new AccountDetail();
     }
 
     @Override
-    public  AccountsHome selectRecentViewItem(String value) {
+    public AccountsHome selectRecentViewItem(String value) {
         selectRecentView(value);
         return this;
     }
 
-    public boolean IsUserInAccountsTab(){
-        try{
-
-            wait.until(ExpectedConditions.visibilityOf(accountSection));
-            return true;
-        }
-        catch (WebDriverException e){
-            return false;
-        }
+    public boolean IsUserInAccountsTab() {
+        return isWebElementVisible(accountSection);
     }
 }

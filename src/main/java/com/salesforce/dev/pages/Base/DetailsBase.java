@@ -1,149 +1,79 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.framework.LoggerManager;
+import java.util.Map;
+
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import com.salesforce.dev.pages.MainPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickConfirmAlert;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
 
 /**
- * Created by Jimmy Vargas on 6/13/2015.
- *
  * This class will contain the common objects for the Details pages
  *
- * @author: Jimmy Vargas
- * @since: 6/13/2015
+ * @author Jimmy Vargas
+ * @author Walter
+ * @author Mijhail
+ * @since 6/13/2015
  */
-public abstract class DetailsBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+public abstract class DetailsBase extends AbstractBasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(DetailsBase.class.getName());
 
     @FindBy(name = "edit")
-    WebElement editBtn;
+    private WebElement editBtn;
 
     @FindBy(name = "del")
-    WebElement deleteBtn;
+    private WebElement deleteBtn;
 
     @FindBy(name = "delete")
-    WebElement deleteAccBtn;
+    private WebElement deleteAccBtn;
 
     @FindBy(name = "clone")
-    WebElement cloneBtn;
+    private WebElement cloneBtn;
 
     /**
      * Clicks the Edit button
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
      */
     protected void clickEditButton() {
         try {
-            wait.until(ExpectedConditions.visibilityOf(editBtn));
-            editBtn.click();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Edit button was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The SaveNew button couldn't be found",
-                    e.fillInStackTrace());
+            clickWebElement(editBtn);
+            LOGGER.info("Edit button was clicked");
+        } catch (WebDriverException e) {
+            LOGGER.fatal("The SaveNew button couldn't be found", e);
         }
     }
 
     /**
      * Clicks delete button
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
      */
-    protected void clickDeleteButton(boolean confirmDeletion) {
-        wait.until(ExpectedConditions.visibilityOf(deleteBtn));
-        deleteBtn.click();
-        Alert alert;
-
-        try{
-            alert = driver.switchTo().alert();
-
-            if (confirmDeletion){
-                alert.accept();
-            }
-            alert.dismiss();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Delete Button was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Delete button couldn't be found",
-                    e.fillInStackTrace());
-        }
+    protected void clickDeletedButton() {
+        clickWebElement(deleteAccBtn);
+        clickConfirmAlert();
     }
 
-    /**
-     * Clicks delete button
-     *
-     * @author: Walter
-     *
-     */
-    protected void clickDeletedAccButton(boolean confirmDeletion) {
-        wait.until(ExpectedConditions.visibilityOf(deleteAccBtn));
-        deleteAccBtn.click();
-        Alert alert;
-
-        try{
-            alert = driver.switchTo().alert();
-
-            if (confirmDeletion){
-                alert.accept();
-            }
-            alert.dismiss();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Delete Button was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Delete button couldn't be found",
-                    e.fillInStackTrace());
-        }
-    }
-
-    /**
-     * Clicks clone button
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
-     */
-    protected void clickCloneButton() {
-        try{
-            wait.until(ExpectedConditions.visibilityOf(cloneBtn));
-            cloneBtn.click();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Clone Button was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Clone button couldn't be found",
-                    e.fillInStackTrace());
-        }
+    public MainPage gotoMainPage() {
+        return new MainPage();
     }
 
     /**
      * Returns the corresponding form
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
-     * */
-    protected abstract Object clickEditBtn();
+     */
+    protected abstract AbstractBasePage clickEditBtn();
+
 
     /**
-     * Returns to the Details when the confirmation is false and return to home when the confirmation is true
-     *
-     * @author: Jimmy Vargas
-     * @since: 6/13/2015
-     * */
-    protected abstract Object clickDeleteBtn(boolean confirmDeletion);
+     * Return Home page when do click delete button
+     */
+    public abstract AbstractBasePage clickDeleteButton();
 
-
+    /**
+     * Return Map the assertions
+     */
+    public abstract Map<Enum, Object> getAssertionMap();
 }

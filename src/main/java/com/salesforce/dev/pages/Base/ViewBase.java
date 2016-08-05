@@ -1,25 +1,21 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.framework.DriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by Administrator on 8/20/2015.
+ * This class will be used to represent all base views.
+ *
+ * @author Administrator
+ * @since 8/20/2015.
  */
-public abstract class ViewBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+public abstract class ViewBase extends AbstractBasePage {
 
     @FindBy(name = "save")
     protected WebElement saveBtn;
-
 
     @FindBy(name = "cancel")
     protected WebElement cancelBtn;
@@ -58,7 +54,7 @@ public abstract class ViewBase {
 
     private Select availableFieldsMultiSelect;
 
-    protected abstract Object clickSaveBtn();
+    protected abstract ViewDetailBase clickSaveBtn();
 
     protected abstract Object clickCancelBtn();
 
@@ -73,18 +69,11 @@ public abstract class ViewBase {
     protected abstract Object addNewFieldToDisplay(String newField);
     protected abstract Object selectRestrictVisibility(String optionVisibility);
     protected void clickSaveButton() {
-        this.wait.until(ExpectedConditions.visibilityOf(saveBtn));
+        wait.until(ExpectedConditions.visibilityOf(saveBtn));
         saveBtn.click();
 
     }
-    protected void initializer(){
-        if(driver == null){
-            driver = DriverManager.getInstance().getDriver();
-        }
-        this.wait = DriverManager.getInstance().getWait();
-        PageFactory.initElements(this.driver,this);
 
-    }
     protected void clickCancelButton() {
         wait.until(ExpectedConditions.visibilityOf(cancelBtn));
         cancelBtn.click();
@@ -129,7 +118,7 @@ public abstract class ViewBase {
         driver.findElement(filterValue).sendKeys(value);
     }
 
-    protected void selectAvailableFldToDisplay(String field){
+    protected void selectAvailableFldToDisplay(String field) {
         wait.until(ExpectedConditions.visibilityOf(availableFields));
         availableFields.click();
         availableFieldsMultiSelect.selectByVisibleText(field);

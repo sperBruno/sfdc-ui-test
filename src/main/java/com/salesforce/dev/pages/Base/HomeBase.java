@@ -1,21 +1,23 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.framework.LoggerManager;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
 
 /**
- * Created by Jimmy Vargas on 6/11/2015.
+ * This class will be used to represent the HOme page of SalesForce.
+ *
+ * @author Jimmy Vargas
+ * @author veronica
+ * @since 6/11/2015.
  */
-public abstract class HomeBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+public abstract class HomeBase extends AbstractBasePage {
+    private static final Logger LOGGER = Logger.getLogger(HomeBase.class.getName());
 
     @FindBy(id = "fcf")
     protected WebElement viewCombobox;
@@ -35,87 +37,63 @@ public abstract class HomeBase {
 
     /**
      * Method clicks the New button in the home page for each different category
-     *
-     * @author: Jimmy
      */
-    protected abstract Object clickNewBtn();
+    protected abstract FormBase clickNewBtn();
 
     /**
      * Method clicks the New Link in the home page for each different category
-     *
-     * @author: veronica
      */
-    protected abstract Object clickNewViewLnk();
+    protected abstract AbstractBasePage clickNewViewLnk();
 
     /**
      * Method clicks the NEdit view in the home page for each different category
-     *
-     * @author: veronica
      */
-    protected abstract Object clickEditViewLnk(String value);
+    protected abstract AbstractBasePage clickEditViewLnk(String value);
 
     /**
      * Method that encapsulates the the operations waiting for the elemeent and the action
-     *
-     * @author: Jimmy
      */
     protected void clickNewButton() {
         try {
-            this.wait.until(ExpectedConditions.visibilityOf(newBtn));
-            newBtn.click();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "New button was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The New button couldn't be found",
-                    e.fillInStackTrace());
+            clickWebElement(newBtn);
+            LOGGER.info("New button was clicked");
+        } catch (WebDriverException e) {
+            LOGGER.fatal("The New button couldn't be found", e);
         }
     }
 
     /**
      * Method that encapsulates the the operations waiting for the elemeent and the action
-     *
-     * @author: veronica
      */
     protected void clickNewViewLink() {
         try {
-            this.wait.until(ExpectedConditions.visibilityOf(newViewLnk));
-            newViewLnk.click();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "New View Link was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The New View Link couldn't be found",
-                    e.fillInStackTrace());
+            clickWebElement(newViewLnk);
+            LOGGER.info("New View Link was clicked");
+        } catch (WebDriverException e) {
+            LOGGER.fatal("The New View Link couldn't be found", e);
         }
     }
 
     protected abstract Object selectRecentItem(String value);
 
-    protected void clickRecentItem(String value){
+    protected void clickRecentItem(String value) {
         try {
             WebElement recentItem = driver.findElement(
-                    By.xpath("//div[@class='hotListElement']/descendant::a[contains(.,'"+value+"')]"));
+                    By.xpath("//div[@class='hotListElement']/descendant::a[contains(.,'" + value + "')]"));
             recentItem.click();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Recent Item was selected");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Recent Item button couldn't be found",
-                    e.fillInStackTrace());
+            LOGGER.info("Recent Item was selected");
+        } catch (WebDriverException e) {
+            LOGGER.info("The Recent Item button couldn't be found", e);
         }
     }
-    protected abstract Object selectRecentViewItem(String value);
 
-    protected void selectRecentView(String value){
-        wait.until(ExpectedConditions.visibilityOf(viewCombobox));
-        viewCombobox.sendKeys(value);
+    protected abstract AbstractBasePage selectRecentViewItem(String value);
+
+    protected void selectRecentView(String value) {
+        setWebElement(viewCombobox, value);
     }
 
-    protected void editViewLnk(String value){
+    protected void editViewLnk(String value) {
         selectRecentView(value);
         editViewLnk.click();
     }

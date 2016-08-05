@@ -18,10 +18,8 @@ build/
 *.png
 logs/
 *.puml
-
-
-
-
-
-
-
+/classes/
+/reports/
+/nbproject/private/
+/$buildDir/
+/.nb-gradle/

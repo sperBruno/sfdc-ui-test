@@ -1,18 +1,29 @@
-package com.salesforce.dev.pages.Base;
+package com.salesforce.dev.pages.base;
 
-import com.salesforce.dev.framework.LoggerManager;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.Select;
+import com.salesforce.dev.framework.selenium.CommonOperation;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickConfirmAlert;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.getFirstSelectOption;
+import static com.salesforce.dev.framework.selenium.CommonOperation.moveHorizontalWebElementScroll;
 
 /**
- * Created by Administrator on 8/20/2015.
+ * This class will be used to represent the BaseView of all detail views
+ *
+ * @author Administrator
+ * @since 8/20/2015.
  */
-public abstract class ViewDetailBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+
+public abstract class ViewDetailBase extends AbstractBasePage {
+
+    private static final Logger LOGGER = Logger.getLogger(ViewDetailBase.class.getName());
 
     @FindBy(linkText = "Edit")
     protected WebElement editLnk;
@@ -30,66 +41,48 @@ public abstract class ViewDetailBase {
         try {
             wait.until(ExpectedConditions.visibilityOf(editLnk));
             editLnk.click();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Edit link was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Edit link couldn't be found",
-                    e.fillInStackTrace());
+            LOGGER.info("Edit link was clicked");
+        } catch (WebDriverException e) {
+            LOGGER.fatal("The Edit link couldn't be found", e);
         }
     }
 
-    protected void clickDeleteLink(boolean confirmDeletion) {
-        wait.until(ExpectedConditions.visibilityOf(deleteLnk));
-        deleteLnk.click();
-        Alert alert;
-
-        try{
-            alert = driver.switchTo().alert();
-
-            if (confirmDeletion){
-                alert.accept();
-            }
-            alert.dismiss();
-            LoggerManager.getInstance().addInfoLog(this.getClass().getName(),
-                    "Delete link was clicked");
-        }
-        catch(WebDriverException e){
-            LoggerManager.getInstance().addFatalLog(this.getClass().getName(),
-                    "The Delete link couldn't be found",
-                    e.fillInStackTrace());
-        }
+    /**
+     * {@inheritDoc CommonOperation.clickWebElement,CommonOperation.clickConfirmAlert}
+     */
+    protected void clickDeleteLink() {
+        clickWebElement(deleteLnk);
+        clickConfirmAlert();
     }
 
     protected abstract Object clickEditLnk();
 
     /**
      * Returns next view
-    *
      */
-    protected abstract Object clickDeleteLnk(boolean confirmDeletion);
+    public abstract ViewDetailBase clickDeleteLnk();
 
-
-
-    public String getViewSelected(){
+    /**
+     * {@inheritDoc CommonOperation.getFirstSelectOption}
+     */
+    public String getViewSelected() {
         wait.until(ExpectedConditions.visibilityOf(viewSelected));
-        Select select = new Select(viewSelected);
-        return select.getFirstSelectedOption().getText();
-    }
-    public boolean validateNameView(String nameView){
-        wait.until(ExpectedConditions.visibilityOf(viewSelected));
-        Select select = new Select(viewSelected);
-
-        String nameV = select.getFirstSelectedOption().getText();
-        return nameV.equals(nameView);
-
+        return getFirstSelectOption(viewSelected);
     }
 
-    public boolean validateFieldDisplayed(String field){
-        By fieldDisplayed = By.xpath("//div[@title='" + field+"']");
+    /**
+     * {@inheritDoc CommonOperation.getFirstSelectOption}
+     */
+    public boolean validateNameView(String nameView) {
+        return getFirstSelectOption(viewSelected).equals(nameView);
+    }
+
+    public boolean validateFieldDisplayed(String field) {
+        final int horizontalScrollPosition = 200;
+        By fieldDisplayed = By.xpath("//div[@title='" + field + "']");
+        WebElement webElement = driver.findElement(By.id("ext-gen10"));
+        moveHorizontalWebElementScroll(driver, webElement, horizontalScrollPosition);
         wait.until(ExpectedConditions.visibilityOfElementLocated(fieldDisplayed));
         return driver.findElement(fieldDisplayed).isDisplayed();
-
     }
 }

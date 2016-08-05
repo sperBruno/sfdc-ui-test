@@ -1,0 +1,40 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SuiteFull" verbose="1" >
+    <listeners>
+        <listener class-name="com.salesforce.dev.framework.testng.TestListener" />
+    </listeners>
+    <test name="Full">
+        <classes>
+            <class name="com.salesforce.dev.campaign.CreateCampaign"/>
+            <class name="com.salesforce.dev.campaign.CreateCampaignViewBasic"/>
+            <class name="com.salesforce.dev.campaign.CreateCampaignViewFiltersFieldsAdded"/>
+            <class name="com.salesforce.dev.accounts.CreateAccountViewBasic"/>
+            <class name="com.salesforce.dev.accounts.CreateAccountViewFiltersFieldsAdded"/>
+            <class name="com.salesforce.dev.oportunity.CreateOpportunityViewBasic"/>
+            <class name="com.salesforce.dev.oportunity.CreateOpportunityViewFiltersFieldsAdded"/>
+            <class name="com.salesforce.dev.campaign.EditCampaignViewBasic"/>
+            <class name="com.salesforce.dev.contact.EditContactView"/>
+            <class name="com.salesforce.dev.campaign.EditCampaign"/>
+            <class name="com.salesforce.dev.accounts.EditAccount"/>
+            <class name="com.salesforce.dev.accounts.CreateAccount"/>
+            <class name="com.salesforce.dev.accounts.CreateAccountDD"/>
+            <class name="com.salesforce.dev.contact.CreateContact"/>
+            <class name="com.salesforce.dev.contact.CreateContactView"/>
+            <class name="com.salesforce.dev.lead.CreateLead"/>
+            <class name="com.salesforce.dev.lead.CreateLeadsViewBasic"/>
+            <class name="com.salesforce.dev.lead.EditLeadsViewBasic"/>
+            <class name="com.salesforce.dev.oportunity.CreateOpportunity"/>
+            <class name="com.salesforce.dev.chatter.CreatePost"/>
+            <class name="com.salesforce.dev.product.CreateProduct"/>
+            <class name="com.salesforce.dev.accounts.EditAccount"/>
+            <class name="com.salesforce.dev.contact.EditContact"/>
+            <class name="com.salesforce.dev.lead.EditLead"/>
+            <class name="com.salesforce.dev.oportunity.EditOpportunity"/>
+            <class name="com.salesforce.dev.product.EditProduct"/>
+            <class name="com.salesforce.dev.login.LoginTest"/>
+            <class name="com.salesforce.dev.TestCookies"/>
+            <class name="com.salesforce.dev.VerifyAllHomeTabs"/>
+            <class name="com.salesforce.dev.login.LogoutTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,59 +1,38 @@
 package com.salesforce.dev.pages;
 
-import com.salesforce.dev.framework.DriverManager;
-import com.salesforce.dev.pages.Base.NavigationBar;
-import com.salesforce.dev.pages.Leads.LeadsHome;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+import com.salesforce.dev.pages.base.AbstractBasePage;
+import com.salesforce.dev.pages.base.NavigationBar;
 
 /**
- * Created by Jimmy Vargas on 6/4/2015.
+ * This class represents the main page of Salesforce.
+ *
+ * @author Jimmy Vargas.
+ * @since 6/4/2015.
  */
-public class MainPage {
+public class MainPage extends AbstractBasePage {
 
-    NavigationBar navBar;
-    TopHeader topHeader;
+    private NavigationBar navBar;
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private TopHeader topHeader;
 
-    public MainPage(WebDriver driver){
-        this.driver = driver;
-        this.wait = DriverManager.getInstance().getWait();
-        topHeader = new TopHeader(this.driver);
-        navBar = new NavigationBar(this.driver);
-
-        PageFactory.initElements(this.driver, this);
+    public MainPage() {
+        topHeader = new TopHeader();
+        navBar = new NavigationBar();
     }
-    public MainPage(){
-        if(driver == null){
-            driver = DriverManager.getInstance().getDriver();
-        }
-        this.wait = DriverManager.getInstance().getWait();
 
-        topHeader = new TopHeader(this.driver);
-        navBar = new NavigationBar(this.driver);
-
-        PageFactory.initElements(this.driver, this);
-    }
-    public TopHeader gotoTopHeader(){
+    /**
+     * This method sends to the top header.
+     *
+     * @return TopHeader.
+     */
+    public TopHeader gotoTopHeader() {
         return this.topHeader;
     }
 
     /**
      * Returns the navigation bar where all the HOMEs are located
-     *
-     * @author: Jimmy Vargas
-     * */
-    public NavigationBar gotoNavBar(){
+     */
+    public NavigationBar gotoNavBar() {
         return this.navBar;
     }
-
-
 }
