@@ -8,7 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
-import static com.salesforce.dev.framework.utils.Constants.*;
+import static com.salesforce.dev.framework.utils.Constants.TIMEOUT_MIN;
+import static com.salesforce.dev.framework.utils.Constants.TIMEOUT_NORMAL;
+import static com.salesforce.dev.framework.utils.Constants.WEB_ELEMENT_COULD_NOT_BE_FOUNT;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -16,7 +18,6 @@ import static java.util.concurrent.TimeUnit.SECONDS;
  *
  * @author Jimmy Vargas.
  * @author Bruno Barrios.
- * @since 6/5/2015
  */
 public class TopHeader extends AbstractBasePage {
 
@@ -48,12 +49,12 @@ public class TopHeader extends AbstractBasePage {
     public String getUserName() {
         String userLogged = "";
         try {
-            driver.manage().timeouts().implicitlyWait(TEN_SECONDS, SECONDS);
+            driver.manage().timeouts().implicitlyWait(TIMEOUT_MIN, SECONDS);
             userLogged = this.userMenu.getText();
         } catch (WebDriverException e) {
             LOGGER.error(WEB_ELEMENT_COULD_NOT_BE_FOUNT, e);
         } finally {
-            driver.manage().timeouts().implicitlyWait(FIFTEEN_SECONDS, SECONDS);
+            driver.manage().timeouts().implicitlyWait(TIMEOUT_NORMAL, SECONDS);
         }
         return userLogged;
     }
@@ -81,9 +82,9 @@ public class TopHeader extends AbstractBasePage {
      */
     public boolean checkIfCookieIsPresent() {
         String cookieName = "com.salesforce.LocaleInfo";
-        String coockieDomain = ".salesforce.com";
+        String cookieDomain = ".salesforce.com";
         LOGGER.info("Verifying Cookies");
         wait.until(ExpectedConditions.visibilityOf(userMenu));
-        return this.driver.manage().getCookieNamed(cookieName).getDomain().equals(coockieDomain);
+        return this.driver.manage().getCookieNamed(cookieName).getDomain().equals(cookieDomain);
     }
 }

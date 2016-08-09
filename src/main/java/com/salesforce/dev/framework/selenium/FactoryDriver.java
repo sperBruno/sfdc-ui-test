@@ -19,7 +19,7 @@ public final class FactoryDriver {
             case FIREFOX:
                 return new Firefox();
             case SAFARI:
-                return new Safary();
+                return new Safari();
             case IE:
                 return new InternetExplorer();
             case SAUCELABS:

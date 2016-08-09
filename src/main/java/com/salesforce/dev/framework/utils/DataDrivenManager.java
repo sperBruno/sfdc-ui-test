@@ -1,11 +1,5 @@
 package com.salesforce.dev.framework.utils;
 
-/**
- * @author Walter Mercado on 6/22/2015.
- * @author DanielGonzales
- * @since 7/26/2016.
- */
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +14,11 @@ import org.json.simple.parser.ParseException;
 
 import static com.salesforce.dev.framework.utils.Constants.SRC_TEST_RESOURCES_JSON;
 
-
+/**
+ * 
+ * @author Walter Mercado
+ * @author DanielGonzales
+ */
 public final class DataDrivenManager {
     private static final Logger LOGGER = Logger.getLogger(DataDrivenManager.class.getName());
 
@@ -30,10 +28,9 @@ public final class DataDrivenManager {
     public static Iterator<Object[]> getObjects(String nameJson, Class<?> elementClass) {
         List<Object[]> objectsArray = new ArrayList<>();
 
-        try {
-            final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson);
-            Object jsonObject = new JSONParser().parse(new FileReader(pathFileJson));
-
+        final String pathFileJson = SRC_TEST_RESOURCES_JSON.concat(nameJson);
+        try (FileReader fileReader = new FileReader(pathFileJson)) {
+            Object jsonObject = new JSONParser().parse(fileReader);
             ObjectMapper objectMapper = new ObjectMapper();
             List<Object> objectList = objectMapper.readValue(((JSONArray) jsonObject).toJSONString(),
                     objectMapper.getTypeFactory().constructCollectionType(List.class, elementClass));

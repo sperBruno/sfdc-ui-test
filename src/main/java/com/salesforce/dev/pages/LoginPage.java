@@ -1,23 +1,24 @@
 package com.salesforce.dev.pages;
 
 import com.salesforce.dev.framework.soap.UserInformation;
+import com.salesforce.dev.framework.utils.Environment;
 import com.salesforce.dev.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static com.salesforce.dev.framework.selenium.CommonOperation.*;
-import static com.salesforce.dev.framework.utils.Constants.ENVIRONMENT;
-
-;
+import static com.salesforce.dev.framework.selenium.CommonOperation.clickWebElement;
+import static com.salesforce.dev.framework.selenium.CommonOperation.isWebElementVisible;
+import static com.salesforce.dev.framework.selenium.CommonOperation.setWebElement;
 
 /**
  * This class represents the login page of salesforce.
  *
  * @author Monica Pardo.
  * @author Bruno Barrios.
- * @since 6/4/2015.
  */
 public class LoginPage extends AbstractBasePage {
+
+    private static final Environment ENVIRONMENT = Environment.getInstance();
 
     @FindBy(id = "username")
     private WebElement userNameFld;
@@ -74,6 +75,5 @@ public class LoginPage extends AbstractBasePage {
     public void setPassword(String password) {
         setWebElement(passwordFld, password);
     }
-
 
 }

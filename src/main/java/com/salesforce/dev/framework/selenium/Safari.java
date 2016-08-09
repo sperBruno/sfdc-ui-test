@@ -8,7 +8,7 @@ import org.openqa.selenium.safari.SafariDriver;
  *
  * @author Henrry Salinas.
  */
-public class Safary implements IDriver {
+public class Safari implements IDriver {
 
     /**
      * {@inheritDoc}
