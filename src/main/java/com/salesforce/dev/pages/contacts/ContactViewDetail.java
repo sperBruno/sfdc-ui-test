@@ -4,22 +4,12 @@ import com.salesforce.dev.framework.selenium.CommonOperation;
 import com.salesforce.dev.pages.MainPage;
 import com.salesforce.dev.pages.base.ViewDetailBase;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import static com.salesforce.dev.framework.utils.Constants.FIFTEEN_SECONDS;
-import static com.salesforce.dev.framework.utils.Constants.TEN_SECONDS;
-
 /**
  * This class is used to represent Contact view details and its options.
  *
  * @author Veronica.
- * @since 8/21/2015.
  */
 public class ContactViewDetail extends ViewDetailBase {
-
-    @FindBy(id = "con2_ileinner")
-    private WebElement contactViewName;
 
     public ContactViewDetail() {
         CommonOperation.waitForWebElement(viewSelected);
@@ -39,10 +29,6 @@ public class ContactViewDetail extends ViewDetailBase {
 
     public MainPage gotoMainPage() {
         return new MainPage();
-    }
-
-    public Boolean validateContactName(String value) {
-        return contactViewName.getText().equals(value);
     }
 
 }

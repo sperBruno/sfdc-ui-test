@@ -13,10 +13,11 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static com.salesforce.dev.framework.selenium.DriverManager.TIMEOUT_NORMAL;
+import static com.salesforce.dev.framework.utils.Constants.TIMEOUT_NORMAL;
 
 /**
- * @author veronica on 8/20/2015.
+ * 
+ * @author veronica
  */
 public class CampaignView extends ViewBase {
 

@@ -1,7 +1,8 @@
 package com.salesforce.dev.framework.selenium;
 
-import com.salesforce.dev.pages.base.DetailsBase;
+import java.util.concurrent.TimeUnit;
 
+import com.salesforce.dev.pages.base.DetailsBase;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,15 +13,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
-import static com.salesforce.dev.framework.selenium.DriverManager.TIMEOUT_NORMAL;
+import static com.salesforce.dev.framework.utils.Constants.TIMEOUT_NORMAL;
 
 /**
  * This class will be used to perform some common operation through pages.
  *
  * @author dante
- * @since 6/14/2016.
  */
 public class CommonOperation {
 
